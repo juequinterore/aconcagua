@@ -3,6 +3,11 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://aconcagua.co',
+  redirects: {
+    '/globalrescue': 'https://partner.globalrescue.com/juliankusi/index.html',
+    '/pire': 'https://www.pireaconcagua.com.ar/es/',
+    '/en/pire': 'https://www.pireaconcagua.com.ar/en/',
+  },
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en', 'zh'],

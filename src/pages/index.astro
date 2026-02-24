@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Stats from '../components/Stats.astro';
+import About from '../components/About.astro';
+import Pricing from '../components/Pricing.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CTA from '../components/CTA.astro';
+import Partners from '../components/Partners.astro';
+import Social from '../components/Social.astro';
+import Footer from '../components/Footer.astro';
+import { useTranslations } from '../i18n/utils';
+
+const lang = 'es';
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title="Julian Kusi — Guía de Montaña del Aconcagua | aconcagua.co"
+  description="Guía de montaña certificado con 17 cumbres exitosas y más de 10 años de experiencia en expediciones al Aconcagua. Reservá tu asesoría gratuita."
+  lang={lang}
+  ogLocale="es_AR"
+  ogUrl="https://aconcagua.co/"
+>
+  <Nav lang={lang} t={t} />
+  <main id="main-content">
+    <Hero lang={lang} t={t} />
+    <Stats lang={lang} t={t} />
+    <About lang={lang} t={t} />
+    <Pricing lang={lang} t={t} />
+    <Testimonials lang={lang} t={t} />
+    <CTA lang={lang} t={t} />
+    <Partners lang={lang} t={t} />
+    <Social lang={lang} t={t} />
+  </main>
+  <Footer lang={lang} t={t} />
+</BaseLayout>

@@ -1,0 +1,161 @@
+---
+import '../styles/global.css';
+import '../styles/animations.css';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: 'es' | 'en' | 'zh';
+  ogLocale?: string;
+  ogUrl?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  lang,
+  ogLocale = 'es_AR',
+  ogUrl = 'https://aconcagua.co/',
+ogImage = 'https://aconcagua.co/openegraph.jpeg',
+} = Astro.props;
+
+const alternates = [
+  { lang: 'es-AR', href: 'https://aconcagua.co/' },
+  { lang: 'en-US', href: 'https://aconcagua.co/en/' },
+  { lang: 'zh-CN', href: 'https://aconcagua.co/zh/' },
+  { lang: 'x-default', href: 'https://aconcagua.co/' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Julian Kusi — Aconcagua Mountain Guide',
+  description: 'Certified Aconcagua mountain guide with 17 successful summits and 10+ years of experience guiding international expeditions.',
+  url: 'https://aconcagua.co',
+  telephone: '+57 314 629 4318',
+  email: 'julian@aconcagua.co',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Mendoza',
+    addressCountry: 'AR',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: -32.8895,
+    longitude: -68.8458,
+  },
+  areaServed: {
+    '@type': 'Place',
+    name: 'Aconcagua Provincial Park, Argentina',
+  },
+  priceRange: '$$$',
+  sameAs: [
+    'https://www.instagram.com/juliankusi',
+    'https://www.youtube.com/@juliankusi',
+    'https://www.tiktok.com/@juliankusi',
+  ],
+};
+---
+
+<!doctype html>
+<html lang={lang} class:list={[{ 'lang-zh': lang === 'zh' }]}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+
+    <!-- Canonical & hreflang -->
+    <link rel="canonical" href={ogUrl} />
+    {alternates.map(alt => (
+      <link rel="alternate" hreflang={alt.lang} href={alt.href} />
+    ))}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={ogUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={ogLocale} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Preload hero image (LCP element) -->
+    <link rel="preload" as="image" href="/hero.webp" fetchpriority="high" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fonts: preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Calendly CSS - deferred loading trick -->
+    <link
+      rel="stylesheet"
+      href="https://assets.calendly.com/assets/external/widget.css"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
+    </noscript>
+
+    <title>{title}</title>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <!-- Skip link -->
+    <a href="#main-content" class="skip-link">
+      {lang === 'es' ? 'Saltar al contenido principal' : lang === 'zh' ? '跳至主要内容' : 'Skip to main content'}
+    </a>
+
+    <slot />
+
+    <!-- Calendly JS - async defer -->
+    <script
+      async
+      defer
+      src="https://assets.calendly.com/assets/external/widget.js"
+      type="text/javascript"
+    ></script>
+
+    <!-- Scroll reveal observer -->
+    <script>
+      (function() {
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (prefersReduced) {
+          // Show all reveal elements immediately
+          document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+            el.classList.add('visible');
+          });
+          return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -40px 0px',
+        });
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+          observer.observe(el);
+        });
+      })();
+    </script>
+  </body>
+</html>

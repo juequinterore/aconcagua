@@ -1,0 +1,157 @@
+---
+import LangSwitcher from './LangSwitcher.astro';
+
+interface Props {
+  lang: 'es' | 'en' | 'zh';
+  t: (key: string) => string;
+}
+
+const { lang, t } = Astro.props;
+
+const navLinks = [
+  { key: 'nav.about', href: '#sobre' },
+  { key: 'nav.expeditions', href: '#expediciones' },
+  { key: 'nav.testimonials', href: '#testimonios' },
+  { key: 'nav.community', href: '#comunidad' },
+];
+
+const calendlyUrl = 'https://calendly.com/juliankusi/30min';
+---
+
+<nav class="nav" id="main-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href={lang === 'es' ? '/' : `/${lang}/`} class="nav-logo" aria-label="Aconcagua - Julian Kusi">
+      <img src="/logo.webp" alt="Julian Kusi - Aconcagua" class="nav-logo-img" width="160" height="48" />
+    </a>
+
+    <ul class="nav-links" role="list">
+      {navLinks.map(link => (
+        <li>
+          <a href={link.href}>{t(link.key)}</a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="nav-right">
+      <LangSwitcher lang={lang} />
+      <button
+        class="btn btn-primary nav-cta"
+        onclick={`Calendly.initPopupWidget({url: '${calendlyUrl}'}); return false;`}
+        aria-label={t('nav.cta')}
+      >
+        {t('nav.cta')}
+      </button>
+    </div>
+
+    <button
+      class="hamburger"
+      id="hamburger-btn"
+      aria-expanded="false"
+      aria-controls="nav-overlay"
+      aria-label="Toggle menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile overlay -->
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true" role="dialog" aria-label="Mobile navigation">
+  <ul role="list">
+    {navLinks.map(link => (
+      <li>
+        <a href={link.href} class="overlay-nav-link">{t(link.key)}</a>
+      </li>
+    ))}
+  </ul>
+  <button
+    class="btn btn-primary overlay-cta"
+    onclick={`Calendly.initPopupWidget({url: '${calendlyUrl}'}); return false;`}
+  >
+    {t('nav.cta')}
+  </button>
+  <div class="overlay-lang">
+    <LangSwitcher lang={lang} />
+  </div>
+</div>
+
+<script>
+  // Nav scroll state
+  const nav = document.getElementById('main-nav');
+  if (nav) {
+    const onScroll = () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  // Hamburger / overlay
+  const hamburger = document.getElementById('hamburger-btn');
+  const overlay = document.getElementById('nav-overlay');
+
+  if (hamburger && overlay) {
+    const focusableSelectors = 'a[href], button:not([disabled])';
+    let focusableElements: HTMLElement[] = [];
+
+    function openMenu() {
+      hamburger!.setAttribute('aria-expanded', 'true');
+      overlay!.classList.add('open');
+      overlay!.removeAttribute('aria-hidden');
+      document.body.style.overflow = 'hidden';
+      focusableElements = Array.from(overlay!.querySelectorAll(focusableSelectors));
+      focusableElements[0]?.focus();
+    }
+
+    function closeMenu() {
+      hamburger!.setAttribute('aria-expanded', 'false');
+      overlay!.classList.remove('open');
+      overlay!.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      hamburger!.focus();
+    }
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    // Close on overlay links
+    overlay.querySelectorAll('.overlay-nav-link').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && hamburger.getAttribute('aria-expanded') === 'true') {
+        closeMenu();
+      }
+    });
+
+    // Focus trap
+    overlay.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab') return;
+      focusableElements = Array.from(overlay.querySelectorAll(focusableSelectors));
+      if (focusableElements.length === 0) return;
+      const first = focusableElements[0];
+      const last = focusableElements[focusableElements.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+  }
+</script>
+
+<style>
+  @import '../styles/nav.css';
+</style>

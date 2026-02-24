@@ -1,0 +1,108 @@
+---
+interface Props {
+  name: string;
+  location: string;
+  text: string;
+  initials: string;
+  delay?: number;
+}
+
+const { name, location, text, initials, delay = 0 } = Astro.props;
+---
+
+<article class="testimonial-card reveal" style={`transition-delay: ${delay}s`} aria-label={`Testimonial from ${name}`}>
+  <div class="stars" aria-label="5 stars" role="img">
+    <span aria-hidden="true">★★★★★</span>
+  </div>
+
+  <blockquote class="testimonial-text">
+    <p>"{text}"</p>
+  </blockquote>
+
+  <footer class="testimonial-author">
+    <div class="author-avatar" aria-hidden="true">{initials}</div>
+    <div class="author-info">
+      <strong class="author-name">{name}</strong>
+      <span class="author-location">{location}</span>
+    </div>
+  </footer>
+</article>
+
+<style>
+  .testimonial-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: var(--shadow-card);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .testimonial-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+  }
+
+  .stars {
+    color: var(--accent);
+    font-size: 1rem;
+    letter-spacing: 2px;
+  }
+
+  .testimonial-text {
+    flex: 1;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .testimonial-text p {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding-top: 20px;
+  }
+
+  .author-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    letter-spacing: 0.02em;
+  }
+
+  .author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .author-name {
+    font-size: var(--fs-small);
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+
+  .author-location {
+    font-size: var(--fs-xs);
+    color: var(--text-secondary);
+  }
+</style>

@@ -1,0 +1,138 @@
+---
+interface Props {
+  name: string;
+  price: string;
+  features: string[];
+  cta: string;
+  featured?: boolean;
+  badge?: string;
+  calendlyUrl: string;
+}
+
+const { name, price, features, cta, featured = false, badge, calendlyUrl } = Astro.props;
+---
+
+<div class:list={['pricing-card', { featured }]}>
+  {badge && <div class="pricing-badge">{badge}</div>}
+
+  <div class="pricing-card-header">
+    <h3 class="pricing-name">{name}</h3>
+    <div class="pricing-price">{price}</div>
+  </div>
+
+  <ul class="feature-list" role="list">
+    {features.map(feature => (
+      <li>{feature}</li>
+    ))}
+  </ul>
+
+  {featured ? (
+    <button
+      class="btn btn-primary pricing-cta"
+      onclick={`Calendly.initPopupWidget({url: '${calendlyUrl}'}); return false;`}
+    >
+      {cta}
+    </button>
+  ) : (
+    <button
+      class="btn btn-outline pricing-cta"
+      onclick={`Calendly.initPopupWidget({url: '${calendlyUrl}'}); return false;`}
+    >
+      {cta}
+    </button>
+  )}
+</div>
+
+<style>
+  .pricing-card {
+    position: relative;
+    background: var(--white);
+    border: 1.5px solid rgba(0, 0, 0, 0.07);
+    border-radius: var(--radius-lg);
+    padding: var(--card-pad);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .pricing-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+  }
+
+  .pricing-card.featured {
+    border: 2px solid var(--accent);
+    transform: scale(1.04);
+    box-shadow: var(--shadow-gold);
+    background: var(--white);
+    z-index: 2;
+  }
+
+  .pricing-card.featured:hover {
+    transform: scale(1.04) translateY(-4px);
+    box-shadow: 0 16px 48px rgba(200, 138, 62, 0.35);
+  }
+
+  .pricing-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: var(--white);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 20px;
+    white-space: nowrap;
+    box-shadow: var(--shadow-gold);
+  }
+
+  .pricing-card-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding-bottom: 20px;
+  }
+
+  .pricing-name {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--fs-small);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+
+  .pricing-price {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1;
+  }
+
+  .featured .pricing-price {
+    color: var(--accent);
+  }
+
+  .pricing-cta {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px;
+    margin-top: auto;
+  }
+
+  @media (max-width: 768px) {
+    .pricing-card.featured {
+      transform: scale(1);
+    }
+
+    .pricing-card.featured:hover {
+      transform: translateY(-4px);
+    }
+  }
+</style>

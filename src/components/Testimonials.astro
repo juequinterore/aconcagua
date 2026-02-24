@@ -1,0 +1,92 @@
+---
+import TestimonialCard from './TestimonialCard.astro';
+
+interface Props {
+  lang: 'es' | 'en' | 'zh';
+  t: (key: string) => string;
+}
+
+const { lang, t } = Astro.props;
+
+const testimonials = [
+  {
+    name: t('testimonials.1.name'),
+    location: t('testimonials.1.location'),
+    text: t('testimonials.1.text'),
+    initials: 'MR',
+  },
+  {
+    name: t('testimonials.2.name'),
+    location: t('testimonials.2.location'),
+    text: t('testimonials.2.text'),
+    initials: 'SK',
+  },
+  {
+    name: t('testimonials.3.name'),
+    location: t('testimonials.3.location'),
+    text: t('testimonials.3.text'),
+    initials: 'JW',
+  },
+];
+---
+
+<section id="testimonios" class="testimonials section-pad">
+  <div class="container">
+    <div class="testimonials-header reveal">
+      <p class="tag">{t('testimonials.tag')}</p>
+      <h2>{t('testimonials.title')}</h2>
+    </div>
+
+    <div class="testimonials-grid">
+      {testimonials.map((t_item, i) => (
+        <TestimonialCard
+          name={t_item.name}
+          location={t_item.location}
+          text={t_item.text}
+          initials={t_item.initials}
+          delay={i * 0.12}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    background: var(--light-bg);
+  }
+
+  .testimonials-header {
+    text-align: center;
+    max-width: 560px;
+    margin-inline: auto;
+    margin-bottom: clamp(40px, 5vw, 56px);
+  }
+
+  .testimonials-header h2 {
+    font-size: var(--fs-h1);
+    color: var(--text-dark);
+    margin-top: 4px;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap-grid);
+    align-items: start;
+  }
+
+  @media (max-width: 1024px) {
+    .testimonials-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+      margin-inline: auto;
+    }
+  }
+</style>

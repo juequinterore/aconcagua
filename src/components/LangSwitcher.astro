@@ -1,0 +1,61 @@
+---
+interface Props {
+  lang: 'es' | 'en' | 'zh';
+}
+const { lang } = Astro.props;
+
+const links = [
+  { code: 'es', label: 'ES', href: '/' },
+  { code: 'en', label: 'EN', href: '/en/' },
+  { code: 'zh', label: '中文', href: '/zh/' },
+];
+---
+
+<div class="lang-switcher" role="navigation" aria-label="Language switcher">
+  {links.map((link, i) => (
+    <>
+      <a
+        href={link.href}
+        class:list={['lang-link', { active: lang === link.code }]}
+        aria-current={lang === link.code ? 'page' : undefined}
+        hreflang={link.code === 'es' ? 'es-AR' : link.code === 'en' ? 'en-US' : 'zh-CN'}
+      >
+        {link.label}
+      </a>
+      {i < links.length - 1 && <span class="lang-sep" aria-hidden="true">·</span>}
+    </>
+  ))}
+</div>
+
+<style>
+  .lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .lang-link {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: color 0.2s;
+    letter-spacing: 0.04em;
+  }
+
+  .lang-link:hover {
+    color: var(--white);
+  }
+
+  .lang-link.active {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .lang-sep {
+    color: rgba(255, 255, 255, 0.25);
+    font-size: 0.7rem;
+  }
+</style>

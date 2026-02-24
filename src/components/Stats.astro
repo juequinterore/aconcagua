@@ -1,0 +1,186 @@
+---
+interface Props {
+  lang: 'es' | 'en' | 'zh';
+  t: (key: string) => string;
+}
+
+const { lang, t } = Astro.props;
+
+const stats = [
+  { value: 17, suffix: '', label: t('stats.summits'), target: '17' },
+  { value: 10, suffix: '+', label: t('stats.years'), target: '10' },
+  { value: 26000, suffix: '+', label: t('stats.followers'), target: '26K' },
+  { value: 2026, suffix: '', label: t('stats.season'), target: '2026', noCount: true },
+];
+---
+
+<section class="stats-section" aria-label="Statistics">
+  <div class="stats-inner container">
+    {stats.map((stat, i) => (
+      <div class="stat-item reveal" style={`transition-delay: ${i * 0.1}s`}>
+        <div class="stat-number-wrap">
+          <span
+            class="stat-number"
+            data-target={stat.value}
+            data-suffix={stat.suffix}
+            data-no-count={stat.noCount ? 'true' : 'false'}
+            data-display={stat.value >= 1000 ? stat.target : undefined}
+          >
+            {stat.noCount ? stat.target : `0${stat.suffix}`}
+          </span>
+        </div>
+        <p class="stat-label">{stat.label}</p>
+        {i < stats.length - 1 && <div class="stat-divider" aria-hidden="true"></div>}
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  function easeOutQuart(t: number): number {
+    return 1 - Math.pow(1 - t, 4);
+  }
+
+  function animateCounter(el: HTMLElement) {
+    const noCount = el.dataset.noCount === 'true';
+    if (noCount) return;
+
+    const target = parseInt(el.dataset.target || '0', 10);
+    const suffix = el.dataset.suffix || '';
+    const display = el.dataset.display;
+    const duration = 1200;
+    const start = performance.now();
+
+    function update(now: number) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeOutQuart(progress);
+      const current = Math.round(eased * target);
+
+      if (display && progress === 1) {
+        el.textContent = display + suffix;
+      } else if (target >= 1000) {
+        const k = Math.round(current / 1000);
+        el.textContent = k + 'K' + suffix;
+      } else {
+        el.textContent = current + suffix;
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      }
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  // Only animate if motion is OK
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target as HTMLElement;
+        if (!prefersReduced) {
+          animateCounter(el);
+        } else {
+          // Show final value immediately
+          const target = parseInt(el.dataset.target || '0', 10);
+          const suffix = el.dataset.suffix || '';
+          const display = el.dataset.display;
+          const noCount = el.dataset.noCount === 'true';
+          if (!noCount) {
+            if (display) el.textContent = display + suffix;
+            else if (target >= 1000) el.textContent = Math.round(target / 1000) + 'K' + suffix;
+            else el.textContent = target + suffix;
+          }
+        }
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.stat-number').forEach(el => {
+    observer.observe(el as HTMLElement);
+  });
+</script>
+
+<style>
+  .stats-section {
+    background: var(--dark);
+    padding-block: 64px;
+  }
+
+  .stats-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  .stat-item {
+    position: relative;
+    text-align: center;
+    padding: 32px 24px;
+  }
+
+  .stat-divider {
+    position: absolute;
+    right: 0;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .stat-number-wrap {
+    margin-bottom: 8px;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: var(--fs-small);
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: var(--fs-xs);
+  }
+
+  @media (max-width: 768px) {
+    .stats-inner {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-divider {
+      display: none;
+    }
+
+    .stat-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .stat-item:nth-child(even) {
+      border-right: none;
+    }
+
+    .stat-item:nth-last-child(-n+2) {
+      border-bottom: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stats-inner {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

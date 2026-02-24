@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Hero from '../../components/Hero.astro';
+import Stats from '../../components/Stats.astro';
+import About from '../../components/About.astro';
+import Pricing from '../../components/Pricing.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import CTA from '../../components/CTA.astro';
+import Partners from '../../components/Partners.astro';
+import Social from '../../components/Social.astro';
+import Footer from '../../components/Footer.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const lang = 'zh';
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title="Julian Kusi — 阿空加瓜高山向导 | aconcagua.co"
+  description="认证高山向导，17次成功登顶，10年以上阿空加瓜探险引导经验。预约免费咨询。"
+  lang={lang}
+  ogLocale="zh_CN"
+  ogUrl="https://aconcagua.co/zh/"
+>
+  <Nav lang={lang} t={t} />
+  <main id="main-content">
+    <Hero lang={lang} t={t} />
+    <Stats lang={lang} t={t} />
+    <About lang={lang} t={t} />
+    <Pricing lang={lang} t={t} />
+    <Testimonials lang={lang} t={t} />
+    <CTA lang={lang} t={t} />
+    <Partners lang={lang} t={t} />
+    <Social lang={lang} t={t} />
+  </main>
+  <Footer lang={lang} t={t} />
+</BaseLayout>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aconcagua.co/sitemap-index.xml

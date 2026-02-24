@@ -1,0 +1,131 @@
+---
+import PricingCard from './PricingCard.astro';
+
+interface Props {
+  lang: 'es' | 'en' | 'zh';
+  t: (key: string) => string;
+}
+
+const { lang, t } = Astro.props;
+const calendlyUrl = 'https://calendly.com/juliankusi/30min';
+
+const cards = [
+  {
+    name: t('pricing.card1.name'),
+    price: t('pricing.card1.price'),
+    features: [
+      t('pricing.card1.feature1'),
+      t('pricing.card1.feature2'),
+      t('pricing.card1.feature3'),
+      t('pricing.card1.feature4'),
+      t('pricing.card1.feature5'),
+    ],
+    cta: t('pricing.card1.cta'),
+    featured: false,
+  },
+  {
+    name: t('pricing.card2.name'),
+    price: t('pricing.card2.price'),
+    badge: t('pricing.card2.badge'),
+    features: [
+      t('pricing.card2.feature1'),
+      t('pricing.card2.feature2'),
+      t('pricing.card2.feature3'),
+      t('pricing.card2.feature4'),
+      t('pricing.card2.feature5'),
+      t('pricing.card2.feature6'),
+      t('pricing.card2.feature7'),
+    ],
+    cta: t('pricing.card2.cta'),
+    featured: true,
+  },
+  {
+    name: t('pricing.card3.name'),
+    price: t('pricing.card3.price'),
+    features: [
+      t('pricing.card3.feature1'),
+      t('pricing.card3.feature2'),
+      t('pricing.card3.feature3'),
+      t('pricing.card3.feature4'),
+      t('pricing.card3.feature5'),
+      t('pricing.card3.feature6'),
+    ],
+    cta: t('pricing.card3.cta'),
+    featured: false,
+  },
+];
+---
+
+<section id="expediciones" class="pricing section-pad">
+  <div class="container">
+    <div class="pricing-header reveal">
+      <p class="tag">{t('pricing.tag')}</p>
+      <h2>{t('pricing.title')}</h2>
+      <p class="pricing-subtitle">{t('pricing.subtitle')}</p>
+    </div>
+
+    <div class="pricing-grid">
+      {cards.map((card, i) => (
+        <div class="reveal" style={`transition-delay: ${i * 0.12}s`}>
+          <PricingCard
+            name={card.name}
+            price={card.price}
+            features={card.features}
+            cta={card.cta}
+            featured={card.featured}
+            badge={card.badge}
+            calendlyUrl={calendlyUrl}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing {
+    background: var(--alt-bg);
+  }
+
+  .pricing-header {
+    text-align: center;
+    max-width: 640px;
+    margin-inline: auto;
+    margin-bottom: clamp(40px, 6vw, 64px);
+  }
+
+  .pricing-header h2 {
+    font-size: var(--fs-h1);
+    color: var(--text-dark);
+    margin-bottom: 16px;
+  }
+
+  .pricing-subtitle {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap-grid);
+    align-items: center;
+    padding-block: 20px;
+  }
+
+  @media (max-width: 1024px) {
+    .pricing-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+      margin-inline: auto;
+    }
+  }
+</style>

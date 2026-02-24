@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(*)",
+      "Edit(*)",
+      "Write(*)",
+      "Read(*)",
+      "Glob(*)",
+      "Grep(*)",
+      "WebFetch(*)",
+      "WebSearch(*)",
+      "Task(*)",
+      "mcp__ElevenLabs__*",
+      "mcp__chrome-devtools__*",
+      "mcp__context7__*",
+      "mcp__magic__*",
+      "mcp__playwright__*",
+      "mcp__sequential-thinking__*"
+    ],
+    "deny": []
+  }
+}

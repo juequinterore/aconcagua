@@ -1,0 +1,249 @@
+/*
+ * ================================================================
+ * ACONCAGUA.CO — Phase 1 CSS Additions
+ * Paste this at the END of the existing Code Injection (Header) CSS.
+ * Squarespace: Settings > Advanced > Code Injection > Header
+ * ================================================================
+ *
+ * Contents:
+ *   1. Hero — Tag badge + CTA button styles
+ *   2. Footer — Dark background + real data layout
+ *   3. Global buttons — Gold primary / outline secondary
+ *   4. Mobile responsive overrides
+ * ================================================================
+ */
+
+
+/* ================================================================
+   1. HERO — Tag badge + CTA buttons
+   ================================================================ */
+
+/* Gold tag/badge above hero headline */
+.hero-tag,
+.mock-hero-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #c88a3e;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+/* Decorative lines beside the tag */
+.hero-tag::before,
+.hero-tag::after {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: #c88a3e;
+  vertical-align: middle;
+  margin: 0 10px;
+  opacity: 0.5;
+}
+
+/* Hero primary CTA button (gold) */
+[data-section-theme="darkest"] .sqs-block-button-element--primary,
+[data-section-theme="darkest"] .sqs-block-button-element--large.sqs-block-button-element--primary {
+  background: #c88a3e !important;
+  border-color: #c88a3e !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  padding: 14px 32px !important;
+  font-size: 1rem !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+  transition: background 0.25s, transform 0.25s, box-shadow 0.25s !important;
+}
+
+[data-section-theme="darkest"] .sqs-block-button-element--primary:hover {
+  background: #a06f2f !important;
+  border-color: #a06f2f !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(200,138,62,0.3) !important;
+}
+
+/* Hero secondary CTA button (outline white) */
+[data-section-theme="darkest"] .sqs-block-button-element--secondary,
+[data-section-theme="darkest"] .sqs-block-button-element--large.sqs-block-button-element--secondary {
+  background: transparent !important;
+  border: 1px solid rgba(255,255,255,0.35) !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  padding: 14px 32px !important;
+  font-size: 1rem !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 500 !important;
+  transition: border-color 0.25s, background 0.25s !important;
+}
+
+[data-section-theme="darkest"] .sqs-block-button-element--secondary:hover {
+  border-color: rgba(255,255,255,0.65) !important;
+  background: rgba(255,255,255,0.08) !important;
+}
+
+/* Stack hero buttons on narrow viewports */
+@media (max-width: 600px) {
+  [data-section-theme="darkest"] .sqs-block-button-container {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+
+  [data-section-theme="darkest"] .sqs-block-button-element--primary,
+  [data-section-theme="darkest"] .sqs-block-button-element--secondary {
+    width: 100% !important;
+    max-width: 320px !important;
+    justify-content: center !important;
+  }
+}
+
+
+/* ================================================================
+   2. FOOTER — Dark background + typography
+   ================================================================ */
+
+footer.Footer,
+.footer-sections,
+.Footer-inner,
+footer {
+  background: #0f1923 !important;
+}
+
+/* Footer brand / logo */
+footer .footer-title,
+footer .Footer-title {
+  font-family: 'Playfair Display', serif !important;
+  color: #c88a3e !important;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* Footer body text and links */
+footer p,
+footer a,
+footer li,
+footer span,
+.Footer p,
+.Footer a,
+.Footer li {
+  color: rgba(255,255,255,0.6) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.875rem !important;
+}
+
+footer a:hover,
+.Footer a:hover {
+  color: #c88a3e !important;
+  text-decoration: none !important;
+}
+
+/* Footer column headings */
+footer h2,
+footer h3,
+footer h4,
+.Footer h2,
+.Footer h3,
+.Footer h4 {
+  color: #ffffff !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  margin-bottom: 16px !important;
+}
+
+/* Footer bottom bar (copyright) */
+.Footer-bottom,
+footer .Footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08) !important;
+  color: rgba(255,255,255,0.35) !important;
+  font-size: 0.8125rem !important;
+}
+
+
+/* ================================================================
+   3. GLOBAL BUTTONS — All sections (non-darkest)
+   ================================================================ */
+
+/* Primary buttons — gold everywhere */
+.sqs-block-button-element--primary {
+  background: #c88a3e !important;
+  border-color: #c88a3e !important;
+  color: #fff !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.03em !important;
+  border-radius: 8px !important;
+  transition: background 0.25s, transform 0.25s !important;
+}
+
+.sqs-block-button-element--primary:hover {
+  background: #a06f2f !important;
+  border-color: #a06f2f !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Secondary/outline on light sections */
+[data-section-theme="lightest"] .sqs-block-button-element--secondary,
+[data-section-theme="light"] .sqs-block-button-element--secondary,
+[data-section-theme="white"] .sqs-block-button-element--secondary {
+  background: transparent !important;
+  border: 1px solid #c88a3e !important;
+  color: #c88a3e !important;
+  border-radius: 8px !important;
+}
+
+[data-section-theme="lightest"] .sqs-block-button-element--secondary:hover,
+[data-section-theme="light"] .sqs-block-button-element--secondary:hover {
+  background: #c88a3e !important;
+  color: #fff !important;
+}
+
+
+/* ================================================================
+   4. SECTION PADDING — Global spacing consistency
+   ================================================================ */
+
+.page-section {
+  padding-top: 100px !important;
+  padding-bottom: 100px !important;
+}
+
+/* Reduce on mobile */
+@media (max-width: 768px) {
+  .page-section {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-section {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+}
+
+
+/* ================================================================
+   5. TESTIMONIALS — Blockquote base styling
+   (Used if testimonials are added via Quote Blocks)
+   ================================================================ */
+
+[data-section-theme="light"] blockquote,
+[data-section-theme="lightest"] blockquote {
+  border-left: 3px solid #c88a3e !important;
+  padding-left: 1.5rem !important;
+  font-family: 'Playfair Display', serif !important;
+  font-style: italic !important;
+  color: #444 !important;
+  margin: 1rem 0 !important;
+  font-size: 1rem !important;
+  line-height: 1.8 !important;
+}

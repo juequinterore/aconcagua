@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { useTranslations } from '../i18n/utils';
+
+const lang = 'es';
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title="Política de Privacidad — Julián Kusi | aconcagua.co"
+  description="Política de privacidad de aconcagua.co. Información sobre cómo recopilamos, usamos y protegemos tus datos personales."
+  lang={lang}
+  ogLocale="es_AR"
+  ogUrl="https://aconcagua.co/privacidad"
+>
+  <Nav lang={lang} t={t} forceDark />
+  <main id="main-content" class="legal-page section-pad">
+    <div class="container legal-container">
+      <h1>Política de Privacidad</h1>
+      <p class="legal-updated">Última actualización: enero de 2026</p>
+
+      <section>
+        <h2>1. Responsable del tratamiento</h2>
+        <p>Julián Kusi, guía de montaña certificado, con sede operativa en Mendoza, Argentina. Contacto: <a href="mailto:julian@aconcagua.co">julian@aconcagua.co</a>.</p>
+      </section>
+
+      <section>
+        <h2>2. Datos que recopilamos</h2>
+        <p>Recopilamos datos cuando:</p>
+        <ul>
+          <li>Agendás una consulta a través de Calendly (nombre, correo electrónico, información de contacto).</li>
+          <li>Nos contactás por WhatsApp o correo electrónico (datos de contacto y contenido de la comunicación).</li>
+          <li>Visitás nuestro sitio web (datos de uso, dirección IP, tipo de navegador — a través de Google Analytics 4 y Microsoft Clarity).</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>3. Finalidad del tratamiento</h2>
+        <ul>
+          <li>Gestionar consultas y reservas de expediciones.</li>
+          <li>Enviar información sobre servicios solicitados.</li>
+          <li>Mejorar la experiencia del sitio web mediante análisis de uso.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>4. Base legal</h2>
+        <p>El tratamiento se basa en el consentimiento del usuario, la ejecución de un contrato de servicios de guía de montaña, o el interés legítimo en la mejora del servicio. Los residentes de la UE tienen derechos adicionales bajo el RGPD (Reglamento General de Protección de Datos).</p>
+      </section>
+
+      <section>
+        <h2>5. Herramientas de análisis</h2>
+        <p><strong>Google Analytics 4</strong>: Recopila datos de uso anónimos para comprender el comportamiento de los visitantes. Los datos se almacenan en servidores de Google. Podés optar por no participar instalando el complemento de exclusión de Google Analytics.</p>
+        <p><strong>Microsoft Clarity</strong>: Registra mapas de calor y sesiones de usuario de forma anonimizada para mejorar la usabilidad del sitio.</p>
+        <p><strong>Calendly</strong>: Plataforma de terceros para la programación de reuniones. Su uso está sujeto a la <a href="https://calendly.com/privacy" target="_blank" rel="noopener noreferrer">Política de Privacidad de Calendly</a>.</p>
+      </section>
+
+      <section>
+        <h2>6. Cookies</h2>
+        <p>Este sitio utiliza cookies técnicas y de análisis. Las cookies de análisis (GA4, Clarity) se activan al navegar por el sitio. Podés gestionar las cookies desde la configuración de tu navegador.</p>
+      </section>
+
+      <section>
+        <h2>7. Tus derechos</h2>
+        <p>Tenés derecho a acceder, rectificar, suprimir, limitar u oponerte al tratamiento de tus datos personales. Para ejercer estos derechos, contactanos en <a href="mailto:julian@aconcagua.co">julian@aconcagua.co</a>.</p>
+        <p>Si sos residente de la UE, podés presentar una reclamación ante la autoridad de protección de datos de tu país.</p>
+      </section>
+
+      <section>
+        <h2>8. Retención de datos</h2>
+        <p>Los datos de contacto se conservan mientras sean necesarios para la prestación del servicio o hasta que solicitéis su eliminación. Los datos de análisis web se conservan según las políticas de cada plataforma (máximo 14 meses para GA4).</p>
+      </section>
+
+      <section>
+        <h2>9. Cambios a esta política</h2>
+        <p>Nos reservamos el derecho de actualizar esta política. Los cambios significativos serán comunicados a los clientes activos por correo electrónico.</p>
+      </section>
+    </div>
+  </main>
+  <Footer lang={lang} t={t} />
+</BaseLayout>
+
+<style>
+  .legal-page {
+    background: var(--bg-base);
+    min-height: 60vh;
+  }
+
+  .legal-container {
+    max-width: 760px;
+    padding-block: clamp(60px, 8vw, 100px);
+  }
+
+  h1 {
+    font-size: var(--fs-h1);
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .legal-updated {
+    font-size: var(--fs-small);
+    color: var(--text-muted);
+    margin-bottom: 48px;
+  }
+
+  section {
+    margin-bottom: 36px;
+  }
+
+  h2 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+
+  ul {
+    list-style: disc;
+    padding-left: 1.5em;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.75;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+</style>

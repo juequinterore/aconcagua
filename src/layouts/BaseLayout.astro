@@ -27,35 +27,129 @@ const alternates = [
   { lang: 'x-default', href: 'https://aconcagua.co/' },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: 'Julián Kusi — Aconcagua Mountain Guide',
-  description: 'Certified Aconcagua mountain guide with 17 successful summits and 10+ years of experience guiding international expeditions.',
-  url: 'https://aconcagua.co',
-  telephone: '+57 314 629 4318',
-  email: 'julian@aconcagua.co',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Mendoza',
-    addressCountry: 'AR',
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': ['TouristInformationCenter', 'LocalBusiness'],
+    '@id': 'https://aconcagua.co/#business',
+    name: 'Julián Kusi — Aconcagua Mountain Guide',
+    description: 'Certified Aconcagua mountain guide with 17 successful summits and 10+ years of experience guiding international expeditions.',
+    url: 'https://aconcagua.co',
+    telephone: '+54 261 629 4318',
+    email: 'julian@aconcagua.co',
+    image: 'https://aconcagua.co/portrait.jpeg',
+    logo: 'https://aconcagua.co/logo.webp',
+    knowsAbout: ['Aconcagua', 'mountain guiding', 'high altitude trekking', 'expedition safety', 'Patagonia climbing'],
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Mendoza',
+      addressCountry: 'AR',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: -32.8895,
+      longitude: -68.8458,
+    },
+    areaServed: {
+      '@type': 'Place',
+      name: 'Aconcagua Provincial Park, Argentina',
+    },
+    priceRange: '$$$',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '5',
+      reviewCount: '3',
+      bestRating: '5',
+      worstRating: '1',
+    },
+    review: [
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'Marco Rossi' },
+        reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+        reviewBody: 'Julián is an exceptional guide. His knowledge of the mountain, his calm in difficult situations, and his genuine concern for the group\'s safety made this expedition an unforgettable experience. We reached the summit because of him.',
+      },
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'Sarah Kim' },
+        reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+        reviewBody: 'I couldn\'t have chosen a better guide for my first Aconcagua expedition. Julián anticipated every challenge, kept us motivated during the hardest moments, and celebrated with us at the top. A transformative experience.',
+      },
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'James Walsh' },
+        reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+        reviewBody: 'World-class professionalism. Julián coordinated every logistical detail with precision, his English is excellent, and his leadership in extreme conditions is impressive. I\'m already planning to come back with him next year.',
+      },
+    ],
+    sameAs: [
+      'https://www.instagram.com/julian_kusi',
+      'https://www.youtube.com/@juliankusi',
+      'https://www.tiktok.com/@julian_kusi',
+    ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Aconcagua Expedition Packages',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          name: 'Basic Expedition Package',
+          description: 'Park access permits and mandatory insurance. Client manages own logistics.',
+          price: '2500',
+          priceCurrency: 'USD',
+          priceSpecification: { '@type': 'PriceSpecification', minPrice: '2500', priceCurrency: 'USD' },
+        },
+        {
+          '@type': 'Offer',
+          name: 'Base Camp Expedition Package',
+          description: 'Mule transport, base camp accommodations, full meals, internet, and facilities at base camp.',
+          price: '4000',
+          priceCurrency: 'USD',
+          priceSpecification: { '@type': 'PriceSpecification', minPrice: '4000', priceCurrency: 'USD' },
+        },
+        {
+          '@type': 'Offer',
+          name: 'Full Expedition Package',
+          description: 'Complete guided expedition. Hotel in Mendoza, transfers, mules, full meals, accommodations, 1 guide per 4 climbers. Option to join Julián Kusi directly.',
+          price: '7000',
+          priceCurrency: 'USD',
+          priceSpecification: { '@type': 'PriceSpecification', minPrice: '7000', priceCurrency: 'USD' },
+        },
+        {
+          '@type': 'Offer',
+          name: '1:1 Private Expedition Package',
+          description: 'Fully customizable private expedition with a dedicated 1-on-1 certified mountain guide.',
+          price: '15000',
+          priceCurrency: 'USD',
+          priceSpecification: { '@type': 'PriceSpecification', minPrice: '15000', priceCurrency: 'USD' },
+        },
+      ],
+    },
   },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: -32.8895,
-    longitude: -68.8458,
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': 'https://aconcagua.co/#julian-kusi',
+    name: 'Julián Kusi',
+    jobTitle: 'Certified Mountain Guide',
+    description: 'EPGAMT-certified Aconcagua mountain guide with 17 successful summits and 10+ years of experience guiding international expeditions in Spanish, English, and Chinese.',
+    image: 'https://aconcagua.co/portrait.jpeg',
+    url: 'https://aconcagua.co',
+    email: 'julian@aconcagua.co',
+    knowsLanguage: ['es', 'en', 'zh'],
+    knowsAbout: ['Aconcagua', 'mountain guiding', 'high altitude trekking', 'expedition safety', 'wilderness first response'],
+    hasCredential: [
+      { '@type': 'EducationalOccupationalCredential', name: 'EPGAMT', description: 'Escuela de Porteadores y Guías de Alta Montaña — official Argentine mountain guide certification' },
+      { '@type': 'EducationalOccupationalCredential', name: 'WFR', description: 'Wilderness First Responder — advanced wilderness emergency medical training' },
+    ],
+    worksFor: { '@id': 'https://aconcagua.co/#business' },
+    sameAs: [
+      'https://www.instagram.com/julian_kusi',
+      'https://www.youtube.com/@juliankusi',
+      'https://www.tiktok.com/@julian_kusi',
+    ],
   },
-  areaServed: {
-    '@type': 'Place',
-    name: 'Aconcagua Provincial Park, Argentina',
-  },
-  priceRange: '$$$',
-  sameAs: [
-    'https://www.instagram.com/julian_kusi',
-    'https://www.youtube.com/@juliankusi',
-    'https://www.tiktok.com/@julian_kusi',
-  ],
-};
+];
 ---
 
 <!doctype html>
@@ -136,7 +230,9 @@ const jsonLd = {
     </script>
 
     <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    {jsonLd.map(schema => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
   </head>
   <body>
     <!-- Skip link -->

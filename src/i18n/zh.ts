@@ -20,13 +20,14 @@ export const zh = {
   'stats.summits': '成功登顶',
   'stats.years': '年经验',
   'stats.followers': '粉丝',
-  'stats.season': '当前季节',
+  'stats.languages': '语言: 西 · 英 · 中',
 
   // About
   'about.tag': '关于Julian Kusi',
   'about.heading': '从厨房到阿空加瓜顶峰',
   'about.body': '2013年，我作为厨师开始在阿空加瓜大本营工作。这座山呼唤了我，我成为了搬运工，学习每条路线、每个危险、这座雄伟山峰的每个秘密。2018年，我获得了官方高山向导认证。今天，凭借17次成功登顶，我以最高安全标准引导国际登山者。',
   'about.photo_caption': 'Julian Kusi · 高山向导',
+  'about.photo_alt': 'Julian Kusi，认证阿空加瓜高山向导，17次成功登顶',
 
   // Timeline
   'timeline.2013.role': '厨师',
@@ -104,9 +105,9 @@ export const zh = {
   // Partners
   'partners.label': '合作伙伴',
   'partners.gr.name': 'Global Rescue',
-  'partners.gr.desc': '全球医疗援助和撤离',
+  'partners.gr.desc': '通过Julian预订，Global Rescue医疗撤离已预先安排',
   'partners.pa.name': 'Pire Aconcagua',
-  'partners.pa.desc': '公园官方后勤运营商',
+  'partners.pa.desc': '处理全部阿根廷公园许可证，无需您自行办理',
 
   // Social
   'social.tag': '社区',

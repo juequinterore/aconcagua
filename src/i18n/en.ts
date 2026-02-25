@@ -20,13 +20,14 @@ export const en = {
   'stats.summits': 'Successful Summits',
   'stats.years': 'Years of Experience',
   'stats.followers': 'Followers',
-  'stats.season': 'Active Season',
+  'stats.languages': 'Languages: ES · EN · 中',
 
   // About
   'about.tag': 'About Julian Kusi',
   'about.heading': 'From the kitchen to the summit of Aconcagua',
   'about.body': 'I started in 2013 as a camp cook at Aconcagua\'s base camps. The mountain called me and I became a porter, learning every route, every danger, every secret of this imposing summit. In 2018 I obtained my official mountain guide certification. Today, with 17 successful summits, I guide international climbers with the highest standard of safety and experience.',
   'about.photo_caption': 'Julian Kusi · Mountain Guide',
+  'about.photo_alt': 'Julian Kusi, certified Aconcagua mountain guide with 17 successful summits',
 
   // Timeline
   'timeline.2013.role': 'Camp Cook',
@@ -104,9 +105,9 @@ export const en = {
   // Partners
   'partners.label': 'TRUSTED PARTNERS',
   'partners.gr.name': 'Global Rescue',
-  'partners.gr.desc': 'Worldwide medical assistance & evacuation',
+  'partners.gr.desc': 'Book through Julian — Global Rescue medical evacuation is pre-arranged',
   'partners.pa.name': 'Pire Aconcagua',
-  'partners.pa.desc': 'Official park logistics operator',
+  'partners.pa.desc': 'Handles all Argentine park permits — no bureaucracy on your end',
 
   // Social
   'social.tag': 'COMMUNITY',

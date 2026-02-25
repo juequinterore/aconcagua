@@ -10,7 +10,7 @@ const stats = [
   { value: 17, suffix: '', label: t('stats.summits'), target: '17' },
   { value: 10, suffix: '+', label: t('stats.years'), target: '10' },
   { value: 26000, suffix: '+', label: t('stats.followers'), target: '26K' },
-  { value: 2026, suffix: '', label: t('stats.season'), target: '2026', noCount: true },
+  { value: 3, suffix: '', label: t('stats.languages'), target: '3' },
 ];
 ---
 
@@ -26,7 +26,7 @@ const stats = [
             data-no-count={stat.noCount ? 'true' : 'false'}
             data-display={stat.value >= 1000 ? stat.target : undefined}
           >
-            {stat.noCount ? stat.target : `0${stat.suffix}`}
+            {stat.noCount ? stat.target : stat.value >= 1000 ? stat.target + stat.suffix : stat.value + stat.suffix}
           </span>
         </div>
         <p class="stat-label">{stat.label}</p>

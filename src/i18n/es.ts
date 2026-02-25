@@ -20,13 +20,14 @@ export const es = {
   'stats.summits': 'Cumbres Exitosas',
   'stats.years': 'Años de Experiencia',
   'stats.followers': 'Seguidores',
-  'stats.season': 'Temporada Activa',
+  'stats.languages': 'Idiomas: ES · EN · 中',
 
   // About
   'about.tag': 'Sobre Julian Kusi',
   'about.heading': 'De la cocina a la cumbre del Aconcagua',
   'about.body': 'Empecé en 2013 como cocinero en los campamentos base del Aconcagua. La montaña me llamó y me convertí en porteador, aprendiendo cada ruta, cada peligro, cada secreto de esta cumbre imponente. En 2018 obtuve mi certificación oficial como guía de montaña. Hoy, con 17 cumbres exitosas, guío a alpinistas internacionales con el más alto estándar de seguridad y experiencia.',
   'about.photo_caption': 'Julian Kusi · Guía de Montaña',
+  'about.photo_alt': 'Julian Kusi, guía de montaña certificado del Aconcagua con 17 cumbres exitosas',
 
   // Timeline
   'timeline.2013.role': 'Cocinero',
@@ -104,9 +105,9 @@ export const es = {
   // Partners
   'partners.label': 'PARTNERS DE CONFIANZA',
   'partners.gr.name': 'Global Rescue',
-  'partners.gr.desc': 'Evacuación y asistencia médica mundial',
+  'partners.gr.desc': 'Al reservar con Julian, la evacuación médica queda precoordinada',
   'partners.pa.name': 'Pire Aconcagua',
-  'partners.pa.desc': 'Operador logístico oficial del parque',
+  'partners.pa.desc': 'Gestiona los permisos del parque argentino — sin trámites de tu parte',
 
   // Social
   'social.tag': 'COMUNIDAD',

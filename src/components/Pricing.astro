@@ -18,7 +18,6 @@ const cards = [
       t('pricing.card1.feature2'),
       t('pricing.card1.feature3'),
       t('pricing.card1.feature4'),
-      t('pricing.card1.feature5'),
     ],
     cta: t('pricing.card1.cta'),
     featured: false,
@@ -26,7 +25,6 @@ const cards = [
   {
     name: t('pricing.card2.name'),
     price: t('pricing.card2.price'),
-    badge: t('pricing.card2.badge'),
     features: [
       t('pricing.card2.feature1'),
       t('pricing.card2.feature2'),
@@ -37,11 +35,12 @@ const cards = [
       t('pricing.card2.feature7'),
     ],
     cta: t('pricing.card2.cta'),
-    featured: true,
+    featured: false,
   },
   {
     name: t('pricing.card3.name'),
     price: t('pricing.card3.price'),
+    badge: t('pricing.card3.badge'),
     features: [
       t('pricing.card3.feature1'),
       t('pricing.card3.feature2'),
@@ -49,8 +48,21 @@ const cards = [
       t('pricing.card3.feature4'),
       t('pricing.card3.feature5'),
       t('pricing.card3.feature6'),
+      t('pricing.card3.feature7'),
+      t('pricing.card3.feature8'),
     ],
     cta: t('pricing.card3.cta'),
+    featured: true,
+  },
+  {
+    name: t('pricing.card4.name'),
+    price: t('pricing.card4.price'),
+    features: [
+      t('pricing.card4.feature1'),
+      t('pricing.card4.feature2'),
+      t('pricing.card4.feature3'),
+    ],
+    cta: t('pricing.card4.cta'),
     featured: false,
   },
 ];
@@ -108,20 +120,20 @@ const cards = [
 
   .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--gap-grid);
     align-items: center;
     padding-block: 20px;
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1200px) {
     .pricing-grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 16px;
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 640px) {
     .pricing-grid {
       grid-template-columns: 1fr;
       max-width: 480px;

@@ -10,7 +10,7 @@ const timeline = [
   { year: '2013', role: t('timeline.2013.role'), desc: t('timeline.2013.desc') },
   { year: '2016', role: t('timeline.2016.role'), desc: t('timeline.2016.desc') },
   { year: '2018', role: t('timeline.2018.role'), desc: t('timeline.2018.desc') },
-  { year: '2024', role: t('timeline.2024.role'), desc: t('timeline.2024.desc') },
+  { year: String(new Date().getFullYear()), role: t('timeline.current.role'), desc: t('timeline.current.desc') },
 ];
 ---
 
@@ -22,7 +22,7 @@ const timeline = [
       <div class="photo-frame">
         <img
           src="/portrait.jpeg"
-          alt={t('about.photo_caption')}
+          alt={t('about.photo_alt')}
           class="about-photo"
           loading="lazy"
           decoding="async"
@@ -70,7 +70,7 @@ const timeline = [
 
 <style>
   .about {
-    background: var(--light-bg);
+    background: var(--section-about-bg);
   }
 
   .about-grid {
@@ -153,7 +153,7 @@ const timeline = [
 
   .about-bio-col h2 {
     font-size: var(--fs-h1);
-    color: var(--text-dark);
+    color: var(--text-primary);
     margin-bottom: 8px;
   }
 
@@ -218,7 +218,7 @@ const timeline = [
     display: block;
     font-size: var(--fs-small);
     font-weight: 600;
-    color: var(--text-dark);
+    color: var(--text-primary);
     margin-bottom: 2px;
   }
 

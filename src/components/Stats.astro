@@ -10,7 +10,7 @@ const stats = [
   { value: 17, suffix: '', label: t('stats.summits'), target: '17' },
   { value: 10, suffix: '+', label: t('stats.years'), target: '10' },
   { value: 26000, suffix: '+', label: t('stats.followers'), target: '26K' },
-  { value: 2026, suffix: '', label: t('stats.season'), target: '2026', noCount: true },
+  { value: 3, suffix: '', label: t('stats.languages'), target: '3' },
 ];
 ---
 
@@ -26,7 +26,7 @@ const stats = [
             data-no-count={stat.noCount ? 'true' : 'false'}
             data-display={stat.value >= 1000 ? stat.target : undefined}
           >
-            {stat.noCount ? stat.target : `0${stat.suffix}`}
+            {stat.noCount ? stat.target : stat.value >= 1000 ? stat.target + stat.suffix : stat.value + stat.suffix}
           </span>
         </div>
         <p class="stat-label">{stat.label}</p>
@@ -107,7 +107,7 @@ const stats = [
 
 <style>
   .stats-section {
-    background: var(--dark);
+    background: var(--section-stats-bg);
     padding-block: 64px;
   }
 
@@ -130,7 +130,7 @@ const stats = [
     top: 20%;
     height: 60%;
     width: 1px;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--border-subtle);
   }
 
   .stat-number-wrap {
@@ -147,8 +147,7 @@ const stats = [
   }
 
   .stat-label {
-    font-size: var(--fs-small);
-    color: rgba(255, 255, 255, 0.55);
+    color: var(--text-muted);
     font-weight: 500;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -165,8 +164,8 @@ const stats = [
     }
 
     .stat-item {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      border-right: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid var(--border-subtle);
+      border-right: 1px solid var(--border-subtle);
     }
 
     .stat-item:nth-child(even) {

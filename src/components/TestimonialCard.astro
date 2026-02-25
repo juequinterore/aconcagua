@@ -30,14 +30,14 @@ const { name, location, text, initials, delay = 0 } = Astro.props;
 
 <style>
   .testimonial-card {
-    background: var(--white);
+    background: var(--bg-card);
     border-radius: var(--radius-lg);
     padding: 32px;
     display: flex;
     flex-direction: column;
     gap: 20px;
     box-shadow: var(--shadow-card);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-card);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
   }
 
@@ -70,7 +70,7 @@ const { name, location, text, initials, delay = 0 } = Astro.props;
     display: flex;
     align-items: center;
     gap: 12px;
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    border-top: 1px solid var(--border-subtle);
     padding-top: 20px;
   }
 
@@ -98,7 +98,7 @@ const { name, location, text, initials, delay = 0 } = Astro.props;
   .author-name {
     font-size: var(--fs-small);
     font-weight: 600;
-    color: var(--text-dark);
+    color: var(--text-primary);
   }
 
   .author-location {

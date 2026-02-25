@@ -46,8 +46,8 @@ const { name, price, features, cta, featured = false, badge, calendlyUrl } = Ast
 <style>
   .pricing-card {
     position: relative;
-    background: var(--white);
-    border: 1.5px solid rgba(0, 0, 0, 0.07);
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-card);
     border-radius: var(--radius-lg);
     padding: var(--card-pad);
     display: flex;
@@ -66,7 +66,7 @@ const { name, price, features, cta, featured = false, badge, calendlyUrl } = Ast
     border: 2px solid var(--accent);
     transform: scale(1.04);
     box-shadow: var(--shadow-gold);
-    background: var(--white);
+    background: var(--bg-card);
     z-index: 2;
   }
 
@@ -93,7 +93,7 @@ const { name, price, features, cta, featured = false, badge, calendlyUrl } = Ast
   }
 
   .pricing-card-header {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid var(--border-card);
     padding-bottom: 20px;
   }
 
@@ -111,7 +111,7 @@ const { name, price, features, cta, featured = false, badge, calendlyUrl } = Ast
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 2.25rem;
     font-weight: 700;
-    color: var(--text-dark);
+    color: var(--text-primary);
     line-height: 1;
   }
 

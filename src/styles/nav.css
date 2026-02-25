@@ -1,4 +1,4 @@
-/* Navigation styles */
+/* Navigation styles — nav is always dark regardless of page theme */
 .nav {
   position: fixed;
   top: 0;
@@ -36,6 +36,7 @@
 .nav-logo-img {
   height: 40px;
   width: auto;
+  max-width: 160px;
   object-fit: contain;
 }
 
@@ -112,13 +113,13 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Mobile overlay menu */
+/* Mobile overlay menu — always dark */
 .nav-overlay {
   display: none;
   position: fixed;
   inset: 0;
   z-index: 99;
-  background: var(--dark);
+  background: #0f1923;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -177,7 +178,7 @@
   }
 
   .nav-links,
-  .nav-cta {
+  .nav-right {
     display: none;
   }
 

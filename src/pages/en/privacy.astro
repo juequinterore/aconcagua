@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title="Privacy Policy — Julián Kusi | aconcagua.co"
+  description="Privacy policy for aconcagua.co. How we collect, use, and protect your personal data."
+  lang={lang}
+  ogLocale="en_US"
+  ogUrl="https://aconcagua.co/en/privacy"
+>
+  <Nav lang={lang} t={t} forceDark />
+  <main id="main-content" class="legal-page section-pad">
+    <div class="container legal-container">
+      <h1>Privacy Policy</h1>
+      <p class="legal-updated">Last updated: January 2026</p>
+
+      <section>
+        <h2>1. Data Controller</h2>
+        <p>Julián Kusi, certified mountain guide, operating from Mendoza, Argentina. Contact: <a href="mailto:julian@aconcagua.co">julian@aconcagua.co</a>.</p>
+      </section>
+
+      <section>
+        <h2>2. Data We Collect</h2>
+        <p>We collect data when you:</p>
+        <ul>
+          <li>Book a consultation through Calendly (name, email address, contact information).</li>
+          <li>Contact us via WhatsApp or email (contact details and message content).</li>
+          <li>Visit our website (usage data, IP address, browser type — via Google Analytics 4 and Microsoft Clarity).</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>3. Purpose of Processing</h2>
+        <ul>
+          <li>Managing expedition enquiries and bookings.</li>
+          <li>Sending information about requested services.</li>
+          <li>Improving the website experience through usage analytics.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>4. Legal Basis</h2>
+        <p>Processing is based on user consent, the performance of a mountain guide services contract, or legitimate interest in service improvement. EU residents have additional rights under the GDPR (General Data Protection Regulation). US residents in California have rights under CCPA. Brazilian residents have rights under LGPD.</p>
+      </section>
+
+      <section>
+        <h2>5. Analytics Tools</h2>
+        <p><strong>Google Analytics 4</strong>: Collects anonymised usage data to understand visitor behaviour. Data is stored on Google servers. You can opt out by installing the Google Analytics opt-out browser add-on.</p>
+        <p><strong>Microsoft Clarity</strong>: Records anonymised heatmaps and user sessions to improve site usability.</p>
+        <p><strong>Calendly</strong>: Third-party scheduling platform. Its use is subject to <a href="https://calendly.com/privacy" target="_blank" rel="noopener noreferrer">Calendly's Privacy Policy</a>.</p>
+      </section>
+
+      <section>
+        <h2>6. Cookies</h2>
+        <p>This site uses technical and analytics cookies. Analytics cookies (GA4, Clarity) are activated when you browse the site. You can manage cookies through your browser settings.</p>
+      </section>
+
+      <section>
+        <h2>7. Your Rights</h2>
+        <p>You have the right to access, rectify, erase, restrict, or object to the processing of your personal data. To exercise these rights, contact us at <a href="mailto:julian@aconcagua.co">julian@aconcagua.co</a>.</p>
+        <p>EU residents may lodge a complaint with the data protection authority in their country of residence.</p>
+      </section>
+
+      <section>
+        <h2>8. Data Retention</h2>
+        <p>Contact data is kept as long as necessary to provide the service or until you request deletion. Web analytics data is retained according to each platform's policies (maximum 14 months for GA4).</p>
+      </section>
+
+      <section>
+        <h2>9. Changes to This Policy</h2>
+        <p>We reserve the right to update this policy. Significant changes will be communicated to active clients by email.</p>
+      </section>
+    </div>
+  </main>
+  <Footer lang={lang} t={t} />
+</BaseLayout>
+
+<style>
+  .legal-page {
+    background: var(--bg-base);
+    min-height: 60vh;
+  }
+
+  .legal-container {
+    max-width: 760px;
+    padding-block: clamp(60px, 8vw, 100px);
+  }
+
+  h1 {
+    font-size: var(--fs-h1);
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .legal-updated {
+    font-size: var(--fs-small);
+    color: var(--text-muted);
+    margin-bottom: 48px;
+  }
+
+  section {
+    margin-bottom: 36px;
+  }
+
+  h2 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+
+  ul {
+    list-style: disc;
+    padding-left: 1.5em;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.75;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+</style>

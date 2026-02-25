@@ -36,6 +36,7 @@
 .nav-logo-img {
   height: 40px;
   width: auto;
+  max-width: 160px;
   object-fit: contain;
 }
 
@@ -177,7 +178,7 @@
   }
 
   .nav-links,
-  .nav-cta {
+  .nav-right {
     display: none;
   }
 

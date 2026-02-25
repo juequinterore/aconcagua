@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+// Language auto-redirect runs client-side (static site, no SSR)
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
 import Stats from '../components/Stats.astro';
@@ -23,6 +24,16 @@ const t = useTranslations(lang);
   ogLocale="es_AR"
   ogUrl="https://aconcagua.co/"
 >
+  <script is:inline>
+    (function () {
+      var saved = localStorage.getItem('lang');
+      if (!saved) {
+        var lang = (navigator.language || '').toLowerCase();
+        if (lang.startsWith('zh')) { location.replace('/zh/'); }
+        else if (lang.startsWith('en')) { location.replace('/en/'); }
+      }
+    })();
+  </script>
   <Nav lang={lang} t={t} />
   <main id="main-content">
     <Hero lang={lang} t={t} />

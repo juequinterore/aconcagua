@@ -111,6 +111,9 @@ export const en = {
   'cta.whatsapp_url': 'https://wa.me/573146294318',
   'cta.email': 'julian@aconcagua.co',
 
+  // Certifications
+  'certs.label': 'CERTIFICATIONS',
+
   // Partners
   'partners.label': 'TRUSTED PARTNERS',
   'partners.gr.name': 'Global Rescue',

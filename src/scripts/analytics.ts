@@ -1,19 +1,10 @@
 /**
  * Analytics & Event Tracking for aconcagua.co
  *
- * GA4 Measurement ID:  G-6ZXZ206Z8T
- * Clarity Project ID:  CLARITY_ID (replace when available)
+ * GA4 Measurement ID: G-6ZXZ206Z8T
+ * GA4 initialization is in BaseLayout.astro <head> for GSC verification.
+ * This file handles event tracking only.
  */
-
-// ---------------------------------------------------------------------------
-// 1. GA4 (gtag.js)
-// ---------------------------------------------------------------------------
-const GA_ID = 'G-6ZXZ206Z8T';
-
-const gtagScript = document.createElement('script');
-gtagScript.async = true;
-gtagScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
-document.head.appendChild(gtagScript);
 
 declare global {
   interface Window {
@@ -22,38 +13,13 @@ declare global {
   }
 }
 
-window.dataLayer = window.dataLayer || [];
-window.gtag = function gtag(...args: unknown[]) {
-  window.dataLayer.push(args);
-};
-window.gtag('js', new Date());
-window.gtag('config', GA_ID);
-
 /** Helper — fire a GA4 event */
 function trackEvent(name: string, params: Record<string, string | number | boolean> = {}) {
   window.gtag('event', name, params);
 }
 
 // ---------------------------------------------------------------------------
-// 2. Microsoft Clarity
-// ---------------------------------------------------------------------------
-const CLARITY_ID = 'CLARITY_ID'; // REPLACE_ME with Julian's Clarity Project ID
-
-(function (c: Window, l: Document, a: string, r: string, i: string) {
-  (c as any)[a] =
-    (c as any)[a] ||
-    function (...args: unknown[]) {
-      ((c as any)[a].q = (c as any)[a].q || []).push(args);
-    };
-  const t = l.createElement('script') as HTMLScriptElement;
-  t.async = true;
-  t.src = 'https://www.clarity.ms/tag/' + i;
-  const s = l.getElementsByTagName('script')[0];
-  s.parentNode?.insertBefore(t, s);
-})(window, document, 'clarity', 'script', CLARITY_ID);
-
-// ---------------------------------------------------------------------------
-// 3. Page-level metadata
+// Page-level metadata
 // ---------------------------------------------------------------------------
 const pageLang = document.documentElement.lang || 'es';
 trackEvent('page_metadata', {

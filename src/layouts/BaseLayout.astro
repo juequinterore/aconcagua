@@ -117,6 +117,15 @@ const jsonLd = {
 
     <title>{title}</title>
 
+    <!-- GA4: static tag required for Google Search Console verification -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6ZXZ206Z8T"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6ZXZ206Z8T');
+    </script>
+
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>

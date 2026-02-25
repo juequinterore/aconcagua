@@ -170,6 +170,12 @@
 }
 
 @media (max-width: 768px) {
+  .nav {
+    background: rgba(15, 25, 35, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
   .nav-links,
   .nav-cta {
     display: none;

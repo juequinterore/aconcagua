@@ -1,16 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,700&display=swap');
 
 :root {
-  --dark: #0f1923;
-  --primary: #1a3a4a;
+  /* ── BRAND & LEGACY (unchanged in both modes) ─────── */
   --accent: #c88a3e;
   --accent-hover: #a06f2f;
+  --white: #ffffff;
+  --dark: #0f1923;
+  --primary: #1a3a4a;
   --light-bg: #f7f5f2;
   --alt-bg: #eae6e1;
-  --white: #ffffff;
-  --text-dark: #1a1a1a;
-  --text-secondary: #5a6a72;
   --success: #2d6a4f;
+
+  /* ── LAYOUT & TYPOGRAPHY (unchanged) ─────────────── */
   --section-pad: clamp(64px, 8vw, 120px);
   --container: min(1200px, 90vw);
   --card-pad: 28px 32px;
@@ -19,10 +20,6 @@
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 24px;
-  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.06);
-  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.08);
-  --shadow-gold: 0 8px 24px rgba(200, 138, 62, 0.30);
-  --shadow-photo: 0 20px 60px rgba(0, 0, 0, 0.12);
   --fs-hero: clamp(2.5rem, 6vw, 4.5rem);
   --fs-h1: clamp(2rem, 4vw, 2.75rem);
   --fs-h2: clamp(1.5rem, 3vw, 2rem);
@@ -30,6 +27,88 @@
   --fs-body: 1rem;
   --fs-small: 0.875rem;
   --fs-xs: 0.8125rem;
+
+  /* ── DARK (DEFAULT) ─────────────────────────────── */
+  --bg-base: #0f1923;
+  --bg-section-alt: #111e2b;
+  --bg-card: rgba(255, 255, 255, 0.05);
+  --bg-nav: rgba(15, 25, 35, 0.96);
+  --bg-footer: #0f1923;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.70);
+  --text-muted: rgba(255, 255, 255, 0.45);
+  --border-subtle: rgba(255, 255, 255, 0.10);
+  --border-card: rgba(255, 255, 255, 0.08);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.25);
+  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.40);
+  --shadow-gold: 0 8px 24px rgba(200, 138, 62, 0.35);
+  --shadow-photo: 0 20px 60px rgba(0, 0, 0, 0.45);
+
+  /* ── SECTION BACKGROUNDS ─────────────────────────── */
+  --section-about-bg: var(--bg-section-alt);
+  --section-stats-bg: var(--bg-base);
+  --section-pricing-bg: var(--bg-section-alt);
+  --section-testimonials-bg: var(--bg-base);
+  --section-partners-bg: var(--bg-base);
+  --section-social-bg: var(--bg-base);
+
+  /* ── THEME-AWARE ALIAS ────────────────────────────── */
+  --text-dark: var(--text-primary);
+
+  /* ── THEME TRANSITION ─────────────────────────────── */
+  --theme-transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* ── LIGHT ──────────────────────────────────────── */
+[data-theme="light"] {
+  --bg-base: #f7f5f2;
+  --bg-section-alt: #eae6e1;
+  --bg-card: #ffffff;
+  --bg-nav: rgba(247, 245, 242, 0.96);
+  --bg-footer: #1a1a1a;
+  --text-primary: #1a1a1a;
+  --text-secondary: #5a6a72;
+  --text-muted: #8a9aa3;
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-card: rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.10);
+  --shadow-gold: 0 8px 24px rgba(200, 138, 62, 0.30);
+  --shadow-photo: 0 20px 60px rgba(0, 0, 0, 0.14);
+
+  --section-about-bg: var(--bg-base);
+  --section-stats-bg: var(--bg-section-alt);
+  --section-pricing-bg: var(--bg-base);
+  --section-testimonials-bg: var(--bg-section-alt);
+  --section-partners-bg: var(--bg-section-alt);
+  --section-social-bg: var(--bg-section-alt);
+}
+
+/* ── OS FALLBACK (no JS) ─────────────────────────── */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --bg-base: #f7f5f2;
+    --bg-section-alt: #eae6e1;
+    --bg-card: #ffffff;
+    --bg-nav: rgba(247, 245, 242, 0.96);
+    --bg-footer: #1a1a1a;
+    --text-primary: #1a1a1a;
+    --text-secondary: #5a6a72;
+    --text-muted: #8a9aa3;
+    --border-subtle: rgba(0, 0, 0, 0.08);
+    --border-card: rgba(0, 0, 0, 0.06);
+    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.06);
+    --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.10);
+    --shadow-gold: 0 8px 24px rgba(200, 138, 62, 0.30);
+    --shadow-photo: 0 20px 60px rgba(0, 0, 0, 0.14);
+
+    --section-about-bg: var(--bg-base);
+    --section-stats-bg: var(--bg-section-alt);
+    --section-pricing-bg: var(--bg-base);
+    --section-testimonials-bg: var(--bg-section-alt);
+    --section-partners-bg: var(--bg-section-alt);
+    --section-social-bg: var(--bg-section-alt);
+  }
 }
 
 *, *::before, *::after {
@@ -46,8 +125,8 @@ html {
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-size: var(--fs-body);
-  color: var(--text-dark);
-  background: var(--white);
+  color: var(--text-primary);
+  background: var(--bg-base);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -250,5 +329,16 @@ button {
 @media (min-width: 769px) {
   .hide-desktop {
     display: none !important;
+  }
+}
+
+/* ── THEME TRANSITIONS ───────────────────────────── */
+body, main, section, header, footer, nav, article, aside {
+  transition: var(--theme-transition);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body, main, section, header, footer, nav, article, aside {
+    transition: none;
   }
 }

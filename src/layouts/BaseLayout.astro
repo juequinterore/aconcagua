@@ -62,6 +62,15 @@ const jsonLd = {
 <html lang={lang} class:list={[{ 'lang-zh': lang === 'zh' }]}>
   <head>
     <meta charset="UTF-8" />
+    <!-- FOWT prevention: set data-theme before CSS renders -->
+    <script is:inline>
+      (function() {
+        var stored = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = stored || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
 

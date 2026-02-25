@@ -23,11 +23,11 @@ export const zh = {
   'stats.languages': '语言: 西 · 英 · 中',
 
   // About
-  'about.tag': '关于Julian Kusi',
+  'about.tag': '关于Julián Kusi',
   'about.heading': '从厨房到阿空加瓜顶峰',
   'about.body': '2013年，我作为厨师开始在阿空加瓜大本营工作。这座山呼唤了我，我成为了搬运工，学习每条路线、每个危险、这座雄伟山峰的每个秘密。2018年，我获得了官方高山向导认证。今天，凭借17次成功登顶，我以最高安全标准引导国际登山者。',
-  'about.photo_caption': 'Julian Kusi · 高山向导',
-  'about.photo_alt': 'Julian Kusi，认证阿空加瓜高山向导，17次成功登顶',
+  'about.photo_caption': 'Julián Kusi · 高山向导',
+  'about.photo_alt': 'Julián Kusi，认证阿空加瓜高山向导，17次成功登顶',
 
   // Timeline
   'timeline.2013.role': '厨师',
@@ -74,6 +74,7 @@ export const zh = {
   'pricing.card3.feature6': '高营地废物清运',
   'pricing.card3.feature7': '开放团队：8至12人',
   'pricing.card3.feature8': '每4人配1名向导',
+  'pricing.card3.feature9': '可选择与Julián Kusi同行',
   'pricing.card3.cta': '预订探险',
 
   'pricing.card4.name': '1对1私人定制',
@@ -88,13 +89,13 @@ export const zh = {
   'testimonials.title': '我的客户怎么说',
   'testimonials.1.name': 'Marco Rossi',
   'testimonials.1.location': '意大利',
-  'testimonials.1.text': 'Julian是一位出色的向导。他对这座山的了解、在困难情况下的冷静以及对团队安全的真诚关注，使这次探险成为难忘的经历。我们因他而登顶成功。',
+  'testimonials.1.text': 'Julián是一位出色的向导。他对这座山的了解、在困难情况下的冷静以及对团队安全的真诚关注，使这次探险成为难忘的经历。我们因他而登顶成功。',
   'testimonials.2.name': 'Sarah Kim',
   'testimonials.2.location': '韩国',
-  'testimonials.2.text': '对于我的第一次阿空加瓜探险，我选择了最好的向导。Julian预见了每一个挑战，在最艰难的时刻激励我们，并在山顶与我们共同庆祝。这是一次改变人生的经历。',
+  'testimonials.2.text': '对于我的第一次阿空加瓜探险，我选择了最好的向导。Julián预见了每一个挑战，在最艰难的时刻激励我们，并在山顶与我们共同庆祝。这是一次改变人生的经历。',
   'testimonials.3.name': 'James Walsh',
   'testimonials.3.location': '美国',
-  'testimonials.3.text': '一流的专业水准。Julian以精准的方式协调每一个后勤细节，他的英语非常好，在极端条件下的领导力令人印象深刻。我已经在计划明年再次与他合作。',
+  'testimonials.3.text': '一流的专业水准。Julián以精准的方式协调每一个后勤细节，他的英语非常好，在极端条件下的领导力令人印象深刻。我已经在计划明年再次与他合作。',
 
   // CTA
   'cta.tag': '开始您的旅程',
@@ -135,5 +136,5 @@ export const zh = {
   'footer.expeditions': '探险套餐',
   'footer.contact': '联系方式',
   'footer.location': '阿根廷门多萨',
-  'footer.copyright': '© 2026 Aconcagua.co — Julian Kusi. 保留所有权利。',
+  'footer.copyright': '© 2026 Aconcagua.co — Julián Kusi. 保留所有权利。',
 };

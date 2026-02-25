@@ -35,8 +35,8 @@ export const en = {
   'timeline.2016.desc': 'Cargo & logistics',
   'timeline.2018.role': 'Guide',
   'timeline.2018.desc': 'Official certification',
-  'timeline.2024.role': '17 Summits',
-  'timeline.2024.desc': 'Elite experience',
+  'timeline.current.role': '17 Summits',
+  'timeline.current.desc': 'Elite experience',
 
   // Pricing
   'pricing.tag': 'EXPEDITIONS',

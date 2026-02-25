@@ -35,8 +35,8 @@ export const es = {
   'timeline.2016.desc': 'Carga y logística',
   'timeline.2018.role': 'Guía',
   'timeline.2018.desc': 'Certificación oficial',
-  'timeline.2024.role': '17 Cumbres',
-  'timeline.2024.desc': 'Experiencia elite',
+  'timeline.current.role': '17 Cumbres',
+  'timeline.current.desc': 'Experiencia elite',
 
   // Pricing
   'pricing.tag': 'EXPEDICIONES',

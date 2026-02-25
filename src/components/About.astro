@@ -10,7 +10,7 @@ const timeline = [
   { year: '2013', role: t('timeline.2013.role'), desc: t('timeline.2013.desc') },
   { year: '2016', role: t('timeline.2016.role'), desc: t('timeline.2016.desc') },
   { year: '2018', role: t('timeline.2018.role'), desc: t('timeline.2018.desc') },
-  { year: '2024', role: t('timeline.2024.role'), desc: t('timeline.2024.desc') },
+  { year: String(new Date().getFullYear()), role: t('timeline.current.role'), desc: t('timeline.current.desc') },
 ];
 ---
 

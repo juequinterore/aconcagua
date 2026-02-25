@@ -35,8 +35,8 @@ export const zh = {
   'timeline.2016.desc': '搬运和后勤',
   'timeline.2018.role': '向导',
   'timeline.2018.desc': '官方认证',
-  'timeline.2024.role': '17次登顶',
-  'timeline.2024.desc': '精英经验',
+  'timeline.current.role': '17次登顶',
+  'timeline.current.desc': '精英经验',
 
   // Pricing
   'pricing.tag': '探险套餐',

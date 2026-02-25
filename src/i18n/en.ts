@@ -23,11 +23,11 @@ export const en = {
   'stats.languages': 'Languages: ES · EN · 中',
 
   // About
-  'about.tag': 'About Julian Kusi',
+  'about.tag': 'About Julián Kusi',
   'about.heading': 'From the kitchen to the summit of Aconcagua',
   'about.body': 'I started in 2013 as a camp cook at Aconcagua\'s base camps. The mountain called me and I became a porter, learning every route, every danger, every secret of this imposing summit. In 2018 I obtained my official mountain guide certification. Today, with 17 successful summits, I guide international climbers with the highest standard of safety and experience.',
-  'about.photo_caption': 'Julian Kusi · Mountain Guide',
-  'about.photo_alt': 'Julian Kusi, certified Aconcagua mountain guide with 17 successful summits',
+  'about.photo_caption': 'Julián Kusi · Mountain Guide',
+  'about.photo_alt': 'Julián Kusi, certified Aconcagua mountain guide with 17 successful summits',
 
   // Timeline
   'timeline.2013.role': 'Camp Cook',
@@ -74,6 +74,7 @@ export const en = {
   'pricing.card3.feature6': 'Waste removal from high camps',
   'pricing.card3.feature7': 'Open group: 8 to 12 people',
   'pricing.card3.feature8': '1 guide per 4 people',
+  'pricing.card3.feature9': 'Option to join Julián Kusi on the expedition',
   'pricing.card3.cta': 'Book Expedition',
 
   'pricing.card4.name': '1:1 Private',
@@ -88,13 +89,13 @@ export const en = {
   'testimonials.title': 'What my clients say',
   'testimonials.1.name': 'Marco Rossi',
   'testimonials.1.location': 'Italy',
-  'testimonials.1.text': 'Julian is an exceptional guide. His knowledge of the mountain, his calm in difficult situations, and his genuine concern for the group\'s safety made this expedition an unforgettable experience. We reached the summit because of him.',
+  'testimonials.1.text': 'Julián is an exceptional guide. His knowledge of the mountain, his calm in difficult situations, and his genuine concern for the group\'s safety made this expedition an unforgettable experience. We reached the summit because of him.',
   'testimonials.2.name': 'Sarah Kim',
   'testimonials.2.location': 'South Korea',
-  'testimonials.2.text': 'I couldn\'t have chosen a better guide for my first Aconcagua expedition. Julian anticipated every challenge, kept us motivated during the hardest moments, and celebrated with us at the top. A transformative experience.',
+  'testimonials.2.text': 'I couldn\'t have chosen a better guide for my first Aconcagua expedition. Julián anticipated every challenge, kept us motivated during the hardest moments, and celebrated with us at the top. A transformative experience.',
   'testimonials.3.name': 'James Walsh',
   'testimonials.3.location': 'United States',
-  'testimonials.3.text': 'World-class professionalism. Julian coordinated every logistical detail with precision, his English is excellent, and his leadership in extreme conditions is impressive. I\'m already planning to come back with him next year.',
+  'testimonials.3.text': 'World-class professionalism. Julián coordinated every logistical detail with precision, his English is excellent, and his leadership in extreme conditions is impressive. I\'m already planning to come back with him next year.',
 
   // CTA
   'cta.tag': 'FIRST STEP',
@@ -113,7 +114,7 @@ export const en = {
   // Partners
   'partners.label': 'TRUSTED PARTNERS',
   'partners.gr.name': 'Global Rescue',
-  'partners.gr.desc': 'Required by Aconcagua Park — Julian is an Official Partner for immediate aeromedical rescue',
+  'partners.gr.desc': 'Required by Aconcagua Park — Julián is an Official Partner for immediate aeromedical rescue',
   'partners.pa.name': 'Pire Aconcagua',
   'partners.pa.desc': 'Mountain gear rental in Mendoza — 10% off, mention Julián Kusi',
 
@@ -133,5 +134,5 @@ export const en = {
   'footer.expeditions': 'Expeditions',
   'footer.contact': 'Contact',
   'footer.location': 'Mendoza, Argentina',
-  'footer.copyright': '© 2026 Aconcagua.co — Julian Kusi. All rights reserved.',
+  'footer.copyright': '© 2026 Aconcagua.co — Julián Kusi. All rights reserved.',
 };

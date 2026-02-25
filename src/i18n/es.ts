@@ -23,11 +23,11 @@ export const es = {
   'stats.languages': 'Idiomas: ES · EN · 中',
 
   // About
-  'about.tag': 'Sobre Julian Kusi',
+  'about.tag': 'Sobre Julián Kusi',
   'about.heading': 'De la cocina a la cumbre del Aconcagua',
   'about.body': 'Empecé en 2013 como cocinero en los campamentos base del Aconcagua. La montaña me llamó y me convertí en porteador, aprendiendo cada ruta, cada peligro, cada secreto de esta cumbre imponente. En 2018 obtuve mi certificación oficial como guía de montaña. Hoy, con 17 cumbres exitosas, guío a alpinistas internacionales con el más alto estándar de seguridad y experiencia.',
-  'about.photo_caption': 'Julian Kusi · Guía de Montaña',
-  'about.photo_alt': 'Julian Kusi, guía de montaña certificado del Aconcagua con 17 cumbres exitosas',
+  'about.photo_caption': 'Julián Kusi · Guía de Montaña',
+  'about.photo_alt': 'Julián Kusi, guía de montaña certificado del Aconcagua con 17 cumbres exitosas',
 
   // Timeline
   'timeline.2013.role': 'Cocinero',
@@ -74,6 +74,7 @@ export const es = {
   'pricing.card3.feature6': 'Retiro de residuos en campamentos altos',
   'pricing.card3.feature7': 'Grupo abierto: 8 a 12 personas',
   'pricing.card3.feature8': '1 guía cada 4 personas',
+  'pricing.card3.feature9': 'Posibilidad de ir con Julián Kusi',
   'pricing.card3.cta': 'Reservar Expedición',
 
   'pricing.card4.name': '1:1 Privado',
@@ -88,13 +89,13 @@ export const es = {
   'testimonials.title': 'Lo que dicen mis clientes',
   'testimonials.1.name': 'Marco Rossi',
   'testimonials.1.location': 'Italia',
-  'testimonials.1.text': 'Julian es un guía excepcional. Su conocimiento de la montaña, su calma ante las situaciones difíciles y su genuina preocupación por la seguridad del grupo hicieron de esta expedición una experiencia inolvidable. Llegamos a la cumbre gracias a él.',
+  'testimonials.1.text': 'Julián es un guía excepcional. Su conocimiento de la montaña, su calma ante las situaciones difíciles y su genuina preocupación por la seguridad del grupo hicieron de esta expedición una experiencia inolvidable. Llegamos a la cumbre gracias a él.',
   'testimonials.2.name': 'Sarah Kim',
   'testimonials.2.location': 'Corea del Sur',
-  'testimonials.2.text': 'No podría haber elegido mejor guía para mi primera expedición al Aconcagua. Julian anticipó cada desafío, nos mantuvo motivados en los momentos más duros y celebró con nosotros en la cima. Una experiencia transformadora.',
+  'testimonials.2.text': 'No podría haber elegido mejor guía para mi primera expedición al Aconcagua. Julián anticipó cada desafío, nos mantuvo motivados en los momentos más duros y celebró con nosotros en la cima. Una experiencia transformadora.',
   'testimonials.3.name': 'James Walsh',
   'testimonials.3.location': 'Estados Unidos',
-  'testimonials.3.text': 'Profesionalismo de primer nivel. Julian coordinó cada detalle logístico con precisión, su inglés es excelente y su liderazgo en condiciones extremas es impresionante. Ya estoy planificando volver con él para el próximo año.',
+  'testimonials.3.text': 'Profesionalismo de primer nivel. Julián coordinó cada detalle logístico con precisión, su inglés es excelente y su liderazgo en condiciones extremas es impresionante. Ya estoy planificando volver con él para el próximo año.',
 
   // CTA
   'cta.tag': 'PRIMER PASO',
@@ -113,7 +114,7 @@ export const es = {
   // Partners
   'partners.label': 'PARTNERS DE CONFIANZA',
   'partners.gr.name': 'Global Rescue',
-  'partners.gr.desc': 'Obligatorio en el Parque Aconcagua — Julian es Partner Oficial para evacuación aeromédica inmediata',
+  'partners.gr.desc': 'Obligatorio en el Parque Aconcagua — Julián es Partner Oficial para evacuación aeromédica inmediata',
   'partners.pa.name': 'Pire Aconcagua',
   'partners.pa.desc': 'Alquiler de equipo en Mendoza — 10% de descuento mencionando a Julián Kusi',
 
@@ -133,5 +134,5 @@ export const es = {
   'footer.expeditions': 'Expediciones',
   'footer.contact': 'Contacto',
   'footer.location': 'Mendoza, Argentina',
-  'footer.copyright': '© 2026 Aconcagua.co — Julian Kusi. Todos los derechos reservados.',
+  'footer.copyright': '© 2026 Aconcagua.co — Julián Kusi. Todos los derechos reservados.',
 };

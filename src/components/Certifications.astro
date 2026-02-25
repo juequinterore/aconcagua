@@ -1,0 +1,125 @@
+---
+interface Props {
+  lang: 'es' | 'en' | 'zh';
+  t: (key: string) => string;
+}
+
+const { t } = Astro.props;
+
+const certs = [
+  {
+    name: 'EPGAMT',
+    logo: '/epgamt.png',
+    logoClass: 'logo-epgamt',
+  },
+  {
+    name: 'WFR AIDER',
+    logo: '/wfr.png',
+    logoClass: 'logo-wfr',
+  },
+];
+---
+
+<section class="certs-section" aria-label={t('certs.label')}>
+  <div class="container certs-inner">
+    <p class="certs-label">{t('certs.label')}</p>
+    <div class="certs-grid">
+      {certs.map(cert => (
+        <div class="cert-card">
+          <div class={`cert-logo-wrap ${cert.logoClass}`}>
+            <img src={cert.logo} alt={cert.name} class="cert-logo" />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .certs-section {
+    background: var(--section-partners-bg);
+    padding-block: 48px;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .certs-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .certs-label {
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .certs-grid {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .cert-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cert-logo-wrap {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 160px;
+    height: 160px;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .cert-logo-wrap:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+  }
+
+  .logo-epgamt {
+    width: 110px;
+  }
+
+  .logo-wfr {
+    width: 118px;
+  }
+
+  .cert-logo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  @media (max-width: 480px) {
+    .cert-logo-wrap {
+      width: 136px;
+      height: 136px;
+      padding: 16px;
+    }
+
+    .logo-epgamt {
+      width: 94px;
+    }
+
+    .logo-wfr {
+      width: 100px;
+    }
+  }
+</style>

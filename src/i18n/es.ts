@@ -105,9 +105,9 @@ export const es = {
   // Partners
   'partners.label': 'PARTNERS DE CONFIANZA',
   'partners.gr.name': 'Global Rescue',
-  'partners.gr.desc': 'Al reservar con Julian, la evacuación médica queda precoordinada',
+  'partners.gr.desc': 'Obligatorio en el Parque Aconcagua — Julian es Partner Oficial para evacuación aeromédica inmediata',
   'partners.pa.name': 'Pire Aconcagua',
-  'partners.pa.desc': 'Gestiona los permisos del parque argentino — sin trámites de tu parte',
+  'partners.pa.desc': 'Alquiler de equipo en Mendoza — 10% de descuento mencionando a Julián Kusi',
 
   // Social
   'social.tag': 'COMUNIDAD',

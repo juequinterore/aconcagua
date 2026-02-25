@@ -10,14 +10,16 @@ const partners = [
   {
     name: t('partners.gr.name'),
     desc: t('partners.gr.desc'),
-    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
-    href: 'https://www.globalrescue.com',
+    logo: '/global_rescue.svg',
+    logoClass: 'logo-wide',
+    href: 'https://partner.globalrescue.com/juliankusi/index.html',
   },
   {
     name: t('partners.pa.name'),
     desc: t('partners.pa.desc'),
-    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12,2 22,20 2,20"/></svg>`,
-    href: 'https://www.pireaconcagua.com',
+    logo: '/pire.png',
+    logoClass: 'logo-square',
+    href: 'https://www.pireaconcagua.com.ar',
   },
 ];
 ---
@@ -35,7 +37,9 @@ const partners = [
           rel="noopener noreferrer"
           aria-label={`${partner.name} — ${partner.desc}`}
         >
-          <div class="partner-icon" set:html={partner.icon}></div>
+          <div class={`partner-logo-wrap ${partner.logoClass}`}>
+            <img src={partner.logo} alt={partner.name} class="partner-logo" />
+          </div>
           <div class="partner-info">
             <strong class="partner-name">{partner.name}</strong>
             <span class="partner-desc">{partner.desc}</span>
@@ -102,9 +106,33 @@ const partners = [
     transform: translateY(-2px);
   }
 
-  .partner-icon {
-    color: var(--accent);
+  .partner-logo-wrap {
     flex-shrink: 0;
+    background: #fff;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 8px;
+  }
+
+  .partner-logo-wrap.logo-wide {
+    width: 110px;
+    height: 36px;
+    padding: 6px 10px;
+  }
+
+  .partner-logo-wrap.logo-square {
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+  }
+
+  .partner-logo {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
   }
 
   .partner-info {

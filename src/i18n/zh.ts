@@ -105,9 +105,9 @@ export const zh = {
   // Partners
   'partners.label': '合作伙伴',
   'partners.gr.name': 'Global Rescue',
-  'partners.gr.desc': '通过Julian预订，Global Rescue医疗撤离已预先安排',
+  'partners.gr.desc': '阿空加瓜公园强制要求 — Julián 为官方合作伙伴，提供即时航空医疗救援',
   'partners.pa.name': 'Pire Aconcagua',
-  'partners.pa.desc': '处理全部阿根廷公园许可证，无需您自行办理',
+  'partners.pa.desc': '门多萨山地装备租赁 — 报名 Julián Kusi 享九折优惠',
 
   // Social
   'social.tag': '社区',

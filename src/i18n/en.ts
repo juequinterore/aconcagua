@@ -105,9 +105,9 @@ export const en = {
   // Partners
   'partners.label': 'TRUSTED PARTNERS',
   'partners.gr.name': 'Global Rescue',
-  'partners.gr.desc': 'Book through Julian — Global Rescue medical evacuation is pre-arranged',
+  'partners.gr.desc': 'Required by Aconcagua Park — Julian is an Official Partner for immediate aeromedical rescue',
   'partners.pa.name': 'Pire Aconcagua',
-  'partners.pa.desc': 'Handles all Argentine park permits — no bureaucracy on your end',
+  'partners.pa.desc': 'Mountain gear rental in Mendoza — 10% off, mention Julián Kusi',
 
   // Social
   'social.tag': 'COMMUNITY',

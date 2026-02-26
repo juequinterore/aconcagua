@@ -111,6 +111,15 @@ export const es = {
   'cta.whatsapp_url': 'https://wa.me/573146294318',
   'cta.email': 'julian@aconcagua.co',
 
+  // Gallery
+  'gallery.tag': 'GALERÍA',
+  'gallery.title': 'La Expedición',
+  'gallery.subtitle': 'Fotos reales de expediciones en el Aconcagua.',
+  'gallery.lightbox_label': 'Galería de fotos — vista ampliada',
+  'gallery.close': 'Cerrar',
+  'gallery.prev': 'Foto anterior',
+  'gallery.next': 'Foto siguiente',
+
   // Certifications
   'certs.label': 'CERTIFICACIONES',
 

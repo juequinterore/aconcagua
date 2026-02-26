@@ -111,6 +111,15 @@ export const en = {
   'cta.whatsapp_url': 'https://wa.me/573146294318',
   'cta.email': 'julian@aconcagua.co',
 
+  // Gallery
+  'gallery.tag': 'GALLERY',
+  'gallery.title': 'The Expedition',
+  'gallery.subtitle': 'Real photos from Aconcagua expeditions.',
+  'gallery.lightbox_label': 'Photo gallery — enlarged view',
+  'gallery.close': 'Close',
+  'gallery.prev': 'Previous photo',
+  'gallery.next': 'Next photo',
+
   // Certifications
   'certs.label': 'CERTIFICATIONS',
 

@@ -79,7 +79,7 @@ const cards = [
 
     <div class="pricing-grid">
       {cards.map((card, i) => (
-        <div class="reveal" style={`transition-delay: ${i * 0.12}s`}>
+        <div id={`plan-${i + 1}`} class="reveal plan-anchor" style={`transition-delay: ${i * 0.12}s`}>
           <PricingCard
             name={card.name}
             price={card.price}
@@ -98,6 +98,10 @@ const cards = [
 <style>
   .pricing {
     background: var(--section-pricing-bg);
+  }
+
+  .plan-anchor {
+    scroll-margin-top: 90px;
   }
 
   .pricing-header {

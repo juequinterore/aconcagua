@@ -5,9 +5,10 @@ import ThemeToggle from './ThemeToggle.astro';
 interface Props {
   lang: 'es' | 'en' | 'zh';
   t: (key: string) => string;
+  forceDark?: boolean;
 }
 
-const { lang, t } = Astro.props;
+const { lang, t, forceDark = false } = Astro.props;
 
 const navLinks = [
   { key: 'nav.about', href: '#sobre' },
@@ -19,7 +20,7 @@ const navLinks = [
 const calendlyUrl = 'https://calendly.com/juliankusi/30min';
 ---
 
-<nav class="nav" id="main-nav" aria-label="Main navigation">
+<nav class={`nav${forceDark ? ' nav-force-dark' : ''}`} id="main-nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href={lang === 'es' ? '/' : `/${lang}/`} class="nav-logo" aria-label="Aconcagua - Julián Kusi">
       <img src="/logo.webp" alt="Julián Kusi - Aconcagua" class="nav-logo-img" width="160" height="48" />

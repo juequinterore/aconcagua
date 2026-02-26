@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const lang = 'zh';
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title="隐私政策 — Julián Kusi | aconcagua.co"
+  description="aconcagua.co的隐私政策。了解我们如何收集、使用和保护您的个人数据。"
+  lang={lang}
+  ogLocale="zh_CN"
+  ogUrl="https://aconcagua.co/zh/privacy"
+>
+  <Nav lang={lang} t={t} forceDark />
+  <main id="main-content" class="legal-page section-pad">
+    <div class="container legal-container">
+      <h1>隐私政策</h1>
+      <p class="legal-updated">最后更新：2026年1月</p>
+
+      <section>
+        <h2>1. 数据控制方</h2>
+        <p>Julián Kusi，认证高山向导，运营地址：阿根廷门多萨。联系方式：<a href="mailto:julian@aconcagua.co">julian@aconcagua.co</a>。</p>
+      </section>
+
+      <section>
+        <h2>2. 我们收集的数据</h2>
+        <p>当您进行以下操作时，我们会收集数据：</p>
+        <ul>
+          <li>通过Calendly预约咨询（姓名、电子邮件地址、联系方式）。</li>
+          <li>通过WhatsApp或电子邮件联系我们（联系信息及消息内容）。</li>
+          <li>访问我们的网站（使用数据、IP地址、浏览器类型——通过Google Analytics 4和Microsoft Clarity）。</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>3. 处理目的</h2>
+        <ul>
+          <li>管理探险咨询和预订。</li>
+          <li>发送有关所请求服务的信息。</li>
+          <li>通过使用分析改善网站体验。</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>4. 法律依据</h2>
+        <p>数据处理基于用户同意、高山向导服务合同的履行，或改善服务的合法利益。中国大陆居民的数据处理遵守《个人信息保护法》（PIPL）的相关规定。</p>
+      </section>
+
+      <section>
+        <h2>5. 分析工具</h2>
+        <p><strong>Google Analytics 4</strong>：收集匿名使用数据以了解访客行为。数据存储在Google服务器上。您可以安装Google Analytics退出浏览器插件来选择退出。</p>
+        <p><strong>Microsoft Clarity</strong>：以匿名方式记录热图和用户会话，以改善网站可用性。</p>
+        <p><strong>Calendly</strong>：第三方日程安排平台。其使用受<a href="https://calendly.com/privacy" target="_blank" rel="noopener noreferrer">Calendly隐私政策</a>约束。</p>
+      </section>
+
+      <section>
+        <h2>6. Cookie</h2>
+        <p>本网站使用技术性和分析性Cookie。分析Cookie（GA4、Clarity）在您浏览网站时激活。您可以通过浏览器设置管理Cookie。</p>
+      </section>
+
+      <section>
+        <h2>7. 您的权利</h2>
+        <p>您有权访问、更正、删除、限制或反对处理您的个人数据。如需行使这些权利，请联系我们：<a href="mailto:julian@aconcagua.co">julian@aconcagua.co</a>。</p>
+      </section>
+
+      <section>
+        <h2>8. 数据保留</h2>
+        <p>联系数据在提供服务所需期间内保留，或直到您请求删除。网站分析数据根据各平台政策保留（GA4最多14个月）。</p>
+      </section>
+
+      <section>
+        <h2>9. 政策变更</h2>
+        <p>我们保留更新本政策的权利。重大变更将通过电子邮件通知活跃客户。</p>
+      </section>
+    </div>
+  </main>
+  <Footer lang={lang} t={t} />
+</BaseLayout>
+
+<style>
+  .legal-page {
+    background: var(--bg-base);
+    min-height: 60vh;
+  }
+
+  .legal-container {
+    max-width: 760px;
+    padding-block: clamp(60px, 8vw, 100px);
+  }
+
+  h1 {
+    font-size: var(--fs-h1);
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .legal-updated {
+    font-size: var(--fs-small);
+    color: var(--text-muted);
+    margin-bottom: 48px;
+  }
+
+  section {
+    margin-bottom: 36px;
+  }
+
+  h2 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+
+  ul {
+    list-style: disc;
+    padding-left: 1.5em;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.75;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+</style>

@@ -27,35 +27,129 @@ const alternates = [
   { lang: 'x-default', href: 'https://aconcagua.co/' },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: 'Julián Kusi — Aconcagua Mountain Guide',
-  description: 'Certified Aconcagua mountain guide with 17 successful summits and 10+ years of experience guiding international expeditions.',
-  url: 'https://aconcagua.co',
-  telephone: '+57 314 629 4318',
-  email: 'julian@aconcagua.co',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Mendoza',
-    addressCountry: 'AR',
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': ['TouristInformationCenter', 'LocalBusiness'],
+    '@id': 'https://aconcagua.co/#business',
+    name: 'Julián Kusi — Aconcagua Mountain Guide',
+    description: 'Certified Aconcagua mountain guide with 17 successful summits and 10+ years of experience guiding international expeditions.',
+    url: 'https://aconcagua.co',
+    telephone: '+57 314 629 4318',
+    email: 'julian@aconcagua.co',
+    image: 'https://aconcagua.co/portrait.jpeg',
+    logo: 'https://aconcagua.co/logo.webp',
+    knowsAbout: ['Aconcagua', 'mountain guiding', 'high altitude trekking', 'expedition safety', 'Patagonia climbing'],
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Mendoza',
+      addressCountry: 'AR',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: -32.8895,
+      longitude: -68.8458,
+    },
+    areaServed: {
+      '@type': 'Place',
+      name: 'Aconcagua Provincial Park, Argentina',
+    },
+    priceRange: '$$$',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '5',
+      reviewCount: '3',
+      bestRating: '5',
+      worstRating: '1',
+    },
+    review: [
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'Marco Rossi' },
+        reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+        reviewBody: 'Julián is an exceptional guide. His knowledge of the mountain, his calm in difficult situations, and his genuine concern for the group\'s safety made this expedition an unforgettable experience. We reached the summit because of him.',
+      },
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'Sarah Kim' },
+        reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+        reviewBody: 'I couldn\'t have chosen a better guide for my first Aconcagua expedition. Julián anticipated every challenge, kept us motivated during the hardest moments, and celebrated with us at the top. A transformative experience.',
+      },
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'James Walsh' },
+        reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+        reviewBody: 'World-class professionalism. Julián coordinated every logistical detail with precision, his English is excellent, and his leadership in extreme conditions is impressive. I\'m already planning to come back with him next year.',
+      },
+    ],
+    sameAs: [
+      'https://www.instagram.com/julian_kusi',
+      'https://www.youtube.com/@juliankusi',
+      'https://www.tiktok.com/@julian_kusi',
+    ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Aconcagua Expedition Packages',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          name: 'Basic Expedition Package',
+          description: 'Park access permits and mandatory insurance. Client manages own logistics.',
+          price: '2500',
+          priceCurrency: 'USD',
+          priceSpecification: { '@type': 'PriceSpecification', minPrice: '2500', priceCurrency: 'USD' },
+        },
+        {
+          '@type': 'Offer',
+          name: 'Base Camp Expedition Package',
+          description: 'Mule transport, base camp accommodations, full meals, internet, and facilities at base camp.',
+          price: '4000',
+          priceCurrency: 'USD',
+          priceSpecification: { '@type': 'PriceSpecification', minPrice: '4000', priceCurrency: 'USD' },
+        },
+        {
+          '@type': 'Offer',
+          name: 'Full Expedition Package',
+          description: 'Complete guided expedition. Hotel in Mendoza, transfers, mules, full meals, accommodations, 1 guide per 4 climbers. Option to join Julián Kusi directly.',
+          price: '7000',
+          priceCurrency: 'USD',
+          priceSpecification: { '@type': 'PriceSpecification', minPrice: '7000', priceCurrency: 'USD' },
+        },
+        {
+          '@type': 'Offer',
+          name: '1:1 Private Expedition Package',
+          description: 'Fully customizable private expedition with a dedicated 1-on-1 certified mountain guide.',
+          price: '15000',
+          priceCurrency: 'USD',
+          priceSpecification: { '@type': 'PriceSpecification', minPrice: '15000', priceCurrency: 'USD' },
+        },
+      ],
+    },
   },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: -32.8895,
-    longitude: -68.8458,
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': 'https://aconcagua.co/#julian-kusi',
+    name: 'Julián Kusi',
+    jobTitle: 'Certified Mountain Guide',
+    description: 'EPGAMT-certified Aconcagua mountain guide with 17 successful summits and 10+ years of experience guiding international expeditions in Spanish, English, and Chinese.',
+    image: 'https://aconcagua.co/portrait.jpeg',
+    url: 'https://aconcagua.co',
+    email: 'julian@aconcagua.co',
+    knowsLanguage: ['es', 'en', 'zh'],
+    knowsAbout: ['Aconcagua', 'mountain guiding', 'high altitude trekking', 'expedition safety', 'wilderness first response'],
+    hasCredential: [
+      { '@type': 'EducationalOccupationalCredential', name: 'EPGAMT', description: 'Escuela de Porteadores y Guías de Alta Montaña — official Argentine mountain guide certification' },
+      { '@type': 'EducationalOccupationalCredential', name: 'WFR', description: 'Wilderness First Responder — advanced wilderness emergency medical training' },
+    ],
+    worksFor: { '@id': 'https://aconcagua.co/#business' },
+    sameAs: [
+      'https://www.instagram.com/julian_kusi',
+      'https://www.youtube.com/@juliankusi',
+      'https://www.tiktok.com/@julian_kusi',
+    ],
   },
-  areaServed: {
-    '@type': 'Place',
-    name: 'Aconcagua Provincial Park, Argentina',
-  },
-  priceRange: '$$$',
-  sameAs: [
-    'https://www.instagram.com/julian_kusi',
-    'https://www.youtube.com/@juliankusi',
-    'https://www.tiktok.com/@julian_kusi',
-  ],
-};
+];
 ---
 
 <!doctype html>
@@ -117,26 +211,12 @@ const jsonLd = {
 
     <title>{title}</title>
 
-    <!-- GA4: static tag required for Google Search Console verification -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6ZXZ206Z8T"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-6ZXZ206Z8T');
-    </script>
-
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript" is:inline>
-      (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "vmzrpyylnq");
-    </script>
+    <!-- Analytics load only after cookie consent (see body) -->
 
     <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    {jsonLd.map(schema => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
   </head>
   <body>
     <!-- Skip link -->
@@ -145,6 +225,161 @@ const jsonLd = {
     </a>
 
     <slot />
+
+    <!-- Cookie consent banner -->
+    <div id="cookie-banner" role="dialog" aria-live="polite" aria-label={
+      lang === 'zh' ? 'Cookie 设置' : lang === 'en' ? 'Cookie settings' : 'Configuración de cookies'
+    } hidden>
+      <p id="cookie-text"></p>
+      <div class="cookie-actions">
+        <button id="cookie-accept" class="cookie-btn cookie-btn-accept"></button>
+        <button id="cookie-decline" class="cookie-btn cookie-btn-decline"></button>
+      </div>
+    </div>
+
+    <style>
+      #cookie-banner {
+        position: fixed;
+        bottom: 24px;
+        left: 24px;
+        max-width: 420px;
+        background: #0f1923;
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 12px;
+        padding: 20px 24px;
+        z-index: 9999;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      #cookie-banner[hidden] { display: none; }
+      #cookie-text {
+        font-size: 0.8125rem;
+        line-height: 1.6;
+        color: rgba(255,255,255,0.7);
+        margin: 0;
+      }
+      #cookie-text a {
+        color: #C88A3E;
+        text-decoration: underline;
+      }
+      .cookie-actions {
+        display: flex;
+        gap: 10px;
+      }
+      .cookie-btn {
+        flex: 1;
+        padding: 9px 16px;
+        border-radius: 8px;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition: opacity 0.15s;
+      }
+      .cookie-btn:hover { opacity: 0.85; }
+      .cookie-btn-accept {
+        background: #C88A3E;
+        color: #fff;
+      }
+      .cookie-btn-decline {
+        background: rgba(255,255,255,0.08);
+        color: rgba(255,255,255,0.65);
+      }
+      @media (max-width: 480px) {
+        #cookie-banner {
+          left: 12px;
+          right: 12px;
+          bottom: 12px;
+          max-width: none;
+        }
+      }
+    </style>
+
+    <script is:inline define:vars={{ lang }}>
+      (function () {
+        var CONSENT_KEY = 'cookie_consent';
+
+        function loadAnalytics() {
+          // GA4
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-6ZXZ206Z8T';
+          document.head.appendChild(s);
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', 'G-6ZXZ206Z8T');
+
+          // Microsoft Clarity
+          (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+            t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+          })(window, document, 'clarity', 'script', 'vmzrpyylnq');
+        }
+
+        var texts = {
+          es: {
+            msg: 'Usamos cookies de análisis (Google Analytics y Microsoft Clarity) para mejorar tu experiencia. <a href="/privacidad">Política de Privacidad</a>.',
+            accept: 'Aceptar',
+            decline: 'Rechazar',
+          },
+          en: {
+            msg: 'We use analytics cookies (Google Analytics & Microsoft Clarity) to improve your experience. <a href="/en/privacy">Privacy Policy</a>.',
+            accept: 'Accept',
+            decline: 'Decline',
+          },
+          zh: {
+            msg: '我们使用分析Cookie（Google Analytics和Microsoft Clarity）来改善您的体验。<a href="/zh/privacy">隐私政策</a>。',
+            accept: '接受',
+            decline: '拒绝',
+          },
+        };
+
+        var banner = document.getElementById('cookie-banner');
+        var textEl = document.getElementById('cookie-text');
+        var acceptBtn = document.getElementById('cookie-accept');
+        var declineBtn = document.getElementById('cookie-decline');
+        var t = texts[lang] || texts.en;
+
+        function showBanner() {
+          textEl.innerHTML = t.msg;
+          acceptBtn.textContent = t.accept;
+          declineBtn.textContent = t.decline;
+          banner.hidden = false;
+        }
+
+        acceptBtn.addEventListener('click', function () {
+          localStorage.setItem(CONSENT_KEY, 'granted');
+          banner.hidden = true;
+          loadAnalytics();
+        });
+
+        declineBtn.addEventListener('click', function () {
+          localStorage.setItem(CONSENT_KEY, 'denied');
+          banner.hidden = true;
+        });
+
+        // "Manage Cookies" buttons in footer — reset preference and re-show banner
+        document.querySelectorAll('#manage-cookies, #manage-cookies-bottom').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            localStorage.removeItem(CONSENT_KEY);
+            showBanner();
+          });
+        });
+
+        // Initial state
+        var stored = localStorage.getItem(CONSENT_KEY);
+        if (stored === 'granted') {
+          loadAnalytics();
+        } else if (!stored) {
+          showBanner();
+        }
+      })();
+    </script>
 
     <!-- Floating WhatsApp button (mobile only, appears after 30% scroll) -->
     <a

@@ -111,6 +111,15 @@ export const zh = {
   'cta.whatsapp_url': 'https://wa.me/573146294318',
   'cta.email': 'julian@aconcagua.co',
 
+  // Gallery
+  'gallery.tag': '图库',
+  'gallery.title': '探险历程',
+  'gallery.subtitle': '阿空加瓜探险真实照片。',
+  'gallery.lightbox_label': '照片图库 — 放大查看',
+  'gallery.close': '关闭',
+  'gallery.prev': '上一张',
+  'gallery.next': '下一张',
+
   // Certifications
   'certs.label': '认证资质',
 

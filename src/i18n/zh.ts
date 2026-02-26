@@ -107,9 +107,9 @@ export const zh = {
   'cta.button': '在Calendly上预约',
   'cta.fallback': '或发送邮件至',
   'cta.whatsapp': '通过WhatsApp联系',
-  'cta.calendly_url': 'https://calendly.com/juliankusi/30min',
   'cta.whatsapp_url': 'https://wa.me/573146294318',
   'cta.email': 'julian@aconcagua.co',
+  'calendly.url': 'https://calendly.com/juliankusi/30min',
 
   // Gallery
   'gallery.tag': '图库',
@@ -149,4 +149,13 @@ export const zh = {
   'footer.contact': '联系方式',
   'footer.location': '阿根廷门多萨',
   'footer.copyright': '© 2026 Aconcagua.co — Julián Kusi. 保留所有权利。',
+  'footer.legal': '法律',
+  'footer.privacy': '隐私政策',
+  'footer.manage_cookies': '管理Cookies',
+
+  // About - credential badge
+  'badge.summits': '登顶',
+
+  // Navigation
+  'nav.toggle_menu': '打开菜单',
 };

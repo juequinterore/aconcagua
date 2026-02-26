@@ -107,9 +107,9 @@ export const es = {
   'cta.button': 'Agendar Asesoría en Calendly',
   'cta.fallback': 'O escribinos a',
   'cta.whatsapp': 'Contactar por WhatsApp',
-  'cta.calendly_url': 'https://calendly.com/juliankusi/30min',
   'cta.whatsapp_url': 'https://wa.me/573146294318',
   'cta.email': 'julian@aconcagua.co',
+  'calendly.url': 'https://calendly.com/juliankusi/30min',
 
   // Gallery
   'gallery.tag': 'GALERÍA',
@@ -147,4 +147,13 @@ export const es = {
   'footer.contact': 'Contacto',
   'footer.location': 'Mendoza, Argentina',
   'footer.copyright': '© 2026 Aconcagua.co — Julián Kusi. Todos los derechos reservados.',
+  'footer.legal': 'Legal',
+  'footer.privacy': 'Política de Privacidad',
+  'footer.manage_cookies': 'Gestionar Cookies',
+
+  // About - credential badge
+  'badge.summits': 'Cumbres',
+
+  // Navigation
+  'nav.toggle_menu': 'Abrir menú',
 };

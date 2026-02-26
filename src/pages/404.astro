@@ -1,0 +1,183 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { es } from '../i18n/es';
+
+interface Props {
+  lang: 'es' | 'en' | 'zh';
+}
+
+const lang: 'es' | 'en' | 'zh' = 'es'; // 404 pages are only in default language
+const t = (key: string) => es[key as keyof typeof es] || key;
+---
+
+<BaseLayout
+  lang={lang}
+  t={t}
+  pageTitle="Página No Encontrada — Julián Kusi | aconcagua.co"
+  pageDescription="La página que buscas no existe. Vuelve al inicio para explorar nuestras expediciones al Aconcagua."
+  canonicalUrl="https://aconcagua.co/404"
+>
+  <main class="error-page">
+    <div class="error-container container">
+      <div class="error-content">
+        <div class="error-code">404</div>
+        <h1 class="error-title">Página No Encontrada</h1>
+        <p class="error-message">
+          Lo sentimos, la página que buscas no existe o ha sido movida.
+        </p>
+
+        <div class="error-actions">
+          <a href="/" class="btn btn-primary error-btn">
+            Volver al Inicio
+          </a>
+          <a href="/#expediciones" class="btn btn-secondary error-btn">
+            Ver Expediciones
+          </a>
+        </div>
+
+        <nav class="error-quick-links">
+          <p class="quick-links-label">Enlaces rápidos:</p>
+          <ul role="list">
+            <li><a href="/#sobre">Sobre Julián Kusi</a></li>
+            <li><a href="/#expediciones">Nuestras Expediciones</a></li>
+            <li><a href="/#testimonios">Testimonios</a></li>
+            <li><a href="/#comunidad">Comunidad</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="error-deco" aria-hidden="true">
+        <svg viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="100,10 180,150 20,150" fill="rgba(200,138,62,0.1)" stroke="rgba(200,138,62,0.25)" stroke-width="1.5"/>
+          <polygon points="100,40 155,150 45,150" fill="rgba(200,138,62,0.05)" stroke="rgba(200,138,62,0.15)" stroke-width="1"/>
+          <circle cx="100" cy="10" r="4" fill="rgba(200,138,62,0.3)"/>
+        </svg>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .error-page {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    background: var(--bg-base);
+    padding-block: 80px;
+  }
+
+  .error-container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .error-content {
+    max-width: 520px;
+  }
+
+  .error-code {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(5rem, 12vw, 8rem);
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .error-title {
+    font-size: var(--fs-h1);
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .error-message {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .error-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .error-btn {
+    padding: 12px 28px;
+    font-size: 0.9375rem;
+  }
+
+  .error-quick-links {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-md);
+    padding: 24px;
+  }
+
+  .quick-links-label {
+    font-size: var(--fs-small);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .error-quick-links ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .error-quick-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: var(--fs-small);
+    transition: color 0.2s;
+  }
+
+  .error-quick-links a:hover {
+    color: var(--accent);
+  }
+
+  .error-deco {
+    flex-shrink: 0;
+    opacity: 0.4;
+  }
+
+  .error-deco svg {
+    width: 200px;
+    height: auto;
+  }
+
+  @media (max-width: 900px) {
+    .error-container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .error-deco {
+      display: none;
+    }
+
+    .error-code {
+      font-size: clamp(3.5rem, 10vw, 5rem);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .error-actions {
+      flex-direction: column;
+    }
+
+    .error-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

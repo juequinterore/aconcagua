@@ -16,8 +16,6 @@ const navLinks = [
   { key: 'nav.testimonials', href: '#testimonios' },
   { key: 'nav.community', href: '#comunidad' },
 ];
-
-const calendlyUrl = 'https://calendly.com/juliankusi/30min';
 ---
 
 <nav class={`nav${forceDark ? ' nav-force-dark' : ''}`} id="main-nav" aria-label="Main navigation">
@@ -39,7 +37,7 @@ const calendlyUrl = 'https://calendly.com/juliankusi/30min';
       <ThemeToggle />
       <button
         class="btn btn-primary nav-cta"
-        onclick={`Calendly.initPopupWidget({url: '${calendlyUrl}'}); return false;`}
+        onclick={`Calendly.initPopupWidget({url: '${t('calendly.url')}'}); return false;`}
         aria-label={t('nav.cta')}
       >
         {t('nav.cta')}
@@ -51,7 +49,7 @@ const calendlyUrl = 'https://calendly.com/juliankusi/30min';
       id="hamburger-btn"
       aria-expanded="false"
       aria-controls="nav-overlay"
-      aria-label="Toggle menu"
+      aria-label={t('nav.toggle_menu')}
     >
       <span></span>
       <span></span>
@@ -72,7 +70,7 @@ const calendlyUrl = 'https://calendly.com/juliankusi/30min';
   <ThemeToggle />
   <button
     class="btn btn-primary overlay-cta"
-    onclick={`Calendly.initPopupWidget({url: '${calendlyUrl}'}); return false;`}
+    onclick={`Calendly.initPopupWidget({url: '${t('calendly.url')}'}); return false;`}
   >
     {t('nav.cta')}
   </button>

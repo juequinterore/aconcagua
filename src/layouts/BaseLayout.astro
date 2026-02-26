@@ -35,7 +35,7 @@ const jsonLd = [
     name: 'Julián Kusi — Aconcagua Mountain Guide',
     description: 'Certified Aconcagua mountain guide with 17 successful summits and 10+ years of experience guiding international expeditions.',
     url: 'https://aconcagua.co',
-    telephone: '+54 261 629 4318',
+    telephone: '+57 314 629 4318',
     email: 'julian@aconcagua.co',
     image: 'https://aconcagua.co/portrait.jpeg',
     logo: 'https://aconcagua.co/logo.webp',
@@ -211,23 +211,7 @@ const jsonLd = [
 
     <title>{title}</title>
 
-    <!-- GA4: static tag required for Google Search Console verification -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6ZXZ206Z8T"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-6ZXZ206Z8T');
-    </script>
-
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript" is:inline>
-      (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "vmzrpyylnq");
-    </script>
+    <!-- Analytics load only after cookie consent (see body) -->
 
     <!-- JSON-LD Structured Data -->
     {jsonLd.map(schema => (
@@ -241,6 +225,161 @@ const jsonLd = [
     </a>
 
     <slot />
+
+    <!-- Cookie consent banner -->
+    <div id="cookie-banner" role="dialog" aria-live="polite" aria-label={
+      lang === 'zh' ? 'Cookie 设置' : lang === 'en' ? 'Cookie settings' : 'Configuración de cookies'
+    } hidden>
+      <p id="cookie-text"></p>
+      <div class="cookie-actions">
+        <button id="cookie-accept" class="cookie-btn cookie-btn-accept"></button>
+        <button id="cookie-decline" class="cookie-btn cookie-btn-decline"></button>
+      </div>
+    </div>
+
+    <style>
+      #cookie-banner {
+        position: fixed;
+        bottom: 24px;
+        left: 24px;
+        max-width: 420px;
+        background: #0f1923;
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 12px;
+        padding: 20px 24px;
+        z-index: 9999;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      #cookie-banner[hidden] { display: none; }
+      #cookie-text {
+        font-size: 0.8125rem;
+        line-height: 1.6;
+        color: rgba(255,255,255,0.7);
+        margin: 0;
+      }
+      #cookie-text a {
+        color: #C88A3E;
+        text-decoration: underline;
+      }
+      .cookie-actions {
+        display: flex;
+        gap: 10px;
+      }
+      .cookie-btn {
+        flex: 1;
+        padding: 9px 16px;
+        border-radius: 8px;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition: opacity 0.15s;
+      }
+      .cookie-btn:hover { opacity: 0.85; }
+      .cookie-btn-accept {
+        background: #C88A3E;
+        color: #fff;
+      }
+      .cookie-btn-decline {
+        background: rgba(255,255,255,0.08);
+        color: rgba(255,255,255,0.65);
+      }
+      @media (max-width: 480px) {
+        #cookie-banner {
+          left: 12px;
+          right: 12px;
+          bottom: 12px;
+          max-width: none;
+        }
+      }
+    </style>
+
+    <script is:inline define:vars={{ lang }}>
+      (function () {
+        var CONSENT_KEY = 'cookie_consent';
+
+        function loadAnalytics() {
+          // GA4
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-6ZXZ206Z8T';
+          document.head.appendChild(s);
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', 'G-6ZXZ206Z8T');
+
+          // Microsoft Clarity
+          (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+            t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+          })(window, document, 'clarity', 'script', 'vmzrpyylnq');
+        }
+
+        var texts = {
+          es: {
+            msg: 'Usamos cookies de análisis (Google Analytics y Microsoft Clarity) para mejorar tu experiencia. <a href="/privacidad">Política de Privacidad</a>.',
+            accept: 'Aceptar',
+            decline: 'Rechazar',
+          },
+          en: {
+            msg: 'We use analytics cookies (Google Analytics & Microsoft Clarity) to improve your experience. <a href="/en/privacy">Privacy Policy</a>.',
+            accept: 'Accept',
+            decline: 'Decline',
+          },
+          zh: {
+            msg: '我们使用分析Cookie（Google Analytics和Microsoft Clarity）来改善您的体验。<a href="/zh/privacy">隐私政策</a>。',
+            accept: '接受',
+            decline: '拒绝',
+          },
+        };
+
+        var banner = document.getElementById('cookie-banner');
+        var textEl = document.getElementById('cookie-text');
+        var acceptBtn = document.getElementById('cookie-accept');
+        var declineBtn = document.getElementById('cookie-decline');
+        var t = texts[lang] || texts.en;
+
+        function showBanner() {
+          textEl.innerHTML = t.msg;
+          acceptBtn.textContent = t.accept;
+          declineBtn.textContent = t.decline;
+          banner.hidden = false;
+        }
+
+        acceptBtn.addEventListener('click', function () {
+          localStorage.setItem(CONSENT_KEY, 'granted');
+          banner.hidden = true;
+          loadAnalytics();
+        });
+
+        declineBtn.addEventListener('click', function () {
+          localStorage.setItem(CONSENT_KEY, 'denied');
+          banner.hidden = true;
+        });
+
+        // "Manage Cookies" buttons in footer — reset preference and re-show banner
+        document.querySelectorAll('#manage-cookies, #manage-cookies-bottom').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            localStorage.removeItem(CONSENT_KEY);
+            showBanner();
+          });
+        });
+
+        // Initial state
+        var stored = localStorage.getItem(CONSENT_KEY);
+        if (stored === 'granted') {
+          loadAnalytics();
+        } else if (!stored) {
+          showBanner();
+        }
+      })();
+    </script>
 
     <!-- Floating WhatsApp button (mobile only, appears after 30% scroll) -->
     <a

@@ -7,7 +7,6 @@ interface Props {
 }
 
 const { lang, t } = Astro.props;
-const calendlyUrl = 'https://calendly.com/juliankusi/30min';
 
 const cards = [
   {
@@ -87,7 +86,7 @@ const cards = [
             cta={card.cta}
             featured={card.featured}
             badge={card.badge}
-            calendlyUrl={calendlyUrl}
+            calendlyUrl={t('calendly.url')}
           />
         </div>
       ))}

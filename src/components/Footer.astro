@@ -48,19 +48,9 @@ const expeditions = [
   { key: 'pricing.card4.name', href: '#plan-4' },
 ];
 
-const legalLinks = lang === 'zh'
-  ? [
-      { label: '隐私政策', href: '/zh/privacy' },
-    ]
-  : lang === 'en'
-  ? [
-      { label: 'Privacy Policy', href: '/en/privacy' },
-    ]
-  : [
-      { label: 'Política de Privacidad', href: '/privacidad' },
-    ];
-
-const cookieLinkLabel = lang === 'zh' ? '管理Cookies' : lang === 'en' ? 'Manage Cookies' : 'Gestionar Cookies';
+const legalLinks = [
+  { href: lang === 'es' ? '/privacidad' : lang === 'zh' ? '/zh/privacy' : '/en/privacy' },
+];
 ---
 
 <footer class="footer" role="contentinfo">
@@ -109,13 +99,13 @@ const cookieLinkLabel = lang === 'zh' ? '管理Cookies' : lang === 'en' ? 'Manag
     <!-- Legal column -->
     <div class="footer-col">
       <h3 class="footer-col-title">
-        {lang === 'zh' ? '法律' : lang === 'en' ? 'Legal' : 'Legal'}
+        {t('footer.legal')}
       </h3>
       <ul class="footer-links" role="list">
         {legalLinks.map(link => (
-          <li><a href={link.href}>{link.label}</a></li>
+          <li><a href={link.href}>{t('footer.privacy')}</a></li>
         ))}
-        <li><button id="manage-cookies" class="footer-cookie-btn">{cookieLinkLabel}</button></li>
+        <li><button id="manage-cookies" class="footer-cookie-btn">{t('footer.manage_cookies')}</button></li>
       </ul>
     </div>
 
@@ -154,11 +144,11 @@ const cookieLinkLabel = lang === 'zh' ? '管理Cookies' : lang === 'en' ? 'Manag
         <nav class="footer-legal-links" aria-label="Legal">
           {legalLinks.map(link => (
             <>
-              <a href={link.href}>{link.label}</a>
+              <a href={link.href}>{t('footer.privacy')}</a>
               <span aria-hidden="true">·</span>
             </>
           ))}
-          <button id="manage-cookies-bottom" class="footer-cookie-btn-inline">{cookieLinkLabel}</button>
+          <button id="manage-cookies-bottom" class="footer-cookie-btn-inline">{t('footer.manage_cookies')}</button>
         </nav>
       </div>
       <div class="footer-bottom-social" aria-label="Social media links">

@@ -29,11 +29,9 @@ const t = useTranslations(lang);
   <script is:inline>
     (function () {
       var saved = localStorage.getItem('lang');
-      if (!saved) {
-        var lang = (navigator.language || '').toLowerCase();
-        if (lang.startsWith('zh')) { location.replace('/zh/'); }
-        else if (lang.startsWith('en')) { location.replace('/en/'); }
-      }
+      var lang = saved || (navigator.language || '').toLowerCase();
+      if (lang.startsWith('zh')) { location.replace('/zh/'); }
+      else if (lang.startsWith('en')) { location.replace('/en/'); }
     })();
   </script>
   <Nav lang={lang} t={t} />

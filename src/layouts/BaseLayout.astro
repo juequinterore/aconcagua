@@ -21,9 +21,9 @@ ogImage = 'https://aconcagua.co/openegraph.jpeg',
 } = Astro.props;
 
 const alternates = [
-  { lang: 'es-AR', href: 'https://aconcagua.co/' },
-  { lang: 'en-US', href: 'https://aconcagua.co/en/' },
-  { lang: 'zh-CN', href: 'https://aconcagua.co/zh/' },
+  { lang: 'es', href: 'https://aconcagua.co/' },
+  { lang: 'en', href: 'https://aconcagua.co/en/' },
+  { lang: 'zh', href: 'https://aconcagua.co/zh/' },
   { lang: 'x-default', href: 'https://aconcagua.co/' },
 ];
 
@@ -192,7 +192,8 @@ const jsonLd = [
     <link rel="preload" as="image" href="/hero.webp" fetchpriority="high" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=1" />
+    <link rel="alternate icon" href="/favicon.svg?v=1" />
 
     <!-- Fonts: preconnect for Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

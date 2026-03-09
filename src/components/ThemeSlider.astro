@@ -1,0 +1,203 @@
+---
+// ThemeSlider.astro — replaces ThemeToggle with a continuous interpolation slider
+---
+
+<div class="theme-slider-wrap" role="group" aria-label="Theme brightness">
+  <!-- Moon icon: dark end (left) -->
+  <svg class="slider-icon icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+
+  <input
+    type="range"
+    id="theme-slider"
+    class="theme-slider"
+    min="0"
+    max="100"
+    step="1"
+    value="0"
+    aria-label="Theme brightness: 0 is darkest, 100 is lightest"
+  />
+
+  <!-- Sun icon: light end (right) -->
+  <svg class="slider-icon icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="5"/>
+    <line x1="12" y1="1" x2="12" y2="3"/>
+    <line x1="12" y1="21" x2="12" y2="23"/>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+    <line x1="1" y1="12" x2="3" y2="12"/>
+    <line x1="21" y1="12" x2="23" y2="12"/>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+  </svg>
+</div>
+
+<script>
+  // Token map: dark and light RGBA channel arrays
+  const TOKENS: Record<string, { dark: number[]; light: number[] }> = {
+    '--bg-base':          { dark: [15, 25, 35],           light: [247, 245, 242] },
+    '--bg-section-alt':   { dark: [17, 30, 43],           light: [234, 230, 225] },
+    '--bg-card':          { dark: [255, 255, 255, 0.05],  light: [255, 255, 255, 1] },
+    '--bg-nav':           { dark: [15, 25, 35, 0.96],     light: [247, 245, 242, 0.96] },
+    '--bg-footer':        { dark: [15, 25, 35],           light: [26, 26, 26] },
+    '--text-primary':     { dark: [255, 255, 255],        light: [26, 26, 26] },
+    '--text-secondary':   { dark: [255, 255, 255, 0.70],  light: [90, 106, 114, 1] },
+    '--text-muted':       { dark: [255, 255, 255, 0.45],  light: [138, 154, 163, 1] },
+    '--border-subtle':    { dark: [255, 255, 255, 0.10],  light: [0, 0, 0, 0.08] },
+    '--border-card':      { dark: [255, 255, 255, 0.08],  light: [0, 0, 0, 0.06] },
+  };
+
+  // Shadow opacity pairs: [darkOpacity, lightOpacity]
+  const SHADOW_TOKENS: Record<string, { tpl: string; opacities: [number, number] }> = {
+    '--shadow-card':  { tpl: '0 4px 20px rgba(0,0,0,{a})',   opacities: [0.25, 0.06] },
+    '--shadow-hover': { tpl: '0 12px 40px rgba(0,0,0,{a})',  opacities: [0.40, 0.10] },
+    '--shadow-photo': { tpl: '0 20px 60px rgba(0,0,0,{a})',  opacities: [0.45, 0.14] },
+  };
+
+  function lerp(a: number, b: number, t: number): number {
+    return a + (b - a) * t;
+  }
+
+  function applyTheme(position: number): void {
+    const t = position / 100;
+    const root = document.documentElement;
+
+    if (position === 0) {
+      // Full dark: restore CSS cascade, clear all inline overrides
+      root.removeAttribute('data-theme');
+      for (const token of Object.keys(TOKENS)) root.style.removeProperty(token);
+      for (const token of Object.keys(SHADOW_TOKENS)) root.style.removeProperty(token);
+      return;
+    }
+
+    if (position === 100) {
+      // Full light: use existing [data-theme="light"] CSS block, clear inline overrides
+      root.setAttribute('data-theme', 'light');
+      for (const token of Object.keys(TOKENS)) root.style.removeProperty(token);
+      for (const token of Object.keys(SHADOW_TOKENS)) root.style.removeProperty(token);
+      return;
+    }
+
+    // Intermediate: clear data-theme, apply inline interpolated values
+    root.removeAttribute('data-theme');
+    for (const [token, { dark, light }] of Object.entries(TOKENS)) {
+      const r = Math.round(lerp(dark[0], light[0], t));
+      const g = Math.round(lerp(dark[1], light[1], t));
+      const b = Math.round(lerp(dark[2], light[2], t));
+      if (dark.length === 4 || light.length === 4) {
+        const dA = dark[3]  ?? 1;
+        const lA = light[3] ?? 1;
+        const a = +lerp(dA, lA, t).toFixed(3);
+        root.style.setProperty(token, `rgba(${r},${g},${b},${a})`);
+      } else {
+        root.style.setProperty(token, `rgb(${r},${g},${b})`);
+      }
+    }
+    for (const [token, cfg] of Object.entries(SHADOW_TOKENS)) {
+      const a = +lerp(cfg.opacities[0], cfg.opacities[1], t).toFixed(3);
+      root.style.setProperty(token, cfg.tpl.replace('{a}', String(a)));
+    }
+  }
+
+  // Astro deduplicates module scripts, so this runs once even when the
+  // component is used multiple times (desktop nav + mobile overlay).
+  const sliders = document.querySelectorAll<HTMLInputElement>('.theme-slider');
+
+  function getInitialPosition(): number {
+    const stored = localStorage.getItem('theme-position');
+    if (stored !== null) {
+      const parsed = parseInt(stored, 10);
+      if (!isNaN(parsed)) return Math.max(0, Math.min(100, parsed));
+    }
+    // Legacy migration
+    const legacy = localStorage.getItem('theme');
+    if (legacy === 'light') return 100;
+    if (legacy === 'dark') return 0;
+    // OS preference
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 0 : 100;
+  }
+
+  const initial = getInitialPosition();
+  sliders.forEach(s => { s.value = String(initial); });
+  applyTheme(initial);
+
+  sliders.forEach(slider => {
+    slider.addEventListener('input', () => {
+      const position = parseInt(slider.value, 10);
+      applyTheme(position);
+      localStorage.setItem('theme-position', String(position));
+      // Sync all slider instances (desktop + mobile)
+      sliders.forEach(s => {
+        if (s !== slider) s.value = String(position);
+      });
+    });
+  });
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (localStorage.getItem('theme-position') === null) {
+      const pos = e.matches ? 0 : 100;
+      sliders.forEach(s => { s.value = String(pos); });
+      applyTheme(pos);
+    }
+  });
+</script>
+
+<style>
+  .theme-slider-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .slider-icon {
+    color: rgba(255, 255, 255, 0.80);
+    flex-shrink: 0;
+    pointer-events: none;
+  }
+
+  .theme-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 80px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.20);
+    outline: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .theme-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    transition: transform 0.15s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .theme-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .theme-slider::-webkit-slider-thumb:hover,
+  .theme-slider:focus-visible::-webkit-slider-thumb {
+    transform: scale(1.2);
+  }
+
+  .theme-slider:focus-visible {
+    box-shadow: 0 0 0 2px var(--accent);
+    border-radius: 2px;
+  }
+</style>

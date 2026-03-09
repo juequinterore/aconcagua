@@ -1,0 +1,222 @@
+---
+// MountainCondor.astro — decorative scroll-driven Andean condor above mountain ridge
+// aria-hidden, pointer-events-none — purely decorative
+---
+
+<div class="condor-wrapper" aria-hidden="true">
+  <svg
+    class="condor gliding"
+    width="60"
+    height="32"
+    viewBox="0 0 60 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <!-- Left wing group (animated) -->
+    <g class="wing-l" style="transform-origin: 30px 18px;">
+      <path
+        d="M30 18 C22 14, 10 10, 0 14 C8 12, 20 16, 30 18Z"
+        fill="var(--accent)"
+        opacity="0.88"
+      />
+      <!-- Left wing tip feathers -->
+      <path
+        d="M6 13 C4 10, 2 12, 0 14"
+        stroke="var(--accent)"
+        stroke-width="1"
+        stroke-linecap="round"
+        opacity="0.7"
+      />
+    </g>
+
+    <!-- Right wing group (animated) -->
+    <g class="wing-r" style="transform-origin: 30px 18px;">
+      <path
+        d="M30 18 C38 14, 50 10, 60 14 C52 12, 40 16, 30 18Z"
+        fill="var(--accent)"
+        opacity="0.88"
+      />
+      <!-- Right wing tip feathers -->
+      <path
+        d="M54 13 C56 10, 58 12, 60 14"
+        stroke="var(--accent)"
+        stroke-width="1"
+        stroke-linecap="round"
+        opacity="0.7"
+      />
+    </g>
+
+    <!-- Body -->
+    <ellipse cx="30" cy="19" rx="7" ry="5" fill="var(--accent)" opacity="0.92" />
+
+    <!-- White collar (Andean condor marking) -->
+    <ellipse cx="30" cy="14" rx="4" ry="2.5" fill="var(--white)" opacity="0.9" />
+
+    <!-- Neck -->
+    <line x1="30" y1="12" x2="30" y2="10" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" opacity="0.88" />
+
+    <!-- Head (bald, reddish — represented as a lighter circle) -->
+    <circle cx="30" cy="9" r="3" fill="var(--accent)" opacity="0.75" />
+
+    <!-- Tail fan -->
+    <path
+      d="M26 23 C27 27, 30 28, 30 28 C30 28, 33 27, 34 23"
+      fill="var(--accent)"
+      opacity="0.8"
+    />
+  </svg>
+</div>
+
+<style>
+  /* Container — taller than mountain to allow hover-above-ridge */
+  .condor-wrapper {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 160px;
+    z-index: 3;
+    pointer-events: none;
+    overflow: visible;
+  }
+
+  .condor {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 32px;
+    transform-origin: center center;
+    will-change: translate, rotate;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.45));
+    transition: none;
+  }
+
+  /* Idle glide — slow, graceful banking */
+  @keyframes condor-glide {
+    0%, 100% { rotate: -3deg; }
+    50%       { rotate:  3deg; }
+  }
+
+  /* Active soar — wing-tip oscillation while following ridge */
+  @keyframes wing-l {
+    0%, 100% { transform: rotate(-8deg); }
+    50%       { transform: rotate( 5deg); }
+  }
+  @keyframes wing-r {
+    0%, 100% { transform: rotate( 8deg); }
+    50%       { transform: rotate(-5deg); }
+  }
+
+  .condor.gliding {
+    animation: condor-glide 3s ease-in-out infinite;
+  }
+
+  .condor.soaring .wing-l { animation: wing-l 0.8s ease-in-out infinite; }
+  .condor.soaring .wing-r { animation: wing-r 0.8s ease-in-out infinite; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .condor,
+    .condor .wing-l,
+    .condor .wing-r { animation: none !important; }
+  }
+</style>
+
+<script>
+  // Ridge control points — must match Hero.astro clip-path (x%, y%)
+  // y% = percentage from TOP of the 120px mountain div
+  const RIDGE: [number, number][] = [
+    [0,  70], [8,  55], [15, 70], [22, 45], [30, 65],
+    [38, 30], [46, 55], [50, 40], [54, 55], [62, 20],
+    [70, 50], [78, 35], [85, 58], [92, 42], [100, 60],
+  ];
+
+  const MOUNTAIN_H     = 120;  // px — must match Hero.astro .hero-mountain height
+  const CONDOR_W       = 60;   // px — rendered SVG width
+  const CONDOR_H       = 32;   // px — rendered SVG height
+  const CONDOR_W_HALF  = 30;   // px — half-width for X centering
+  const CONDOR_BELLY_Y = 19;   // px — body centre Y within SVG viewBox (out of 32)
+  const HOVER_OFFSET   = 18;   // px — condor flies this many px above the ridge
+  const X_START        = 0.08; // start at 8% of viewport width
+  const X_END          = 0.92; // end at 92%
+  const LERP_FACTOR    = 0.10; // smoothing (slightly gentler than hiker for graceful flight)
+
+  // Silence unused-variable warnings for geometry constants used only in comments
+  void CONDOR_W;
+
+  function ridgeY(xPercent: number): number {
+    for (let i = 0; i < RIDGE.length - 1; i++) {
+      const [x0, y0] = RIDGE[i];
+      const [x1, y1] = RIDGE[i + 1];
+      if (xPercent >= x0 && xPercent <= x1) {
+        const t = (xPercent - x0) / (x1 - x0);
+        return y0 + t * (y1 - y0);
+      }
+    }
+    return RIDGE[RIDGE.length - 1][1];
+  }
+
+  const hero   = document.querySelector<HTMLElement>('.hero');
+  const condor = document.querySelector<HTMLElement>('.condor');
+
+  if (hero && condor) {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReduced) {
+      // Place at peak (62%, y=20%) — no animation
+      const staticX   = 0.62 * window.innerWidth - CONDOR_W_HALF;
+      const staticYPx = (20 / 100) * MOUNTAIN_H;
+      const offset    = -(MOUNTAIN_H - staticYPx) + (CONDOR_H - CONDOR_BELLY_Y) - HOVER_OFFSET;
+      condor.style.translate = `${staticX}px ${offset}px`;
+    } else {
+      condor.classList.add('gliding');
+
+      let targetX = 0, targetY = 0;
+      let currentX = 0, currentY = 0;
+      let rafId: number;
+      let scrollTimer: ReturnType<typeof setTimeout> | null = null;
+
+      function computeTarget(): void {
+        const heroRect = hero!.getBoundingClientRect();
+        const heroH    = hero!.offsetHeight;
+        const scrolled = -heroRect.top;
+        const progress = Math.max(0, Math.min(1, scrolled / heroH));
+
+        const xPercent = X_START + progress * (X_END - X_START);
+        targetX = xPercent * window.innerWidth - CONDOR_W_HALF;
+
+        const yPercent = ridgeY(xPercent * 100);
+        const yPx      = (yPercent / 100) * MOUNTAIN_H;
+        // Condor belly aligns with ridge, then lifts by HOVER_OFFSET
+        targetY = -(MOUNTAIN_H - yPx) + (CONDOR_H - CONDOR_BELLY_Y) - HOVER_OFFSET;
+      }
+
+      function loop(): void {
+        currentX += (targetX - currentX) * LERP_FACTOR;
+        currentY += (targetY - currentY) * LERP_FACTOR;
+        condor!.style.translate = `${currentX}px ${currentY}px`;
+        rafId = requestAnimationFrame(loop);
+      }
+
+      window.addEventListener('scroll', () => {
+        condor!.classList.remove('gliding');
+        condor!.classList.add('soaring');
+
+        if (scrollTimer) clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {
+          condor!.classList.remove('soaring');
+          condor!.classList.add('gliding');
+        }, 300);
+
+        computeTarget();
+      }, { passive: true });
+
+      window.addEventListener('resize', computeTarget, { passive: true });
+
+      computeTarget();
+      rafId = requestAnimationFrame(loop);
+    }
+  }
+</script>

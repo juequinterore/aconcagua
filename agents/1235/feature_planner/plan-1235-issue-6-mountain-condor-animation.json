@@ -1,0 +1,146 @@
+{
+  "adw_id": "1235",
+  "issue_number": "6",
+  "feature_name": "Mountain Condor Flying Animation",
+  "spec_path": "specs/feat-1235-issue-6-mountain-condor-animation.md",
+  "target_scope": "src/components/ — Astro static site (aconcagua.co)",
+  "affected_layers": [
+    "UI / Presentation (MountainCondor.astro — new component replacing MountainHiker.astro)",
+    "Client-side scripting (vanilla JS scroll listener + rAF loop — updated geometry constants)",
+    "Hero.astro (import and JSX tag rename)"
+  ],
+  "problem_statement": "The existing scroll-driven animation uses a human hiker silhouette. The brand (Aconcagua / Andes) is better represented by the Andean condor, South America's largest soaring bird and an iconic symbol of the region. Replacing the hiker with a condor in flight strengthens brand identity and shifts the animation metaphor from effort-on-foot to freedom-in-flight.",
+  "solution_strategy": "Create MountainCondor.astro with an inline condor SVG, soaring/gliding CSS keyframes, and the same scroll-driven rAF positioning loop. Update Hero.astro import and tag. Delete MountainHiker.astro to prevent dead code.",
+  "entry_point": "Automatic — condor appears at the bottom of the Hero section on page load, above the mountain ridge. Animation activates on scroll. No user action required.",
+  "user_story": "As a site visitor, I want to see an Andean condor soaring gracefully above the mountain silhouette as I scroll, so that the brand identity (freedom, Andes, South America) is reinforced at the most impactful visual transition on the page.",
+  "files_to_change": [
+    {
+      "path": "src/components/MountainCondor.astro",
+      "operation": "Create",
+      "purpose": "New Astro component: condor SVG (viewBox 0 0 60 32, spread wings, white collar, body, tail), scoped CSS (condor-wrapper positioning, .condor absolute, @keyframes condor-glide / wing-l / wing-r, reduced-motion override), <script> block with RIDGE constants, ridgeY() interpolation, HOVER_OFFSET=18px above ridge, lerp rAF loop, scroll/idle state switching"
+    },
+    {
+      "path": "src/components/Hero.astro",
+      "operation": "Modify",
+      "purpose": "Update import (line ~2) from MountainHiker to MountainCondor, and JSX tag (line ~67) from <MountainHiker /> to <MountainCondor />"
+    },
+    {
+      "path": "src/components/MountainHiker.astro",
+      "operation": "Delete",
+      "purpose": "Remove obsolete hiker component — replaced entirely by MountainCondor.astro. Prevents dead code."
+    }
+  ],
+  "geometry_constants": {
+    "CONDOR_W": 60,
+    "CONDOR_H": 32,
+    "CONDOR_W_HALF": 30,
+    "CONDOR_BELLY_Y": 19,
+    "HOVER_OFFSET": 18,
+    "LERP_FACTOR": 0.10,
+    "MOUNTAIN_H": 120,
+    "X_START": 0.08,
+    "X_END": 0.92
+  },
+  "animation_states": {
+    "gliding": {
+      "trigger": "Idle (no scroll for 300ms)",
+      "keyframes": "condor-glide: ±3° whole-body bank, 3s ease-in-out infinite"
+    },
+    "soaring": {
+      "trigger": "Active scroll",
+      "keyframes": "wing-l / wing-r: ±8° wing-tip oscillation, 0.8s ease-in-out infinite"
+    }
+  },
+  "css_variables_used": [
+    "var(--accent) — primary condor fill colour (brand gold, adapts to theme)",
+    "var(--white) — white collar marking"
+  ],
+  "svg_elements": {
+    "viewBox": "0 0 60 32",
+    "width": "60px",
+    "height": "32px",
+    "elements": [
+      "Left wing group (.wing-l) — animated path",
+      "Right wing group (.wing-r) — animated path",
+      "Body — central ellipse (cx=30, cy=19, rx=7, ry=5)",
+      "White collar — ellipse (cx=30, cy=14, rx=4, ry=2.5, fill=var(--white))",
+      "Neck — line",
+      "Head — circle (r=3)",
+      "Tail fan — path"
+    ]
+  },
+  "positioning_formula": {
+    "x": "xPercent * viewportWidth - CONDOR_W_HALF",
+    "y": "-(MOUNTAIN_H - yPx) + (CONDOR_H - CONDOR_BELLY_Y) - HOVER_OFFSET",
+    "note": "Condor belly aligns with ridge point, then HOVER_OFFSET lifts it above the surface. Smoothed via lerp at LERP_FACTOR=0.10 per rAF frame."
+  },
+  "reduced_motion": {
+    "behaviour": "Condor placed statically at mountain peak (62% x, 20% y ridge point), no keyframe animations applied",
+    "css": "@media (prefers-reduced-motion: reduce) { .condor, .condor .wing-l, .condor .wing-r { animation: none !important; } }"
+  },
+  "execution_phases": [
+    {
+      "phase": 1,
+      "name": "Domain & Shared Types",
+      "status": "N/A",
+      "note": "Pure UI feature — no shared packages, no backend, no state management"
+    },
+    {
+      "phase": 2,
+      "name": "SVG Asset Design",
+      "steps": ["RED: Define acceptance criteria for condor silhouette", "GREEN: Implement condor SVG in MountainCondor.astro", "REFACTOR: Simplify paths, verify aria-hidden"]
+    },
+    {
+      "phase": 3,
+      "name": "CSS Positioning & Animation",
+      "steps": ["RED: Sketch condor-above-ridge expected behaviour", "GREEN: Implement .condor-wrapper, .condor, @keyframes in scoped <style>", "REFACTOR: Verify z-index layering"]
+    },
+    {
+      "phase": 4,
+      "name": "Scroll-Driven Logic",
+      "steps": ["RED: Define expected X/Y positions at 0%, 50%, 100% scroll", "GREEN: Implement <script> with updated constants and HOVER_OFFSET", "REFACTOR: Tune LERP_FACTOR for graceful flight feel"]
+    },
+    {
+      "phase": 5,
+      "name": "Integration & Exposure",
+      "steps": [
+        "Modify Hero.astro line ~2: change import to MountainCondor",
+        "Modify Hero.astro line ~67: change <MountainHiker /> to <MountainCondor />",
+        "Delete src/components/MountainHiker.astro"
+      ]
+    },
+    {
+      "phase": 6,
+      "name": "Quality & Validation",
+      "steps": ["npx astro check", "npm run build", "npm run dev + manual verification"]
+    }
+  ],
+  "verification_commands": [
+    "npm install",
+    "npx astro check",
+    "npm run build",
+    "npm run dev"
+  ],
+  "acceptance_criteria": [
+    "MountainCondor.astro created with condor SVG, CSS animations, and scroll script",
+    "Hero.astro import and tag updated to MountainCondor",
+    "MountainHiker.astro deleted — no dead code",
+    "Condor visible above ridge across full scroll range",
+    "Soaring animation during scroll; gliding at idle",
+    "prefers-reduced-motion: static condor at mountain peak",
+    "Theme-adaptive colours (dark and light modes)",
+    "No layout shift, no JS errors, no performance regression",
+    "aria-hidden and pointer-events: none maintained (purely decorative)",
+    "Manual verification script fully passed"
+  ],
+  "assumptions": [
+    "The RIDGE array and MOUNTAIN_H constant in Hero.astro clip-path have NOT changed since the previous hiker spec — they must match exactly.",
+    "The project uses `var(--accent)` (#c88a3e brand gold) as the primary condor colour, which contrasts well against both the mountain silhouette and the hero background.",
+    "No test framework is configured for Astro components — verification is manual + astro check + build."
+  ],
+  "risks": [
+    "Condor SVG width (60px) is more than double the hiker width (28px). At very narrow viewports (<375px) the condor may overflow the left edge at X_START=8%. Mitigate: consider clamping X to max(0, xPercent * viewportWidth - CONDOR_W_HALF).",
+    "HOVER_OFFSET=18px lifts condor well above the ridge. If the hero-mountain height or clip-path changes, the offset may need recalibration.",
+    "Wing animation transform-origin must be set on the <g> wrapper, not the <svg> root, for correct wing-flap geometry."
+  ]
+}

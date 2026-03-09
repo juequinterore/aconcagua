@@ -1,0 +1,37 @@
+{
+  "adw_id": 1235,
+  "issue_number": 6,
+  "feature": "Mountain Condor Flying Animation",
+  "status": "completed",
+  "summary": [
+    "Created src/components/MountainCondor.astro (222 lines) — new Astro component replacing MountainHiker.astro with: Andean condor SVG silhouette (viewBox 0 0 60 32, inline, aria-hidden), scoped CSS animations (condor-glide idle banking, wing-l/wing-r soaring oscillation, prefers-reduced-motion override), and scroll-driven positioning script using updated geometry constants (CONDOR_W=60, CONDOR_H=32, CONDOR_W_HALF=30, CONDOR_BELLY_Y=19, HOVER_OFFSET=18) plus the same ridgeY() interpolation and lerp rAF loop from the original hiker.",
+    "Modified src/components/Hero.astro — replaced import and JSX tag from MountainHiker to MountainCondor (2 line changes).",
+    "Deleted src/components/MountainHiker.astro — removed 196 lines of dead code; verified no hiker references remain in the production build output.",
+    "Ran final validation: production build (astro build) completed successfully with 0 errors and 0 warnings. Verified dist/ output contains no MountainHiker references."
+  ],
+  "files_changed": [
+    {
+      "path": "src/components/MountainCondor.astro",
+      "action": "created",
+      "lines": 222
+    },
+    {
+      "path": "src/components/Hero.astro",
+      "action": "modified",
+      "lines_changed": 4
+    },
+    {
+      "path": "src/components/MountainHiker.astro",
+      "action": "deleted",
+      "lines_removed": 196
+    }
+  ],
+  "git_diff_stat": "src/components/Hero.astro | 4 +-, src/components/MountainHiker.astro | 196 ------------, src/components/MountainCondor.astro | 222 ++++++++++++++ (3 files: ~224 insertions, ~198 deletions)",
+  "validation": {
+    "type_check": "passed (astro build completed with 0 errors)",
+    "build": "passed — astro build completed in 2.80s, 7 pages built",
+    "dist_no_hiker_references": "confirmed — grep on dist/ returns no results for MountainHiker or hiker class names",
+    "lint": "n/a — Astro static site, no separate lint script configured",
+    "tests": "n/a — Astro static site, no automated test suite configured"
+  }
+}

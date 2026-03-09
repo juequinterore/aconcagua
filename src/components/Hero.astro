@@ -1,4 +1,6 @@
 ---
+import MountainHiker from './MountainHiker.astro';
+
 interface Props {
   lang: 'es' | 'en' | 'zh';
   t: (key: string) => string;
@@ -62,6 +64,7 @@ const { lang, t } = Astro.props;
 
   <!-- Mountain silhouette clip-path at bottom -->
   <div class="hero-mountain" aria-hidden="true"></div>
+  <MountainHiker />
 </section>
 
 <style>

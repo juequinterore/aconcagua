@@ -28,29 +28,40 @@
   --fs-small: 0.875rem;
   --fs-xs: 0.8125rem;
 
-  /* ── DARK (DEFAULT) ─────────────────────────────── */
-  --bg-base: #0f1923;
-  --bg-section-alt: #111e2b;
-  --bg-card: rgba(255, 255, 255, 0.05);
-  --bg-nav: rgba(15, 25, 35, 0.96);
-  --bg-footer: #0f1923;
-  --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.70);
-  --text-muted: rgba(255, 255, 255, 0.45);
-  --border-subtle: rgba(255, 255, 255, 0.10);
-  --border-card: rgba(255, 255, 255, 0.08);
-  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.25);
+  /* ── THEME CONTROL ───────────────────────────────── */
+  /* 0 = full dark, 1 = full light. Set via JS / FOWT inline script.       */
+  /* color-mix() support: Chrome 111+, Firefox 113+, Safari 16.4+ (2023+) */
+  --theme-mix: 0;
+
+  /* ── COLOR TOKENS (continuous dark↔light interpolation) ─────────────── */
+  --bg-base:        color-mix(in oklch, #0f1923 calc((1 - var(--theme-mix)) * 100%), #f7f5f2);
+  --bg-section-alt: color-mix(in oklch, #111e2b calc((1 - var(--theme-mix)) * 100%), #eae6e1);
+  --bg-card:        color-mix(in oklch, rgba(255, 255, 255, 0.05) calc((1 - var(--theme-mix)) * 100%), #ffffff);
+  --bg-nav:         color-mix(in oklch, rgba(15, 25, 35, 0.96) calc((1 - var(--theme-mix)) * 100%), rgba(247, 245, 242, 0.96));
+  --bg-footer:      color-mix(in oklch, #0f1923 calc((1 - var(--theme-mix)) * 100%), #1a1a1a);
+  --text-primary:   color-mix(in oklch, #ffffff calc((1 - var(--theme-mix)) * 100%), #1a1a1a);
+  --text-secondary: color-mix(in oklch, rgba(255, 255, 255, 0.70) calc((1 - var(--theme-mix)) * 100%), #5a6a72);
+  --text-muted:     color-mix(in oklch, rgba(255, 255, 255, 0.45) calc((1 - var(--theme-mix)) * 100%), #8a9aa3);
+  --border-subtle:  color-mix(in oklch, rgba(255, 255, 255, 0.10) calc((1 - var(--theme-mix)) * 100%), rgba(0, 0, 0, 0.08));
+  --border-card:    color-mix(in oklch, rgba(255, 255, 255, 0.08) calc((1 - var(--theme-mix)) * 100%), rgba(0, 0, 0, 0.06));
+
+  /* ── SHADOWS (dark defaults) ─────────────────────── */
+  /* NOTE: color-mix() cannot interpolate box-shadow shorthand strings.    */
+  /* Light overrides are kept in [data-theme="light"] as a binary switch.  */
+  --shadow-card:  0 4px 20px rgba(0, 0, 0, 0.25);
   --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.40);
-  --shadow-gold: 0 8px 24px rgba(200, 138, 62, 0.35);
+  --shadow-gold:  0 8px 24px rgba(200, 138, 62, 0.35);
   --shadow-photo: 0 20px 60px rgba(0, 0, 0, 0.45);
 
   /* ── SECTION BACKGROUNDS ─────────────────────────── */
-  --section-about-bg: var(--bg-section-alt);
-  --section-stats-bg: var(--bg-base);
-  --section-pricing-bg: var(--bg-section-alt);
+  /* Section aliases swap bg-base ↔ bg-section-alt between themes;        */
+  /* this binary flip is handled in [data-theme="light"] override below.  */
+  --section-about-bg:       var(--bg-section-alt);
+  --section-stats-bg:       var(--bg-base);
+  --section-pricing-bg:     var(--bg-section-alt);
   --section-testimonials-bg: var(--bg-base);
-  --section-partners-bg: var(--bg-base);
-  --section-social-bg: var(--bg-base);
+  --section-partners-bg:    var(--bg-base);
+  --section-social-bg:      var(--bg-base);
 
   /* ── THEME-AWARE ALIAS ────────────────────────────── */
   --text-dark: var(--text-primary);
@@ -59,55 +70,40 @@
   --theme-transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* ── LIGHT ──────────────────────────────────────── */
+/* ── LIGHT OVERRIDES ─────────────────────────────── */
+/* Shadows (cannot be interpolated via color-mix on shorthand strings) and */
+/* section bg aliases that swap values in light mode.                      */
 [data-theme="light"] {
-  --bg-base: #f7f5f2;
-  --bg-section-alt: #eae6e1;
-  --bg-card: #ffffff;
-  --bg-nav: rgba(247, 245, 242, 0.96);
-  --bg-footer: #1a1a1a;
-  --text-primary: #1a1a1a;
-  --text-secondary: #5a6a72;
-  --text-muted: #8a9aa3;
-  --border-subtle: rgba(0, 0, 0, 0.08);
-  --border-card: rgba(0, 0, 0, 0.06);
-  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --shadow-card:  0 4px 20px rgba(0, 0, 0, 0.06);
   --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.10);
-  --shadow-gold: 0 8px 24px rgba(200, 138, 62, 0.30);
+  --shadow-gold:  0 8px 24px rgba(200, 138, 62, 0.30);
   --shadow-photo: 0 20px 60px rgba(0, 0, 0, 0.14);
 
-  --section-about-bg: var(--bg-base);
-  --section-stats-bg: var(--bg-section-alt);
-  --section-pricing-bg: var(--bg-base);
+  --section-about-bg:       var(--bg-base);
+  --section-stats-bg:       var(--bg-section-alt);
+  --section-pricing-bg:     var(--bg-base);
   --section-testimonials-bg: var(--bg-section-alt);
-  --section-partners-bg: var(--bg-section-alt);
-  --section-social-bg: var(--bg-section-alt);
+  --section-partners-bg:    var(--bg-section-alt);
+  --section-social-bg:      var(--bg-section-alt);
 }
 
 /* ── OS FALLBACK (no JS) ─────────────────────────── */
+/* When JS is disabled data-theme is never set; set --theme-mix: 1 so     */
+/* color-mix() tokens resolve to the light palette for light-pref users.  */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) {
-    --bg-base: #f7f5f2;
-    --bg-section-alt: #eae6e1;
-    --bg-card: #ffffff;
-    --bg-nav: rgba(247, 245, 242, 0.96);
-    --bg-footer: #1a1a1a;
-    --text-primary: #1a1a1a;
-    --text-secondary: #5a6a72;
-    --text-muted: #8a9aa3;
-    --border-subtle: rgba(0, 0, 0, 0.08);
-    --border-card: rgba(0, 0, 0, 0.06);
-    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.06);
+    --theme-mix: 1;
+    --shadow-card:  0 4px 20px rgba(0, 0, 0, 0.06);
     --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.10);
-    --shadow-gold: 0 8px 24px rgba(200, 138, 62, 0.30);
+    --shadow-gold:  0 8px 24px rgba(200, 138, 62, 0.30);
     --shadow-photo: 0 20px 60px rgba(0, 0, 0, 0.14);
 
-    --section-about-bg: var(--bg-base);
-    --section-stats-bg: var(--bg-section-alt);
-    --section-pricing-bg: var(--bg-base);
+    --section-about-bg:       var(--bg-base);
+    --section-stats-bg:       var(--bg-section-alt);
+    --section-pricing-bg:     var(--bg-base);
     --section-testimonials-bg: var(--bg-section-alt);
-    --section-partners-bg: var(--bg-section-alt);
-    --section-social-bg: var(--bg-section-alt);
+    --section-partners-bg:    var(--bg-section-alt);
+    --section-social-bg:      var(--bg-section-alt);
   }
 }
 

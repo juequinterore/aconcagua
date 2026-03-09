@@ -1,0 +1,137 @@
+{
+  "adw_id": "0000",
+  "issue_number": "3",
+  "feature": "Theme Slider (Dark ↔ Light Interpolation)",
+  "spec_path": "specs/feat-0000-issue-3-theme-slider.md",
+  "created_at": "2026-03-09",
+  "target_scope": "aconcagua – Astro 5 static marketing site (repo root)",
+  "tech_stack": {
+    "framework": "Astro 5",
+    "styling": "CSS Custom Properties + color-mix()",
+    "scripting": "Vanilla TypeScript (Astro module scripts)",
+    "persistence": "localStorage"
+  },
+  "entry_points": [
+    {
+      "location": "Desktop Nav – src/components/Nav.astro line ~37",
+      "description": "ThemeSlider rendered inside .nav-right between LangSwitcher and CTA button"
+    },
+    {
+      "location": "Mobile Overlay – src/components/Nav.astro line ~70",
+      "description": "ThemeSlider rendered inside .nav-overlay for mobile users"
+    }
+  ],
+  "affected_files": [
+    {
+      "path": "src/components/ThemeSlider.astro",
+      "operation": "Create",
+      "purpose": "New range-input component with moon/sun icon labels, scoped styles, and module script that sets --theme-mix and data-theme on <html>"
+    },
+    {
+      "path": "src/styles/global.css",
+      "operation": "Modify",
+      "section": "Lines 31–85 (dark defaults + light overrides)",
+      "purpose": "Add --theme-mix CSS custom property; rewrite all theme-variant color tokens as color-mix() expressions; collapse [data-theme='light'] color overrides into :root"
+    },
+    {
+      "path": "src/layouts/BaseLayout.astro",
+      "operation": "Modify",
+      "section": "Lines 160–167 (inline FOWT prevention script)",
+      "purpose": "Restore --theme-mix from localStorage('theme-mix') before CSS renders to prevent flash-of-wrong-theme; includes backward-compat fallback for old 'theme' key"
+    },
+    {
+      "path": "src/components/Nav.astro",
+      "operation": "Modify",
+      "section": "Lines 3, 37, 70",
+      "purpose": "Replace import ThemeToggle + both <ThemeToggle /> usages with import ThemeSlider + <ThemeSlider />"
+    }
+  ],
+  "phases": [
+    {
+      "phase": 1,
+      "name": "CSS Token Refactor – color-mix() Interpolation",
+      "tdd": "RED: add --theme-mix var and test that mid-value 0.5 does nothing yet; GREEN: rewrite all theme tokens as color-mix(); REFACTOR: remove redundant [data-theme='light'] overrides",
+      "files": ["src/styles/global.css"]
+    },
+    {
+      "phase": 2,
+      "name": "FOWT Prevention Update",
+      "tdd": "RED: confirm flash occurs without the updated script; GREEN: update BaseLayout.astro inline script; REFACTOR: test backward compat with old theme key",
+      "files": ["src/layouts/BaseLayout.astro"]
+    },
+    {
+      "phase": 3,
+      "name": "ThemeSlider Component",
+      "tdd": "RED: placeholder renders without build errors; GREEN: full implementation with range input, icons, script, styles; REFACTOR: cross-browser slider thumb styling and accessibility",
+      "files": ["src/components/ThemeSlider.astro"]
+    },
+    {
+      "phase": 4,
+      "name": "Integration & Exposure (Glue)",
+      "tdd": "N/A – wiring step; verified by manual test script",
+      "files": ["src/components/Nav.astro"],
+      "mandatory_changes": [
+        "Nav.astro line 3: import ThemeSlider instead of ThemeToggle",
+        "Nav.astro line 37: <ThemeSlider /> in .nav-right",
+        "Nav.astro line 70: <ThemeSlider /> in .nav-overlay"
+      ]
+    },
+    {
+      "phase": 5,
+      "name": "Quality & Validation",
+      "commands": ["npm run build", "npm run preview"],
+      "manual_verification": "See Section 5 of spec"
+    }
+  ],
+  "key_design_decisions": [
+    {
+      "decision": "Use CSS color-mix() for interpolation",
+      "rationale": "Native CSS solution – no runtime JS computation per frame; just set one custom property and all tokens update. Supported in Chrome 111+, Firefox 113+, Safari 16.4+ (2026 audience baseline).",
+      "alternatives_considered": "JS-computed interpolation (more complex, more JS per input event)"
+    },
+    {
+      "decision": "Keep data-theme attribute alongside --theme-mix",
+      "rationale": "Components like ThemeToggle (and potentially ThemeSlider itself) use :global([data-theme='light']) for icon visibility (binary flip at midpoint). Retaining data-theme avoids a larger refactor of component-scoped styles.",
+      "threshold": "data-theme='light' when slider >= 50, 'dark' when < 50"
+    },
+    {
+      "decision": "Shadow variables kept as [data-theme='light'] overrides",
+      "rationale": "box-shadow shorthand strings cannot be interpolated via color-mix() directly. These are visually acceptable as a binary flip; the user perceives shadows as less critical than background/text color gradients.",
+      "tokens_affected": ["--shadow-card", "--shadow-hover", "--shadow-gold", "--shadow-photo"]
+    },
+    {
+      "decision": "localStorage key: theme-mix (0–100 integer string)",
+      "rationale": "Granular numeric value allows exact restoration of any slider position. Backward-compat fallback for old binary 'theme' key included in both FOWT script and component init.",
+      "migration": "If 'theme-mix' absent, check 'theme': dark→0, light→100, else use OS preference"
+    }
+  ],
+  "risks": [
+    {
+      "risk": "color-mix() browser support gaps",
+      "mitigation": "Target audience is 2026; caniuse shows 95%+ global support. Add @supports fallback that keeps existing [data-theme] binary system for unsupported browsers.",
+      "severity": "low"
+    },
+    {
+      "risk": "ThemeToggle.astro still present but unused",
+      "mitigation": "File can be deleted after Nav.astro is updated; Astro will not include unused components in the build. Keep during development for reference.",
+      "severity": "negligible"
+    },
+    {
+      "risk": "Rapid slider dragging causes performance issues",
+      "mitigation": "Setting a CSS custom property is extremely cheap (no layout/paint). If jank observed, wrap in requestAnimationFrame. Expected to be unnecessary.",
+      "severity": "low"
+    }
+  ],
+  "assumptions": [
+    "color-mix() with calc() percentages is acceptable for the site's target browser baseline (2023+ browsers)",
+    "The shadow variables being binary-flipped (not smoothly interpolated) is visually acceptable",
+    "No automated test suite exists – verification is manual + build-success",
+    "The existing ThemeToggle.astro is not used outside of Nav.astro (verified by file listing)",
+    "The nav.css dark overlay (always dark, regardless of theme) intentionally stays dark and is not part of the interpolation scope"
+  ],
+  "verification_commands": {
+    "build": "npm run build",
+    "dev": "npm run dev",
+    "preview": "npm run preview"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "adw_id": "0000",
+  "issue_number": 3,
+  "spec_path": "specs/feat-0000-issue-3-theme-slider.md",
+  "status": "completed",
+  "summary": [
+    "Phase 1 – CSS Token Refactor: Replaced all theme-variant color tokens in `src/styles/global.css` with `color-mix(in oklch, ...)` expressions driven by a new `--theme-mix` CSS custom property (0 = dark, 1 = light). Shadow variables (box-shadow shorthand) cannot be interpolated via color-mix, so they retain light-mode overrides in `[data-theme='light']`. Section background aliases also kept in `[data-theme='light']` because they swap values (not just change them). The no-JS OS-preference media query was updated to set `--theme-mix: 1` for light-pref users.",
+    "Phase 2 – FOWT Prevention: Updated the inline `<script is:inline>` in `src/layouts/BaseLayout.astro` to restore `--theme-mix` from `localStorage('theme-mix')` and apply it as an inline style on `<html>` before CSS renders. Includes backward-compat fallback for old `theme` key ('dark'→0, 'light'→1) and OS-preference default.",
+    "Phase 3 – ThemeSlider Component: Created `src/components/ThemeSlider.astro` with an `<input type='range'>` (0–100), moon icon (left, dark), sun icon (right, light), full cross-browser CSS (WebKit + Firefox thumb/track), a module script that syncs both slider instances and persists to `localStorage('theme-mix')`, and an OS-preference media query listener.",
+    "Phase 4 – Integration: Updated `src/components/Nav.astro` to replace the import and both usages of `<ThemeToggle />` with `<ThemeSlider />` — one in `.nav-right` (desktop) and one in `.nav-overlay` (mobile). The existing `theme-changed` CustomEvent dispatch from ThemeSlider closes the mobile overlay on slider interaction."
+  ],
+  "files_changed": {
+    "created": [
+      "src/components/ThemeSlider.astro"
+    ],
+    "modified": [
+      "src/styles/global.css",
+      "src/layouts/BaseLayout.astro",
+      "src/components/Nav.astro"
+    ]
+  },
+  "git_diff_stat": {
+    "src/components/Nav.astro": "6 changes (2 insertions, 4 deletions)",
+    "src/layouts/BaseLayout.astro": "22 changes (13 insertions, 9 deletions)",
+    "src/styles/global.css": "102 changes (49 insertions, 53 deletions)",
+    "src/components/ThemeSlider.astro": "new file (119 lines)",
+    "total": "4 files changed, 181 lines inserted, 66 lines deleted (net new: 115)"
+  },
+  "validation": {
+    "build": "PASSED — `./node_modules/.bin/astro build` completed with 0 errors, 7 pages built in 2.44s",
+    "type_check": "N/A — pure Astro/CSS project, no separate tsc step; build validates types",
+    "lint": "N/A — no lint script defined in package.json per spec",
+    "tests": "N/A — no automated test suite; verified via build success per spec"
+  },
+  "acceptance_criteria": {
+    "ThemeSlider_component_created": true,
+    "global_css_color_mix_tokens": true,
+    "BaseLayout_FOWT_script_updated": true,
+    "Nav_both_toggles_replaced": true,
+    "astro_build_zero_errors": true,
+    "backward_compat_old_theme_key": true,
+    "keyboard_accessible": true,
+    "screen_reader_aria_label": true,
+    "mobile_overlay_slider": true,
+    "desktop_nav_slider": true
+  }
+}

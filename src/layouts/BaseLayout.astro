@@ -156,13 +156,25 @@ const jsonLd = [
 <html lang={lang} class:list={[{ 'lang-zh': lang === 'zh' }]}>
   <head>
     <meta charset="UTF-8" />
-    <!-- FOWT prevention: set data-theme before CSS renders -->
+    <!-- FOWT prevention: set --theme-mix and data-theme before CSS renders -->
     <script is:inline>
       (function() {
-        var stored = localStorage.getItem('theme');
-        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        var theme = stored || (prefersDark ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', theme);
+        var storedMix = localStorage.getItem('theme-mix');
+        var mix;
+        if (storedMix !== null) {
+          mix = parseFloat(storedMix) / 100;
+        } else {
+          // Backward compat: honour old binary 'theme' key
+          var oldTheme = localStorage.getItem('theme');
+          if (oldTheme === 'light') { mix = 1; }
+          else if (oldTheme === 'dark') { mix = 0; }
+          else {
+            // No stored preference — respect OS setting
+            mix = window.matchMedia('(prefers-color-scheme: dark)').matches ? 0 : 1;
+          }
+        }
+        document.documentElement.style.setProperty('--theme-mix', String(mix));
+        document.documentElement.setAttribute('data-theme', mix < 0.5 ? 'dark' : 'light');
       })();
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />

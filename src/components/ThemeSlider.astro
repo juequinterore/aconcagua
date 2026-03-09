@@ -1,0 +1,170 @@
+---
+// No props — reads/writes --theme-mix on <html> and persists in localStorage
+---
+
+<div class="theme-slider-wrap" role="group" aria-label="Theme brightness">
+  <!-- Moon icon: dark extreme (left) -->
+  <svg class="slider-icon icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+
+  <input
+    type="range"
+    class="theme-slider"
+    min="0"
+    max="100"
+    value="0"
+    step="1"
+    aria-label="Theme: 0 is dark, 100 is light"
+  />
+
+  <!-- Sun icon: light extreme (right) -->
+  <svg class="slider-icon icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="5"/>
+    <line x1="12" y1="1" x2="12" y2="3"/>
+    <line x1="12" y1="21" x2="12" y2="23"/>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+    <line x1="1" y1="12" x2="3" y2="12"/>
+    <line x1="21" y1="12" x2="23" y2="12"/>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+  </svg>
+</div>
+
+<script>
+  // Astro deduplicates module scripts — this runs once even when the component
+  // appears twice (desktop nav + mobile overlay).
+  const sliders = document.querySelectorAll<HTMLInputElement>('.theme-slider');
+  const html = document.documentElement;
+
+  function applyMix(value: number) {
+    const mix = value / 100;
+    html.style.setProperty('--theme-mix', String(mix));
+    html.setAttribute('data-theme', mix < 0.5 ? 'dark' : 'light');
+    sliders.forEach(s => { s.value = String(value); });
+  }
+
+  // Restore saved position
+  const saved = localStorage.getItem('theme-mix');
+  const initialValue = saved !== null
+    ? parseFloat(saved)
+    : (html.getAttribute('data-theme') === 'light' ? 100 : 0);
+  applyMix(initialValue);
+
+  sliders.forEach(slider => {
+    slider.addEventListener('input', () => {
+      const v = parseFloat(slider.value);
+      localStorage.setItem('theme-mix', String(v));
+      applyMix(v);
+      slider.dispatchEvent(new CustomEvent('theme-changed', { bubbles: true }));
+    });
+  });
+
+  // OS preference changes — only when no saved preference exists
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (localStorage.getItem('theme-mix') === null) {
+      applyMix(e.matches ? 0 : 100);
+    }
+  });
+</script>
+
+<style>
+  .theme-slider-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .slider-icon {
+    color: rgba(255, 255, 255, 0.70);
+    flex-shrink: 0;
+    transition: color 0.2s ease;
+  }
+
+  :global([data-theme="light"]) .slider-icon {
+    color: rgba(0, 0, 0, 0.55);
+  }
+
+  /* ── Range input reset & base ──────────────────────── */
+  .theme-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 80px;
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(to right, #0f1923, #f7f5f2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    outline: none;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .theme-slider:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  /* ── WebKit thumb ─────────────────────────────────── */
+  .theme-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent, #c88a3e);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .theme-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+    box-shadow: 0 2px 8px rgba(200, 138, 62, 0.5);
+  }
+
+  /* ── Firefox thumb ────────────────────────────────── */
+  .theme-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent, #c88a3e);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .theme-slider::-moz-range-thumb:hover {
+    transform: scale(1.15);
+    box-shadow: 0 2px 8px rgba(200, 138, 62, 0.5);
+  }
+
+  /* ── Firefox track ────────────────────────────────── */
+  .theme-slider::-moz-range-track {
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(to right, #0f1923, #f7f5f2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  /* ── Mobile overlay: slightly wider slider ─────────── */
+  @media (max-width: 768px) {
+    .theme-slider {
+      width: 100px;
+    }
+
+    /* Ensure thumb meets 44px touch target (height via padding trick) */
+    .theme-slider::-webkit-slider-thumb {
+      width: 22px;
+      height: 22px;
+    }
+
+    .theme-slider::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+    }
+  }
+</style>

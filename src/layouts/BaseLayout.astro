@@ -156,13 +156,20 @@ const jsonLd = [
 <html lang={lang} class:list={[{ 'lang-zh': lang === 'zh' }]}>
   <head>
     <meta charset="UTF-8" />
-    <!-- FOWT prevention: set data-theme before CSS renders -->
+    <!-- FOWT prevention: set --theme-pos before CSS renders -->
     <script is:inline>
       (function() {
-        var stored = localStorage.getItem('theme');
+        // Backward compat: migrate legacy 'theme' key to 'theme-pos'
+        var legacy = localStorage.getItem('theme');
+        var stored = localStorage.getItem('theme-pos');
+        if (!stored && legacy) {
+          stored = legacy === 'light' ? '100' : '0';
+          localStorage.setItem('theme-pos', stored);
+          localStorage.removeItem('theme');
+        }
         var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        var theme = stored || (prefersDark ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', theme);
+        var pos = stored !== null ? stored : (prefersDark ? '0' : '100');
+        document.documentElement.style.setProperty('--theme-pos', pos);
       })();
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />

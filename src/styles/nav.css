@@ -9,13 +9,25 @@
   transition: background 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
 }
 
-.nav.scrolled,
+.nav.scrolled {
+  background: var(--bg-nav);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 14px 0;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
 .nav.nav-force-dark {
   background: rgba(15, 25, 35, 0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 14px 0;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Nav links adapt to slider position when nav background is light */
+.nav.scrolled .nav-links a {
+  color: var(--text-primary);
 }
 
 .nav-inner {

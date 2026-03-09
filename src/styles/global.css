@@ -28,87 +28,43 @@
   --fs-small: 0.875rem;
   --fs-xs: 0.8125rem;
 
-  /* ── DARK (DEFAULT) ─────────────────────────────── */
-  --bg-base: #0f1923;
-  --bg-section-alt: #111e2b;
-  --bg-card: rgba(255, 255, 255, 0.05);
-  --bg-nav: rgba(15, 25, 35, 0.96);
-  --bg-footer: #0f1923;
-  --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.70);
-  --text-muted: rgba(255, 255, 255, 0.45);
-  --border-subtle: rgba(255, 255, 255, 0.10);
-  --border-card: rgba(255, 255, 255, 0.08);
-  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.25);
-  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.40);
-  --shadow-gold: 0 8px 24px rgba(200, 138, 62, 0.35);
-  --shadow-photo: 0 20px 60px rgba(0, 0, 0, 0.45);
+  /* ── THEME POSITION: 0 = dark, 100 = light ─────── */
+  /* Set by FOWT inline script from localStorage before first paint */
+  --theme-pos: 0;
+
+  /* ── THEME COLOR TOKENS (color-mix interpolated) ── */
+  /* Syntax: color-mix(in srgb, <light-value> calc(--theme-pos * 1%), <dark-value>) */
+  --bg-base: color-mix(in srgb, #f7f5f2 calc(var(--theme-pos) * 1%), #0f1923);
+  --bg-section-alt: color-mix(in srgb, #eae6e1 calc(var(--theme-pos) * 1%), #111e2b);
+  --bg-card: color-mix(in srgb, #ffffff calc(var(--theme-pos) * 1%), rgba(255, 255, 255, 0.05));
+  --bg-nav: color-mix(in srgb, rgba(247, 245, 242, 0.96) calc(var(--theme-pos) * 1%), rgba(15, 25, 35, 0.96));
+  --bg-footer: color-mix(in srgb, #1a1a1a calc(var(--theme-pos) * 1%), #0f1923);
+  --text-primary: color-mix(in srgb, #1a1a1a calc(var(--theme-pos) * 1%), #ffffff);
+  --text-secondary: color-mix(in srgb, #5a6a72 calc(var(--theme-pos) * 1%), rgba(255, 255, 255, 0.70));
+  --text-muted: color-mix(in srgb, #8a9aa3 calc(var(--theme-pos) * 1%), rgba(255, 255, 255, 0.45));
+  --border-subtle: color-mix(in srgb, rgba(0, 0, 0, 0.08) calc(var(--theme-pos) * 1%), rgba(255, 255, 255, 0.10));
+  --border-card: color-mix(in srgb, rgba(0, 0, 0, 0.06) calc(var(--theme-pos) * 1%), rgba(255, 255, 255, 0.08));
+  /* Shadows: opacity interpolated via calc (pos=0 → dark opacity, pos=100 → light opacity) */
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, calc(0.25 - var(--theme-pos) * 0.0019));
+  --shadow-hover: 0 12px 40px rgba(0, 0, 0, calc(0.40 - var(--theme-pos) * 0.003));
+  --shadow-gold: 0 8px 24px rgba(200, 138, 62, calc(0.35 - var(--theme-pos) * 0.0005));
+  --shadow-photo: 0 20px 60px rgba(0, 0, 0, calc(0.45 - var(--theme-pos) * 0.0031));
 
   /* ── SECTION BACKGROUNDS ─────────────────────────── */
-  --section-about-bg: var(--bg-section-alt);
-  --section-stats-bg: var(--bg-base);
-  --section-pricing-bg: var(--bg-section-alt);
-  --section-testimonials-bg: var(--bg-base);
-  --section-partners-bg: var(--bg-base);
-  --section-social-bg: var(--bg-base);
+  /* dark: about=alt(#111e2b), stats=base(#0f1923), pricing=alt, testimonials=base, partners=base, social=base */
+  /* light: about=base(#f7f5f2), stats=alt(#eae6e1), pricing=base, testimonials=alt, partners=alt, social=alt */
+  --section-about-bg: color-mix(in srgb, #f7f5f2 calc(var(--theme-pos) * 1%), #111e2b);
+  --section-stats-bg: color-mix(in srgb, #eae6e1 calc(var(--theme-pos) * 1%), #0f1923);
+  --section-pricing-bg: color-mix(in srgb, #f7f5f2 calc(var(--theme-pos) * 1%), #111e2b);
+  --section-testimonials-bg: color-mix(in srgb, #eae6e1 calc(var(--theme-pos) * 1%), #0f1923);
+  --section-partners-bg: color-mix(in srgb, #eae6e1 calc(var(--theme-pos) * 1%), #0f1923);
+  --section-social-bg: color-mix(in srgb, #eae6e1 calc(var(--theme-pos) * 1%), #0f1923);
 
   /* ── THEME-AWARE ALIAS ────────────────────────────── */
   --text-dark: var(--text-primary);
 
   /* ── THEME TRANSITION ─────────────────────────────── */
   --theme-transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-/* ── LIGHT ──────────────────────────────────────── */
-[data-theme="light"] {
-  --bg-base: #f7f5f2;
-  --bg-section-alt: #eae6e1;
-  --bg-card: #ffffff;
-  --bg-nav: rgba(247, 245, 242, 0.96);
-  --bg-footer: #1a1a1a;
-  --text-primary: #1a1a1a;
-  --text-secondary: #5a6a72;
-  --text-muted: #8a9aa3;
-  --border-subtle: rgba(0, 0, 0, 0.08);
-  --border-card: rgba(0, 0, 0, 0.06);
-  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.06);
-  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.10);
-  --shadow-gold: 0 8px 24px rgba(200, 138, 62, 0.30);
-  --shadow-photo: 0 20px 60px rgba(0, 0, 0, 0.14);
-
-  --section-about-bg: var(--bg-base);
-  --section-stats-bg: var(--bg-section-alt);
-  --section-pricing-bg: var(--bg-base);
-  --section-testimonials-bg: var(--bg-section-alt);
-  --section-partners-bg: var(--bg-section-alt);
-  --section-social-bg: var(--bg-section-alt);
-}
-
-/* ── OS FALLBACK (no JS) ─────────────────────────── */
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme]) {
-    --bg-base: #f7f5f2;
-    --bg-section-alt: #eae6e1;
-    --bg-card: #ffffff;
-    --bg-nav: rgba(247, 245, 242, 0.96);
-    --bg-footer: #1a1a1a;
-    --text-primary: #1a1a1a;
-    --text-secondary: #5a6a72;
-    --text-muted: #8a9aa3;
-    --border-subtle: rgba(0, 0, 0, 0.08);
-    --border-card: rgba(0, 0, 0, 0.06);
-    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.06);
-    --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.10);
-    --shadow-gold: 0 8px 24px rgba(200, 138, 62, 0.30);
-    --shadow-photo: 0 20px 60px rgba(0, 0, 0, 0.14);
-
-    --section-about-bg: var(--bg-base);
-    --section-stats-bg: var(--bg-section-alt);
-    --section-pricing-bg: var(--bg-base);
-    --section-testimonials-bg: var(--bg-section-alt);
-    --section-partners-bg: var(--bg-section-alt);
-    --section-social-bg: var(--bg-section-alt);
-  }
 }
 
 *, *::before, *::after {

@@ -1,6 +1,6 @@
 ---
 import LangSwitcher from './LangSwitcher.astro';
-import ThemeSlider from './ThemeSlider.astro';
+import ThemeToggle from './ThemeToggle.astro';
 
 interface Props {
   lang: 'es' | 'en' | 'zh';
@@ -34,7 +34,7 @@ const navLinks = [
 
     <div class="nav-right">
       <LangSwitcher lang={lang} />
-      <ThemeSlider />
+      <ThemeToggle />
       <button
         class="btn btn-primary nav-cta"
         onclick={`Calendly.initPopupWidget({url: '${t('calendly.url')}'}); return false;`}
@@ -67,7 +67,7 @@ const navLinks = [
       </li>
     ))}
   </ul>
-  <ThemeSlider />
+  <ThemeToggle />
   <button
     class="btn btn-primary overlay-cta"
     onclick={`Calendly.initPopupWidget({url: '${t('calendly.url')}'}); return false;`}

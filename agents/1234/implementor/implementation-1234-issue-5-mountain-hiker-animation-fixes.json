@@ -1,0 +1,27 @@
+{
+  "adw_id": "1234",
+  "issue_number": "5",
+  "spec_path": "specs/feat-1234-issue-5-mountain-hiker-animation-fixes.md",
+  "status": "completed",
+  "summary": [
+    "Phase 2 (Visibility Fix): Replaced all fill=\"var(--text-primary)\" and stroke=\"var(--text-primary)\" in MountainHiker.astro SVG with fill=\"var(--accent)\" / stroke=\"var(--accent)\" — hiker is now amber/gold (#c88a3e), visible on both dark hero and white mountain backgrounds.",
+    "Phase 2 (CSS): Added filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55)) to .hiker rule for legibility against both surfaces.",
+    "Phase 3 (Animation Fix): Updated will-change from 'transform' to 'translate, rotate'. Replaced @keyframes hiker-idle from transform: rotate() to the individual CSS rotate: property — CSS and JS transforms no longer conflict, preventing the snap-to-origin bug.",
+    "Phase 4 (Alignment + Smooth rAF Loop): Added HIKER_FOOT_Y = 32 constant. Fixed yOffset formula from -(MOUNTAIN_H - yPx) - HIKER_H (wrong) to -(MOUNTAIN_H - yPx) + (HIKER_H - HIKER_FOOT_Y) (correct — feet sit on ridge). Replaced direct scroll-to-position with a requestAnimationFrame lerp loop (LERP_FACTOR = 0.12). JS now uses element.style.translate instead of element.style.transform.",
+    "TypeScript Error Fix (Stats.astro:26,29): Added StatItem interface with optional noCount?: boolean field — resolves ts2339 on stat.noCount.",
+    "TypeScript Error Fix (BaseLayout.astro:452): Reassigned btn to waBtn after the null-guard if (!btn) return; — TypeScript narrows type correctly in the scroll event handler, resolving ts18047.",
+    "TypeScript Error Fix (404.astro:15): Removed unused t prop, Props interface, and unused imports. Corrected prop names from pageTitle/pageDescription/canonicalUrl to title/description/ogUrl matching BaseLayout.Props — resolves ts2322."
+  ],
+  "files_changed": [
+    "src/components/MountainHiker.astro",
+    "src/components/Stats.astro",
+    "src/layouts/BaseLayout.astro",
+    "src/pages/404.astro"
+  ],
+  "git_diff_stat": "4 source files changed (MountainHiker.astro ~85 lines, Stats.astro ~10 lines, BaseLayout.astro ~3 lines, 404.astro ~13 lines)",
+  "validation": {
+    "astro_check": "PASSED — 0 errors (previously 4 TypeScript errors, now 0)",
+    "npm_run_build": "PASSED — 7 page(s) built successfully in 2.67s"
+  },
+  "result_path": "agents/1234/implementor/implementation-1234-issue-5-mountain-hiker-animation-fixes.json"
+}

@@ -445,11 +445,12 @@ const jsonLd = [
       (function() {
         var btn = document.getElementById('wa-float');
         if (!btn) return;
+        var waBtn = btn;
         var shown = false;
         window.addEventListener('scroll', function() {
           var scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
           if (!shown && scrolled >= 0.30) {
-            btn.classList.add('wa-visible');
+            waBtn.classList.add('wa-visible');
             shown = true;
           }
         }, { passive: true });

@@ -6,7 +6,15 @@ interface Props {
 
 const { lang, t } = Astro.props;
 
-const stats = [
+interface StatItem {
+  value: number;
+  suffix: string;
+  label: string;
+  target: string;
+  noCount?: boolean;
+}
+
+const stats: StatItem[] = [
   { value: 17, suffix: '', label: t('stats.summits'), target: '17' },
   { value: 10, suffix: '+', label: t('stats.years'), target: '10' },
   { value: 26000, suffix: '+', label: t('stats.followers'), target: '26K' },

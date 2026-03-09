@@ -1,21 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { es } from '../i18n/es';
-
-interface Props {
-  lang: 'es' | 'en' | 'zh';
-}
 
 const lang: 'es' | 'en' | 'zh' = 'es'; // 404 pages are only in default language
-const t = (key: string) => es[key as keyof typeof es] || key;
 ---
 
 <BaseLayout
   lang={lang}
-  t={t}
-  pageTitle="Página No Encontrada — Julián Kusi | aconcagua.co"
-  pageDescription="La página que buscas no existe. Vuelve al inicio para explorar nuestras expediciones al Aconcagua."
-  canonicalUrl="https://aconcagua.co/404"
+  title="Página No Encontrada — Julián Kusi | aconcagua.co"
+  description="La página que buscas no existe. Vuelve al inicio para explorar nuestras expediciones al Aconcagua."
+  ogUrl="https://aconcagua.co/404"
 >
   <main class="error-page">
     <div class="error-container container">

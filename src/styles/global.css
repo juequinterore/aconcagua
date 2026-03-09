@@ -342,3 +342,16 @@ body, main, section, header, footer, nav, article, aside {
     transition: none;
   }
 }
+
+/* ── THEME SLIDER HOOKS ──────────────────────────── */
+/* CSS variable hooks for the ThemeSlider component track/thumb appearance.
+   The component uses scoped styles for the slider itself; these globals
+   allow overrides if needed. */
+:root {
+  --slider-track-bg: rgba(255, 255, 255, 0.20);
+  --slider-thumb-bg: var(--accent);
+}
+
+/* [data-theme="mixed"] — placeholder/no-op; interpolated themes are applied
+   via inline style properties on :root, not via a separate attribute value. */
+/* [data-theme="mixed"] { } */

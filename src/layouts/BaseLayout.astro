@@ -156,13 +156,72 @@ const jsonLd = [
 <html lang={lang} class:list={[{ 'lang-zh': lang === 'zh' }]}>
   <head>
     <meta charset="UTF-8" />
-    <!-- FOWT prevention: set data-theme before CSS renders -->
+    <!-- FOWT prevention: apply stored theme-position before CSS renders -->
     <script is:inline>
       (function() {
-        var stored = localStorage.getItem('theme');
-        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        var theme = stored || (prefersDark ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', theme);
+        var TOKENS = {
+          '--bg-base':        { d:[15,25,35],         l:[247,245,242] },
+          '--bg-section-alt': { d:[17,30,43],         l:[234,230,225] },
+          '--bg-card':        { d:[255,255,255,0.05], l:[255,255,255,1] },
+          '--bg-nav':         { d:[15,25,35,0.96],    l:[247,245,242,0.96] },
+          '--bg-footer':      { d:[15,25,35],         l:[26,26,26] },
+          '--text-primary':   { d:[255,255,255],      l:[26,26,26] },
+          '--text-secondary': { d:[255,255,255,0.70], l:[90,106,114,1] },
+          '--text-muted':     { d:[255,255,255,0.45], l:[138,154,163,1] },
+          '--border-subtle':  { d:[255,255,255,0.10], l:[0,0,0,0.08] },
+          '--border-card':    { d:[255,255,255,0.08], l:[0,0,0,0.06] },
+        };
+        var SHADOW_TOKENS = {
+          '--shadow-card':  { tpl:'0 4px 20px rgba(0,0,0,{a})',  op:[0.25,0.06] },
+          '--shadow-hover': { tpl:'0 12px 40px rgba(0,0,0,{a})', op:[0.40,0.10] },
+          '--shadow-photo': { tpl:'0 20px 60px rgba(0,0,0,{a})', op:[0.45,0.14] },
+        };
+
+        function lerp(a, b, t) { return a + (b - a) * t; }
+
+        function applyPosition(pos) {
+          var t = pos / 100;
+          var root = document.documentElement;
+          if (pos === 0) { root.removeAttribute('data-theme'); return; }
+          if (pos === 100) { root.setAttribute('data-theme', 'light'); return; }
+          root.removeAttribute('data-theme');
+          for (var token in TOKENS) {
+            var cfg = TOKENS[token];
+            var d = cfg.d, li = cfg.l;
+            var r = Math.round(lerp(d[0],li[0],t));
+            var g = Math.round(lerp(d[1],li[1],t));
+            var b = Math.round(lerp(d[2],li[2],t));
+            if (d.length === 4 || li.length === 4) {
+              var dA = d[3]  !== undefined ? d[3]  : 1;
+              var lA = li[3] !== undefined ? li[3] : 1;
+              var a = Math.round(lerp(dA,lA,t)*1000)/1000;
+              root.style.setProperty(token,'rgba('+r+','+g+','+b+','+a+')');
+            } else {
+              root.style.setProperty(token,'rgb('+r+','+g+','+b+')');
+            }
+          }
+          for (var st in SHADOW_TOKENS) {
+            var scfg = SHADOW_TOKENS[st];
+            var sa = Math.round(lerp(scfg.op[0],scfg.op[1],t)*1000)/1000;
+            root.style.setProperty(st, scfg.tpl.replace('{a}', sa));
+          }
+        }
+
+        // Read position — support new key and legacy key migration
+        var rawPos = localStorage.getItem('theme-position');
+        var position;
+        if (rawPos !== null) {
+          position = parseInt(rawPos, 10);
+          if (isNaN(position)) { position = window.matchMedia('(prefers-color-scheme: dark)').matches ? 0 : 100; }
+        } else {
+          var legacy = localStorage.getItem('theme');
+          if (legacy === 'light') { position = 100; }
+          else if (legacy === 'dark') { position = 0; }
+          else {
+            position = window.matchMedia('(prefers-color-scheme: dark)').matches ? 0 : 100;
+          }
+        }
+        applyPosition(position);
       })();
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />

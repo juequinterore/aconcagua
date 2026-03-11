@@ -65,13 +65,17 @@ const features = [
       </p>
     </div>
 
-    <!-- Decorative mountain icon -->
+    <!-- Julian Kusi brand logo -->
     <div class="cta-deco" aria-hidden="true">
-      <svg viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg" class="mountain-deco">
-        <polygon points="100,10 180,150 20,150" fill="rgba(200,138,62,0.06)" stroke="rgba(200,138,62,0.15)" stroke-width="1.5"/>
-        <polygon points="100,40 155,150 45,150" fill="rgba(200,138,62,0.04)" stroke="rgba(200,138,62,0.1)" stroke-width="1"/>
-        <circle cx="100" cy="10" r="4" fill="rgba(200,138,62,0.4)"/>
-      </svg>
+      <img
+        src="/logo.webp"
+        alt="Julián Kusi – Aconcagua"
+        class="cta-logo"
+        width="200"
+        height="60"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
   </div>
 </section>
@@ -205,12 +209,17 @@ const features = [
 
   .cta-deco {
     flex-shrink: 0;
-    opacity: 0.6;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .mountain-deco {
+  .cta-logo {
     width: 200px;
-    height: 160px;
+    height: auto;
+    /* Brighten the logo on the dark CTA background for maximum visibility */
+    filter: brightness(1.1) drop-shadow(0 2px 12px rgba(200, 138, 62, 0.25));
   }
 
   @media (max-width: 900px) {

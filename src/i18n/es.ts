@@ -156,4 +156,8 @@ export const es = {
 
   // Navigation
   'nav.toggle_menu': 'Abrir menú',
+
+  // Contact Float
+  'contact.float.label_whatsapp': 'Escribinos por WhatsApp',
+  'contact.float.aria_whatsapp': 'Contactar por WhatsApp',
 };

@@ -158,4 +158,8 @@ export const zh = {
 
   // Navigation
   'nav.toggle_menu': '打开菜单',
+
+  // Contact Float
+  'contact.float.label_redbook': '小红书联系',
+  'contact.float.aria_redbook': '通过小红书联系我',
 };

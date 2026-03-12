@@ -1,0 +1,125 @@
+{
+  "adw_id": "1234",
+  "issue_number": "5",
+  "feature_slug": "floating-contact-widget",
+  "spec_path": "specs/feat-1234-issue-5-floating-contact-widget.md",
+  "scope": "apps/aconcagua — Astro 5 static multilingual website (src/)",
+  "affected_layers": ["UI/Component", "i18n"],
+  "problem_statement": "The existing floating WhatsApp button (#wa-float in BaseLayout.astro) is mobile-only (hidden on desktop), scroll-gated (appears only after 30% scroll), icon-only (no visible label), and language-agnostic (no RedBook option for Chinese visitors).",
+  "solution_strategy": "Create a dedicated ContactFloat.astro component that is always visible on all screen sizes and locales, shows WhatsApp for es/en and RedBook for zh, with a hover-expanding pill label, then replace the old inline #wa-float block in BaseLayout.astro.",
+  "entry_point": "Fixed bottom-right floating action button rendered via BaseLayout.astro on all pages (/, /en/, /zh/)",
+  "user_story": "As a prospective expedition client visiting in English, Spanish, or Chinese, I want a persistent contact button visible in the corner of every page so I can instantly start a conversation on WhatsApp or RedBook.",
+  "files_to_change": [
+    {
+      "path": "src/i18n/es.ts",
+      "operation": "Modify",
+      "purpose": "Add contact.float.label_whatsapp and contact.float.aria_whatsapp keys",
+      "approx_line": 135
+    },
+    {
+      "path": "src/i18n/en.ts",
+      "operation": "Modify",
+      "purpose": "Add contact.float.label_whatsapp and contact.float.aria_whatsapp keys",
+      "approx_line": 135
+    },
+    {
+      "path": "src/i18n/zh.ts",
+      "operation": "Modify",
+      "purpose": "Add contact.float.label_redbook and contact.float.aria_redbook keys",
+      "approx_line": 135
+    },
+    {
+      "path": "src/components/ContactFloat.astro",
+      "operation": "Create",
+      "purpose": "Self-contained floating contact FAB component — WhatsApp for es/en, RedBook for zh — with CSS hover-expand pill label"
+    },
+    {
+      "path": "src/layouts/BaseLayout.astro",
+      "operation": "Modify",
+      "purpose": "Import ContactFloat, add <ContactFloat lang={lang} /> render, remove old #wa-float <a>, <style>, and <script> blocks",
+      "approx_line": 15,
+      "also_at_line": 197
+    }
+  ],
+  "phases": [
+    {
+      "phase": 1,
+      "name": "i18n Keys",
+      "tasks": [
+        "Add contact.float.label_whatsapp = 'Escribinos por WhatsApp' to es.ts",
+        "Add contact.float.aria_whatsapp = 'Contactar por WhatsApp' to es.ts",
+        "Add contact.float.label_whatsapp = 'Chat on WhatsApp' to en.ts",
+        "Add contact.float.aria_whatsapp = 'Contact via WhatsApp' to en.ts",
+        "Add contact.float.label_redbook = '小红书联系' to zh.ts",
+        "Add contact.float.aria_redbook = '通过小红书联系我' to zh.ts"
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "Create ContactFloat.astro Component",
+      "tasks": [
+        "Create src/components/ContactFloat.astro",
+        "Accept lang prop ('es' | 'en' | 'zh')",
+        "Use useTranslations(lang) internally",
+        "Conditionally render WhatsApp (es/en) or RedBook (zh) FAB",
+        "CSS: fixed bottom-right, always visible, pill expand on hover, reduced-motion support",
+        "Reuse existing cta.whatsapp_url translation key for WhatsApp href"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "Integration in BaseLayout.astro",
+      "tasks": [
+        "Add import ContactFloat from '../components/ContactFloat.astro' in frontmatter",
+        "Add <ContactFloat lang={lang} /> in <body> at same position as old #wa-float",
+        "Remove old <a id='wa-float'> element",
+        "Remove old <style> block for #wa-float",
+        "Remove old <script> scroll-listener for #wa-float"
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "Quality & Validation",
+      "tasks": [
+        "Run: npm run build",
+        "Run: npx astro check",
+        "Run: npm run preview",
+        "Execute manual verification script (all 3 locales, desktop + mobile)"
+      ]
+    }
+  ],
+  "verification_commands": [
+    "npm run build",
+    "npx astro check",
+    "npm run preview"
+  ],
+  "key_urls": {
+    "whatsapp": "https://wa.me/573146294318",
+    "redbook": "https://xhslink.com/m/9PhDmNJh0DB"
+  },
+  "i18n_keys_added": {
+    "es": ["contact.float.label_whatsapp", "contact.float.aria_whatsapp"],
+    "en": ["contact.float.label_whatsapp", "contact.float.aria_whatsapp"],
+    "zh": ["contact.float.label_redbook", "contact.float.aria_redbook"]
+  },
+  "design_decisions": [
+    "WhatsApp for ES and EN — primary contact channel for Spanish and English-speaking climbers",
+    "RedBook (小红书) for ZH — preferred social/messaging platform for Chinese users, consistent with existing Social component which already shows RedBook only for ZH locale",
+    "No scroll threshold — FAB visible immediately on page load (current implementation gates it behind 30% scroll which reduces discoverability)",
+    "Visible on all screen sizes — current implementation is mobile-only (max-width: 768px), new implementation removes this restriction",
+    "Hover-expand pill — balances minimal footprint (icon only) with discoverability (label on hover), CSS-only animation with reduced-motion fallback",
+    "Reuses cta.whatsapp_url translation key — avoids duplicating phone number across i18n files",
+    "CSS custom properties for colors — allows clean theming without duplication"
+  ],
+  "assumptions": [
+    "RedBook link (https://xhslink.com/m/9PhDmNJh0DB) is current and valid — verify with client",
+    "WhatsApp number +57 314 629 4318 is current — verify with client",
+    "ZH locale visitors are the primary RedBook audience; EN/ES visitors prefer WhatsApp",
+    "No A/B testing or analytics tracking required on the FAB clicks (can be added later)"
+  ],
+  "integration_requirements": [
+    "MANUAL: Remove the entire #wa-float block from BaseLayout.astro (3 sections: <a>, <style>, <script>)",
+    "MANUAL: Add ContactFloat import to BaseLayout.astro frontmatter",
+    "MANUAL: Place <ContactFloat lang={lang} /> in BaseLayout.astro body"
+  ]
+}

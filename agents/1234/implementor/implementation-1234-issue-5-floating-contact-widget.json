@@ -1,0 +1,46 @@
+{
+  "adw_id": "1234",
+  "issue_number": "5",
+  "spec_path": "specs/feat-1234-issue-5-floating-contact-widget.md",
+  "status": "completed",
+  "summary": [
+    "Phase 1 — i18n Keys: Added 'contact.float.label_whatsapp' and 'contact.float.aria_whatsapp' to src/i18n/es.ts and src/i18n/en.ts; added 'contact.float.label_redbook' and 'contact.float.aria_redbook' to src/i18n/zh.ts.",
+    "Phase 2 — Component: Created src/components/ContactFloat.astro (144 lines), a self-contained FAB component with WhatsApp (green) for es/en locales and RedBook (red #FF2442) for zh locale. Includes CSS-only hover pill label expansion, reduced-motion support, and mobile positioning to avoid cookie banner overlap.",
+    "Phase 3 — BaseLayout Integration: Imported ContactFloat into src/layouts/BaseLayout.astro, removed the old #wa-float <a> element, its <style> block (display:none, mobile-only, scroll-gated), and the scroll-listener <script>. Replaced with <ContactFloat lang={lang} /> before the Calendly script.",
+    "Error Fix (Stats.astro): Fixed pre-existing ts(2339) errors at lines 26 and 29 by explicitly typing the stats array as '{ value: number; suffix: string; label: string; target: string; noCount?: boolean }[]', making noCount an optional property on the stat objects — no type assertions used.",
+    "Error Fix (404.astro): Fixed pre-existing ts(2322) error by removing invalid props (t, pageTitle, pageDescription, canonicalUrl) and replacing them with the correct BaseLayout Props interface fields (title, description, ogUrl). Also removed the unused 'es' i18n import and 't' function.",
+    "Phase 4 — Final Validation: astro check reports 0 errors and 0 warnings (11 informational hints only). astro build completes with zero errors; all 7 pages built successfully (/, /en/, /zh/, /404, and sub-pages)."
+  ],
+  "files_changed": [
+    "src/i18n/es.ts — +4 lines (2 Contact Float i18n keys)",
+    "src/i18n/en.ts — +4 lines (2 Contact Float i18n keys)",
+    "src/i18n/zh.ts — +4 lines (2 Contact Float i18n keys)",
+    "src/components/ContactFloat.astro — created, 144 lines (new self-contained FAB component)",
+    "src/layouts/BaseLayout.astro — removed ~63 lines of #wa-float block; added import + component render (~4 lines net change)",
+    "src/components/Stats.astro — 2 lines changed (explicit type annotation to fix noCount ts(2339) error)",
+    "src/pages/404.astro — 13 lines changed (corrected invalid props passed to BaseLayout to fix ts(2322) error)"
+  ],
+  "git_diff_stat": "8 files changed: src/components/Stats.astro | 2 +/-, src/i18n/en.ts | 4 +, src/i18n/es.ts | 4 +, src/i18n/zh.ts | 4 +, src/layouts/BaseLayout.astro | 63 lines changed, src/pages/404.astro | 13 +/-, src/components/ContactFloat.astro | 144 lines (new untracked file)",
+  "validation": {
+    "astro_check": "PASSED — 0 errors, 0 warnings (11 hints only)",
+    "astro_build": "PASSED — 7 page(s) built in 4.55s, zero errors",
+    "navigation_check": "ContactFloat rendered in BaseLayout.astro which wraps all locale pages — FAB visible on all pages immediately on load, no scroll threshold, all screen sizes"
+  },
+  "acceptance_criteria_met": [
+    "Old #wa-float inline implementation fully removed from BaseLayout.astro",
+    "ContactFloat.astro created as self-contained component",
+    "ContactFloat imported and rendered in BaseLayout.astro",
+    "FAB visible on all screen sizes (no display:none, no mobile-only restriction)",
+    "FAB visible immediately on page load (no scroll threshold JS removed)",
+    "WhatsApp button (green) shown for es and en locales",
+    "RedBook button (red #FF2442) shown for zh locale",
+    "Hover label animation with CSS-only pill expansion",
+    "Correct aria-label per locale",
+    "Links open in _blank with noopener noreferrer",
+    "Mobile: bottom: 80px to avoid cookie banner overlap",
+    "Reduced motion: transitions disabled, label always visible",
+    "astro check reports 0 errors and 0 warnings",
+    "astro build succeeds with zero errors",
+    "Pre-existing TypeScript errors in Stats.astro and 404.astro fixed to pass quality gate"
+  ]
+}

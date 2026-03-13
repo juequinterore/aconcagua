@@ -1,0 +1,36 @@
+{
+  "adw_id": "1235",
+  "issue_number": "6",
+  "spec_path": "specs/feat-1235-issue-6-cta-logo-size.md",
+  "summary": [
+    "Modified src/components/CTA.astro to increase the Julian Kusi logo size in the CTA section.",
+    "Updated HTML <img> width attribute from 200 to 280 (with proportional height from 60 to 84).",
+    "Updated CSS .cta-logo { width } from 200px to 280px.",
+    "Also enhanced drop-shadow filter slightly: from drop-shadow(0 2px 12px rgba(200,138,62,0.25)) to drop-shadow(0 2px 16px rgba(200,138,62,0.3)) for better visual balance at larger size.",
+    "Astro build completed successfully with 0 errors.",
+    "Mobile layout is unaffected — .cta-deco is hidden via existing @media (max-width: 900px) rule."
+  ],
+  "files_changed": [
+    {
+      "file": "src/components/CTA.astro",
+      "operation": "modify",
+      "lines_changed": "1 file changed, 4 insertions(+), 4 deletions(-)"
+    }
+  ],
+  "git_diff_stat": "src/components/CTA.astro | 8 ++++----\n 1 file changed, 4 insertions(+), 4 deletions(-)",
+  "validation": {
+    "build": "PASSED — npm run build completed with 0 errors, 7 pages built",
+    "type_check": "N/A — pure CSS/HTML change, no TypeScript involved",
+    "lint": "N/A — no lint configured for this Astro project",
+    "tests": "N/A — CSS-only change, no JS logic added"
+  },
+  "acceptance_criteria": {
+    "width_attribute_updated": true,
+    "css_width_updated": true,
+    "build_succeeds": true,
+    "mobile_layout_unaffected": true,
+    "naming_conventions_preserved": true,
+    "no_new_files_created": true
+  },
+  "result_path": "agents/1235/implementor/implementation-1235-issue-6-cta-logo-size.json"
+}

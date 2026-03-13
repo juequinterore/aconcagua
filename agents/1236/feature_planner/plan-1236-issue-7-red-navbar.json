@@ -1,0 +1,147 @@
+{
+  "adw_id": "1236",
+  "issue_number": "7",
+  "feature_slug": "red-navbar",
+  "spec_path": "specs/feat-1236-issue-7-red-navbar.md",
+  "scope": "apps/aconcagua — Astro 5 static multilingual website (src/)",
+  "affected_layers": ["CSS Design Tokens", "Component Stylesheet"],
+  "problem_statement": "The top navigation bar uses hardcoded dark-navy colours (rgba(15,25,35,0.96) and #0f1923) in src/styles/nav.css. The client requests the nav be changed to a red that complements the existing brand palette (gold accent #c88a3e). The hardcoded values also diverge from the --bg-nav CSS variable defined in global.css, creating a design-token inconsistency.",
+  "solution_strategy": "Adopt deep crimson #8B1A2A as the new nav background. Update --bg-nav in global.css (dark default, light theme, and OS-fallback blocks) to rgba(139,26,42,0.96). Replace every hardcoded navy value in nav.css with var(--bg-nav) or equivalent crimson rgba/hex literals. No new component or JS changes required.",
+  "entry_point": "CSS-only change — visible on every page via the <nav id='main-nav'> element rendered by src/components/Nav.astro. Red background appears when scrolled past 40px (desktop), immediately on mobile, and in the full-screen mobile overlay.",
+  "user_story": "As a website visitor, I want the top navigation bar to have a rich crimson-red background so that it visually stands out and reinforces the brand's bold mountain identity while harmonising with the gold accent elements throughout the page.",
+  "colour_choice": {
+    "hex": "#8B1A2A",
+    "name": "Deep Crimson",
+    "scrolled_nav_rgba": "rgba(139, 26, 42, 0.96)",
+    "mobile_nav_rgba": "rgba(139, 26, 42, 0.90)",
+    "overlay_solid": "#8B1A2A",
+    "white_on_crimson_contrast_ratio": "~8.5:1",
+    "wcag_level": "AAA",
+    "rationale": "Evokes strength and mountain passion; pairs harmoniously with gold #c88a3e; deep/burgundy tone reads as premium rather than warning/error; white text exceeds WCAG AAA contrast on this background."
+  },
+  "files_to_change": [
+    {
+      "path": "src/styles/global.css",
+      "operation": "Modify",
+      "purpose": "Update --bg-nav CSS variable to crimson in all three blocks: :root (dark default, line ~35), [data-theme='light'] (line ~67), and @media prefers-color-scheme:light :root:not([data-theme]) (line ~93). Nav is architecturally always-dark so crimson is correct in all theme states.",
+      "changes": [
+        {
+          "block": ":root (dark default)",
+          "approx_line": 35,
+          "before": "--bg-nav: rgba(15, 25, 35, 0.96);",
+          "after": "--bg-nav: rgba(139, 26, 42, 0.96);"
+        },
+        {
+          "block": "[data-theme='light']",
+          "approx_line": 67,
+          "before": "--bg-nav: rgba(247, 245, 242, 0.96);",
+          "after": "--bg-nav: rgba(139, 26, 42, 0.96);"
+        },
+        {
+          "block": "@media (prefers-color-scheme: light) :root:not([data-theme])",
+          "approx_line": 93,
+          "before": "--bg-nav: rgba(247, 245, 242, 0.96);",
+          "after": "--bg-nav: rgba(139, 26, 42, 0.96);"
+        }
+      ]
+    },
+    {
+      "path": "src/styles/nav.css",
+      "operation": "Modify",
+      "purpose": "Replace three hardcoded navy colour values with crimson equivalents. Scrolled/force-dark rule now uses var(--bg-nav) for single-source-of-truth. Mobile overlay and mobile nav use inline crimson rgba/hex.",
+      "changes": [
+        {
+          "block": ".nav.scrolled, .nav.nav-force-dark",
+          "approx_line": 14,
+          "before": "background: rgba(15, 25, 35, 0.96);",
+          "after": "background: var(--bg-nav);"
+        },
+        {
+          "block": ".nav-overlay",
+          "approx_line": 124,
+          "before": "background: #0f1923;",
+          "after": "background: #8B1A2A;"
+        },
+        {
+          "block": "@media (max-width: 768px) .nav",
+          "approx_line": 176,
+          "before": "background: rgba(15, 25, 35, 0.85);",
+          "after": "background: rgba(139, 26, 42, 0.90);"
+        }
+      ]
+    }
+  ],
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Verify Current State (RED)",
+      "tasks": [
+        "Run: npm run build && npm run preview",
+        "Confirm nav currently displays navy background on scroll",
+        "Confirm --bg-nav in global.css is rgba(15,25,35,0.96) — document current state"
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "Update CSS Design Token (GREEN — global.css)",
+      "tasks": [
+        "In src/styles/global.css :root block (~line 35): change --bg-nav to rgba(139, 26, 42, 0.96)",
+        "In src/styles/global.css [data-theme='light'] block (~line 67): change --bg-nav to rgba(139, 26, 42, 0.96)",
+        "In src/styles/global.css @media prefers-color-scheme:light block (~line 93): change --bg-nav to rgba(139, 26, 42, 0.96)"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "Update Nav Stylesheet (GREEN — nav.css)",
+      "tasks": [
+        "In src/styles/nav.css .nav.scrolled / .nav.nav-force-dark (~line 14): replace 'background: rgba(15, 25, 35, 0.96)' with 'background: var(--bg-nav)'",
+        "In src/styles/nav.css .nav-overlay (~line 124): replace 'background: #0f1923' with 'background: #8B1A2A'",
+        "In src/styles/nav.css @media (max-width: 768px) .nav (~line 176): replace 'background: rgba(15, 25, 35, 0.85)' with 'background: rgba(139, 26, 42, 0.90)'"
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "Quality & Validation",
+      "tasks": [
+        "Run: npx astro check — must pass with zero errors",
+        "Run: npm run build — must complete without errors",
+        "Run: npm run preview",
+        "Execute manual verification script: all 3 locales (/, /en/, /zh/), dark + light mode, desktop + mobile viewport",
+        "Confirm no hardcoded navy values remain in nav.css",
+        "Confirm --bg-nav token is consistent across all 3 blocks in global.css"
+      ]
+    }
+  ],
+  "verification_commands": [
+    "npx astro check",
+    "npm run build",
+    "npm run preview"
+  ],
+  "design_decisions": [
+    "Deep crimson #8B1A2A selected over brighter reds to maintain premium/prestige aesthetic consistent with mountain expedition brand",
+    "Nav is architecturally always-dark (comment in nav.css confirms this), so --bg-nav is set to crimson in ALL theme states (dark and light)",
+    "Light theme [data-theme='light'] --bg-nav updated from cream rgba(247,245,242,0.96) to crimson — nav text is already white and reads well on crimson at ~8.5:1 contrast ratio",
+    "Mobile overlay solid colour updated from #0f1923 to #8B1A2A for full consistency",
+    "Mobile semi-transparent nav uses 90% opacity (vs 96% for desktop) to maintain current pattern of slightly more transparency on mobile",
+    "Scrolled/force-dark rule now references var(--bg-nav) rather than hardcoded value — resolves design-token divergence",
+    "No JavaScript changes required — the scroll and hamburger logic in Nav.astro is colour-agnostic",
+    "No i18n changes required — colour is locale-independent"
+  ],
+  "assumptions": [
+    "The client wants crimson red specifically in the scrolled/sticky nav state — the transparent-at-top behaviour (no background visible when at page top) is preserved unchanged",
+    "Both dark and light theme modes should show the crimson nav (nav is always-dark by design)",
+    "No dark variant of the logo is required — the white/light logo already provides sufficient contrast on crimson",
+    "The gold CTA button (#c88a3e) accent colour remains unchanged"
+  ],
+  "integration_requirements": [
+    "No new Astro component imports required",
+    "No module registration or routing changes required",
+    "All changes are confined to two CSS files: src/styles/global.css and src/styles/nav.css"
+  ],
+  "no_changes_required": [
+    "src/components/Nav.astro — already applies correct CSS classes (.nav, .nav.scrolled, .nav.nav-force-dark, .nav-overlay)",
+    "src/layouts/BaseLayout.astro — no changes needed",
+    "src/i18n/*.ts — colour is not locale-dependent",
+    "Any page files (src/pages/**) — no changes needed"
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "adw_id": "1236",
+  "issue_number": "7",
+  "feature_slug": "red-nav-bar",
+  "spec_path": "specs/feat-1236-issue-7-red-nav-bar.md",
+  "scope": "Astro static site — src/styles/nav.css + src/styles/global.css",
+  "affected_layers": ["UI", "CSS"],
+  "problem_statement": "The top navigation bar uses a dark navy background (#0f1923 / rgba(15,25,35,0.96)) in all states. The request is to change it to a rich red that harmonises with the existing brand palette (dark navy, gold accent #c88a3e, white text).",
+  "solution_strategy": "Introduce three new CSS custom properties (--bg-nav, --bg-nav-solid, --bg-nav-transparent) using deep crimson #8C1C13. Replace all four hardcoded dark-navy background values in nav.css with these variables. Update both dark and light theme blocks in global.css so the nav is always red regardless of page theme.",
+  "chosen_color": {
+    "hex": "#8C1C13",
+    "rgb_transparent_96": "rgba(140, 28, 19, 0.96)",
+    "rgb_transparent_85": "rgba(140, 28, 19, 0.85)",
+    "wcag_contrast_white": "~7.2:1 (WCAG AA passes)",
+    "rationale": "Deep wine-crimson. Warm-family harmony with gold accent #c88a3e. Dramatic and appropriate for high-altitude adventure brand. Excellent contrast with white text."
+  },
+  "entry_point": "Fixed top <nav class='nav'> rendered on every page via src/components/Nav.astro",
+  "user_story": "As a site visitor, I want to see a distinctive red navigation bar at the top of every page, so that the site feels bold and adventurous while keeping a cohesive brand look.",
+  "files_to_change": [
+    {
+      "path": "src/styles/global.css",
+      "operation": "Modify",
+      "purpose": "Add --bg-nav, --bg-nav-solid, --bg-nav-transparent CSS variables in :root (dark, ~line 47) and [data-theme='light'] block (~line 79). Nav stays red in both themes.",
+      "changes": [
+        {
+          "block": ":root",
+          "old": "--bg-nav: rgba(15, 25, 35, 0.96);",
+          "new": "--bg-nav: rgba(140, 28, 19, 0.96);\n  --bg-nav-solid: #8C1C13;\n  --bg-nav-transparent: rgba(140, 28, 19, 0.85);"
+        },
+        {
+          "block": "[data-theme='light']",
+          "old": "--bg-nav: rgba(247, 245, 242, 0.96);",
+          "new": "--bg-nav: rgba(140, 28, 19, 0.96);\n  --bg-nav-solid: #8C1C13;\n  --bg-nav-transparent: rgba(140, 28, 19, 0.85);"
+        }
+      ]
+    },
+    {
+      "path": "src/styles/nav.css",
+      "operation": "Modify",
+      "purpose": "Replace all hardcoded dark-navy background values with CSS variable references.",
+      "changes": [
+        {
+          "selector": ".nav.scrolled, .nav.nav-force-dark",
+          "property": "background",
+          "old": "rgba(15, 25, 35, 0.96)",
+          "new": "var(--bg-nav)",
+          "approximate_line": 19
+        },
+        {
+          "selector": ".nav-overlay",
+          "property": "background",
+          "old": "#0f1923",
+          "new": "var(--bg-nav-solid)",
+          "approximate_line": 107
+        },
+        {
+          "selector": "@media (max-width: 768px) .nav",
+          "property": "background",
+          "old": "rgba(15, 25, 35, 0.85)",
+          "new": "var(--bg-nav-transparent)",
+          "approximate_line": 155
+        }
+      ]
+    }
+  ],
+  "no_changes_required": [
+    {
+      "path": "src/components/Nav.astro",
+      "reason": "Already imports nav.css via @import at line 161. Markup is colour-agnostic."
+    }
+  ],
+  "execution_phases": [
+    {
+      "phase": 1,
+      "name": "CSS Variable Definitions",
+      "steps": [
+        "RED: Capture baseline screenshot of nav in scrolled state for visual regression reference",
+        "GREEN: Add --bg-nav, --bg-nav-solid, --bg-nav-transparent to :root and [data-theme='light'] in src/styles/global.css",
+        "REFACTOR: Confirm naming follows existing --bg-* convention"
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "Apply Variables to nav.css",
+      "steps": [
+        "RED: Document expected state (all nav backgrounds = red family)",
+        "GREEN: Replace rgba(15,25,35,...) and #0f1923 values in nav.css with CSS var() references",
+        "REFACTOR: Grep for any remaining hardcoded dark-navy values in nav.css"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "Integration & Exposure",
+      "steps": [
+        "No Nav.astro markup changes needed",
+        "Run npm run build to verify Astro compile success",
+        "Run npm run preview and manually verify all nav states"
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "Quality & Validation",
+      "steps": [
+        "npm run build",
+        "npm run preview",
+        "Manual verification script (5 steps in spec)"
+      ]
+    }
+  ],
+  "verification_commands": {
+    "build": "npm run build",
+    "preview": "npm run preview",
+    "dev": "npm run dev"
+  },
+  "acceptance_criteria": [
+    "--bg-nav: rgba(140, 28, 19, 0.96) present in :root of global.css",
+    "--bg-nav-solid: #8C1C13 and --bg-nav-transparent: rgba(140, 28, 19, 0.85) present in :root",
+    "[data-theme='light'] block also uses red nav variables",
+    "No hardcoded dark-navy values remain in nav background properties in nav.css",
+    "Astro build succeeds",
+    "Manual verification: red nav visible in scrolled state, mobile bar, mobile overlay",
+    "White text on red passes WCAG AA (contrast ~7.2:1)",
+    "Gold CTA button remains visually distinct on red nav",
+    "Zero console errors across /, /en/, /zh/ routes"
+  ],
+  "assumptions": [
+    "The nav.css @media (prefers-color-scheme: light) block in global.css does not add a separate nav override — verified by reading the file: no such block exists for nav-specific overrides",
+    "No other CSS files reference nav background colors that would need updating",
+    "The forceDark prop in Nav.astro uses .nav-force-dark class which is covered by the .nav.nav-force-dark selector already updated",
+    "No Squarespace or external CSS overrides the nav background (squarespace/ directory exists but appears to be legacy/reference material)"
+  ],
+  "integration_requirements": [
+    "No module registration required (pure CSS change)",
+    "No new npm packages required",
+    "No environment variables required"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "adw_id": "1235",
+  "issue_number": "6",
+  "feature_slug": "cta-logo-size",
+  "spec_path": "specs/feat-1235-issue-6-cta-logo-size.md",
+  "result_path": "agents/1235/feature_planner/plan-1235-issue-6-cta-logo-size.json",
+  "target_scope": "src/components/CTA.astro (Astro static site)",
+  "affected_layers": ["UI – Astro component CSS and HTML attribute"],
+  "problem_statement": "The Julian Kusi logo in the 'Plan Your Expedition with a Free Consultation' CTA section renders at 200 px, which is too small relative to the surrounding content.",
+  "solution_strategy": "Increase logo width from 200 px to 280 px in both the HTML width attribute and the CSS .cta-logo rule. Slightly enhance the drop-shadow spread to remain proportionate to the new size.",
+  "files_changed": [
+    {
+      "path": "src/components/CTA.astro",
+      "operation": "Modify",
+      "changes": [
+        {
+          "line": 74,
+          "description": "Updated HTML width attribute from '200' to '280' and height attribute from '60' to '84' (preserves 10:3 aspect ratio)"
+        },
+        {
+          "line": 219,
+          "description": "Updated .cta-logo CSS width from 200px to 280px; slightly increased drop-shadow spread from 12px to 16px for proportional glow"
+        }
+      ]
+    }
+  ],
+  "tdd_phases": {
+    "phase_1_domain": "N/A – pure presentational CSS change",
+    "phase_2_infrastructure": "N/A",
+    "phase_3_component": {
+      "red": "Visually confirm 200px logo looks undersized in CTA section",
+      "green": "Apply width: 280px to .cta-logo CSS and width='280' HTML attribute",
+      "refactor": "Verify layout integrity on desktop (≥901px) and confirm mobile media query still hides .cta-deco"
+    },
+    "phase_4_integration": {
+      "component_rendering": "No new wiring required; img already rendered inside .cta-deco div",
+      "responsive_check": "@media (max-width: 900px) hides .cta-deco entirely – mobile unaffected",
+      "user_discovery": "Logo visible on desktop when user scrolls to CTA section"
+    }
+  },
+  "verification_commands": {
+    "build": "npm run build",
+    "preview": "npm run preview",
+    "dev": "npm run dev"
+  },
+  "acceptance_criteria": [
+    "src/components/CTA.astro updated with width='280' attribute and .cta-logo { width: 280px }",
+    "Astro build succeeds with no errors",
+    "Logo visually larger and aesthetically balanced on desktop",
+    "Mobile layout (≤900px) unaffected – logo column remains hidden",
+    "No console errors"
+  ],
+  "assumptions": [
+    "The logo.webp file has sufficient resolution to look crisp at 280px width",
+    "The two-column CTA grid has enough space for a 280px logo column at typical desktop widths (≥901px)"
+  ]
+}

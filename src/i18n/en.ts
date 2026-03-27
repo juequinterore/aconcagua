@@ -87,15 +87,12 @@ export const en = {
   // Testimonials
   'testimonials.tag': 'TESTIMONIALS',
   'testimonials.title': 'What my clients say',
-  'testimonials.1.name': 'Marco Rossi',
-  'testimonials.1.location': 'Italy',
-  'testimonials.1.text': 'Julián is an exceptional guide. His knowledge of the mountain, his calm in difficult situations, and his genuine concern for the group\'s safety made this expedition an unforgettable experience. We reached the summit because of him.',
-  'testimonials.2.name': 'Sarah Kim',
-  'testimonials.2.location': 'South Korea',
-  'testimonials.2.text': 'I couldn\'t have chosen a better guide for my first Aconcagua expedition. Julián anticipated every challenge, kept us motivated during the hardest moments, and celebrated with us at the top. A transformative experience.',
-  'testimonials.3.name': 'James Walsh',
-  'testimonials.3.location': 'United States',
-  'testimonials.3.text': 'World-class professionalism. Julián coordinated every logistical detail with precision, his English is excellent, and his leadership in extreme conditions is impressive. I\'m already planning to come back with him next year.',
+  'testimonials.1.name': 'Marcelo Simionato',
+  'testimonials.1.location': 'Argentina',
+  'testimonials.1.text': 'I was lucky enough to reach the summit of Aconcagua on January 19, 2026. My approach and preparation is exactly as you describe: I started preparing physically and psychologically — gathering info on terrain, gear, and what I\'d encounter — 11 months in advance. I spoke with many people, including you, July, who selflessly helped and guided me even after I told you I\'d already booked with another company. That helped me enormously! Aconcagua is extremely tough, but it\'s achievable if you stay humble, train hard, and ask questions — even the most basic ones. I will always be grateful, and I hope someday we can attempt a summit together on your team. Big hug and thank you!',
+  'testimonials.2.name': 'Catalina Caicedo',
+  'testimonials.2.location': 'Chile',
+  'testimonials.2.text': 'Coming down from Aconcagua! It\'s not a simple mountain, nor a simple high-altitude hike. Before this, I climbed several 6,000 m peaks, including the highest in Chile (Ojos del Salado, 6,893 m). Physical preparation is key — strengthen your whole body, keep a calm mind since thoughts can play tricks on you, and most importantly: know your body at altitude and be ready for cold and discomfort. @julian_kusi\'s YouTube channel has everything you need on gear! My budget was approx. USD $4,000 (permit and insurance included). Aconcagua is a beautiful mountain that deserves all the respect in the world! Thanks, Juli, for your support and knowledge before my expedition. Big hug — see you in Chile!',
 
   // CTA
   'cta.tag': 'FIRST STEP',

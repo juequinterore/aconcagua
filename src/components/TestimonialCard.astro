@@ -4,10 +4,11 @@ interface Props {
   location: string;
   text: string;
   initials: string;
+  image?: string;
   delay?: number;
 }
 
-const { name, location, text, initials, delay = 0 } = Astro.props;
+const { name, location, text, initials, image, delay = 0 } = Astro.props;
 ---
 
 <article class="testimonial-card reveal" style={`transition-delay: ${delay}s`} aria-label={`Testimonial from ${name}`}>
@@ -20,7 +21,10 @@ const { name, location, text, initials, delay = 0 } = Astro.props;
   </blockquote>
 
   <footer class="testimonial-author">
-    <div class="author-avatar" aria-hidden="true">{initials}</div>
+    {image
+      ? <img class="author-photo" src={image} alt={name} loading="lazy" />
+      : <div class="author-avatar" aria-hidden="true">{initials}</div>
+    }
     <div class="author-info">
       <strong class="author-name">{name}</strong>
       <span class="author-location">{location}</span>
@@ -75,8 +79,8 @@ const { name, location, text, initials, delay = 0 } = Astro.props;
   }
 
   .author-avatar {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     background: var(--primary);
     color: var(--white);
@@ -87,6 +91,15 @@ const { name, location, text, initials, delay = 0 } = Astro.props;
     font-weight: 700;
     flex-shrink: 0;
     letter-spacing: 0.02em;
+  }
+
+  .author-photo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid var(--border-card);
   }
 
   .author-info {

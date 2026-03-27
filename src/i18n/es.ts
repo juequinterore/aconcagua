@@ -87,15 +87,12 @@ export const es = {
   // Testimonials
   'testimonials.tag': 'TESTIMONIOS',
   'testimonials.title': 'Lo que dicen mis clientes',
-  'testimonials.1.name': 'Marco Rossi',
-  'testimonials.1.location': 'Italia',
-  'testimonials.1.text': 'Julián es un guía excepcional. Su conocimiento de la montaña, su calma ante las situaciones difíciles y su genuina preocupación por la seguridad del grupo hicieron de esta expedición una experiencia inolvidable. Llegamos a la cumbre gracias a él.',
-  'testimonials.2.name': 'Sarah Kim',
-  'testimonials.2.location': 'Corea del Sur',
-  'testimonials.2.text': 'No podría haber elegido mejor guía para mi primera expedición al Aconcagua. Julián anticipó cada desafío, nos mantuvo motivados en los momentos más duros y celebró con nosotros en la cima. Una experiencia transformadora.',
-  'testimonials.3.name': 'James Walsh',
-  'testimonials.3.location': 'Estados Unidos',
-  'testimonials.3.text': 'Profesionalismo de primer nivel. Julián coordinó cada detalle logístico con precisión, su inglés es excelente y su liderazgo en condiciones extremas es impresionante. Ya estoy planificando volver con él para el próximo año.',
+  'testimonials.1.name': 'Marcelo Simionato',
+  'testimonials.1.location': 'Argentina',
+  'testimonials.1.text': 'En mi caso tuve la suerte de llegar a la cumbre del Aconcagua el 19.1.26. Mi forma y preparación es como vos decís: empecé a prepararme físicamente, psicológicamente, con información del terreno, indumentaria y con qué me iba a encontrar — todo 11 meses antes. Hablé con muchísima gente, entre ellos vos, July, que totalmente desinteresadamente, y sin importarte que ya había comprado el paquete con otra empresa, me ayudaste e informaste sin problemas ni intereses — eso me ayudó muchísimo. Estoy seguro en decir que Aconcagua es durísimo, pero se puede lograr si sos humilde y te entrenás e informás con gente como lo hice yo. Siempre voy a estar agradecido. ¡Ojalá algún día podamos intentar alguna cumbre dentro de tu equipo!',
+  'testimonials.2.name': 'Catalina Caicedo',
+  'testimonials.2.location': 'Chile',
+  'testimonials.2.text': '¡Bajando del Aconcagua! No es un cerro simple, y tampoco es una simple caminata en altura. Previo a mi experiencia subí varias montañas de 6 mil metros, entre ellas la más alta de Chile (Ojos del Salado, 6893 m). La preparación física es clave, fortalecer todo el cuerpo, tener una mente tranquila — ya que los pensamientos a veces te pueden jugar una mala pasada — y lo más importante: conocer el cuerpo en la altura y estar preparado para el frío y las incomodidades. @julian_kusi tiene en su canal de YouTube todo lo que necesitás en equipamiento. Mi presupuesto fue de aprox. 4000 USD (incluye permiso y seguro). ¡Aconcagua es una montaña hermosa que merece todo el respeto del mundo! Gracias, Juli, por tu apoyo y conocimiento previo a mi expedición. ¡Un abrazo grande, nos vemos en Chile!',
 
   // CTA
   'cta.tag': 'PRIMER PASO',

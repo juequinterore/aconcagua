@@ -87,15 +87,12 @@ export const zh = {
   // Testimonials
   'testimonials.tag': '客户评价',
   'testimonials.title': '我的客户怎么说',
-  'testimonials.1.name': 'Marco Rossi',
-  'testimonials.1.location': '意大利',
-  'testimonials.1.text': 'Julián是一位出色的向导。他对这座山的了解、在困难情况下的冷静以及对团队安全的真诚关注，使这次探险成为难忘的经历。我们因他而登顶成功。',
-  'testimonials.2.name': 'Sarah Kim',
-  'testimonials.2.location': '韩国',
-  'testimonials.2.text': '对于我的第一次阿空加瓜探险，我选择了最好的向导。Julián预见了每一个挑战，在最艰难的时刻激励我们，并在山顶与我们共同庆祝。这是一次改变人生的经历。',
-  'testimonials.3.name': 'James Walsh',
-  'testimonials.3.location': '美国',
-  'testimonials.3.text': '一流的专业水准。Julián以精准的方式协调每一个后勤细节，他的英语非常好，在极端条件下的领导力令人印象深刻。我已经在计划明年再次与他合作。',
+  'testimonials.1.name': 'Marcelo Simionato',
+  'testimonials.1.location': '阿根廷',
+  'testimonials.1.text': '我非常幸运，于2026年1月19日成功登顶阿空加瓜。我的准备方式正如你所说：我提前11个月开始进行体能和心理准备，收集地形、装备及可能遭遇情况的信息。我与很多人交流，包括你，July——尽管我一开始就告诉你我已经在另一家公司购买了套餐，你仍然毫无保留地帮助和指导了我，这对我帮助极大！我可以肯定地说，阿空加瓜非常艰难，但只要保持谦逊、努力训练、向行家请教，哪怕最基础的问题也要问，就一定能成功。我永远感激你的帮助，希望有朝一日我们能一起以你团队的身份挑战某座山峰。大大的拥抱，再次感谢！',
+  'testimonials.2.name': 'Catalina Caicedo',
+  'testimonials.2.location': '智利',
+  'testimonials.2.text': '从阿空加瓜下山啦！这不是一座简单的山，也不是一次普通的高海拔徒步。在此之前，我攀登过多座6000米级别的山峰，包括智利最高峰奥霍斯德尔萨拉多峰（6893米）。体能准备至关重要——全身力量训练、保持平静的心态（杂念有时会让你失去方向），最重要的是了解自己的身体在高海拔的表现，做好应对寒冷和不适的准备。@julian_kusi的YouTube频道涵盖了所有你需要的装备信息！我的预算约为4000美元（含许可证和保险）。阿空加瓜是一座美丽的山，值得世界上所有的尊重！感谢Juli在我出发前给予的支持和指导，大大的拥抱，智利见！',
 
   // CTA
   'cta.tag': '开始您的旅程',

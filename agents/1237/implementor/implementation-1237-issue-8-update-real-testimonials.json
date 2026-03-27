@@ -1,0 +1,29 @@
+{
+  "adw_id": 1237,
+  "issue_number": 8,
+  "spec_path": "specs/feat-1237-issue-8-update-real-testimonials.md",
+  "status": "completed",
+  "summary": [
+    "Phase 1 – TestimonialCard.astro: Added optional `image?: string` prop to the Props interface. Conditionally renders an `<img class=\"author-photo\">` when an image URL is provided, falling back to the initials `.author-avatar` div. Added `.author-photo` CSS rule (48×48 px, border-radius 50%, object-fit cover).",
+    "Phase 2 – Testimonials.astro: Replaced 3 dummy testimonials (Marco Rossi, Sarah Kim, James Walsh) with 2 real ones — Marcelo Simionato (AR) and Catalina Caicedo (CL) — each wired to their Firebase Storage photo URLs. Updated grid from `repeat(3, 1fr)` to `repeat(2, 1fr)` with `max-width: 900px`. Removed the redundant 1024 px breakpoint; kept only the 640 px mobile breakpoint.",
+    "Phase 3 – i18n es.ts: Replaced testimonials 1–3 with real Spanish-language text from Marcelo Simionato and Catalina Caicedo (only 2 keys remain).",
+    "Phase 3 – i18n en.ts: English translation of both testimonials; removed third testimonial key.",
+    "Phase 3 – i18n zh.ts: Simplified Chinese translation of both testimonials; removed third testimonial key.",
+    "Phase 4 – Integration: No additional wiring required. The existing `<Testimonials>` component calls in index.astro, en/index.astro, and zh/index.astro automatically pick up all changes via the i18n `t()` function."
+  ],
+  "files_changed": [
+    "src/components/TestimonialCard.astro",
+    "src/components/Testimonials.astro",
+    "src/i18n/es.ts",
+    "src/i18n/en.ts",
+    "src/i18n/zh.ts"
+  ],
+  "git_diff_stat": "5 files changed, 43 insertions(+), 47 deletions(-)",
+  "validation": {
+    "build": "PASSED — `npm run build` completed with 0 errors, 7 pages built (/, /en/, /zh/, and supporting pages)",
+    "type_check": "PASSED — Astro build includes TypeScript type checking; no TS errors reported",
+    "lint": "N/A — static Astro project; no separate lint step configured",
+    "tests": "N/A — static site with no automated test runner"
+  },
+  "result_path": "agents/1237/implementor/implementation-1237-issue-8-update-real-testimonials.json"
+}

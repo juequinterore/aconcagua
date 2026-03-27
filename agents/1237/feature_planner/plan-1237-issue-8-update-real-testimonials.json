@@ -1,0 +1,71 @@
+{
+  "adw_id": "1237",
+  "issue_number": "8",
+  "slug": "update-real-testimonials",
+  "spec_path": "specs/feat-1237-issue-8-update-real-testimonials.md",
+  "scope": "Astro landing page (aconcagua website)",
+  "affected_layers": ["UI Components", "i18n translations (ES/EN/ZH)"],
+  "summary": "Replace three placeholder testimonials with two real client testimonials from Marcelo Simionato (Argentina) and Catalina Caicedo (Chile), including their Firebase Storage profile photos and full translations in Spanish, English, and Chinese.",
+  "files_changed": [
+    {
+      "path": "src/components/TestimonialCard.astro",
+      "operation": "Modify",
+      "purpose": "Add optional `image` prop to Props interface; render <img class='author-photo'> when image URL is provided, fallback to initials avatar; add CSS for .author-photo (48x48, circular, object-fit cover)"
+    },
+    {
+      "path": "src/components/Testimonials.astro",
+      "operation": "Modify",
+      "purpose": "Replace 3 dummy testimonials with 2 real ones (Marcelo Simionato + Catalina Caicedo) including Firebase Storage image URLs; update grid from repeat(3,1fr) to repeat(2,1fr) with max-width 900px; pass image prop to TestimonialCard"
+    },
+    {
+      "path": "src/i18n/es.ts",
+      "operation": "Modify",
+      "purpose": "Replace testimonials.1, testimonials.2, testimonials.3 with real Spanish content (Marcelo Simionato AR + Catalina Caicedo CL); remove testimony 3"
+    },
+    {
+      "path": "src/i18n/en.ts",
+      "operation": "Modify",
+      "purpose": "Replace testimonials.1, testimonials.2, testimonials.3 with English translations of Marcelo and Catalina testimonials; remove testimony 3"
+    },
+    {
+      "path": "src/i18n/zh.ts",
+      "operation": "Modify",
+      "purpose": "Replace testimonials.1, testimonials.2, testimonials.3 with Simplified Chinese translations of Marcelo and Catalina testimonials; remove testimony 3"
+    }
+  ],
+  "testimonials": [
+    {
+      "key": "1",
+      "name": "Marcelo Simionato",
+      "location_es": "Argentina",
+      "location_en": "Argentina",
+      "location_zh": "阿根廷",
+      "image": "https://firebasestorage.googleapis.com/v0/b/aconcagua-co.firebasestorage.app/o/3f7b0578-4eeb-4f82-b769-1a94afd20811.jpeg?alt=media&token=4bd21417-6402-45b1-a358-56c292f2efc2",
+      "initials": "MS"
+    },
+    {
+      "key": "2",
+      "name": "Catalina Caicedo",
+      "location_es": "Chile",
+      "location_en": "Chile",
+      "location_zh": "智利",
+      "image": "https://firebasestorage.googleapis.com/v0/b/aconcagua-co.firebasestorage.app/o/23c5ad1a-f6a9-4bd8-b428-6e1673f980fd.jpeg?alt=media&token=40f42908-ec5d-4568-b86b-f0b69f338fd9",
+      "initials": "CC"
+    }
+  ],
+  "layout_changes": {
+    "before": "grid-template-columns: repeat(3, 1fr)",
+    "after": "grid-template-columns: repeat(2, 1fr); max-width: 900px; margin-inline: auto",
+    "mobile_breakpoint": "640px → 1fr single column"
+  },
+  "assumptions": [
+    "Firebase Storage URLs are publicly accessible without authentication",
+    "Third testimony (James Walsh / Sarah Kim / Marco Rossi) is fully removed as requested",
+    "Image aspect ratios vary but object-fit: cover on 48x48 circular container handles cropping gracefully"
+  ],
+  "verification_commands": [
+    "npm install",
+    "npm run build",
+    "npm run preview"
+  ]
+}

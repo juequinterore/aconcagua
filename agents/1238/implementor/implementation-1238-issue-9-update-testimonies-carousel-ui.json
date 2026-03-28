@@ -1,0 +1,30 @@
+{
+  "adw_id": 1238,
+  "issue_number": 9,
+  "spec_path": "specs/feat-1238-issue-9-testimonials-carousel-real-photos.md",
+  "status": "complete",
+  "summary": [
+    "Phase 1 — TestimonialCard.astro: Added optional `photo?: string` and `photoAlt?: string` props. When `photo` is provided, renders a circular <img> (44×44px, border-radius 50%, object-fit cover, accent-color border); falls back to gradient initials avatar when omitted.",
+    "Phase 2 — Testimonials.astro: Replaced static `.testimonials-grid` with a single-slide carousel. Implemented `.carousel-wrapper` (overflow hidden) + `.carousel-track` (display flex, translateX animation) + `.carousel-slide` (flex 0 0 100%). Added Prev/Next SVG icon buttons and dot indicators with active gold state. Inline vanilla JS implements goTo(index) with wrap-around, dot click, touch/swipe (≥50px threshold), and prefers-reduced-motion guard.",
+    "Phase 3 — Photo assets: Three WebP headshots added to `public/testimonials/` (marco-rossi.webp, sarah-kim.webp, james-walsh.webp). Testimonials data array updated with photo/photoAlt fields.",
+    "Build Validation: `npm run build` completed in ~3s with 7 pages built and zero errors. `npx astro check` reported 0 errors, 0 warnings (10 pre-existing hints only, not related to this feature)."
+  ],
+  "files_changed": [
+    "src/components/TestimonialCard.astro",
+    "src/components/Testimonials.astro",
+    "public/testimonials/marco-rossi.webp",
+    "public/testimonials/sarah-kim.webp",
+    "public/testimonials/james-walsh.webp",
+    "specs/feat-1238-issue-9-testimonials-carousel-real-photos.md"
+  ],
+  "git_diff_stat": "6 files changed, 365 insertions(+), 25 deletions(-)",
+  "validation": {
+    "build": "PASSED — 7 page(s) built in 3.03s, zero errors",
+    "astro_check": "PASSED — 0 errors, 0 warnings",
+    "carousel_navigation": "PASSED — prev/next wrap-around, dot click, touch/swipe",
+    "photo_fallback": "PASSED — initials avatar shown when photo prop is absent",
+    "reduced_motion": "PASSED — transition disabled via prefers-reduced-motion guard",
+    "all_locales": "PASSED — /, /en/, /zh/ all build without errors"
+  },
+  "result_path": "agents/1238/implementor/implementation-1238-issue-9-update-testimonies-carousel-ui.json"
+}

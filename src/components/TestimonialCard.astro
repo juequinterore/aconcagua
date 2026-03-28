@@ -7,19 +7,48 @@ interface Props {
   delay?: number;
   photo?: string;
   photoAlt?: string;
+  readMoreLabel?: string;
+  closeLabel?: string;
+  summitDate?: string;
+  index?: number;
 }
 
-const { name, location, text, initials, delay = 0, photo, photoAlt } = Astro.props;
+const {
+  name,
+  location,
+  text,
+  initials,
+  delay = 0,
+  photo,
+  photoAlt,
+  readMoreLabel = 'Read more',
+  closeLabel = 'Close',
+  summitDate,
+  index = 0,
+} = Astro.props;
+
+// Generate a unique ID for the dialog so multiple cards on the same page
+// don't share the same id (carousel renders all cards in the DOM).
+const uid = `tcard-${Math.random().toString(36).slice(2, 9)}`;
+const dialogId = `${uid}-modal`;
 ---
 
-<article class="testimonial-card reveal" style={`transition-delay: ${delay}s`} aria-label={`Testimonial from ${name}`}>
+<article class="testimonial-card reveal" style={`transition-delay: ${delay}s`} aria-label={`Testimonial from ${name}`} data-testimonial-card>
   <div class="stars" aria-label="5 stars" role="img">
     <span aria-hidden="true">★★★★★</span>
   </div>
 
   <blockquote class="testimonial-text">
-    <p>"{text}"</p>
+    <p class="testimonial-quote" data-card-text>{text}</p>
   </blockquote>
+
+  <button
+    class="read-more"
+    type="button"
+    aria-haspopup="dialog"
+    aria-controls={dialogId}
+    hidden
+  >{readMoreLabel}</button>
 
   <footer class="testimonial-author">
     {photo ? (
@@ -38,8 +67,52 @@ const { name, location, text, initials, delay = 0, photo, photoAlt } = Astro.pro
     <div class="author-info">
       <strong class="author-name">{name}</strong>
       <span class="author-location">{location}</span>
+      {summitDate && (
+        <span class="author-summit">🏔 {summitDate}</span>
+      )}
     </div>
   </footer>
+
+  <!-- Modal dialog with full testimonial text -->
+  <dialog class="testimonial-modal" id={dialogId} aria-modal="true" aria-label={`Full testimonial from ${name}`}>
+    <button class="modal-close" type="button" aria-label={closeLabel}>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="modal-stars" aria-label="5 stars" role="img">
+      <span aria-hidden="true">★★★★★</span>
+    </div>
+
+    <blockquote class="modal-text">
+      <p>"{text}"</p>
+    </blockquote>
+
+    <footer class="modal-author">
+      {photo ? (
+        <img
+          src={photo}
+          alt={photoAlt ?? name}
+          class="author-photo"
+          width="44"
+          height="44"
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <div class="author-avatar" aria-hidden="true">{initials}</div>
+      )}
+      <div class="author-info">
+        <strong class="author-name">{name}</strong>
+        <span class="author-location">{location}</span>
+        {summitDate && (
+          <span class="author-summit">🏔 {summitDate}</span>
+        )}
+      </div>
+    </footer>
+  </dialog>
 </article>
 
 <style>
@@ -75,11 +148,44 @@ const { name, location, text, initials, delay = 0, photo, photoAlt } = Astro.pro
     margin: 0;
   }
 
-  .testimonial-text p {
+  .testimonial-quote {
     font-size: 0.9375rem;
     line-height: 1.7;
     color: var(--text-secondary);
     font-style: italic;
+    /* Line clamp to 4 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-height: calc(1.7em * 4);
+  }
+
+  /* "Read more" button */
+  .read-more {
+    display: inline-block;
+    margin-top: -8px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s ease;
+    align-self: flex-start;
+  }
+
+  .read-more:hover {
+    opacity: 0.75;
+  }
+
+  .read-more:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
   }
 
   .testimonial-author {
@@ -130,4 +236,142 @@ const { name, location, text, initials, delay = 0, photo, photoAlt } = Astro.pro
     font-size: var(--fs-xs);
     color: var(--text-secondary);
   }
+
+  .author-summit {
+    font-size: var(--fs-xs);
+    color: var(--accent);
+    font-weight: 500;
+    margin-top: 2px;
+  }
+
+  /* ─── Modal Dialog ──────────────────────────────────────── */
+
+  .testimonial-modal {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: min(600px, calc(100vw - 32px));
+    max-height: calc(100vh - 64px);
+    padding: 36px 32px 32px;
+    border: none;
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* Closed state: hidden */
+  }
+
+  .testimonial-modal:not([open]) {
+    display: none;
+  }
+
+  .testimonial-modal::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border-card);
+    background: transparent;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .modal-close:hover {
+    background: var(--accent);
+    color: var(--white);
+    border-color: var(--accent);
+  }
+
+  .modal-close:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .modal-stars {
+    color: var(--accent);
+    font-size: 1rem;
+    letter-spacing: 2px;
+  }
+
+  .modal-text {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .modal-text p {
+    font-size: 0.9375rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  .modal-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 20px;
+    margin-top: auto;
+  }
 </style>
+
+<script>
+  // For each testimonial card, check if the quote is clamped and, if so,
+  // show the "Read more" button. Wire up the modal open/close interactions.
+  document.querySelectorAll<HTMLElement>('[data-testimonial-card]').forEach((card) => {
+    const quoteEl = card.querySelector<HTMLElement>('[data-card-text]');
+    const readMoreBtn = card.querySelector<HTMLButtonElement>('.read-more');
+    const dialog = card.querySelector<HTMLDialogElement>('.testimonial-modal');
+    const closeBtn = card.querySelector<HTMLButtonElement>('.modal-close');
+
+    if (!quoteEl || !readMoreBtn || !dialog || !closeBtn) return;
+
+    // Reveal "Read more" only when text is actually clamped
+    if (quoteEl.scrollHeight > quoteEl.clientHeight) {
+      readMoreBtn.hidden = false;
+    }
+
+    // Open modal
+    readMoreBtn.addEventListener('click', () => {
+      dialog.showModal();
+      // Move focus to close button for accessibility
+      closeBtn.focus();
+    });
+
+    // Close via close button
+    closeBtn.addEventListener('click', () => {
+      dialog.close();
+    });
+
+    // Close on backdrop click (click outside the dialog box)
+    dialog.addEventListener('click', (e: MouseEvent) => {
+      const rect = dialog.getBoundingClientRect();
+      const clickedInside =
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom;
+      if (!clickedInside) {
+        dialog.close();
+      }
+    });
+
+    // Escape key is handled natively by <dialog>
+  });
+</script>

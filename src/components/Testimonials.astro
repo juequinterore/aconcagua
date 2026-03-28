@@ -12,40 +12,37 @@ const testimonials = [
   {
     name: t('testimonials.1.name'),
     location: t('testimonials.1.location'),
+    summitDate: t('testimonials.1.summitDate'),
     text: t('testimonials.1.text'),
-    initials: 'JC',
-    photo: 'https://firebasestorage.googleapis.com/v0/b/aconcagua-co.firebasestorage.app/o/Julio.jpg?alt=media&token=8d3d05cc-f1df-4299-b749-c718666d9085',
+    initials: 'MS',
+    photo: 'https://firebasestorage.googleapis.com/v0/b/aconcagua-co.firebasestorage.app/o/Marcelo.jpg?alt=media&token=3fd16581-216a-4b34-8cd0-753da0527289',
     photoAlt: t('testimonials.1.name'),
   },
   {
     name: t('testimonials.2.name'),
     location: t('testimonials.2.location'),
+    summitDate: undefined,
     text: t('testimonials.2.text'),
-    initials: 'MS',
-    photo: 'https://firebasestorage.googleapis.com/v0/b/aconcagua-co.firebasestorage.app/o/Marcelo.jpg?alt=media&token=3fd16581-216a-4b34-8cd0-753da0527289',
+    initials: 'CC',
+    photo: 'https://firebasestorage.googleapis.com/v0/b/aconcagua-co.firebasestorage.app/o/Cata.jpg?alt=media&token=51846657-3928-469f-8b2d-4e61e89db66f',
     photoAlt: t('testimonials.2.name'),
   },
   {
     name: t('testimonials.3.name'),
     location: t('testimonials.3.location'),
+    summitDate: undefined,
     text: t('testimonials.3.text'),
-    initials: 'CC',
-    photo: 'https://firebasestorage.googleapis.com/v0/b/aconcagua-co.firebasestorage.app/o/Cata.jpg?alt=media&token=51846657-3928-469f-8b2d-4e61e89db66f',
-    photoAlt: t('testimonials.3.name'),
-  },
-  {
-    name: t('testimonials.4.name'),
-    location: t('testimonials.4.location'),
-    text: t('testimonials.4.text'),
     initials: 'RP',
     photo: undefined,
-    photoAlt: t('testimonials.4.name'),
+    photoAlt: t('testimonials.3.name'),
   },
 ];
 
 const prevLabel = lang === 'zh' ? '上一条' : lang === 'en' ? 'Previous testimonial' : 'Testimonio anterior';
 const nextLabel = lang === 'zh' ? '下一条' : lang === 'en' ? 'Next testimonial' : 'Testimonio siguiente';
 const carouselLabel = lang === 'zh' ? '客户评价轮播' : lang === 'en' ? 'Client testimonials carousel' : 'Carrusel de testimonios';
+const readMoreLabel = t('testimonials.readMore');
+const closeLabel = t('testimonials.close');
 ---
 
 <section id="testimonios" class="testimonials section-pad">
@@ -67,7 +64,11 @@ const carouselLabel = lang === 'zh' ? '客户评价轮播' : lang === 'en' ? 'Cl
                 initials={item.initials}
                 photo={item.photo}
                 photoAlt={item.photoAlt}
+                summitDate={item.summitDate}
+                index={i}
                 delay={0}
+                readMoreLabel={readMoreLabel}
+                closeLabel={closeLabel}
               />
             </div>
           ))}

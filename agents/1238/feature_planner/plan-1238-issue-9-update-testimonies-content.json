@@ -1,0 +1,75 @@
+{
+  "adw_id": "1238",
+  "issue_number": "9",
+  "feature": "Update Testimonies Carousel Content",
+  "scope": "aconcagua Astro 5 static multilingual website",
+  "branch": "chore/update_testimonies_carousel_ui",
+  "status": "implemented",
+  "summary": "Replaced all dummy testimonies (Marco Rossi, Sarah Kim, James Walsh) with four real client testimonies. Updated i18n keys in es.ts, en.ts, and zh.ts for names, locations, and texts. Updated Testimonials.astro to use Firebase Storage image URLs for testimonies 1–3 and an initials fallback for testimony 4. A fourth carousel slide (Ricardo Peralta, Costa Rica) was added.",
+  "testimonies": [
+    {
+      "index": 1,
+      "name": "Julio Catillo",
+      "country": "Bolivia",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/aconcagua-co.firebasestorage.app/o/Julio.jpg?alt=media&token=8d3d05cc-f1df-4299-b749-c718666d9085",
+      "initials": "JC"
+    },
+    {
+      "index": 2,
+      "name": "Marcelo Simionato",
+      "country": "Argentina",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/aconcagua-co.firebasestorage.app/o/Marcelo.jpg?alt=media&token=3fd16581-216a-4b34-8cd0-753da0527289",
+      "initials": "MS"
+    },
+    {
+      "index": 3,
+      "name": "Catalina Caicedo",
+      "country": "Chile",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/aconcagua-co.firebasestorage.app/o/Cata.jpg?alt=media&token=51846657-3928-469f-8b2d-4e61e89db66f",
+      "initials": "CC"
+    },
+    {
+      "index": 4,
+      "name": "Ricardo Peralta",
+      "country": "Costa Rica",
+      "imageUrl": null,
+      "initials": "RP"
+    }
+  ],
+  "files_changed": [
+    {
+      "path": "src/i18n/es.ts",
+      "operation": "Modify",
+      "purpose": "Replace testimonials.1-3 with real clients; add testimonials.4 (Ricardo Peralta). Spanish original texts preserved verbatim.",
+      "lines": "90-101"
+    },
+    {
+      "path": "src/i18n/en.ts",
+      "operation": "Modify",
+      "purpose": "Replace testimonials.1-3 with English translations; add testimonials.4 English translation.",
+      "lines": "90-101"
+    },
+    {
+      "path": "src/i18n/zh.ts",
+      "operation": "Modify",
+      "purpose": "Replace testimonials.1-3 with Chinese translations; add testimonials.4 Chinese translation.",
+      "lines": "90-101"
+    },
+    {
+      "path": "src/components/Testimonials.astro",
+      "operation": "Modify",
+      "purpose": "Update photo URLs to Firebase Storage for testimonies 1-3; update initials; add 4th testimony entry with initials fallback.",
+      "lines": "11-43"
+    }
+  ],
+  "quality_gates": {
+    "astro_check": "PASSED - 0 errors, 0 warnings",
+    "build": "PENDING - requires Astro dev environment",
+    "manual_verification": "PENDING"
+  },
+  "assumptions": [
+    "Firebase Storage bucket aconcagua-co.firebasestorage.app is publicly accessible via the provided token URLs",
+    "No image provided for Ricardo Peralta — initials avatar fallback (RP) used",
+    "English and Chinese testimony texts are translations; Spanish texts are verbatim originals as provided"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "adw_id": 1002,
+  "issue_number": 14,
+  "spec_path": "specs/feat-1002-issue-14-add-guiselle-fonsepi-testimony.md",
+  "summary": [
+    "Added Guiselle Fonsepi (testimony 5) to the testimonials carousel on the Astro static site.",
+    "Phase 1 (i18n): Added `testimonials.5.name`, `testimonials.5.location`, and `testimonials.5.text` keys to all three language files: `src/i18n/es.ts` (Spanish original), `src/i18n/en.ts` (English translation), and `src/i18n/zh.ts` (Chinese translation).",
+    "Phase 2 (Component): Appended testimony 5 object to the `testimonials[]` array in `src/components/Testimonials.astro` with Firebase Storage photo URL, initials 'GF', and i18n lookups for name/location/text.",
+    "Phase 3 (Integration): No additional wiring needed — carousel dots and navigation auto-scale from array length; TestimonialCard.astro already renders photo prop.",
+    "Phase 4 (Validation): `npm run build` completed successfully — 7 pages built with 0 errors."
+  ],
+  "files_changed": {
+    "src/components/Testimonials.astro": "+9 lines",
+    "src/i18n/en.ts": "+3 lines",
+    "src/i18n/es.ts": "+3 lines",
+    "src/i18n/zh.ts": "+3 lines",
+    "total": "4 files changed, 18 insertions(+)"
+  },
+  "validation": {
+    "build": "PASSED — 7 pages built in 3.77s, no errors",
+    "typescript": "PASSED — Astro build includes TypeScript compilation, 0 errors",
+    "existing_testimonials": "UNCHANGED — Testimonials 1 (Marcelo), 2 (Catalina), 3 (Ricardo) untouched"
+  },
+  "result_path": "agents/1002/implementor/implementation-1002-issue-14-add-guiselle-fonsepi-testimony.json"
+}

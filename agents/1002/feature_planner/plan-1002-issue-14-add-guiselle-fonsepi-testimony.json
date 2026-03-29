@@ -1,0 +1,53 @@
+{
+  "adw_id": "1002",
+  "issue_number": "14",
+  "feature": "Add Guiselle Fonsepi Testimony (Testimony 5)",
+  "branch": "chore/update_testimonies_ui_ux",
+  "status": "implemented",
+  "scope": "Astro static site (aconcagua repo)",
+  "affected_files": [
+    {
+      "path": "src/i18n/es.ts",
+      "operation": "Modify",
+      "purpose": "Add testimonials.5.name, testimonials.5.location, testimonials.5.text in Spanish original"
+    },
+    {
+      "path": "src/i18n/en.ts",
+      "operation": "Modify",
+      "purpose": "Add testimonials.5.name, testimonials.5.location, testimonials.5.text in English translation"
+    },
+    {
+      "path": "src/i18n/zh.ts",
+      "operation": "Modify",
+      "purpose": "Add testimonials.5.name, testimonials.5.location, testimonials.5.text in Chinese translation"
+    },
+    {
+      "path": "src/components/Testimonials.astro",
+      "operation": "Modify",
+      "purpose": "Append testimony 5 (Guiselle Fonsepi) object to testimonials array with photo URL and i18n keys"
+    }
+  ],
+  "testimony_data": {
+    "index": 5,
+    "name": "Guiselle Fonsepi",
+    "country": "Costa Rica",
+    "initials": "GF",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/aconcagua-co.firebasestorage.app/o/PHOTO-2026-03-23-23-41-46.jpg?alt=media&token=a34e636b-a3fb-4c84-b9b8-fcaa38de42aa",
+    "summitDate": null,
+    "text_es": "Desde que en mi mente pasó ir al Aconcagua me inspiró mucho los videos de Julián. Un guía te transporta, sus consejos y forma fácil de explicar te inspira. Apliqué sus consejos durante mi experiencia en diciembre - enero 2026. Gracias Julián por tu ayuda. La forma claro en que explicas. Sos un crack. Dios mediante volveré y ojalá con usted. Invito a todos a ver sus videos y consejos. Nos vemos pronto.",
+    "text_en": "Ever since the thought of going to Aconcagua crossed my mind, Julián's videos inspired me greatly. A guide who truly takes you there — his advice and his easy, clear way of explaining things is truly inspiring. I applied his tips during my experience in December–January 2026. Thank you Julián for your help. The clear way you explain everything — you are amazing. God willing I will be back, and hopefully with you. I invite everyone to watch his videos and follow his advice. See you soon.",
+    "text_zh": "自从我心中萌生了攀登阿空加瓜的念头，Julián的视频就给了我极大的启发。一位真正能带你感同身受的向导——他的建议和简单易懂的讲解方式令人振奋不已。我在2025年12月至2026年1月的登山经历中运用了他的建议。感谢Julián对我的帮助。你的讲解方式清晰明了，你真的太棒了。上帝保佑，我一定会回来，希望能和你一起。我邀请所有人观看他的视频并参考他的建议。我们很快再见！"
+  },
+  "build_verification": {
+    "command": "npm run build",
+    "result": "success",
+    "pages_built": 7,
+    "errors": 0
+  },
+  "constraints_respected": {
+    "existing_testimonials_unchanged": true,
+    "no_dummy_testimonials": true,
+    "real_photo_used": true,
+    "all_languages_translated": true
+  }
+}

@@ -97,6 +97,9 @@ export const es = {
   'testimonials.3.name': 'Ricardo Peralta',
   'testimonials.3.location': 'Costa Rica',
   'testimonials.3.text': 'Excelente la preparación por parte de Julian, les recomiendo su video de la Guía Completa que está en YouTube',
+  'testimonials.5.name': 'Guiselle Fonsepi',
+  'testimonials.5.location': 'Costa Rica',
+  'testimonials.5.text': 'Desde que en mi mente pasó ir al Aconcagua me inspiró mucho los videos de Julián. Un guía te transporta, sus consejos y forma fácil de explicar te inspira. Apliqué sus consejos durante mi experiencia en diciembre - enero 2026. Gracias Julián por tu ayuda. La forma claro en que explicas. Sos un crack. Dios mediante volveré y ojalá con usted. Invito a todos a ver sus videos y consejos. Nos vemos pronto.',
   'testimonials.readMore': 'Leer más',
   'testimonials.close': 'Cerrar',
 

@@ -1,0 +1,22 @@
+{
+  "adw_id": "1005",
+  "issue_number": "15",
+  "spec_path": "specs/feat-1005-issue-15-fix-ricardo-peralta-testimonial-image.md",
+  "summary": [
+    "Fixed Ricardo Peralta's testimonial image by replacing `photo: undefined` with the correct Firebase Storage URL in `src/components/Testimonials.astro` (line 36).",
+    "The fix was a single-line data change: `photo: 'https://firebasestorage.googleapis.com/v0/b/aconcagua-co.firebasestorage.app/o/PHOTO-2026-03-23-23-37-24.jpg?alt=media&token=004ecdb3-7700-4258-86b6-d5798f6ff41c'`",
+    "All other testimonials (Marcelo, Catalina, Guiselle) were left unchanged.",
+    "Astro build completed successfully with 0 errors."
+  ],
+  "files_changed": {
+    "src/components/Testimonials.astro": "1 insertion(+), 1 deletion(-)"
+  },
+  "git_diff_stat": "src/components/Testimonials.astro | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)",
+  "validation": {
+    "build": "PASSED — Astro build completed successfully (7 pages built in 2.93s)",
+    "type_check": "PASSED — No TypeScript errors (Astro build includes TS validation)",
+    "lint": "N/A — single-line data fix, no logic changes",
+    "tests": "N/A — no test coverage required per spec (single-line data fix)"
+  },
+  "result_path": "agents/1005/implementor/implementation-1005-issue-15-fix-ricardo-peralta-testimonial-image.json"
+}

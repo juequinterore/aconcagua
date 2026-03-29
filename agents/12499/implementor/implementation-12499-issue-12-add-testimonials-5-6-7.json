@@ -1,0 +1,56 @@
+{
+  "adw_id": "12499",
+  "issue_number": "12",
+  "spec_path": "specs/feat-12499-issue-12-add-testimonials-5-6-7.md",
+  "status": "completed",
+  "summary": [
+    "Created spec file at specs/feat-12499-issue-12-add-testimonials-5-6-7.md documenting the plan to add testimonials 5, 6, and 7.",
+    "Added testimonials.5 (Valentina Ríos, Colombia), testimonials.6 (Miguel Ángel Pérez, Mexico, with summitDate), and testimonials.7 (Camila Ruiz, Colombia) to src/i18n/es.ts with original Spanish texts.",
+    "Added English translations for testimonials.5, .6, .7 to src/i18n/en.ts.",
+    "Added Chinese translations for testimonials.5, .6, .7 to src/i18n/zh.ts.",
+    "Updated src/components/Testimonials.astro to include 3 new carousel entries (VR, MP, CR initials) for testimonials 5, 6, and 7 — carousel now shows 6 slides.",
+    "Testimonial 6 (Miguel Ángel Pérez) includes a summitDate prop ('enero de 2026' / 'January 2026' / '2026年1月').",
+    "All three new testimonials use the initials-avatar fallback (no photos available).",
+    "Build validation: npm run build — 7 pages built successfully, 0 errors.",
+    "Type validation: npx astro check — 0 errors, 0 warnings, 11 hints (all pre-existing)."
+  ],
+  "files_changed": [
+    "specs/feat-12499-issue-12-add-testimonials-5-6-7.md",
+    "src/components/Testimonials.astro",
+    "src/i18n/es.ts",
+    "src/i18n/en.ts",
+    "src/i18n/zh.ts"
+  ],
+  "git_diff_stat": "4 files changed, 57 insertions(+) [src files only; spec file is untracked new]",
+  "validation": {
+    "astro_build": "PASSED — 7 page(s) built in 3.71s, 0 errors",
+    "astro_check": "PASSED — 0 errors, 0 warnings, 11 pre-existing hints"
+  },
+  "new_testimonials": [
+    {
+      "key": "testimonials.5",
+      "name": "Valentina Ríos",
+      "location": "Colombia",
+      "initials": "VR",
+      "photo": null,
+      "summitDate": null
+    },
+    {
+      "key": "testimonials.6",
+      "name": "Miguel Ángel Pérez",
+      "location": "Mexico",
+      "initials": "MP",
+      "photo": null,
+      "summitDate": "enero de 2026 / January 2026 / 2026年1月"
+    },
+    {
+      "key": "testimonials.7",
+      "name": "Camila Ruiz",
+      "location": "Colombia",
+      "initials": "CR",
+      "photo": null,
+      "summitDate": null
+    }
+  ],
+  "result_path": "agents/12499/implementor/implementation-12499-issue-12-add-testimonials-5-6-7.json"
+}

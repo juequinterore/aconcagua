@@ -97,6 +97,9 @@ export const en = {
   'testimonials.3.name': 'Ricardo Peralta',
   'testimonials.3.location': 'Costa Rica',
   'testimonials.3.text': 'Excellent preparation from Julian. I highly recommend his Complete Guide video on YouTube.',
+  'testimonials.5.name': 'Guiselle Fonsepi',
+  'testimonials.5.location': 'Costa Rica',
+  'testimonials.5.text': 'Ever since the thought of going to Aconcagua crossed my mind, Julián\'s videos inspired me greatly. A guide who truly takes you there — his advice and his easy, clear way of explaining things is truly inspiring. I applied his tips during my experience in December–January 2026. Thank you Julián for your help. The clear way you explain everything — you are amazing. God willing I will be back, and hopefully with you. I invite everyone to watch his videos and follow his advice. See you soon.',
   'testimonials.readMore': 'Read more',
   'testimonials.close': 'Close',
 

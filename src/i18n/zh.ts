@@ -97,6 +97,9 @@ export const zh = {
   'testimonials.3.name': 'Ricardo Peralta',
   'testimonials.3.location': '哥斯达黎加',
   'testimonials.3.text': 'Julian的准备工作非常出色，我向大家推荐他在YouTube上的完整指南视频。',
+  'testimonials.5.name': 'Guiselle Fonsepi',
+  'testimonials.5.location': '哥斯达黎加',
+  'testimonials.5.text': '自从我心中萌生了攀登阿空加瓜的念头，Julián的视频就给了我极大的启发。一位真正能带你感同身受的向导——他的建议和简单易懂的讲解方式令人振奋不已。我在2025年12月至2026年1月的登山经历中运用了他的建议。感谢Julián对我的帮助。你的讲解方式清晰明了，你真的太棒了。上帝保佑，我一定会回来，希望能和你一起。我邀请所有人观看他的视频并参考他的建议。我们很快再见！',
   'testimonials.readMore': '阅读更多',
   'testimonials.close': '关闭',
 

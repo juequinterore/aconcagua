@@ -100,6 +100,9 @@ export const es = {
   'testimonials.5.name': 'Guiselle Fonsepi',
   'testimonials.5.location': 'Costa Rica',
   'testimonials.5.text': 'Desde que en mi mente pasó ir al Aconcagua me inspiró mucho los videos de Julián. Un guía te transporta, sus consejos y forma fácil de explicar te inspira. Apliqué sus consejos durante mi experiencia en diciembre - enero 2026. Gracias Julián por tu ayuda. La forma claro en que explicas. Sos un crack. Dios mediante volveré y ojalá con usted. Invito a todos a ver sus videos y consejos. Nos vemos pronto.',
+  'testimonials.6.name': 'Mariano Neme',
+  'testimonials.6.location': 'Argentina',
+  'testimonials.6.text': 'Groso total @julian_kusi , yo fui este año a Aconcagua y gran parte de la info de calidad la adquirí viendo el contenido en todas sus plataformas',
   'testimonials.readMore': 'Leer más',
   'testimonials.close': 'Cerrar',
 

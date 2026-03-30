@@ -100,6 +100,9 @@ export const en = {
   'testimonials.5.name': 'Guiselle Fonsepi',
   'testimonials.5.location': 'Costa Rica',
   'testimonials.5.text': 'Ever since the thought of going to Aconcagua crossed my mind, Julián\'s videos inspired me greatly. A guide who truly takes you there — his advice and his easy, clear way of explaining things is truly inspiring. I applied his tips during my experience in December–January 2026. Thank you Julián for your help. The clear way you explain everything — you are amazing. God willing I will be back, and hopefully with you. I invite everyone to watch his videos and follow his advice. See you soon.',
+  'testimonials.6.name': 'Mariano Neme',
+  'testimonials.6.location': 'Argentina',
+  'testimonials.6.text': 'Total legend @julian_kusi — I went to Aconcagua this year and most of the quality information I got was from watching the content on all your platforms',
   'testimonials.readMore': 'Read more',
   'testimonials.close': 'Close',
 

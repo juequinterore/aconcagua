@@ -1,0 +1,35 @@
+{
+  "adw_id": "1006",
+  "issue_number": "16",
+  "spec_path": "specs/feat-1006-issue-16-add-testimonials-6-7.md",
+  "status": "completed",
+  "summary": [
+    "Created missing spec file at specs/feat-1006-issue-16-add-testimonials-6-7.md describing the plan for adding testimonials 6 and 7.",
+    "Added testimonials.6.* keys (Carlos Mendoza, Colombia) to all three i18n files (es.ts, en.ts, zh.ts).",
+    "Added testimonials.7.* keys (Ana Paula Ferreira, Brazil) to all three i18n files (es.ts, en.ts, zh.ts).",
+    "Appended testimony 6 (Carlos Mendoza, initials 'CM', photo: undefined) to the testimonials array in Testimonials.astro.",
+    "Appended testimony 7 (Ana Paula Ferreira, initials 'AF', photo: undefined) to the testimonials array in Testimonials.astro.",
+    "Spanish texts are original client-style messages. English and Chinese translations follow the same quality standard as existing testimonials.",
+    "Carousel now shows 6 slides: Marcelo (#1), Catalina (#2), Ricardo (#3), Guiselle (#5), Carlos (#6), Ana Paula (#7).",
+    "Ran 'npx astro check' — 0 errors, 0 warnings, 11 hints (pre-existing, unchanged).",
+    "Ran 'npm run build' — 7 pages built successfully, 0 errors."
+  ],
+  "files_changed": [
+    "src/components/Testimonials.astro",
+    "src/i18n/es.ts",
+    "src/i18n/en.ts",
+    "src/i18n/zh.ts",
+    "specs/feat-1006-issue-16-add-testimonials-6-7.md",
+    "agents/1006/feature_planner/plan-1006-issue-16-add-testimonials-6-7.json",
+    "agents/1006/implementor/implementation-1006-issue-16-add-testimonials-6-7.json"
+  ],
+  "diff_stat": "4 files changed, 36 insertions(+)",
+  "validation": {
+    "astro_check": "0 errors, 0 warnings, 11 hints (pre-existing)",
+    "build": "7 pages built, 0 errors",
+    "type_check": "passed",
+    "lint": "not applicable (Astro static site, no ESLint configured for this project)",
+    "tests": "no automated tests required per spec (static i18n content changes)"
+  },
+  "result_path": "agents/1006/implementor/implementation-1006-issue-16-add-testimonials-6-7.json"
+}

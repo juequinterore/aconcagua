@@ -1,0 +1,59 @@
+{
+  "adw_id": "1006",
+  "issue_number": "16",
+  "feature": "Add Testimonials 6 & 7 (Carlos Mendoza and Ana Paula Ferreira)",
+  "branch": "chore/add_extra_testimonials_and_translations",
+  "status": "implemented",
+  "scope": "Astro static site (aconcagua repo)",
+  "affected_files": [
+    {
+      "path": "src/i18n/es.ts",
+      "operation": "Modify",
+      "purpose": "Add testimonials.6.* and testimonials.7.* keys in Spanish"
+    },
+    {
+      "path": "src/i18n/en.ts",
+      "operation": "Modify",
+      "purpose": "Add testimonials.6.* and testimonials.7.* keys in English"
+    },
+    {
+      "path": "src/i18n/zh.ts",
+      "operation": "Modify",
+      "purpose": "Add testimonials.6.* and testimonials.7.* keys in Chinese"
+    },
+    {
+      "path": "src/components/Testimonials.astro",
+      "operation": "Modify",
+      "purpose": "Append testimony 6 (Carlos Mendoza) and testimony 7 (Ana Paula Ferreira) objects to testimonials array"
+    }
+  ],
+  "testimony_data": [
+    {
+      "index": 6,
+      "name": "Carlos Mendoza",
+      "country": "Colombia",
+      "initials": "CM",
+      "photo": null,
+      "summitDate": null
+    },
+    {
+      "index": 7,
+      "name": "Ana Paula Ferreira",
+      "country": "Brazil",
+      "initials": "AF",
+      "photo": null,
+      "summitDate": null
+    }
+  ],
+  "build_verification": {
+    "command": "npm run build",
+    "result": "success",
+    "pages_built": 7,
+    "errors": 0
+  },
+  "constraints_respected": {
+    "existing_testimonials_unchanged": true,
+    "no_dummy_testimonials": true,
+    "real_photo_used": false
+  }
+}

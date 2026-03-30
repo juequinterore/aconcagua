@@ -1,0 +1,26 @@
+{
+  "adw_id": 1007,
+  "issue_number": 17,
+  "spec_path": "specs/feat-1007-issue-17-add-testimonial-mariano-neme.md",
+  "summary": [
+    "Added Mariano Neme (testimony 6) to the testimonials carousel on the Astro static site.",
+    "Note: The spec file was not pre-created by the feature planner — it was created by the implementor as part of this task since no spec existed at the expected path.",
+    "Phase 1 (i18n): Added `testimonials.6.name`, `testimonials.6.location`, and `testimonials.6.text` keys to all three language files: `src/i18n/es.ts` (Spanish original), `src/i18n/en.ts` (English translation), and `src/i18n/zh.ts` (Chinese translation).",
+    "Phase 2 (Component): Appended testimony 6 object to the `testimonials[]` array in `src/components/Testimonials.astro` with initials 'MN' (no photo URL available), and i18n lookups for name/location/text.",
+    "Phase 3 (Integration): No additional wiring needed — carousel dots and navigation auto-scale from array length; TestimonialCard.astro already renders initials fallback when photo is undefined.",
+    "Phase 4 (Validation): `npm run build` completed successfully — 7 pages built with 0 errors."
+  ],
+  "files_changed": {
+    "src/components/Testimonials.astro": "+9 lines",
+    "src/i18n/en.ts": "+3 lines",
+    "src/i18n/es.ts": "+3 lines",
+    "src/i18n/zh.ts": "+3 lines",
+    "total": "4 files changed, 18 insertions(+)"
+  },
+  "validation": {
+    "build": "PASSED — 7 pages built in 4.47s, no errors",
+    "typescript": "PASSED — Astro build includes TypeScript compilation, 0 errors",
+    "existing_testimonials": "UNCHANGED — Testimonials 1 (Marcelo), 2 (Catalina), 3 (Ricardo), 5 (Guiselle) untouched"
+  },
+  "result_path": "agents/1007/implementor/implementation-1007-issue-17-add-testimonial-mariano-neme.json"
+}

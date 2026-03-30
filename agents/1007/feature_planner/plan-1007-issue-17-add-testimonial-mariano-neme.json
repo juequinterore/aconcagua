@@ -1,0 +1,54 @@
+{
+  "adw_id": "1007",
+  "issue_number": "17",
+  "slug": "add-testimonial-mariano-neme",
+  "spec_path": "specs/feat-1007-issue-17-add-testimonial-mariano-neme.md",
+  "feature": "Add Mariano Neme Testimonial (Testimony 6)",
+  "branch": "chore/add_new_testimonial_translations",
+  "status": "implemented",
+  "scope": "Astro static site (aconcagua repo)",
+  "affected_files": [
+    {
+      "path": "src/i18n/es.ts",
+      "operation": "Modify",
+      "purpose": "Add testimonials.6.name, testimonials.6.location, testimonials.6.text in Spanish original"
+    },
+    {
+      "path": "src/i18n/en.ts",
+      "operation": "Modify",
+      "purpose": "Add testimonials.6.name, testimonials.6.location, testimonials.6.text in English translation"
+    },
+    {
+      "path": "src/i18n/zh.ts",
+      "operation": "Modify",
+      "purpose": "Add testimonials.6.name, testimonials.6.location, testimonials.6.text in Chinese translation"
+    },
+    {
+      "path": "src/components/Testimonials.astro",
+      "operation": "Modify",
+      "purpose": "Append testimony 6 (Mariano Neme) object to testimonials array with initials fallback and i18n keys"
+    }
+  ],
+  "testimony_data": {
+    "index": 6,
+    "name": "Mariano Neme",
+    "country": "Argentina",
+    "initials": "MN",
+    "photo": null,
+    "summitDate": null,
+    "text_es": "Seguí los videos de Julián durante meses antes de mi expedición al Aconcagua. Su guía completa en YouTube es invaluable: desde la elección del equipo hasta la estrategia de aclimatación. Gracias a su preparación llegué a cumbre. Julián tiene la habilidad de transmitir su experiencia de manera clara y motivadora. Si están pensando en el Aconcagua, miren sus videos, los van a preparar para todo.",
+    "text_en": "I followed Julián's videos for months before my Aconcagua expedition. His complete guide on YouTube is invaluable — from gear selection to acclimatization strategy. Thanks to his preparation, I reached the summit. Julián has the ability to convey his experience clearly and motivationally. If you are thinking about Aconcagua, watch his videos — they will prepare you for everything.",
+    "text_zh": "在攀登阿空加瓜前，我跟随Julián的视频学习了好几个月。他在YouTube上的完整指南非常宝贵——从装备选择到适应高海拔的策略应有尽有。多亏了他的备战指导，我成功登顶。Julián能够清晰而有力地传递他的丰富经验。如果您正在考虑挑战阿空加瓜，一定要看他的视频，它们会让您做好充分准备。"
+  },
+  "build_verification": {
+    "command": "npm run build",
+    "result": "success",
+    "pages_built": 7,
+    "errors": 0
+  },
+  "constraints_respected": {
+    "existing_testimonials_unchanged": true,
+    "no_dummy_testimonials": true,
+    "all_languages_translated": true
+  }
+}

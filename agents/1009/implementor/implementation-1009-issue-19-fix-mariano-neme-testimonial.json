@@ -1,0 +1,28 @@
+{
+  "adw_id": 1009,
+  "issue_number": 19,
+  "spec_path": "specs/feat-1009-issue-19-fix-mariano-neme-testimonial.md",
+  "summary": [
+    "Fixed Mariano Neme's testimonial (key `testimonials.6`) which had two defects: missing photo and fake/dummy text across all three i18n files.",
+    "Phase 1: Updated `src/components/Testimonials.astro` — replaced `photo: undefined` with the real Firebase Storage URL for testimonial 6 (MN).",
+    "Phase 2: Updated `src/i18n/es.ts` — replaced dummy Spanish text with the real verbatim testimonial: 'Groso total @julian_kusi , yo fui este año a Aconcagua y gran parte de la info de calidad la adquirí viendo el contenido en todas sus plataformas'.",
+    "Phase 3: Updated `src/i18n/en.ts` — replaced dummy English text with faithful translation: 'Total legend @julian_kusi — I went to Aconcagua this year and most of the quality information I got was from watching the content on all your platforms'.",
+    "Phase 4: Updated `src/i18n/zh.ts` — replaced dummy Chinese text with faithful translation: '@julian_kusi 真的太棒了，我今年去了阿空加瓜，大部分高质量的信息都是通过观看您在各个平台上的内容获得的'.",
+    "No structural changes were made — only data corrections as specified.",
+    "All other testimonial fields (name, location, initials, summitDate) remain unchanged.",
+    "No other testimonials were modified."
+  ],
+  "files_changed": {
+    "src/components/Testimonials.astro": "Fixed photo field for testimonial 6 (MN) — replaced undefined with real Firebase Storage URL",
+    "src/i18n/es.ts": "Replaced dummy Spanish text with real verbatim testimonial",
+    "src/i18n/en.ts": "Replaced dummy English text with faithful English translation",
+    "src/i18n/zh.ts": "Replaced dummy Chinese text with faithful Chinese translation"
+  },
+  "git_diff_stat": "4 files changed, 4 insertions(+), 4 deletions(-)",
+  "validation": {
+    "build": "PASSED — `npm run build` completed with 0 errors, 7 pages built",
+    "typescript": "PASSED — Astro build includes TypeScript compilation with no errors",
+    "all_routes_built": ["/ (ES)", "/en", "/zh", "/privacidad", "/en/privacy", "/zh/privacy"],
+    "regressions": "No regressions — testimonials 1-5 are completely unchanged"
+  }
+}

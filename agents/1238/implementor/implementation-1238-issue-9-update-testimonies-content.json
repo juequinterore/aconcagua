@@ -1,0 +1,29 @@
+{
+  "adw_id": 1238,
+  "issue_number": 9,
+  "spec_path": "specs/feat-1238-issue-9-update-testimonies-content.md",
+  "status": "completed",
+  "summary": [
+    "Replaced all 3 dummy testimonies (placeholder data) with real client data across all 3 i18n files (es, en, zh).",
+    "Added 4th testimony (Ricardo Peralta, Costa Rica) with no photo (initials fallback 'RP') across all language files.",
+    "Updated src/components/Testimonials.astro to use Firebase Storage image URLs for testimonies 1–3 (Julio.jpg, Marcelo.jpg, Cata.jpg) and correct initials (JC, MS, CC, RP).",
+    "The 4th testimony entry was added to the testimonials array with photo: undefined and initials: 'RP'.",
+    "Spanish texts in es.ts are original client messages. English and Chinese translations were provided in en.ts and zh.ts respectively.",
+    "Ran 'npx astro check' — 0 errors, 0 warnings, 10 pre-existing hints (unchanged).",
+    "No structural changes to carousel JS logic or TestimonialCard.astro component."
+  ],
+  "files_changed": [
+    "src/components/Testimonials.astro",
+    "src/i18n/es.ts",
+    "src/i18n/en.ts",
+    "src/i18n/zh.ts"
+  ],
+  "diff_stat": "4 files changed, 50 insertions(+), 33 deletions(-)",
+  "validation": {
+    "astro_check": "0 errors, 0 warnings, 10 hints (pre-existing)",
+    "type_check": "passed",
+    "lint": "not applicable (Astro static site, no ESLint configured for this project)",
+    "tests": "no automated tests required per spec (static i18n content changes)"
+  },
+  "result_path": "agents/1238/implementor/implementation-1238-issue-9-update-testimonies-content.json"
+}

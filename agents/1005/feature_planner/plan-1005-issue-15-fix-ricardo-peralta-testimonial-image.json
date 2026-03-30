@@ -1,0 +1,34 @@
+{
+  "adw_id": "1005",
+  "issue_number": "15",
+  "slug": "fix-ricardo-peralta-testimonial-image",
+  "spec_path": "specs/feat-1005-issue-15-fix-ricardo-peralta-testimonial-image.md",
+  "summary": "Fix Ricardo Peralta's missing photo in the testimonials carousel by setting the correct Firebase Storage URL in Testimonials.astro.",
+  "scope": "src/components/Testimonials.astro",
+  "affected_layers": ["UI"],
+  "problem_statement": "Testimonial #3 (Ricardo Peralta, initials 'RP') had photo set to undefined, causing the fallback initials avatar to display instead of his real photo.",
+  "solution": "Replace `photo: undefined` with the provided Firebase Storage URL for Ricardo Peralta's photo in the testimonials data array inside Testimonials.astro.",
+  "files_changed": [
+    {
+      "path": "src/components/Testimonials.astro",
+      "operation": "Modify",
+      "line": 36,
+      "change": "Changed `photo: undefined` to `photo: 'https://firebasestorage.googleapis.com/v0/b/aconcagua-co.firebasestorage.app/o/PHOTO-2026-03-23-23-37-24.jpg?alt=media&token=004ecdb3-7700-4258-86b6-d5798f6ff41c'` for testimonial #3 (Ricardo Peralta)"
+    }
+  ],
+  "constraints": [
+    "Existing testimonials were not modified",
+    "No dummy testimonials were added",
+    "Only the photo URL for Ricardo Peralta was changed"
+  ],
+  "verification": {
+    "build_command": "pnpm build",
+    "manual_steps": [
+      "Run `pnpm dev`, open http://localhost:4321",
+      "Navigate to #testimonios section",
+      "Navigate to 3rd slide (Ricardo Peralta)",
+      "Confirm photo is displayed instead of initials 'RP'",
+      "Confirm other testimonials are unchanged"
+    ]
+  }
+}

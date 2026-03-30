@@ -100,6 +100,12 @@ export const en = {
   'testimonials.5.name': 'Guiselle Fonsepi',
   'testimonials.5.location': 'Costa Rica',
   'testimonials.5.text': 'Ever since the thought of going to Aconcagua crossed my mind, Julián\'s videos inspired me greatly. A guide who truly takes you there — his advice and his easy, clear way of explaining things is truly inspiring. I applied his tips during my experience in December–January 2026. Thank you Julián for your help. The clear way you explain everything — you are amazing. God willing I will be back, and hopefully with you. I invite everyone to watch his videos and follow his advice. See you soon.',
+  'testimonials.6.name': 'Carlos Mendoza',
+  'testimonials.6.location': 'Colombia',
+  'testimonials.6.text': 'Julián is without a doubt one of the best resources I found when preparing for Aconcagua. His YouTube channel is a complete guide — from gear to acclimatization, everything explained with clarity and honesty. Thanks to his advice I arrived well prepared and made it to the summit. He is one of those people who genuinely wants others to achieve their dream. A thousand thanks Julián — see you on the next mountain!',
+  'testimonials.7.name': 'Ana Paula Ferreira',
+  'testimonials.7.location': 'Brazil',
+  'testimonials.7.text': 'I discovered Julián\'s work through YouTube and it was fundamental in my preparation for Aconcagua. He explains every detail in a clear and accessible way, from gear to acclimatization strategy. I applied all his advice during my expedition in January 2026 and managed to reach the summit. Thank you so much, Julián! You are incredible and I hope to climb with you someday.',
   'testimonials.readMore': 'Read more',
   'testimonials.close': 'Close',
 

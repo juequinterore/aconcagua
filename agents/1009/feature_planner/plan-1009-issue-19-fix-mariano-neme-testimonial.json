@@ -1,0 +1,67 @@
+{
+  "adw_id": "1009",
+  "issue_number": "19",
+  "feature": "Fix Mariano Neme's Testimonial (Photo + Text)",
+  "spec_path": "specs/feat-1009-issue-19-fix-mariano-neme-testimonial.md",
+  "scope": "Root Astro static site (aconcagua repo)",
+  "affected_layers": ["UI component data", "i18n translation files (ES, EN, ZH)"],
+  "problem_statement": "Mariano Neme's testimonial (key testimonials.6) was added in issue #18 but has two defects: (1) photo is undefined — real Firebase Storage URL is now available; (2) testimonial text is dummy/generated — must be replaced with the real text provided by Mariano Neme.",
+  "solution_strategy": "Data-only fix: update photo field in Testimonials.astro and replace dummy text in all three i18n files (es.ts, en.ts, zh.ts) with real/translated content.",
+  "files_to_change": [
+    {
+      "path": "src/components/Testimonials.astro",
+      "operation": "Modify",
+      "line_approx": 54,
+      "purpose": "Replace `photo: undefined` with real Firebase Storage photo URL for Mariano Neme (testimonial 6, initials MN)"
+    },
+    {
+      "path": "src/i18n/es.ts",
+      "operation": "Modify",
+      "line_approx": 105,
+      "purpose": "Replace dummy Spanish text with real verbatim testimonial: 'Groso total @julian_kusi , yo fui este año a Aconcagua y gran parte de la info de calidad la adquirí viendo el contenido en todas sus plataformas'"
+    },
+    {
+      "path": "src/i18n/en.ts",
+      "operation": "Modify",
+      "line_approx": 105,
+      "purpose": "Replace dummy English text with faithful translation: 'Total legend @julian_kusi — I went to Aconcagua this year and most of the quality information I got was from watching the content on all your platforms'"
+    },
+    {
+      "path": "src/i18n/zh.ts",
+      "operation": "Modify",
+      "line_approx": 105,
+      "purpose": "Replace dummy Chinese text with faithful translation: '@julian_kusi 真的太棒了，我今年去了阿空加瓜，大部分高质量的信息都是通过观看您在各个平台上的内容获得的'"
+    }
+  ],
+  "exact_values": {
+    "photo_url": "https://firebasestorage.googleapis.com/v0/b/aconcagua-co.firebasestorage.app/o/Mariano%20Neme.jpg?alt=media&token=18adca49-1013-4bf3-8bd2-dda0af406b19",
+    "text_es": "Groso total @julian_kusi , yo fui este año a Aconcagua y gran parte de la info de calidad la adquirí viendo el contenido en todas sus plataformas",
+    "text_en": "Total legend @julian_kusi — I went to Aconcagua this year and most of the quality information I got was from watching the content on all your platforms",
+    "text_zh": "@julian_kusi 真的太棒了，我今年去了阿空加瓜，大部分高质量的信息都是通过观看您在各个平台上的内容获得的"
+  },
+  "unchanged_fields": ["name", "location", "initials", "summitDate", "photoAlt"],
+  "verification_commands": [
+    "npm run build",
+    "npm run dev"
+  ],
+  "manual_verification": [
+    "Open http://localhost:4321 → scroll to #testimonios → navigate to slide 5 → verify photo and real text in Spanish",
+    "Open http://localhost:4321/en → verify English translation on slide 5",
+    "Open http://localhost:4321/zh → verify Chinese translation on slide 5",
+    "Confirm slides 1–4 unchanged"
+  ],
+  "acceptance_criteria": [
+    "photo field for testimonial 6 set to real Firebase Storage URL",
+    "testimonials.6.text in es.ts is the real verbatim testimonial",
+    "testimonials.6.text in en.ts is a faithful English translation",
+    "testimonials.6.text in zh.ts is a faithful Chinese translation",
+    "All other testimonial fields unchanged",
+    "No other testimonials modified",
+    "Astro build succeeds with 0 errors"
+  ],
+  "assumptions": [
+    "Firebase Storage URL is publicly accessible (no auth required for read)",
+    "The testimonial text provided is the complete, final text from Mariano Neme",
+    "summitDate remains undefined (not provided in issue)"
+  ]
+}

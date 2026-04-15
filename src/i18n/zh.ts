@@ -103,6 +103,7 @@ export const zh = {
   'testimonials.6.name': 'Mariano Neme',
   'testimonials.6.location': '阿根廷',
   'testimonials.6.text': '在攀登阿空加瓜前，我跟随Julián的视频学习了好几个月。他在YouTube上的完整指南非常宝贵——从装备选择到适应高海拔的策略应有尽有。多亏了他的备战指导，我成功登顶。Julián能够清晰而有力地传递他的丰富经验。如果您正在考虑挑战阿空加瓜，一定要看他的视频，它们会让您做好充分准备。',
+  'testimonials.6.text': '@julian_kusi 真的太棒了，我今年去了阿空加瓜，大部分高质量的信息都是通过观看您在各个平台上的内容获得的',
   'testimonials.7.name': 'Paul Quinteros',
   'testimonials.7.location': '厄瓜多尔',
   'testimonials.7.text': '千万个感谢，兄弟，非常感激你。如果你有机会来厄瓜多尔，一定告诉我，我会用全部的爱和敬意来迎接你，亲爱的Julián。',

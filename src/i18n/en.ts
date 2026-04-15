@@ -102,7 +102,11 @@ export const en = {
   'testimonials.5.text': 'Ever since the thought of going to Aconcagua crossed my mind, Julián\'s videos inspired me greatly. A guide who truly takes you there — his advice and his easy, clear way of explaining things is truly inspiring. I applied his tips during my experience in December–January 2026. Thank you Julián for your help. The clear way you explain everything — you are amazing. God willing I will be back, and hopefully with you. I invite everyone to watch his videos and follow his advice. See you soon.',
   'testimonials.6.name': 'Mariano Neme',
   'testimonials.6.location': 'Argentina',
+  'testimonials.6.text': 'I followed Julián\'s videos for months before my Aconcagua expedition. His complete guide on YouTube is invaluable — from gear selection to acclimatization strategy. Thanks to his preparation, I reached the summit. Julián has the ability to convey his experience clearly and motivationally. If you are thinking about Aconcagua, watch his videos — they will prepare you for everything.',
   'testimonials.6.text': 'Total legend @julian_kusi — I went to Aconcagua this year and most of the quality information I got was from watching the content on all your platforms',
+  'testimonials.7.name': 'Paul Quinteros',
+  'testimonials.7.location': 'Ecuador',
+  'testimonials.7.text': '1000 thanks for everything brother, I really appreciate it, and if you are ever in Ecuador do not hesitate to let me know — I will welcome you with all the love and appreciation in the world, dear Julián.',
   'testimonials.readMore': 'Read more',
   'testimonials.close': 'Close',
 

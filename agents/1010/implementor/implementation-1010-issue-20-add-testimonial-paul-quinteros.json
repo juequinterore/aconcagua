@@ -1,0 +1,41 @@
+{
+  "adw_id": 1010,
+  "issue_number": 20,
+  "spec_path": "specs/feat-1010-issue-20-add-testimonial-paul-quinteros.md",
+  "status": "completed",
+  "summary": [
+    "Added testimonials.7.name, testimonials.7.location, testimonials.7.text keys to src/i18n/es.ts (Spanish: original text from Paul Quinteros)",
+    "Added testimonials.7.name, testimonials.7.location, testimonials.7.text keys to src/i18n/en.ts (English translation)",
+    "Added testimonials.7.name, testimonials.7.location, testimonials.7.text keys to src/i18n/zh.ts (Chinese translation: 厄瓜多尔)",
+    "Added new testimonial object at index 7 in src/components/Testimonials.astro with initials 'PQ', photo URL from Firebase Storage, summitDate: undefined, and all i18n-driven fields"
+  ],
+  "files_changed": {
+    "src/components/Testimonials.astro": "+9 lines",
+    "src/i18n/en.ts": "+3 lines",
+    "src/i18n/es.ts": "+3 lines",
+    "src/i18n/zh.ts": "+3 lines",
+    "total": "4 files changed, 18 insertions(+)"
+  },
+  "git_diff_stat": "src/components/Testimonials.astro | 9 +++++++++\n src/i18n/en.ts | 3 +++\n src/i18n/es.ts | 3 +++\n src/i18n/zh.ts | 3 +++\n 4 files changed, 18 insertions(+)",
+  "validation": {
+    "build": "PASSED — astro build completed, 7 pages built with 0 errors",
+    "type_check": "PASSED — astro check: 0 errors, 0 warnings (11 pre-existing hints only)",
+    "all_locale_keys_present": true,
+    "component_entry_added": true,
+    "photo_url": "https://firebasestorage.googleapis.com/v0/b/aconcagua-co.firebasestorage.app/o/Paul%20Quinteros.jpg?alt=media&token=37a8760e-cb6b-4379-89cf-b2c466d09849",
+    "initials": "PQ",
+    "summit_date": null
+  },
+  "acceptance_criteria": {
+    "testimonials_7_keys_in_es_ts": true,
+    "testimonials_7_keys_in_en_ts": true,
+    "testimonials_7_keys_in_zh_ts": true,
+    "testimonial_object_added_to_component": true,
+    "correct_initials_PQ": true,
+    "correct_photo_url": true,
+    "summit_date_undefined": true,
+    "build_passes": true,
+    "no_regressions_existing_testimonials": true,
+    "naming_conventions_followed": true
+  }
+}

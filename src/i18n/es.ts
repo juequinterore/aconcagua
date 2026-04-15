@@ -103,6 +103,9 @@ export const es = {
   'testimonials.6.name': 'Mariano Neme',
   'testimonials.6.location': 'Argentina',
   'testimonials.6.text': 'Seguí los videos de Julián durante meses antes de mi expedición al Aconcagua. Su guía completa en YouTube es invaluable: desde la elección del equipo hasta la estrategia de aclimatación. Gracias a su preparación llegué a cumbre. Julián tiene la habilidad de transmitir su experiencia de manera clara y motivadora. Si están pensando en el Aconcagua, miren sus videos, los van a preparar para todo.',
+  'testimonials.7.name': 'Paul Quinteros',
+  'testimonials.7.location': 'Ecuador',
+  'testimonials.7.text': '1000 gracias por todo hermano te agradezco bastante y si es que estás en Ecuador no dudes en avisarme que que yo te recibo ahí con todo el cariño y todo todo el aprecio estimado Julián',
   'testimonials.readMore': 'Leer más',
   'testimonials.close': 'Cerrar',
 

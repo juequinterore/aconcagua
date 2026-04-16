@@ -1,0 +1,80 @@
+{
+  "adw_id": "1238",
+  "issue_number": "10",
+  "feature": "Add Testimonials 7–11",
+  "spec_path": "specs/feat-1238-issue-10-add-testimonials-7-to-11.md",
+  "scope": "Astro static site (project root)",
+  "affected_layers": ["UI component", "i18n data (ES/EN/ZH)"],
+  "files_changed": [
+    {
+      "path": "src/i18n/es.ts",
+      "operation": "Modify",
+      "purpose": "Add testimonials.7–11 keys (name, location, text) in Spanish before testimonials.readMore"
+    },
+    {
+      "path": "src/i18n/en.ts",
+      "operation": "Modify",
+      "purpose": "Add testimonials.7–11 keys (name, location, text) in English before testimonials.readMore"
+    },
+    {
+      "path": "src/i18n/zh.ts",
+      "operation": "Modify",
+      "purpose": "Add testimonials.7–11 keys (name, location, text) in Chinese before testimonials.readMore"
+    },
+    {
+      "path": "src/components/Testimonials.astro",
+      "operation": "Modify",
+      "purpose": "Append 5 new testimonial objects (7–11) to the testimonials array with names, initials, Firebase photo URLs, and i18n refs"
+    }
+  ],
+  "new_testimonials": [
+    {
+      "id": 7,
+      "name": "Diego Morales",
+      "country": "Perú",
+      "initials": "DM",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/aconcagua-co.firebasestorage.app/o/PHOTO-2026-03-23-23-50-59.jpg?alt=media&token=bf3ade1f-2c0c-4773-98dc-aa7867f23f21"
+    },
+    {
+      "id": 8,
+      "name": "Sofía Ramírez",
+      "country": "México",
+      "initials": "SR",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/aconcagua-co.firebasestorage.app/o/PHOTO-2026-03-23-23-56-42%202.jpg?alt=media&token=a3c201c7-700c-4728-9479-933c0e2eca22"
+    },
+    {
+      "id": 9,
+      "name": "James O'Connor",
+      "country": "Irlanda",
+      "initials": "JO",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/aconcagua-co.firebasestorage.app/o/Paul%20Quinteros.jpg?alt=media&token=37a8760e-cb6b-4379-89cf-b2c466d09849"
+    },
+    {
+      "id": 10,
+      "name": "Andrés Salazar",
+      "country": "Colombia",
+      "initials": "AS",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/aconcagua-co.firebasestorage.app/o/PHOTO-2026-03-27-17-57-59.jpg?alt=media&token=7c480ca2-2caf-4f24-b0b4-2b8ca3575f63"
+    },
+    {
+      "id": 11,
+      "name": "Lucas Tanaka",
+      "country": "Brasil",
+      "initials": "LT",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/aconcagua-co.firebasestorage.app/o/PHOTO-2026-03-23-23-50-59.jpg?alt=media&token=bf3ade1f-2c0c-4773-98dc-aa7867f23f21"
+    }
+  ],
+  "implementation_status": "completed",
+  "build_command": "npm run build",
+  "dev_command": "npm run dev",
+  "verification": {
+    "build": "npm run build must complete without errors",
+    "visual": "Navigate to #testimonios, confirm 10 slides (5 original + 5 new), verify photos load from Firebase URLs",
+    "i18n_routes": "Verify /en and /zh routes show correct translations"
+  },
+  "assumptions": [
+    "Testimonial 4 was intentionally skipped in the original codebase — this pattern is maintained",
+    "Testimony 11 (Lucas Tanaka) reuses the same Firebase photo URL as testimony 7 (Diego Morales) as specified by the client",
+    "Chinese translations for new testimonials were machine-translated — client should verify accuracy if needed"
+  ]
+}

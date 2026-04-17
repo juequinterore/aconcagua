@@ -1,42 +1,37 @@
 {
   "adw_id": 1238,
   "issue_number": 10,
-  "spec_path": "specs/feat-1238-issue-10-add-testimonials-7-to-11.md",
+  "spec_path": "specs/feat-1238-issue-na-add-testimonials-7-to-11.md",
   "branch": "chore/add_testimonials_7_11",
-  "status": "complete",
+  "status": "completed",
   "summary": [
-    "Verified that testimonials 7–11 (Diego Morales, Sofía Ramírez, James O'Connor, Andrés Salazar, Lucas Tanaka) were already implemented in the prior commit (9dc94a1).",
-    "Confirmed src/components/Testimonials.astro now contains all 10 testimonial objects (1–3, 5–11) with correct Firebase photo URLs, initials, and i18n key references.",
-    "Confirmed src/i18n/es.ts contains testimonials.7.* through testimonials.11.* keys with Spanish text.",
-    "Confirmed src/i18n/en.ts contains testimonials.7.* through testimonials.11.* keys with English text.",
-    "Confirmed src/i18n/zh.ts contains testimonials.7.* through testimonials.11.* keys with Chinese Simplified text.",
-    "Testimonial 11 (Lucas Tanaka) correctly shares the same Firebase photo URL as testimonial 7 (Diego Morales) as per client specification.",
-    "Ran npm install to restore node_modules, then executed all Phase 4 validation commands.",
-    "npm run build: passed with 0 errors — 7 pages built successfully.",
-    "npx astro check: 0 errors, 0 warnings (only 11 pre-existing hints unrelated to this feature).",
-    "No new dependencies introduced. No regressions in testimonials 1–6."
+    "Verified all source changes (Phases 1–3) were already committed on branch chore/add_testimonials_7_11 in commit 9dc94a1.",
+    "Confirmed Testimonials.astro now contains 10 testimonial entries (1, 2, 3, 5, 6, 7, 8, 9, 10, 11 — 4 intentionally absent) referencing i18n keys and Firebase photo URLs.",
+    "Confirmed es.ts, en.ts, and zh.ts all contain keys testimonials.7–11.{name,location,text} in parity across all three locales.",
+    "Testimonial 11 (Lucas Tanaka / Brasil) correctly reuses the same Firebase photo URL as testimonial 7 (client-specified).",
+    "James O'Connor apostrophe is correctly escaped as \\' in single-quoted TypeScript string literals in en.ts and zh.ts.",
+    "Ran npm install to restore node_modules, then ran npm run build — build completed successfully with 0 errors and 0 @astrojs/check warnings.",
+    "All 7 pages built: /, /en/, /zh/, /privacidad/, /en/privacy/, /zh/privacy/, /404.html, plus redirect routes /globalrescue, /pire, /en/pire.",
+    "No new npm dependencies were added.",
+    "No new routes introduced; feature surfaces automatically via existing carousel .map() loop on all three locale home pages."
   ],
   "files_changed": {
-    "src/components/Testimonials.astro": "Added 5 new testimonial objects (7–11) to the testimonials array — +45 lines",
-    "src/i18n/es.ts": "Added testimonials.7.* through testimonials.11.* keys in Spanish — +15 lines",
-    "src/i18n/en.ts": "Added testimonials.7.* through testimonials.11.* keys in English — +15 lines",
-    "src/i18n/zh.ts": "Added testimonials.7.* through testimonials.11.* keys in Chinese Simplified — +15 lines"
+    "commit": "9dc94a1",
+    "stat": "src/components/Testimonials.astro (+45 lines), src/i18n/en.ts (+15 lines), src/i18n/es.ts (+15 lines), src/i18n/zh.ts (+15 lines); 4 source files, 90 lines added"
   },
-  "git_diff_stat": "4 source files changed, 90 insertions (plus agent/spec files: 305 total insertions)",
   "validation": {
-    "npm_run_build": "PASSED — 0 errors, 7 pages built",
-    "npx_astro_check": "PASSED — 0 errors, 0 warnings, 11 pre-existing hints"
+    "build": "PASS — npm run build exited 0 with zero errors and zero warnings",
+    "type_check": "PASS — @astrojs/check bundled in build; zero TypeScript errors",
+    "lint": "N/A — no lint/format tooling configured in this project",
+    "tests": "N/A — no automated test suite; manual verification script defined in spec section 5"
   },
   "acceptance_criteria": {
-    "i18n_keys_es": true,
-    "i18n_keys_en": true,
-    "i18n_keys_zh": true,
-    "testimonials_array_updated": true,
-    "firebase_photo_urls_correct": true,
-    "npm_build_passes": true,
-    "astro_check_passes": true,
+    "testimonials_7_to_11_in_component": true,
+    "keys_in_all_three_locales": true,
+    "build_passes_zero_errors": true,
     "no_new_dependencies": true,
-    "carousel_auto_wired": true
+    "no_missing_keys_in_any_locale": true,
+    "apostrophe_escaped_correctly": true
   },
   "result_path": "agents/1238/implementor/implementation-1238-issue-10-add-testimonials-7-to-11.json"
 }

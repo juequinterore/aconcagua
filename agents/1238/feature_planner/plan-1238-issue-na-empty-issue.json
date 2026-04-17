@@ -1,0 +1,12 @@
+{
+  "status": "insufficient_context",
+  "report": "Workspace contract checks passed: workspace root is /Users/me/var/agent-workspaces/27kfk5ItEz1BQUDdsyRJ, git remote is git@github.com:juequinterore/aconcagua.git (no issue_json.git.repository provided to compare). However, the issue_json input is completely empty ({}) — it contains no title, description, requirements, acceptance criteria, user story, or any other field that could be mapped onto the discovered project. Additionally, the issue_number parameter was provided as a boolean value (true) rather than an actual issue number, which is malformed. Without a valid issue_json containing at least a problem statement or feature description, no specification can be produced.",
+  "questions": [
+    "What is the feature or bug being requested? Please provide a populated issue_json with at minimum a title and description/body of the issue.",
+    "What is the actual numeric issue number (e.g. 42) for this work item? The value provided was a boolean 'true', not a number.",
+    "Does the issue correspond to the repository at git@github.com:juequinterore/aconcagua.git (current workspace remote)? If not, which repository should be used?"
+  ],
+  "spec_path": null,
+  "result_path": "agents/1238/feature_planner/plan-1238-issue-na-empty-issue.json",
+  "docs_project_created": false
+}

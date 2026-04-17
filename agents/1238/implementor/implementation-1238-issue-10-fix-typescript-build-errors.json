@@ -1,0 +1,51 @@
+{
+  "adw_id": "1238",
+  "issue_number": "10",
+  "spec_path": null,
+  "status": "completed",
+  "summary": [
+    "Fix: Removed unused `index` prop from `TestimonialCard.astro` Props interface and destructuring. This prop was introduced in a previous implementation (testimonials-ux-line-clamp-modal) but was never referenced anywhere in the component template or script, causing a ts(6133) TypeScript hint on line 27.",
+    "Fix: Removed the corresponding `index={i}` prop pass-through in `Testimonials.astro` (line 132) since `TestimonialCard` no longer declares or uses the prop.",
+    "Phase Validation — Build: npm run build — 7 pages built, 0 errors.",
+    "Phase Validation — TypeScript check: npx astro check — 0 errors, 0 warnings, 10 hints (down from 11; the 10 remaining hints are pre-existing and unrelated to testimonials work)."
+  ],
+  "typescript_issues_resolved": [
+    {
+      "file": "src/components/TestimonialCard.astro",
+      "line": 27,
+      "diagnostic": "ts(6133): 'index' is declared but its value is never read.",
+      "fix": "Removed `index?: number` from Props interface and `index = 0` from destructuring assignment.",
+      "root_cause": "The `index` prop was added in the testimonials-ux-line-clamp-modal implementation (issue-10) as a pass-through from Testimonials.astro but was never wired up to any template expression or script logic."
+    },
+    {
+      "file": "src/components/Testimonials.astro",
+      "line": 132,
+      "diagnostic": "Passed `index={i}` to TestimonialCard which no longer accepts the prop.",
+      "fix": "Removed `index={i}` from the TestimonialCard JSX invocation inside the testimonials.map() loop."
+    }
+  ],
+  "hints_before": 11,
+  "hints_after": 10,
+  "pre_existing_hints_unchanged": [
+    "src/components/About.astro:7 — 'lang' declared but never read (ts 6133)",
+    "src/components/CTA.astro:7 — 'lang' declared but never read (ts 6133)",
+    "src/components/Hero.astro:7 — 'lang' declared but never read (ts 6133)",
+    "src/components/Partners.astro:7 — 'lang' declared but never read (ts 6133)",
+    "src/components/Pricing.astro:9 — 'lang' declared but never read (ts 6133)",
+    "src/components/Stats.astro:7 — 'lang' declared but never read (ts 6133)",
+    "src/i18n/utils.ts:35 — 'lang' declared but never read (ts 6133)",
+    "src/layouts/BaseLayout.astro:208 — 'media' declared but never read (ts 6133)",
+    "src/layouts/BaseLayout.astro:390 — script treated as is:inline due to attribute (astro 4000)",
+    "src/layouts/BaseLayout.astro:220 — script treated as is:inline due to attribute (astro 4000)"
+  ],
+  "files_changed": [
+    "src/components/TestimonialCard.astro",
+    "src/components/Testimonials.astro"
+  ],
+  "git_diff_stat": "2 files changed, 3 deletions(-)",
+  "validation": {
+    "astro_build": "PASSED — 7 page(s) built in 448ms, 0 errors",
+    "astro_check": "PASSED — 0 errors, 0 warnings, 10 hints (1 fewer than before fix)"
+  },
+  "result_path": "agents/1238/implementor/implementation-1238-issue-10-fix-typescript-build-errors.json"
+}

@@ -10,7 +10,6 @@ interface Props {
   readMoreLabel?: string;
   closeLabel?: string;
   summitDate?: string;
-  index?: number;
 }
 
 const {
@@ -24,7 +23,6 @@ const {
   readMoreLabel = 'Read more',
   closeLabel = 'Close',
   summitDate,
-  index = 0,
 } = Astro.props;
 
 // Generate a unique ID for the dialog so multiple cards on the same page

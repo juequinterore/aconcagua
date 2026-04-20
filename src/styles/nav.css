@@ -11,7 +11,7 @@
 
 .nav.scrolled,
 .nav.nav-force-dark {
-  background: rgba(15, 25, 35, 0.96);
+  background: var(--bg-nav);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 14px 0;
@@ -120,7 +120,7 @@
   position: fixed;
   inset: 0;
   z-index: 99;
-  background: #0f1923;
+  background: #8B1A2A;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -173,7 +173,7 @@
 
 @media (max-width: 768px) {
   .nav {
-    background: rgba(15, 25, 35, 0.85);
+    background: rgba(139, 26, 42, 0.90);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }

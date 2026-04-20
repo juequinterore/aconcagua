@@ -1,0 +1,25 @@
+{
+  "adw_id": "1236",
+  "issue_number": "7",
+  "spec_path": "specs/feat-1236-issue-7-red-navbar.md",
+  "summary": [
+    "Updated `src/styles/global.css`: replaced `--bg-nav` token from dark navy `rgba(15, 25, 35, 0.96)` to deep crimson `rgba(139, 26, 42, 0.96)` in all three CSS blocks (`:root` dark default, `[data-theme=\"light\"]`, and OS fallback `@media (prefers-color-scheme: light) :root:not([data-theme])`).",
+    "Updated `src/styles/nav.css` with three colour replacements: (1) `.nav.scrolled` / `.nav.nav-force-dark` background changed from hardcoded `rgba(15, 25, 35, 0.96)` to `var(--bg-nav)` — now uses the design token; (2) `.nav-overlay` background changed from `#0f1923` to `#8B1A2A` (solid crimson); (3) Mobile `@media (max-width: 768px)` `.nav` background changed from `rgba(15, 25, 35, 0.85)` to `rgba(139, 26, 42, 0.90)` (semi-transparent crimson).",
+    "No JavaScript, Astro component structure, i18n keys, or build configuration changes were required — this was a pure CSS update.",
+    "Build validated: `./node_modules/.bin/astro build` completed successfully with 7 pages built, zero errors.",
+    "No hardcoded navy values (`#0f1923`, `rgba(15, 25, 35`) remain in `nav.css`.",
+    "`--bg-nav` token is now identical (`rgba(139, 26, 42, 0.96)`) across all three blocks in `global.css`."
+  ],
+  "files_changed": [
+    "src/styles/global.css",
+    "src/styles/nav.css"
+  ],
+  "git_diff_stat": "2 files changed, 6 insertions(+), 6 deletions(-)",
+  "validation": {
+    "build": "PASSED — astro build completed, 7 pages built in 3.43s",
+    "type_check": "N/A — CSS-only project, no TypeScript types involved",
+    "lint": "N/A — no lint configuration for CSS in this project",
+    "tests": "N/A — no automated test suite for CSS; visual verification is the acceptance mechanism per spec"
+  },
+  "result_path": "agents/1236/implementor/implementation-1236-issue-7-red-navbar.json"
+}

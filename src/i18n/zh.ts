@@ -5,6 +5,9 @@ export const zh = {
   'nav.testimonials': '客户评价',
   'nav.community': '社区',
   'nav.cta': '预约咨询',
+  'nav.blog': '博客',
+  'nav.blog_aria_external': '（在新标签页中打开）',
+  'nav.blog_url': 'https://blog.aconcagua.co',
 
   // Hero
   'hero.tag': '认证高山向导',

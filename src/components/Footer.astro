@@ -6,11 +6,12 @@ interface Props {
 
 const { lang, t } = Astro.props;
 
-const navLinks = [
+const navLinks: { key: string; href: string; external?: boolean }[] = [
   { key: 'nav.about', href: '#sobre' },
   { key: 'nav.expeditions', href: '#expediciones' },
   { key: 'nav.testimonials', href: '#testimonios' },
   { key: 'nav.community', href: '#comunidad' },
+  { key: 'nav.blog', href: t('nav.blog_url'), external: true },
 ];
 
 const socialLinks = [
@@ -81,7 +82,15 @@ const legalLinks = [
       <h3 class="footer-col-title">{t('footer.nav')}</h3>
       <ul class="footer-links" role="list">
         {navLinks.map(link => (
-          <li><a href={link.href}>{t(link.key)}</a></li>
+          <li>
+            {link.external ? (
+              <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={`${t(link.key)} ${t('nav.blog_aria_external')}`}>
+                {t(link.key)}<svg class="footer-link-external-icon" aria-hidden="true" focusable="false" width="0.7em" height="0.7em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg>
+              </a>
+            ) : (
+              <a href={link.href}>{t(link.key)}</a>
+            )}
+          </li>
         ))}
       </ul>
     </div>
@@ -372,6 +381,19 @@ const legalLinks = [
 
   .social-icon-small:hover {
     color: var(--accent);
+  }
+
+  .footer-link-external-icon {
+    display: inline-block;
+    margin-left: 0.35em;
+    vertical-align: -0.05em;
+    opacity: 0.6;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  a:hover > .footer-link-external-icon,
+  a:focus-visible > .footer-link-external-icon {
+    opacity: 1;
+    transform: translate(1px, -1px);
   }
 
   @media (max-width: 1200px) {

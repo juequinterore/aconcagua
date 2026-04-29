@@ -5,6 +5,9 @@ export const en = {
   'nav.testimonials': 'Testimonials',
   'nav.community': 'Community',
   'nav.cta': 'Book Consultation',
+  'nav.blog': 'Blog',
+  'nav.blog_aria_external': '(opens in a new tab)',
+  'nav.blog_url': 'https://blog.aconcagua.co',
 
   // Hero
   'hero.tag': 'Certified mountain guide',

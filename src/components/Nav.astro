@@ -10,11 +10,12 @@ interface Props {
 
 const { lang, t, forceDark = false } = Astro.props;
 
-const navLinks = [
+const navLinks: { key: string; href: string; external?: boolean; ariaKey?: string }[] = [
   { key: 'nav.about', href: '#sobre' },
   { key: 'nav.expeditions', href: '#expediciones' },
   { key: 'nav.testimonials', href: '#testimonios' },
   { key: 'nav.community', href: '#comunidad' },
+  { key: 'nav.blog', href: 'https://blog.aconcagua.co', external: true, ariaKey: 'nav.blog_aria' },
 ];
 ---
 
@@ -27,7 +28,18 @@ const navLinks = [
     <ul class="nav-links" role="list">
       {navLinks.map(link => (
         <li>
-          <a href={link.href}>{t(link.key)}</a>
+          {link.external ? (
+            <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={t(link.ariaKey!)}>
+              {t(link.key)}
+              <svg class="nav-link-external-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V7"/>
+                <path d="M8 1h3v3"/>
+                <path d="M11 1 5.5 6.5"/>
+              </svg>
+            </a>
+          ) : (
+            <a href={link.href}>{t(link.key)}</a>
+          )}
         </li>
       ))}
     </ul>
@@ -63,7 +75,18 @@ const navLinks = [
   <ul role="list">
     {navLinks.map(link => (
       <li>
-        <a href={link.href} class="overlay-nav-link">{t(link.key)}</a>
+        {link.external ? (
+          <a href={link.href} class="overlay-nav-link" target="_blank" rel="noopener noreferrer" aria-label={t(link.ariaKey!)}>
+            {t(link.key)}
+            <svg class="nav-link-external-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V7"/>
+              <path d="M8 1h3v3"/>
+              <path d="M11 1 5.5 6.5"/>
+            </svg>
+          </a>
+        ) : (
+          <a href={link.href} class="overlay-nav-link">{t(link.key)}</a>
+        )}
       </li>
     ))}
   </ul>
@@ -159,4 +182,12 @@ const navLinks = [
 
 <style>
   @import '../styles/nav.css';
+
+  .nav-link-external-icon {
+    width: 12px;
+    height: 12px;
+    margin-inline-start: 6px;
+    vertical-align: -1px;
+    opacity: 0.75;
+  }
 </style>

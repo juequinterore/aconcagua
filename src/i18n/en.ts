@@ -5,6 +5,8 @@ export const en = {
   'nav.testimonials': 'Testimonials',
   'nav.community': 'Community',
   'nav.cta': 'Book Consultation',
+  'nav.blog': 'Blog',
+  'nav.blog_aria': 'Blog (opens in a new tab)',
 
   // Hero
   'hero.tag': 'Certified mountain guide',

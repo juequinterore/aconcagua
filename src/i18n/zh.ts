@@ -5,6 +5,8 @@ export const zh = {
   'nav.testimonials': '客户评价',
   'nav.community': '社区',
   'nav.cta': '预约咨询',
+  'nav.blog': '博客',
+  'nav.blog_aria': '博客（在新标签页中打开）',
 
   // Hero
   'hero.tag': '认证高山向导',

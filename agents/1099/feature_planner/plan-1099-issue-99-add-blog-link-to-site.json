@@ -1,0 +1,86 @@
+{
+  "status": "ok",
+  "adw_id": "1099",
+  "issue_number": "99",
+  "feature": "Add blog link to site",
+  "spec_path": "specs/feat-1099-issue-99-add-blog-link-to-site.md",
+  "result_path": "agents/1099/feature_planner/plan-1099-issue-99-add-blog-link-to-site.json",
+  "scope": "Astro static site (project root) — Nav + Footer + i18n only",
+  "affected_layers": [
+    "UI component (Nav)",
+    "UI component (Footer)",
+    "i18n data (es / en / zh)"
+  ],
+  "blog_url": "https://blog.aconcagua.co",
+  "files_changed": [
+    {
+      "path": "src/i18n/es.ts",
+      "operation": "Modify",
+      "purpose": "Add nav.blog: 'Blog' and nav.blog_aria: 'Blog (se abre en una pestaña nueva)' near line 7, alongside the existing nav.* keys"
+    },
+    {
+      "path": "src/i18n/en.ts",
+      "operation": "Modify",
+      "purpose": "Add nav.blog: 'Blog' and nav.blog_aria: 'Blog (opens in a new tab)' near line 7, alongside the existing nav.* keys"
+    },
+    {
+      "path": "src/i18n/zh.ts",
+      "operation": "Modify",
+      "purpose": "Add nav.blog: '博客' and nav.blog_aria: '博客（在新标签页中打开）' near line 7, alongside the existing nav.* keys"
+    },
+    {
+      "path": "src/components/Nav.astro",
+      "operation": "Modify",
+      "purpose": "Extend navLinks item shape with optional external/ariaKey fields; append { key: 'nav.blog', href: 'https://blog.aconcagua.co', external: true, ariaKey: 'nav.blog_aria' }; render external links with target=_blank, rel=noopener noreferrer, aria-label, and a 12px aria-hidden inline external-link SVG in BOTH the desktop .nav-links loop (~line 27) and the mobile .nav-overlay loop (~line 64). Add a scoped .nav-link-external-icon rule (currentColor, 12px, opacity 0.75) to the component <style> block."
+    },
+    {
+      "path": "src/components/Footer.astro",
+      "operation": "Modify",
+      "purpose": "Append the same Blog entry to the local navLinks array (~line 9). Update the .footer-links map in the Navigation column (~line 83) to render external links with target=_blank, rel=noopener noreferrer, aria-label, and an 11px aria-hidden inline external-link SVG. Add a scoped .footer-link-external-icon rule (currentColor, 11px, opacity 0.6) to the component <style> block."
+    }
+  ],
+  "i18n_keys_added": [
+    {
+      "key": "nav.blog",
+      "es": "Blog",
+      "en": "Blog",
+      "zh": "博客"
+    },
+    {
+      "key": "nav.blog_aria",
+      "es": "Blog (se abre en una pestaña nueva)",
+      "en": "Blog (opens in a new tab)",
+      "zh": "博客（在新标签页中打开）"
+    }
+  ],
+  "exposure_surfaces": [
+    "Nav.astro desktop bar (.nav-links) — renders on every page (all 3 locale index pages + 3 privacy pages)",
+    "Nav.astro mobile overlay (.nav-overlay ul) — same",
+    "Footer.astro Navigation column (.footer-links) — same"
+  ],
+  "locale_parity": {
+    "es": "covered via shared Nav + Footer mounted in src/pages/index.astro",
+    "en": "covered via shared Nav + Footer mounted in src/pages/en/index.astro",
+    "zh": "covered via shared Nav + Footer mounted in src/pages/zh/index.astro"
+  },
+  "no_changes_needed": [
+    "astro.config.mjs (blog is on a separate subdomain — no project-route redirect required)",
+    "src/pages/*.astro (Nav and Footer are already imported and mounted on every page)",
+    "package.json (no new dependencies)"
+  ],
+  "validation_gate": "npm run build (must exit 0 with zero @astrojs/check errors/warnings)",
+  "manual_verification": "Sections 5.A / 5.B / 5.C / 5.D in the spec — verify across /, /en/, /zh/ on desktop + mobile overlay, both light and dark themes, with keyboard navigation",
+  "test_suite_exists": false,
+  "new_dependencies": [],
+  "accessibility_notes": [
+    "External Blog link carries a localized aria-label that includes 'opens in a new tab' phrasing",
+    "Inline external-link SVG is aria-hidden='true' to avoid duplicating the accessible name",
+    "rel='noopener noreferrer' on every Blog anchor (security)",
+    "Mobile-overlay focus trap (Nav.astro line ~98) continues to include the Blog link automatically since it queries 'a[href], button:not([disabled])'",
+    "No new animations introduced — prefers-reduced-motion unaffected"
+  ],
+  "assumptions": [
+    "Blog URL is identical across all three locales (single subdomain blog.aconcagua.co serves all audiences). If localized blog URLs are introduced later, the URL should be moved into i18n as a 'blog.url' key per the existing 'calendly.url' / 'cta.whatsapp_url' pattern."
+  ],
+  "report_summary": "Spec added at specs/feat-1099-issue-99-add-blog-link-to-site.md. Plan updates Nav.astro + Footer.astro to surface a 'Blog' link to https://blog.aconcagua.co, with a localized aria-label, target=_blank + rel=noopener noreferrer, and a small aria-hidden external-link SVG. Adds two i18n keys (nav.blog, nav.blog_aria) to all three locale dictionaries. No new dependencies, no new pages, no astro.config changes. Validation gate is npm run build."
+}

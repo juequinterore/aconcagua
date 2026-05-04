@@ -143,9 +143,9 @@ export const zh = {
   // Social
   'social.tag': '社区',
   'social.title': '在社交媒体上关注我',
-  'social.yt.count': '9,600+ 订阅',
+  'social.yt.count': '10K 订阅',
   'social.yt.cta': '订阅',
-  'social.ig.count': '13,500+ 粉丝',
+  'social.ig.count': '14K 粉丝',
   'social.ig.cta': '关注',
   'social.tt.count': '3,600+ 粉丝',
   'social.tt.cta': '关注',

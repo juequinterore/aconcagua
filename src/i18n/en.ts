@@ -143,9 +143,9 @@ export const en = {
   // Social
   'social.tag': 'COMMUNITY',
   'social.title': 'Follow Me on Social Media',
-  'social.yt.count': '9,600+ subscribers',
+  'social.yt.count': '10K subscribers',
   'social.yt.cta': 'Subscribe',
-  'social.ig.count': '13,500+ followers',
+  'social.ig.count': '14K followers',
   'social.ig.cta': 'Follow',
   'social.tt.count': '3,600+ followers',
   'social.tt.cta': 'Follow',

@@ -4,6 +4,7 @@ export const zh = {
   'nav.expeditions': '探险套餐',
   'nav.testimonials': '客户评价',
   'nav.community': '社区',
+  'nav.blog': '博客',
   'nav.cta': '预约咨询',
 
   // Hero
@@ -171,4 +172,7 @@ export const zh = {
   // Contact Float
   'contact.float.label_redbook': '小红书联系',
   'contact.float.aria_redbook': '通过小红书联系我',
+
+  // Accessibility
+  'a11y.opens_new_tab': '在新标签页中打开',
 };

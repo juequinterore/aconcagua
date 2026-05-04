@@ -6,11 +6,12 @@ interface Props {
 
 const { lang, t } = Astro.props;
 
-const navLinks = [
+const navLinks: { key: string; href: string; external?: boolean }[] = [
   { key: 'nav.about', href: '#sobre' },
   { key: 'nav.expeditions', href: '#expediciones' },
   { key: 'nav.testimonials', href: '#testimonios' },
   { key: 'nav.community', href: '#comunidad' },
+  { key: 'nav.blog', href: 'https://blog.aconcagua.co', external: true },
 ];
 
 const socialLinks = [
@@ -81,7 +82,20 @@ const legalLinks = [
       <h3 class="footer-col-title">{t('footer.nav')}</h3>
       <ul class="footer-links" role="list">
         {navLinks.map(link => (
-          <li><a href={link.href}>{t(link.key)}</a></li>
+          <li>
+            {link.external ? (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${t(link.key)}, ${t('a11y.opens_new_tab')}`}
+              >
+                {t(link.key)}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="margin-left:4px;opacity:0.7;vertical-align:middle;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            ) : (
+              <a href={link.href}>{t(link.key)}</a>
+            )}
+          </li>
         ))}
       </ul>
     </div>

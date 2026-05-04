@@ -4,6 +4,7 @@ export const en = {
   'nav.expeditions': 'Expeditions',
   'nav.testimonials': 'Testimonials',
   'nav.community': 'Community',
+  'nav.blog': 'Blog',
   'nav.cta': 'Book Consultation',
 
   // Hero
@@ -169,4 +170,7 @@ export const en = {
   // Contact Float
   'contact.float.label_whatsapp': 'Chat on WhatsApp',
   'contact.float.aria_whatsapp': 'Contact via WhatsApp',
+
+  // Accessibility
+  'a11y.opens_new_tab': 'opens in a new tab',
 };

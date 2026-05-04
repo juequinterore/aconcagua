@@ -4,6 +4,7 @@ export const es = {
   'nav.expeditions': 'Expediciones',
   'nav.testimonials': 'Testimonios',
   'nav.community': 'Comunidad',
+  'nav.blog': 'Blog',
   'nav.cta': 'Reservá tu Asesoría',
 
   // Hero
@@ -169,4 +170,7 @@ export const es = {
   // Contact Float
   'contact.float.label_whatsapp': 'Escribinos por WhatsApp',
   'contact.float.aria_whatsapp': 'Contactar por WhatsApp',
+
+  // Accessibility
+  'a11y.opens_new_tab': 'se abre en una pestaña nueva',
 };

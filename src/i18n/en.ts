@@ -4,6 +4,7 @@ export const en = {
   'nav.expeditions': 'Expeditions',
   'nav.testimonials': 'Testimonials',
   'nav.community': 'Community',
+  'nav.blog': 'Blog',
   'nav.cta': 'Book Consultation',
 
   // Hero
@@ -142,9 +143,9 @@ export const en = {
   // Social
   'social.tag': 'COMMUNITY',
   'social.title': 'Follow Me on Social Media',
-  'social.yt.count': '9,600+ subscribers',
+  'social.yt.count': '10K subscribers',
   'social.yt.cta': 'Subscribe',
-  'social.ig.count': '13,500+ followers',
+  'social.ig.count': '14K followers',
   'social.ig.cta': 'Follow',
   'social.tt.count': '3,600+ followers',
   'social.tt.cta': 'Follow',
@@ -169,4 +170,7 @@ export const en = {
   // Contact Float
   'contact.float.label_whatsapp': 'Chat on WhatsApp',
   'contact.float.aria_whatsapp': 'Contact via WhatsApp',
+
+  // Accessibility
+  'a11y.opens_new_tab': 'opens in a new tab',
 };

@@ -4,6 +4,7 @@ export const zh = {
   'nav.expeditions': '探险套餐',
   'nav.testimonials': '客户评价',
   'nav.community': '社区',
+  'nav.blog': '博客',
   'nav.cta': '预约咨询',
 
   // Hero
@@ -142,9 +143,9 @@ export const zh = {
   // Social
   'social.tag': '社区',
   'social.title': '在社交媒体上关注我',
-  'social.yt.count': '9,600+ 订阅',
+  'social.yt.count': '10K 订阅',
   'social.yt.cta': '订阅',
-  'social.ig.count': '13,500+ 粉丝',
+  'social.ig.count': '14K 粉丝',
   'social.ig.cta': '关注',
   'social.tt.count': '3,600+ 粉丝',
   'social.tt.cta': '关注',
@@ -171,4 +172,7 @@ export const zh = {
   // Contact Float
   'contact.float.label_redbook': '小红书联系',
   'contact.float.aria_redbook': '通过小红书联系我',
+
+  // Accessibility
+  'a11y.opens_new_tab': '在新标签页中打开',
 };

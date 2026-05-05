@@ -6,9 +6,23 @@
  * This file handles event tracking only — all calls are gated behind consent.
  */
 
-// Bail out entirely if user hasn't granted cookie consent
-if (localStorage.getItem('cookie_consent') === 'granted') {
+// Initialize tracking once consent is granted — either at page load
+// (return visit) or via the cookie:consent-granted event (first visit).
+let trackingInitialized = false;
+
+function initTracking() {
+  if (trackingInitialized) return;
+  trackingInitialized = true;
   setupTracking();
+}
+
+if (localStorage.getItem('cookie_consent') === 'granted') {
+  initTracking();
+} else {
+  document.addEventListener('cookie:consent-granted', function onConsent() {
+    document.removeEventListener('cookie:consent-granted', onConsent);
+    initTracking();
+  });
 }
 
 function setupTracking() {

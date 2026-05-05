@@ -358,6 +358,7 @@ const jsonLd = [
           localStorage.setItem(CONSENT_KEY, 'granted');
           banner.hidden = true;
           loadAnalytics();
+          document.dispatchEvent(new CustomEvent('cookie:consent-granted'));
         });
 
         declineBtn.addEventListener('click', function () {

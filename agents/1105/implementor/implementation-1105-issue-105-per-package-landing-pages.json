@@ -1,0 +1,42 @@
+{
+  "status": "ok",
+  "report": "Workspace root: /Users/me/var/agent-workspaces/1fz5gLByElsOspy6fFbc\nRemote match: origin git@github.com:juequinterore/aconcagua.git — matches issue_json.git.repository (SSH vs HTTPS same repo). ✓\nGit status at start: On branch chore/restructure_homepage_pricing_pages; clean except untracked agents/1105/ and bitbucket-api.sh.\nWorkspace warmth: COLD — node_modules absent. npm install ran (Pre-Phase 4.0a); lockfile did not shift post-install.\n\nPhases completed:\n• Phase 1 (Data/Model/Contract) — 3 files: created src/data/packages.ts (Package type + packages[] + getPackageById); extended src/i18n/utils.ts with getPackageUrl + getPackageAlternates; appended 15 new keys (pricing.view_details, package.detail.*, package.{1–4}.{overview,highlights}) to each of es.ts, en.ts, zh.ts. Locale parity verified: all 3 files have exactly 14 package.* keys.\n• Phase 2 (Implementation) — 4 files: created src/components/PackageDetail.astro (receives lang/t/packageId; renders breadcrumb, header with badge/name/price/Calendly CTA, feature list, overview+highlights placeholder sections, secondary CTA, bottom back-link; placeholder card styled via design tokens with accent border and chip); created src/pages/paquetes/[id].astro, src/pages/en/packages/[id].astro, src/pages/zh/packages/[id].astro — each with getStaticPaths() enumerating ids 1–4, canonical/alternates via new helpers, correct ogLocale.\n• Phase 3 (Integration & Exposure) — 4 files modified: PricingCard.astro (calendlyUrl → href prop; Calendly buttons → <a> links); Pricing.astro (inline literal replaced with packages.map(); cta key = pricing.view_details; passes href=getPackageUrl); Footer.astro (getPackageUrl import; expeditions hrefs from getPackageUrl(lang, N)); BaseLayout.astro (alternates?: prop with homepage list as default, existing pages unaffected).\n• Phase 4 (Validation) — npm run build exited 0 with zero @astrojs/check errors and zero Astro warnings; 19 pages built including all 12 new package pages.\n\ngit diff --stat: 8 files changed, 115 insertions(+), 85 deletions(-). 5 new files created (not counted by diff --stat since untracked).\n\nAutomated validation: npm run build — PASSED (exit 0, zero errors, zero warnings).\nAll 12 dist/ pages confirmed present: dist/paquetes/{1,2,3,4}/index.html, dist/en/packages/{1,2,3,4}/index.html, dist/zh/packages/{1,2,3,4}/index.html.\nSitemap: all 12 new URLs appear in dist/sitemap-0.xml.\n\nExposure surfaces wired:\n1. Homepage cards (Pricing.astro → PricingCard.astro): ES 4×href=/paquetes/N, EN 4×href=/en/packages/N, ZH 4×href=/zh/packages/N — verified in dist/ HTML.\n2. Footer expeditions column (Footer.astro): ES→/paquetes/N, EN→/en/packages/N, ZH→/zh/packages/N — verified in dist/ HTML.\n3. Direct URL / sitemap: all 12 static HTML pages generated; sitemap auto-includes them.\n4. SEO: canonical + 4 hreflang alternates (es, en, zh, x-default) on each package page verified in dist/paquetes/1/index.html.\n\nManual verification (§5) — per-step coverage:\n• Scenario A steps 1–8: steps 1,2,3,4,6,7(badge check),8 — verified via dist/ HTML grep (canonical URLs, CTA labels, back-link text, badge, footer links). Step 5 (Calendly popup click interaction) — skipped: requires interactive browser session.\n• Scenario B steps 1–4: verified via dist/ HTML grep (EN CTA text 'View details'×4, EN package URLs, 'Most Popular' badge, footer links to /en/packages/N). Interactive click — skipped: requires browser.\n• Scenario C steps 1–4: verified via dist/ HTML grep (ZH CTA '查看详情'×4, ZH package URLs, '最受欢迎' badge, footer links to /zh/packages/N). Interactive click — skipped: requires browser.\n• Scenario D step 1: canonical + hreflang verified via grep on dist/paquetes/1/index.html — PASS. Steps 2–5 (theme toggle, hamburger, mobile resize, 404 for /paquetes/99) — skipped: require interactive browser or live server session.\n\nNo new dependencies added (package.json verified unchanged). No astro.config.mjs changes. No regressions in adjacent surfaces (privacidad, en/privacy, zh/privacy, 404, index × 3 all present in dist/ and built without errors). No type assertion escape hatches used.",
+  "result_path": "agents/1105/implementor/implementation-1105-issue-105-per-package-landing-pages.json",
+  "validation": {
+    "automated": {
+      "commands": ["npm run build"],
+      "passed": true
+    },
+    "manual": {
+      "spec_section": "5",
+      "executed": [
+        "Scenario A step 1: dist/index.html contains 4-card pricing grid with '/paquetes/N' hrefs",
+        "Scenario A step 2: dist/index.html contains 4× 'Ver detalles' CTA text (not Calendly button)",
+        "Scenario A step 3: dist/paquetes/1/index.html URL path correct; canonical = https://aconcagua.co/paquetes/1",
+        "Scenario A step 4: dist/paquetes/1/index.html contains package name, price, feature list, '[PLACEHOLDER]' overview and highlights sections, 'Reservar Expedición' CTA, '← Volver a Expediciones' back-link",
+        "Scenario A step 6: dist/paquetes/1/index.html back-link href = '/#expediciones'",
+        "Scenario A step 7 (partial): dist/paquetes/3/index.html contains 'Más Popular' badge; all 4 ES landing pages confirmed in dist/",
+        "Scenario A step 8: dist/index.html footer contains 4× href='/paquetes/N' expedition links",
+        "Scenario B step 1: dist/en/index.html contains 4× 'View details' CTAs",
+        "Scenario B step 2: dist/en/packages/1/index.html contains 'Basic', 'from USD $2,500', 'Book Expedition', \"What's included\", 'Overview', 'Highlights', 'PLACEHOLDER' chip, back-link",
+        "Scenario B step 3 (partial): dist/en/packages/3/index.html contains 'Most Popular' badge",
+        "Scenario B step 4: dist/en/index.html footer contains 4× href='/en/packages/N' links",
+        "Scenario C step 1: dist/zh/index.html contains 4× '查看详情' CTAs",
+        "Scenario C step 2: dist/zh/packages/1/index.html contains Chinese section headings ('套餐包含', '概述', '亮点') and '占位内容' placeholder chip",
+        "Scenario C step 3 (partial): dist/zh/packages/3/index.html contains '最受欢迎' badge",
+        "Scenario C step 4: dist/zh/index.html footer contains 4× href='/zh/packages/N' links",
+        "Scenario D step 1: dist/paquetes/1/index.html canonical = https://aconcagua.co/paquetes/1, hreflang alternates for es/en/zh/x-default all pointing to correct per-package URLs"
+      ],
+      "skipped_with_reason": [
+        {"step": "Scenario A step 5", "reason": "Calendly popup open on button click requires interactive browser — not available in this static build session"},
+        {"step": "Scenario D step 2", "reason": "Nav theme toggle, language switcher, mobile hamburger require interactive browser session"},
+        {"step": "Scenario D step 3", "reason": "Light/dark theme toggle visual check requires interactive browser"},
+        {"step": "Scenario D step 4", "reason": "Mobile width resize check requires interactive browser"},
+        {"step": "Scenario D step 5", "reason": "404 for /paquetes/99 requires live preview server — unmatched dynamic route falls through to 404.html at build time (confirmed by getStaticPaths enumerating only ids 1–4)"}
+      ]
+    }
+  },
+  "feedback_addressed": [],
+  "errors_resolved": [],
+  "spec_discrepancies": []
+}

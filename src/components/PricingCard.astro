@@ -6,10 +6,10 @@ interface Props {
   cta: string;
   featured?: boolean;
   badge?: string;
-  calendlyUrl: string;
+  href: string;
 }
 
-const { name, price, features, cta, featured = false, badge, calendlyUrl } = Astro.props;
+const { name, price, features, cta, featured = false, badge, href } = Astro.props;
 ---
 
 <div class:list={['pricing-card', { featured }]}>
@@ -27,19 +27,9 @@ const { name, price, features, cta, featured = false, badge, calendlyUrl } = Ast
   </ul>
 
   {featured ? (
-    <button
-      class="btn btn-primary pricing-cta"
-      onclick={`Calendly.initPopupWidget({url: '${calendlyUrl}'}); return false;`}
-    >
-      {cta}
-    </button>
+    <a class="btn btn-primary pricing-cta" href={href}>{cta}</a>
   ) : (
-    <button
-      class="btn btn-outline pricing-cta"
-      onclick={`Calendly.initPopupWidget({url: '${calendlyUrl}'}); return false;`}
-    >
-      {cta}
-    </button>
+    <a class="btn btn-outline pricing-cta" href={href}>{cta}</a>
   )}
 </div>
 

@@ -175,4 +175,22 @@ export const zh = {
 
   // Accessibility
   'a11y.opens_new_tab': '在新标签页中打开',
+
+  // Package detail pages
+  'pricing.view_details': '查看详情',
+  'package.detail.back_to_packages': '← 返回所有探险套餐',
+  'package.detail.included_heading': '套餐包含',
+  'package.detail.overview_heading': '概述',
+  'package.detail.highlights_heading': '亮点',
+  'package.detail.placeholder_tag': '占位内容',
+  'package.detail.cta_book': '预订探险',
+
+  'package.1.overview': '[占位内容] 基础套餐概述 — 内容待补充。',
+  'package.1.highlights': '[占位内容] 基础套餐亮点 — 内容待补充。',
+  'package.2.overview': '[占位内容] 大本营套餐概述 — 内容待补充。',
+  'package.2.highlights': '[占位内容] 大本营套餐亮点 — 内容待补充。',
+  'package.3.overview': '[占位内容] 全程套餐概述 — 内容待补充。',
+  'package.3.highlights': '[占位内容] 全程套餐亮点 — 内容待补充。',
+  'package.4.overview': '[占位内容] 1对1私人定制套餐概述 — 内容待补充。',
+  'package.4.highlights': '[占位内容] 1对1私人定制套餐亮点 — 内容待补充。',
 };

@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import PackageDetail from '../../../components/PackageDetail.astro';
+import Footer from '../../../components/Footer.astro';
+import { useTranslations, getPackageUrl, getPackageAlternates } from '../../../i18n/utils';
+import { packages, getPackageById } from '../../../data/packages';
+
+export async function getStaticPaths() {
+  return packages.map(p => ({ params: { id: String(p.id) } }));
+}
+
+const lang = 'en';
+const t = useTranslations(lang);
+
+const rawId = Astro.params.id;
+const packageId = Number(rawId);
+const pkg = getPackageById(packageId);
+
+if (!pkg) {
+  throw new Error(`[en/packages/[id].astro] Unknown package id "${rawId}". Valid ids: 1–4.`);
+}
+
+const name = t(pkg.nameKey);
+const canonical = `https://aconcagua.co${getPackageUrl(lang, packageId)}`;
+const alternates = getPackageAlternates(packageId);
+
+const title = `${name} — Aconcagua Expeditions | Julián Kusi`;
+const description = `Learn about the ${name} package. Guided Aconcagua expedition with Julián Kusi — certified guide with 17 successful summits.`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  ogLocale="en_US"
+  ogUrl={canonical}
+  alternates={alternates}
+>
+  <Nav lang={lang} t={t} />
+  <main id="main-content">
+    <PackageDetail lang={lang} t={t} packageId={packageId} />
+  </main>
+  <Footer lang={lang} t={t} />
+</BaseLayout>

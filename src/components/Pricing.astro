@@ -1,5 +1,7 @@
 ---
 import PricingCard from './PricingCard.astro';
+import { packages } from '@/data/packages';
+import { getPackageUrl } from '@/i18n/utils';
 
 interface Props {
   lang: 'es' | 'en' | 'zh';
@@ -8,64 +10,15 @@ interface Props {
 
 const { lang, t } = Astro.props;
 
-const cards = [
-  {
-    name: t('pricing.card1.name'),
-    price: t('pricing.card1.price'),
-    features: [
-      t('pricing.card1.feature1'),
-      t('pricing.card1.feature2'),
-      t('pricing.card1.feature3'),
-      t('pricing.card1.feature4'),
-    ],
-    cta: t('pricing.card1.cta'),
-    featured: false,
-  },
-  {
-    name: t('pricing.card2.name'),
-    price: t('pricing.card2.price'),
-    features: [
-      t('pricing.card2.feature1'),
-      t('pricing.card2.feature2'),
-      t('pricing.card2.feature3'),
-      t('pricing.card2.feature4'),
-      t('pricing.card2.feature5'),
-      t('pricing.card2.feature6'),
-      t('pricing.card2.feature7'),
-    ],
-    cta: t('pricing.card2.cta'),
-    featured: false,
-  },
-  {
-    name: t('pricing.card3.name'),
-    price: t('pricing.card3.price'),
-    badge: t('pricing.card3.badge'),
-    features: [
-      t('pricing.card3.feature1'),
-      t('pricing.card3.feature2'),
-      t('pricing.card3.feature3'),
-      t('pricing.card3.feature4'),
-      t('pricing.card3.feature5'),
-      t('pricing.card3.feature6'),
-      t('pricing.card3.feature7'),
-      t('pricing.card3.feature8'),
-      t('pricing.card3.feature9'),
-    ],
-    cta: t('pricing.card3.cta'),
-    featured: true,
-  },
-  {
-    name: t('pricing.card4.name'),
-    price: t('pricing.card4.price'),
-    features: [
-      t('pricing.card4.feature1'),
-      t('pricing.card4.feature2'),
-      t('pricing.card4.feature3'),
-    ],
-    cta: t('pricing.card4.cta'),
-    featured: false,
-  },
-];
+const cards = packages.map(p => ({
+  name: t(p.nameKey),
+  price: t(p.priceKey),
+  features: p.featureKeys.map(k => t(k)),
+  cta: t('pricing.view_details'),
+  featured: p.featured,
+  badge: p.badgeKey ? t(p.badgeKey) : undefined,
+  href: getPackageUrl(lang, p.id),
+}));
 ---
 
 <section id="expediciones" class="pricing section-pad">
@@ -86,7 +39,7 @@ const cards = [
             cta={card.cta}
             featured={card.featured}
             badge={card.badge}
-            calendlyUrl={t('calendly.url')}
+            href={card.href}
           />
         </div>
       ))}

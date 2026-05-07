@@ -320,6 +320,64 @@ const privacyHref = lang === 'es' ? '/privacidad' : `/${lang}/privacy`;
 <script>
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+  const escapeHtml = (v: string): string =>
+    v.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+  interface EmailContext {
+    nameVal: string;
+    emailVal: string;
+    packageId: string;
+    packageSlug: string;
+    packageName: string;
+    packagePrice: string;
+    lang: string;
+    pageUrl: string;
+    userAgent: string;
+    referrer: string;
+    currentTime: string;
+  }
+
+  const buildEmailHtml = ({
+    nameVal, emailVal, packageId, packageSlug, packageName, packagePrice,
+    lang, pageUrl, userAgent, referrer, currentTime,
+  }: EmailContext): string => {
+    const eName = escapeHtml(nameVal);
+    const eEmail = escapeHtml(emailVal);
+    const ePkgId = escapeHtml(packageId);
+    const ePkgSlug = escapeHtml(packageSlug);
+    const ePkgName = escapeHtml(packageName);
+    const ePkgPrice = escapeHtml(packagePrice);
+    const eLang = escapeHtml(lang);
+    const ePageUrl = escapeHtml(pageUrl);
+    const eUserAgent = escapeHtml(userAgent);
+    const eReferrer = referrer ? escapeHtml(referrer) : '(none)';
+    return [
+      `<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">`,
+      `<h2>New inquiry from Aconcagua.co Pricing — ${ePkgName}</h2>`,
+      `<h3>Contact</h3>`,
+      `<table border="0" cellpadding="6">`,
+      `<tr><td><strong>Name</strong></td><td>${eName}</td></tr>`,
+      `<tr><td><strong>Email</strong></td><td>${eEmail}</td></tr>`,
+      `</table>`,
+      `<h3>Package</h3>`,
+      `<table border="0" cellpadding="6">`,
+      `<tr><td><strong>Package name</strong></td><td>${ePkgName}</td></tr>`,
+      `<tr><td><strong>Package ID</strong></td><td>${ePkgId}</td></tr>`,
+      `<tr><td><strong>Package slug</strong></td><td>${ePkgSlug}</td></tr>`,
+      `<tr><td><strong>Package price</strong></td><td>${ePkgPrice}</td></tr>`,
+      `</table>`,
+      `<h3>Request context</h3>`,
+      `<table border="0" cellpadding="6">`,
+      `<tr><td><strong>Locale (lang)</strong></td><td>${eLang}</td></tr>`,
+      `<tr><td><strong>Page URL</strong></td><td>${ePageUrl}</td></tr>`,
+      `<tr><td><strong>User agent</strong></td><td>${eUserAgent}</td></tr>`,
+      `<tr><td><strong>Referrer</strong></td><td>${eReferrer}</td></tr>`,
+      `</table>`,
+      `<p><strong>Submitted at (client time):</strong> ${currentTime}</p>`,
+      `</div>`,
+    ].join('');
+  };
+
   document.querySelectorAll<HTMLElement>('[data-pricing-contact-form]').forEach((wrapper) => {
     const msgSending = wrapper.dataset.msgSending ?? '';
     const msgSuccess = wrapper.dataset.msgSuccess ?? '';
@@ -402,6 +460,19 @@ const privacyHref = lang === 'es' ? '/privacidad' : `/${lang}/privacy`;
         const packagePrice = (form.querySelector<HTMLInputElement>('input[name="packagePrice"]')!).value;
         const lang = (form.querySelector<HTMLInputElement>('input[name="lang"]')!).value;
 
+        // Capture request-context strings as named consts (shared by Firestore payload and email body)
+        const pageUrl = window.location.href.slice(0, 2048);
+        const userAgent = navigator.userAgent.slice(0, 512);
+        const referrer = document.referrer.slice(0, 2048);
+
+        // Build email fields
+        const currentTime = new Date().toISOString();
+        const subject = `Contact from Aconcagua.co Pricing for package ${packageName}`;
+        const html = buildEmailHtml({
+          nameVal, emailVal, packageId, packageSlug, packageName, packagePrice,
+          lang, pageUrl, userAgent, referrer, currentTime,
+        });
+
         // Dynamic import to code-split Firebase out of the initial bundle
         const { db } = await import('../lib/firebase');
         const { addDoc, collection, serverTimestamp } = await import('firebase/firestore');
@@ -414,10 +485,12 @@ const privacyHref = lang === 'es' ? '/privacidad' : `/${lang}/privacy`;
           packageName,
           packagePrice,
           lang,
-          pageUrl: window.location.href.slice(0, 2048),
-          userAgent: navigator.userAgent.slice(0, 512),
-          referrer: document.referrer.slice(0, 2048),
+          pageUrl,
+          userAgent,
+          referrer,
           createdAt: serverTimestamp(),
+          to: 'julian@aconcagua.co',
+          message: { subject, html },
         });
 
         statusEl.textContent = msgSuccess;

@@ -173,4 +173,22 @@ export const es = {
 
   // Accessibility
   'a11y.opens_new_tab': 'se abre en una pestaña nueva',
+
+  // Package detail pages
+  'pricing.view_details': 'Ver detalles',
+  'package.detail.back_to_packages': '← Volver a Expediciones',
+  'package.detail.included_heading': 'Qué incluye',
+  'package.detail.overview_heading': 'Resumen',
+  'package.detail.highlights_heading': 'Lo destacado',
+  'package.detail.placeholder_tag': 'CONTENIDO DE EJEMPLO',
+  'package.detail.cta_book': 'Reservar Expedición',
+
+  'package.1.overview': '[PLACEHOLDER] Resumen del paquete Básico — contenido pendiente de definir.',
+  'package.1.highlights': '[PLACEHOLDER] Puntos destacados del paquete Básico — contenido pendiente de definir.',
+  'package.2.overview': '[PLACEHOLDER] Resumen del paquete Base Camp — contenido pendiente de definir.',
+  'package.2.highlights': '[PLACEHOLDER] Puntos destacados del paquete Base Camp — contenido pendiente de definir.',
+  'package.3.overview': '[PLACEHOLDER] Resumen del paquete Full — contenido pendiente de definir.',
+  'package.3.highlights': '[PLACEHOLDER] Puntos destacados del paquete Full — contenido pendiente de definir.',
+  'package.4.overview': '[PLACEHOLDER] Resumen del paquete 1:1 Privado — contenido pendiente de definir.',
+  'package.4.highlights': '[PLACEHOLDER] Puntos destacados del paquete 1:1 Privado — contenido pendiente de definir.',
 };

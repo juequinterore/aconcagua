@@ -1,0 +1,283 @@
+---
+import type { Lang } from '../i18n/utils';
+import { getPackageById } from '../data/packages';
+
+interface Props {
+  lang: Lang;
+  t: (key: string) => string;
+  packageId: number;
+}
+
+const { lang, t, packageId } = Astro.props;
+
+const pkg = getPackageById(packageId);
+if (!pkg) {
+  throw new Error(`PackageDetail: unknown packageId "${packageId}". Valid ids are 1–4.`);
+}
+
+const name = t(pkg.nameKey);
+const price = t(pkg.priceKey);
+const features = pkg.featureKeys.map(k => t(k));
+const badge = pkg.badgeKey ? t(pkg.badgeKey) : undefined;
+const calendlyUrl = t('calendly.url');
+
+// Locale-aware homepage href (back link)
+const homepageHref = lang === 'es' ? '/#expediciones' : `/${lang}/#expediciones`;
+---
+
+<section class="package-detail section-pad">
+  <div class="container">
+
+    <!-- Breadcrumb / back link -->
+    <nav class="breadcrumb reveal" aria-label="breadcrumb">
+      <a href={homepageHref} class="back-link">
+        {t('package.detail.back_to_packages')}
+      </a>
+    </nav>
+
+    <!-- Header -->
+    <header class="pkg-header reveal">
+      {badge && <div class="pkg-badge">{badge}</div>}
+      <h1 class="pkg-name">{name}</h1>
+      <p class="pkg-price">{price}</p>
+      <button
+        class:list={['btn', pkg.featured ? 'btn-primary' : 'btn-outline', 'pkg-cta']}
+        onclick={`Calendly.initPopupWidget({url: '${calendlyUrl}'}); return false;`}
+      >
+        {t('package.detail.cta_book')}
+      </button>
+    </header>
+
+    <!-- What's included -->
+    <div class="pkg-section reveal">
+      <h2 class="pkg-section-heading">{t('package.detail.included_heading')}</h2>
+      <ul class="pkg-feature-list" role="list">
+        {features.map(feature => (
+          <li class="pkg-feature-item">
+            <svg
+              class="pkg-feature-icon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            {feature}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Overview (placeholder) -->
+    <div class="pkg-section reveal">
+      <h2 class="pkg-section-heading">{t('package.detail.overview_heading')}</h2>
+      <div class="placeholder">
+        <span class="placeholder-tag">{t('package.detail.placeholder_tag')}</span>
+        <p class="placeholder-body">{t(`package.${packageId}.overview`)}</p>
+      </div>
+    </div>
+
+    <!-- Highlights (placeholder) -->
+    <div class="pkg-section reveal">
+      <h2 class="pkg-section-heading">{t('package.detail.highlights_heading')}</h2>
+      <div class="placeholder">
+        <span class="placeholder-tag">{t('package.detail.placeholder_tag')}</span>
+        <p class="placeholder-body">{t(`package.${packageId}.highlights`)}</p>
+      </div>
+    </div>
+
+    <!-- Secondary CTA -->
+    <div class="pkg-cta-bottom reveal">
+      <button
+        class:list={['btn', pkg.featured ? 'btn-primary' : 'btn-outline', 'pkg-cta']}
+        onclick={`Calendly.initPopupWidget({url: '${calendlyUrl}'}); return false;`}
+      >
+        {t('package.detail.cta_book')}
+      </button>
+    </div>
+
+    <!-- Back link (bottom) -->
+    <nav class="breadcrumb breadcrumb-bottom reveal" aria-label="breadcrumb">
+      <a href={homepageHref} class="back-link">
+        {t('package.detail.back_to_packages')}
+      </a>
+    </nav>
+
+  </div>
+</section>
+
+<style>
+  .package-detail {
+    background: var(--bg-card);
+  }
+
+  .breadcrumb {
+    margin-bottom: clamp(20px, 3vw, 32px);
+  }
+
+  .breadcrumb-bottom {
+    margin-top: clamp(24px, 4vw, 48px);
+    margin-bottom: 0;
+  }
+
+  .back-link {
+    font-size: var(--fs-small);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover {
+    color: var(--accent);
+  }
+
+  /* Header */
+  .pkg-header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: var(--card-pad);
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    margin-bottom: clamp(32px, 5vw, 56px);
+    max-width: 680px;
+  }
+
+  .pkg-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--white);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-gold);
+    align-self: flex-start;
+  }
+
+  .pkg-name {
+    font-size: var(--fs-h1);
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .pkg-price {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin: 0;
+  }
+
+  .pkg-cta {
+    align-self: flex-start;
+    padding: 14px 28px;
+  }
+
+  /* Sections */
+  .pkg-section {
+    margin-bottom: clamp(32px, 5vw, 56px);
+    max-width: 680px;
+  }
+
+  .pkg-section-heading {
+    font-size: var(--fs-h2, 1.5rem);
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-card);
+    padding-bottom: 12px;
+  }
+
+  /* Feature list */
+  .pkg-feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .pkg-feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 1rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+
+  .pkg-feature-icon {
+    flex-shrink: 0;
+    margin-top: 3px;
+    color: var(--accent);
+  }
+
+  /* Placeholder card */
+  .placeholder {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-card);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-lg);
+    padding: var(--card-pad);
+    box-shadow: var(--shadow-card);
+  }
+
+  .placeholder-tag {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--white);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    opacity: 0.85;
+  }
+
+  .placeholder-body {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+    font-style: italic;
+    opacity: 0.75;
+  }
+
+  /* Secondary CTA container */
+  .pkg-cta-bottom {
+    margin-bottom: clamp(24px, 4vw, 40px);
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .pkg-header {
+      max-width: 100%;
+    }
+
+    .pkg-section {
+      max-width: 100%;
+    }
+
+    .pkg-name {
+      font-size: clamp(1.75rem, 6vw, 2.5rem);
+    }
+
+    .pkg-price {
+      font-size: 1.75rem;
+    }
+  }
+</style>

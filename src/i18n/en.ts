@@ -173,4 +173,22 @@ export const en = {
 
   // Accessibility
   'a11y.opens_new_tab': 'opens in a new tab',
+
+  // Package detail pages
+  'pricing.view_details': 'View details',
+  'package.detail.back_to_packages': '← Back to all expeditions',
+  'package.detail.included_heading': "What's included",
+  'package.detail.overview_heading': 'Overview',
+  'package.detail.highlights_heading': 'Highlights',
+  'package.detail.placeholder_tag': 'PLACEHOLDER',
+  'package.detail.cta_book': 'Book Expedition',
+
+  'package.1.overview': '[PLACEHOLDER] Overview of the Basic package — copy to be supplied.',
+  'package.1.highlights': '[PLACEHOLDER] Highlights of the Basic package — copy to be supplied.',
+  'package.2.overview': '[PLACEHOLDER] Overview of the Base Camp package — copy to be supplied.',
+  'package.2.highlights': '[PLACEHOLDER] Highlights of the Base Camp package — copy to be supplied.',
+  'package.3.overview': '[PLACEHOLDER] Overview of the Full package — copy to be supplied.',
+  'package.3.highlights': '[PLACEHOLDER] Highlights of the Full package — copy to be supplied.',
+  'package.4.overview': '[PLACEHOLDER] Overview of the 1:1 Private package — copy to be supplied.',
+  'package.4.highlights': '[PLACEHOLDER] Highlights of the 1:1 Private package — copy to be supplied.',
 };

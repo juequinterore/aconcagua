@@ -10,6 +10,7 @@ interface Props {
   ogLocale?: string;
   ogUrl?: string;
   ogImage?: string;
+  alternates?: Array<{ lang: string; href: string }>;
 }
 
 const {
@@ -18,15 +19,14 @@ const {
   lang,
   ogLocale = 'es_AR',
   ogUrl = 'https://aconcagua.co/',
-ogImage = 'https://aconcagua.co/openegraph.jpeg',
+  ogImage = 'https://aconcagua.co/openegraph.jpeg',
+  alternates = [
+    { lang: 'es', href: 'https://aconcagua.co/' },
+    { lang: 'en', href: 'https://aconcagua.co/en/' },
+    { lang: 'zh', href: 'https://aconcagua.co/zh/' },
+    { lang: 'x-default', href: 'https://aconcagua.co/' },
+  ],
 } = Astro.props;
-
-const alternates = [
-  { lang: 'es', href: 'https://aconcagua.co/' },
-  { lang: 'en', href: 'https://aconcagua.co/en/' },
-  { lang: 'zh', href: 'https://aconcagua.co/zh/' },
-  { lang: 'x-default', href: 'https://aconcagua.co/' },
-];
 
 const jsonLd = [
   {

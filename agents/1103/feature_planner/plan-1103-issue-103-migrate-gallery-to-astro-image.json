@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "adw_id": "1103",
+  "issue_number": 103,
+  "issue_title": "Migrate gallery to Astro Image",
+  "tier": "L",
+  "spec_path": "specs/feat-1103-issue-103-migrate-gallery-to-astro-image.md",
+  "result_path": "agents/1103/feature_planner/plan-1103-issue-103-migrate-gallery-to-astro-image.json",
+  "docs_project_created": false,
+  "workspace": {
+    "root": "/Users/me/var/agent-workspaces/VsmX09ZWyD3WmbUk708G",
+    "remote": "git@github.com:juequinterore/aconcagua.git",
+    "branch": "chore/migrate_gallery_to_astro_image",
+    "remote_match_with_issue_json": "not provided"
+  },
+  "validation_gate": "npm run build",
+  "summary": "Migrate the 20-image gallery in src/components/Gallery.astro from plain <img> tags to Astro's built-in <Image> component (astro:assets), with widths={[320, 640, 1024, 1600]} and a sizes attribute matching the existing strip-item CSS breakpoints. Move the 20 referenced photos from public/gallery/ into a new src/assets/gallery/ directory so they enter Astro's sharp-backed image pipeline. Resolve a 1600w optimized URL per image at build time via getImage() and embed the result as a JSON <script> tag the existing lightbox script reads at runtime (replacing the duplicated client-side images array).",
+  "affected_files": {
+    "modify": [
+      "src/components/Gallery.astro"
+    ],
+    "create": [
+      "src/assets/gallery/Web2.webp",
+      "src/assets/gallery/Web4.webp",
+      "src/assets/gallery/Web5.webp",
+      "src/assets/gallery/Web7.webp",
+      "src/assets/gallery/Web9.webp",
+      "src/assets/gallery/Web10.webp",
+      "src/assets/gallery/Web12.webp",
+      "src/assets/gallery/Web13.webp",
+      "src/assets/gallery/Web17.webp",
+      "src/assets/gallery/Web19.webp",
+      "src/assets/gallery/Web20.webp",
+      "src/assets/gallery/Web27.webp",
+      "src/assets/gallery/Web28.webp",
+      "src/assets/gallery/Web31.webp",
+      "src/assets/gallery/Web34.webp",
+      "src/assets/gallery/Web35.webp",
+      "src/assets/gallery/Web38.webp",
+      "src/assets/gallery/Web39.webp",
+      "src/assets/gallery/Web42.webp",
+      "src/assets/gallery/Web45.webp"
+    ],
+    "delete": [
+      "public/gallery/Web2.webp",
+      "public/gallery/Web4.webp",
+      "public/gallery/Web5.webp",
+      "public/gallery/Web7.webp",
+      "public/gallery/Web9.webp",
+      "public/gallery/Web10.webp",
+      "public/gallery/Web12.webp",
+      "public/gallery/Web13.webp",
+      "public/gallery/Web17.webp",
+      "public/gallery/Web19.webp",
+      "public/gallery/Web20.webp",
+      "public/gallery/Web27.webp",
+      "public/gallery/Web28.webp",
+      "public/gallery/Web31.webp",
+      "public/gallery/Web34.webp",
+      "public/gallery/Web35.webp",
+      "public/gallery/Web38.webp",
+      "public/gallery/Web39.webp",
+      "public/gallery/Web42.webp",
+      "public/gallery/Web45.webp"
+    ]
+  },
+  "exposure_surfaces": [
+    "Gallery is already rendered by src/pages/index.astro (line 43), src/pages/en/index.astro, and src/pages/zh/index.astro — no new exposure work needed."
+  ],
+  "i18n_changes": "None — gallery.tag, gallery.title, gallery.subtitle, gallery.lightbox_label, gallery.close, gallery.prev, gallery.next already exist in es.ts/en.ts/zh.ts and are reused unchanged.",
+  "new_dependencies": [],
+  "non_load_bearing_assumptions": [
+    "The 25 unreferenced files in public/gallery/ (Web1, Web3, Web6, Web8, Web11, Web14-16, Web18, Web21-26, Web29-30, Web32-33, Web36-37, Web40-41, Web43-44) are not imported anywhere in src/ (verified via grep) and are out of scope; they remain in place.",
+    "Astro v5 default image service (sharp, already in dependencies) is sufficient — no astro.config.mjs image block is required.",
+    "Existing alt text on the 20 photos remains English-only (current pre-migration behavior); localizing those alt strings is a separate issue and not implied by issue_json."
+  ],
+  "report": "- Workspace root: /Users/me/var/agent-workspaces/VsmX09ZWyD3WmbUk708G; origin remote git@github.com:juequinterore/aconcagua.git (no issue_json.git.repository was provided to verify against; not a fail condition).\n- Discovered project: single Astro 5 SSG package (aconcagua), TypeScript strict, Firebase-hosted, three locales (es default, en, zh). Authoritative validation gate: `npm run build` (Astro + @astrojs/check); no test suite exists.\n- Used existing comprehensive `docs/PROJECT.md`; did NOT create a new one.\n- Spec written to `specs/feat-1103-issue-103-migrate-gallery-to-astro-image.md`.\n- Tier L (file count >15): 1 source-file modification (`src/components/Gallery.astro`) plus 20 git-mv asset relocations from `public/gallery/` to a new `src/assets/gallery/` directory.\n- Exposure surfaces: none new — Gallery is already rendered by all three locale `index.astro` pages; no nav, route, or i18n key changes required.\n- Architectural choices: glob-import via `import.meta.glob('/src/assets/gallery/*.webp', { eager: true })`, render strip with `<Image src={meta} widths={[320, 640, 1024, 1600]} sizes=\"(max-width: 480px) 140px, (max-width: 768px) 160px, 200px\" format=\"webp\" />`, build-time `getImage({ src, width: 1600, format: 'webp' })` to feed the lightbox via a `<script type=\"application/json\" id=\"gallery-lb-data\">` JSON tag (replaces the duplicated client-side images array).\n- No new dependencies (sharp + astro:assets already available); no schema, no config, no i18n, no nav changes.\n- Non-load-bearing assumptions recorded in this JSON; none would shift the affected-files list if wrong."
+}

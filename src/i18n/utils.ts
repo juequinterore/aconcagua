@@ -42,3 +42,34 @@ export function getAlternateUrls(currentPath: string, lang: Lang): Record<Lang, 
     zh: `${base}/zh${cleanPath === '/' ? '' : cleanPath}`,
   };
 }
+
+/** Slug map for package detail pages (ES uses Spanish slug, EN+ZH use English slug). */
+const PACKAGE_SLUGS: Record<Lang, string> = {
+  es: 'paquetes',
+  en: 'packages',
+  zh: 'packages',
+};
+
+/**
+ * Returns the locale-aware path for a package detail page.
+ * ES: /paquetes/<id>  |  EN: /en/packages/<id>  |  ZH: /zh/packages/<id>
+ */
+export function getPackageUrl(lang: Lang, id: number): string {
+  const slug = PACKAGE_SLUGS[lang];
+  if (lang === 'es') return `/${slug}/${id}`;
+  return `/${lang}/${slug}/${id}`;
+}
+
+/**
+ * Returns the full hreflang alternates array for a given package id.
+ * Includes x-default (pointing to the ES URL) as the fourth entry.
+ */
+export function getPackageAlternates(id: number): Array<{ lang: Lang | 'x-default'; href: string }> {
+  const base = 'https://aconcagua.co';
+  return [
+    { lang: 'es', href: `${base}${getPackageUrl('es', id)}` },
+    { lang: 'en', href: `${base}${getPackageUrl('en', id)}` },
+    { lang: 'zh', href: `${base}${getPackageUrl('zh', id)}` },
+    { lang: 'x-default', href: `${base}${getPackageUrl('es', id)}` },
+  ];
+}

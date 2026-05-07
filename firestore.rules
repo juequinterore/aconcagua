@@ -5,7 +5,7 @@ service cloud.firestore {
     function isValidContactForm(d) {
       return d.keys().hasOnly(
                ['name','email','packageId','packageSlug','packageName',
-                'packagePrice','lang','pageUrl','userAgent','referrer','createdAt'])
+                'packagePrice','lang','pageUrl','userAgent','referrer','createdAt','message'])
           && d.keys().hasAll(
                ['name','email','packageId','packageSlug','packageName',
                 'packagePrice','lang','createdAt'])
@@ -20,6 +20,7 @@ service cloud.firestore {
           && (!('pageUrl' in d.keys()) || (d.pageUrl is string && d.pageUrl.size() <= 2048))
           && (!('userAgent' in d.keys()) || (d.userAgent is string && d.userAgent.size() <= 512))
           && (!('referrer' in d.keys()) || (d.referrer is string && d.referrer.size() <= 2048))
+          && (!('message' in d.keys()) || (d.message is string && d.message.size() <= 2000))
           && d.createdAt == request.time;
     }
 

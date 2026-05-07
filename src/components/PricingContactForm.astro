@@ -16,6 +16,7 @@ const formId = `${uid}-form`;
 const statusId = `${uid}-status`;
 const nameId = `${uid}-name`;
 const emailId = `${uid}-email`;
+const messageId = `${uid}-message`;
 
 const privacyHref = lang === 'es' ? '/privacidad' : `/${lang}/privacy`;
 ---
@@ -31,6 +32,7 @@ const privacyHref = lang === 'es' ? '/privacidad' : `/${lang}/privacy`;
   data-err-name={t('pricing.contact.error_required_name')}
   data-err-email={t('pricing.contact.error_required_email')}
   data-err-email-format={t('pricing.contact.error_invalid_email')}
+  data-err-message-too-long={t('pricing.contact.error_message_too_long')}
 >
   <!-- Trigger button -->
   <button
@@ -95,6 +97,21 @@ const privacyHref = lang === 'es' ? '/privacidad' : `/${lang}/privacy`;
           placeholder={t('pricing.contact.field_email_placeholder')}
           aria-required="true"
         />
+        <span class="field-error" aria-live="polite"></span>
+      </div>
+
+      <div class="form-field">
+        <label for={messageId}>
+          {t('pricing.contact.field_message')}
+          <span class="optional-tag">{t('pricing.contact.field_message_optional')}</span>
+        </label>
+        <textarea
+          id={messageId}
+          name="message"
+          rows={4}
+          maxlength="2000"
+          placeholder={t('pricing.contact.field_message_placeholder')}
+        ></textarea>
         <span class="field-error" aria-live="polite"></span>
       </div>
 
@@ -237,7 +254,8 @@ const privacyHref = lang === 'es' ? '/privacidad' : `/${lang}/privacy`;
   }
 
   .form-field input[type="text"],
-  .form-field input[type="email"] {
+  .form-field input[type="email"],
+  .form-field textarea {
     width: 100%;
     box-sizing: border-box;
     padding: 10px 14px;
@@ -250,16 +268,32 @@ const privacyHref = lang === 'es' ? '/privacidad' : `/${lang}/privacy`;
   }
 
   .form-field input[type="text"]:focus,
-  .form-field input[type="email"]:focus {
+  .form-field input[type="email"]:focus,
+  .form-field textarea:focus {
     outline: none;
     border-color: var(--accent);
     box-shadow: 0 0 0 3px rgba(200, 138, 62, 0.15);
   }
 
   .form-field input[type="text"]::placeholder,
-  .form-field input[type="email"]::placeholder {
+  .form-field input[type="email"]::placeholder,
+  .form-field textarea::placeholder {
     color: var(--text-secondary);
     opacity: 0.6;
+  }
+
+  .form-field textarea {
+    min-height: 96px;
+    resize: vertical;
+    font-family: inherit;
+    line-height: 1.5;
+  }
+
+  .optional-tag {
+    color: var(--text-secondary);
+    font-weight: 400;
+    font-size: var(--fs-xs);
+    margin-left: 4px;
   }
 
   .field-error {
@@ -327,6 +361,7 @@ const privacyHref = lang === 'es' ? '/privacidad' : `/${lang}/privacy`;
     const errName = wrapper.dataset.errName ?? '';
     const errEmail = wrapper.dataset.errEmail ?? '';
     const errEmailFormat = wrapper.dataset.errEmailFormat ?? '';
+    const errMessageTooLong = wrapper.dataset.errMessageTooLong ?? '';
 
     const triggerBtn = wrapper.querySelector<HTMLButtonElement>('.contact-trigger');
     const dialog = wrapper.querySelector<HTMLDialogElement>('.contact-modal');
@@ -369,13 +404,16 @@ const privacyHref = lang === 'es' ? '/privacidad' : `/${lang}/privacy`;
 
       const nameInput = form.querySelector<HTMLInputElement>('input[name="name"]')!;
       const emailInput = form.querySelector<HTMLInputElement>('input[name="email"]')!;
+      const messageInput = form.querySelector<HTMLTextAreaElement>('textarea[name="message"]')!;
       const nameVal = nameInput.value.trim();
       const emailVal = emailInput.value.trim();
+      const messageVal = messageInput.value.trim();
 
       // Client-side validation
       let hasError = false;
       const nameError = nameInput.nextElementSibling as HTMLSpanElement;
       const emailError = emailInput.nextElementSibling as HTMLSpanElement;
+      const messageError = messageInput.nextElementSibling as HTMLSpanElement;
 
       if (!nameVal || nameVal.length < 2) {
         nameError.textContent = errName;
@@ -386,6 +424,10 @@ const privacyHref = lang === 'es' ? '/privacidad' : `/${lang}/privacy`;
         hasError = true;
       } else if (!EMAIL_RE.test(emailVal)) {
         emailError.textContent = errEmailFormat;
+        hasError = true;
+      }
+      if (messageVal.length > 2000) {
+        messageError.textContent = errMessageTooLong;
         hasError = true;
       }
       if (hasError) return;
@@ -406,7 +448,7 @@ const privacyHref = lang === 'es' ? '/privacidad' : `/${lang}/privacy`;
         const { db } = await import('../lib/firebase');
         const { addDoc, collection, serverTimestamp } = await import('firebase/firestore');
 
-        await addDoc(collection(db, 'contact_form'), {
+        const payload: Record<string, unknown> = {
           name: nameVal,
           email: emailVal,
           packageId,
@@ -418,7 +460,10 @@ const privacyHref = lang === 'es' ? '/privacidad' : `/${lang}/privacy`;
           userAgent: navigator.userAgent.slice(0, 512),
           referrer: document.referrer.slice(0, 2048),
           createdAt: serverTimestamp(),
-        });
+        };
+        if (messageVal) payload.message = messageVal;
+
+        await addDoc(collection(db, 'contact_form'), payload);
 
         statusEl.textContent = msgSuccess;
         form.reset();

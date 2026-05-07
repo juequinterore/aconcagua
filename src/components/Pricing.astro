@@ -10,6 +10,7 @@ const { lang, t } = Astro.props;
 
 const cards = [
   {
+    id: 'card1' as const,
     name: t('pricing.card1.name'),
     price: t('pricing.card1.price'),
     features: [
@@ -22,6 +23,7 @@ const cards = [
     featured: false,
   },
   {
+    id: 'card2' as const,
     name: t('pricing.card2.name'),
     price: t('pricing.card2.price'),
     features: [
@@ -37,6 +39,7 @@ const cards = [
     featured: false,
   },
   {
+    id: 'card3' as const,
     name: t('pricing.card3.name'),
     price: t('pricing.card3.price'),
     badge: t('pricing.card3.badge'),
@@ -55,6 +58,7 @@ const cards = [
     featured: true,
   },
   {
+    id: 'card4' as const,
     name: t('pricing.card4.name'),
     price: t('pricing.card4.price'),
     features: [
@@ -87,6 +91,10 @@ const cards = [
             featured={card.featured}
             badge={card.badge}
             calendlyUrl={t('calendly.url')}
+            packageId={card.id}
+            packageSlug={`plan-${i + 1}`}
+            lang={lang}
+            t={t}
           />
         </div>
       ))}

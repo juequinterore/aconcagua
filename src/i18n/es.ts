@@ -85,6 +85,24 @@ export const es = {
   'pricing.card4.feature3': 'Guía privado exclusivo 1 a 1',
   'pricing.card4.cta': 'Consultar Disponibilidad',
 
+  // Pricing — Contact Form
+  'pricing.contact.cta': 'O envianos un mensaje',
+  'pricing.contact.modal_title': 'Consulta sobre',
+  'pricing.contact.intro': 'Completá el formulario y te respondemos a la brevedad.',
+  'pricing.contact.field_name': 'Nombre',
+  'pricing.contact.field_name_placeholder': 'Tu nombre completo',
+  'pricing.contact.field_email': 'Correo electrónico',
+  'pricing.contact.field_email_placeholder': 'tu@email.com',
+  'pricing.contact.submit': 'Enviar consulta',
+  'pricing.contact.sending': 'Enviando…',
+  'pricing.contact.success': '¡Gracias! Recibimos tu consulta y te contactaremos pronto.',
+  'pricing.contact.error': 'Algo salió mal. Por favor intentá de nuevo.',
+  'pricing.contact.error_required_name': 'El nombre es obligatorio (mínimo 2 caracteres).',
+  'pricing.contact.error_required_email': 'El correo electrónico es obligatorio.',
+  'pricing.contact.error_invalid_email': 'El formato del correo no es válido.',
+  'pricing.contact.close': 'Cerrar',
+  'pricing.contact.privacy_note': 'Solo usamos esta información para responderte.',
+
   // Testimonials
   'testimonials.tag': 'TESTIMONIOS',
   'testimonials.title': 'Lo que dicen mis clientes',

@@ -85,6 +85,24 @@ export const en = {
   'pricing.card4.feature3': 'Dedicated private 1-on-1 guide',
   'pricing.card4.cta': 'Check Availability',
 
+  // Pricing — Contact Form
+  'pricing.contact.cta': 'Or send us a message',
+  'pricing.contact.modal_title': 'Inquiry about',
+  'pricing.contact.intro': 'Fill in the form and we will get back to you shortly.',
+  'pricing.contact.field_name': 'Name',
+  'pricing.contact.field_name_placeholder': 'Your full name',
+  'pricing.contact.field_email': 'Email address',
+  'pricing.contact.field_email_placeholder': 'you@email.com',
+  'pricing.contact.submit': 'Send inquiry',
+  'pricing.contact.sending': 'Sending…',
+  'pricing.contact.success': 'Thank you! We received your inquiry and will be in touch soon.',
+  'pricing.contact.error': 'Something went wrong. Please try again.',
+  'pricing.contact.error_required_name': 'Name is required (minimum 2 characters).',
+  'pricing.contact.error_required_email': 'Email address is required.',
+  'pricing.contact.error_invalid_email': 'Please enter a valid email address.',
+  'pricing.contact.close': 'Close',
+  'pricing.contact.privacy_note': 'We only use this to reply to your inquiry.',
+
   // Testimonials
   'testimonials.tag': 'TESTIMONIALS',
   'testimonials.title': 'What my clients say',

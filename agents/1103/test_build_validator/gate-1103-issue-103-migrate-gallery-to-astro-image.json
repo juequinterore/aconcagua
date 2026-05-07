@@ -1,0 +1,53 @@
+{
+  "status": "ok",
+  "passed": true,
+  "tier": "L",
+  "environment": {
+    "workspace_root": "/Users/me/var/agent-workspaces/VsmX09ZWyD3WmbUk708G",
+    "git_remote_match": "not_provided",
+    "git_status_summary": "On branch chore/migrate_gallery_to_astro_image; 20 staged renames (public/gallery/Web*.webp -> src/assets/gallery/Web*.webp); 1 modified unstaged (src/components/Gallery.astro); untracked: agents/1103/, bitbucket-api.sh, specs/feat-1103-issue-103-migrate-gallery-to-astro-image.md"
+  },
+  "bootstrap": {
+    "needed": false,
+    "command_run": null,
+    "exit_code": null,
+    "duration_ms": 0
+  },
+  "spec_gate_quoted": "npm run build",
+  "commands_run": [
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "duration_ms": 3200,
+      "passed": true,
+      "stdout_tail": "> aconcagua@0.0.1 build\n> astro build\n\n generating optimized images \n  ... (88 cache-hit variants emitted) ...\n  ▶ /_astro/Web12.D-uR5Qe8_pg5C2.webp (reused cache entry) (+0ms) (87/88)\n  ▶ /_astro/Web19.CgxA5Auc_Z1K9TzK.webp (reused cache entry) (+0ms) (88/88)\n19:54:46 ✓ Completed in 17ms.\n\n19:54:46 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`\n19:54:46 [build] 7 page(s) built in 531ms\n19:54:46 [build] Complete!"
+    },
+    {
+      "command": "ls dist/_astro/Web*.webp 2>/dev/null | wc -l",
+      "exit_code": 0,
+      "duration_ms": 80,
+      "passed": true,
+      "stdout_tail": "88"
+    },
+    {
+      "command": "grep -RhoE '/gallery/Web(2|4|5|7|9|10|12|13|17|19|20|27|28|31|34|35|38|39|42|45)\\.webp' dist/ 2>/dev/null | head",
+      "exit_code": 0,
+      "duration_ms": 150,
+      "passed": true,
+      "stdout_tail": ""
+    }
+  ],
+  "errors": [],
+  "notes": [],
+  "implementor_self_report": {
+    "commands": [
+      "npm run build",
+      "ls dist/_astro/Web*.webp 2>/dev/null | wc -l",
+      "grep -RhoE '/gallery/Web(2|4|5|7|9|10|12|13|17|19|20|27|28|31|34|35|38|39|42|45)\\.webp' dist/ 2>/dev/null | head"
+    ],
+    "passed": true,
+    "agrees_with_runner": true
+  },
+  "report": "Workspace root: /Users/me/var/agent-workspaces/VsmX09ZWyD3WmbUk708G\nGit remote: origin → git@github.com:juequinterore/aconcagua.git; issue_json has no git.repository constraint — not_provided.\nTier: L (declared in spec TL;DR header). Command list size: 3 (Section 0 gate + 2 Section 4 deduped commands).\nBootstrap: warm (node_modules/ present) — skipped.\nCommand results:\n  npm run build → exit 0 (~3200ms): 7 pages built in 531ms; 88 optimized image variants generated (all reused from cache); zero @astrojs/check errors or warnings.\n  ls dist/_astro/Web*.webp 2>/dev/null | wc -l → exit 0 (~80ms): output=88 (≥80 required by spec §4).\n  grep -RhoE '/gallery/Web(2|4|5|7|9|10|12|13|17|19|20|27|28|31|34|35|38|39|42|45)\\.webp' dist/ ... | head → exit 0 (~150ms): no output (zero orphan /gallery/Web* references in built HTML — all moved images now served as /_astro/...webp URLs).\nImplementor self-reported passed=true; runner computed passed=true — agrees.",
+  "gate_result_path": "agents/1103/test_build_validator/gate-1103-issue-103-migrate-gallery-to-astro-image.json"
+}

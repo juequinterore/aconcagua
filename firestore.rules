@@ -1,0 +1,41 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isValidContactForm(d) {
+      return d.keys().hasOnly(
+               ['name','email','packageId','packageSlug','packageName',
+                'packagePrice','lang','pageUrl','userAgent','referrer','createdAt',
+                'to','message'])
+          && d.keys().hasAll(
+               ['name','email','packageId','packageSlug','packageName',
+                'packagePrice','lang','createdAt','to','message'])
+          && d.name is string && d.name.size() >= 2 && d.name.size() <= 120
+          && d.email is string && d.email.size() >= 5 && d.email.size() <= 254
+          && d.email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')
+          && d.packageId in ['card1','card2','card3','card4']
+          && d.packageSlug is string && d.packageSlug.size() <= 64
+          && d.packageName is string && d.packageName.size() <= 200
+          && d.packagePrice is string && d.packagePrice.size() <= 64
+          && d.lang in ['es','en','zh']
+          && (!('pageUrl' in d.keys()) || (d.pageUrl is string && d.pageUrl.size() <= 2048))
+          && (!('userAgent' in d.keys()) || (d.userAgent is string && d.userAgent.size() <= 512))
+          && (!('referrer' in d.keys()) || (d.referrer is string && d.referrer.size() <= 2048))
+          && d.to is string && d.to == 'julian@aconcagua.co'
+          && d.message is map
+          && d.message.keys().hasOnly(['subject','html']) && d.message.keys().hasAll(['subject','html'])
+          && d.message.subject is string && d.message.subject.size() >= 1 && d.message.subject.size() <= 256
+          && d.message.html is string && d.message.html.size() >= 1 && d.message.html.size() <= 16384
+          && d.createdAt == request.time;
+    }
+
+    match /contact_form/{doc} {
+      allow create: if isValidContactForm(request.resource.data);
+      allow read, update, delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

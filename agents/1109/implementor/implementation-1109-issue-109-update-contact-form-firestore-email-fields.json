@@ -1,0 +1,44 @@
+{
+  "status": "ok",
+  "report": "• Workspace root: /Users/me/var/agent-workspaces/gXI8PunGS3UvJqbuVE5p. Remote: origin → git@github.com:juequinterore/aconcagua.git. No issue_json.git.repository field — remote check is a no-op (spec §0 confirmed).\n• Workspace warmth: node_modules/ directory existed but was EMPTY → classified as COLD. Bootstrap ran: `npm install` added 438 packages; post-install `git status --porcelain package-lock.json` showed no lockfile drift.\n• Phase 1 (firestore.rules) — 1 file, 10 lines changed: Extended isValidContactForm(d) hasOnly list from 11 to 13 keys ('to','message'); hasAll list from 8 to 10 keys; added 5 new validation clauses: d.to is string && d.to == 'julian@aconcagua.co'; d.message is map; d.message.keys().hasOnly(['subject','html']) && d.message.keys().hasAll(['subject','html']); d.message.subject is string bounded [1,256]; d.message.html is string bounded [1,16384]. All existing 14 conditions and final d.createdAt == request.time preserved exactly.\n• Phase 2 (src/components/PricingContactForm.astro) — 1 file, 74 lines added: (a) Module-scope escapeHtml(v: string): string helper covering all 5 meta-chars (&, <, >, \", '). (b) Module-scope EmailContext interface with 11 typed fields. (c) Module-scope buildEmailHtml({...}: EmailContext): string helper that produces a <div>-rooted HTML email with <h2> heading, Contact <table>, Package <table>, Request context <table>, and Submitted-at <p>; uses escapeHtml() on all user-controllable strings; renders '(none)' placeholder for empty referrer; no hex colors (layout-only inline style on root div). (d) In the submit handler try block: extracted pageUrl, userAgent, referrer into named consts (shared by Firestore payload and email body); captured currentTime = new Date().toISOString(); built subject template; built html via buildEmailHtml. (e) Extended addDoc payload with to: 'julian@aconcagua.co' and message: { subject, html }. All 11 existing payload keys preserved in their original positions with identical values (pageUrl/userAgent/referrer now sourced from named consts — same trimmed values, same key names).\n• Phase 3 (Integration): No route, export, or import changes required — component already wired into PricingCard.astro on all three locales.\n• git diff --stat: firestore.rules +10/-5, src/components/PricingContactForm.astro +74/-5. 2 files changed, 84 insertions, 10 deletions.\n• Automated gate: `npm run build` exited 0 with zero errors and zero @astrojs/check warnings. Build produced dist/_astro/PricingContactForm.astro_astro_type_script_index_0_lang.BqT0foVg.js containing literal strings 'julian@aconcagua.co' and 'Aconcagua.co Pricing for package' and 'New inquiry from Aconcagua' (all verified via grep on built bundle).\n• Exposure check: The new fields are emitted in the Vite-compiled client bundle. The component is already rendered on /, /en/, /zh/ via PricingCard.astro — no new registration needed.\n• Manual verification: All 6 steps in Section 5 require browser interaction, live Firebase credentials, or rules deployment — none executable in this session. All 6 recorded under skipped_with_reason.\n• No feedback or errors were present on this run.\n• Spec discrepancies: None. The refactoring of pageUrl/userAgent/referrer from inline expressions to named consts is explicitly described in Phase 2 of the spec and traces directly to §3 step 2(2).",
+  "result_path": "agents/1109/implementor/implementation-1109-issue-109-update-contact-form-firestore-email-fields.json",
+  "validation": {
+    "automated": {
+      "commands": ["npm run build"],
+      "passed": true
+    },
+    "manual": {
+      "spec_section": "5",
+      "executed": [],
+      "skipped_with_reason": [
+        {
+          "step": "Step 1 — Open localhost:4321/, click any package card's 'Or send us a message' trigger",
+          "reason": "Requires an interactive browser session; no browser is available in this implementation session."
+        },
+        {
+          "step": "Step 2 — Enter name (with angle brackets) and email, submit form",
+          "reason": "Requires browser interaction and live Firebase credentials (PUBLIC_FIREBASE_* env vars); neither is available in this session."
+        },
+        {
+          "step": "Step 3 — Confirm inline success message and form reset",
+          "reason": "Requires browser interaction; not executable in this session."
+        },
+        {
+          "step": "Step 4 — In Firebase Console, verify Firestore document has all existing fields plus to, message.subject, message.html with correct values and HTML escaping",
+          "reason": "Requires Firebase Console access (browser + project credentials); not available in this session."
+        },
+        {
+          "step": "Step 5 — Repeat for /en/ and /zh/ locales to verify locale-specific packageName in subject",
+          "reason": "Requires browser interaction with a running dev server; not executable in this session."
+        },
+        {
+          "step": "Step 6 — Negative test: revert hasOnly in firestore.rules, redeploy to scratch project, confirm permission-denied error in browser console",
+          "reason": "Requires firebase deploy access and browser console inspection; not executable in this session."
+        }
+      ]
+    }
+  },
+  "feedback_addressed": [],
+  "errors_resolved": [],
+  "spec_discrepancies": []
+}

@@ -1,4 +1,6 @@
 ---
+import PricingContactForm from './PricingContactForm.astro';
+
 interface Props {
   name: string;
   price: string;
@@ -7,9 +9,13 @@ interface Props {
   featured?: boolean;
   badge?: string;
   calendlyUrl: string;
+  packageId: 'card1' | 'card2' | 'card3' | 'card4';
+  packageSlug: string;
+  lang: 'es' | 'en' | 'zh';
+  t: (key: string) => string;
 }
 
-const { name, price, features, cta, featured = false, badge, calendlyUrl } = Astro.props;
+const { name, price, features, cta, featured = false, badge, calendlyUrl, packageId, packageSlug, lang, t } = Astro.props;
 ---
 
 <div class:list={['pricing-card', { featured }]}>
@@ -41,6 +47,15 @@ const { name, price, features, cta, featured = false, badge, calendlyUrl } = Ast
       {cta}
     </button>
   )}
+
+  <PricingContactForm
+    lang={lang}
+    t={t}
+    packageId={packageId}
+    packageSlug={packageSlug}
+    packageName={name}
+    packagePrice={price}
+  />
 </div>
 
 <style>

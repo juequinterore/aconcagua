@@ -5,10 +5,11 @@ service cloud.firestore {
     function isValidContactForm(d) {
       return d.keys().hasOnly(
                ['name','email','packageId','packageSlug','packageName',
-                'packagePrice','lang','pageUrl','userAgent','referrer','createdAt','message'])
+                'packagePrice','lang','pageUrl','userAgent','referrer','createdAt',
+                'userMessage','to','message'])
           && d.keys().hasAll(
                ['name','email','packageId','packageSlug','packageName',
-                'packagePrice','lang','createdAt'])
+                'packagePrice','lang','createdAt','to','message'])
           && d.name is string && d.name.size() >= 2 && d.name.size() <= 120
           && d.email is string && d.email.size() >= 5 && d.email.size() <= 254
           && d.email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')
@@ -20,7 +21,13 @@ service cloud.firestore {
           && (!('pageUrl' in d.keys()) || (d.pageUrl is string && d.pageUrl.size() <= 2048))
           && (!('userAgent' in d.keys()) || (d.userAgent is string && d.userAgent.size() <= 512))
           && (!('referrer' in d.keys()) || (d.referrer is string && d.referrer.size() <= 2048))
-          && (!('message' in d.keys()) || (d.message is string && d.message.size() <= 2000))
+          && (!('userMessage' in d.keys()) || (d.userMessage is string && d.userMessage.size() <= 2000))
+          && d.to is string && d.to == 'julian@aconcagua.co'
+          && d.message is map
+          && d.message.keys().hasOnly(['subject','html'])
+          && d.message.keys().hasAll(['subject','html'])
+          && d.message.subject is string && d.message.subject.size() <= 256
+          && d.message.html is string && d.message.html.size() <= 20000
           && d.createdAt == request.time;
     }
 

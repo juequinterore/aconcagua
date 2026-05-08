@@ -47,7 +47,7 @@
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
       updateToggles(next);
-      btn.dispatchEvent(new CustomEvent('theme-changed', { bubbles: true }));
+      btn.dispatchEvent(new CustomEvent('theme-changed', { bubbles: true, detail: { from: current, to: next } }));
     });
   });
 

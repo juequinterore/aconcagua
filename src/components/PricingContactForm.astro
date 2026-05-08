@@ -316,6 +316,10 @@ const privacyHref = lang === 'es' ? '/privacidad' : `/${lang}/privacy`;
 <script>
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+  function fire(name: string, detail: Record<string, string | number | boolean> = {}): void {
+    document.dispatchEvent(new CustomEvent(name, { detail, bubbles: true }));
+  }
+
   function escapeHtml(input: string): string {
     return input
       .replace(/&/g, '&amp;')
@@ -412,6 +416,12 @@ const privacyHref = lang === 'es' ? '/privacidad' : `/${lang}/privacy`;
     const dlg = document.getElementById(id) as HTMLDialogElement | null;
     if (!dlg) return;
     dlg.showModal();
+    fire('analytics:pricing_form_open', {
+      dialog_id: id,
+      package_id: dlg.querySelector<HTMLInputElement>('input[name="packageId"]')?.value ?? '',
+      package_slug: dlg.querySelector<HTMLInputElement>('input[name="packageSlug"]')?.value ?? '',
+      package_name: dlg.querySelector<HTMLInputElement>('input[name="packageName"]')?.value ?? '',
+    });
     const firstInput = dlg.querySelector<HTMLInputElement>('input[type="text"]');
     firstInput?.focus();
   });
@@ -435,6 +445,7 @@ const privacyHref = lang === 'es' ? '/privacidad' : `/${lang}/privacy`;
 
     // --- Dialog open/close ---
     closeBtn.addEventListener('click', () => {
+      fire('analytics:pricing_form_close', { dialog_id: dialog.id, method: 'close_button' });
       dialog.close();
     });
 
@@ -445,7 +456,10 @@ const privacyHref = lang === 'es' ? '/privacidad' : `/${lang}/privacy`;
         e.clientX <= rect.right &&
         e.clientY >= rect.top &&
         e.clientY <= rect.bottom;
-      if (!inside) dialog.close();
+      if (!inside) {
+        fire('analytics:pricing_form_close', { dialog_id: dialog.id, method: 'backdrop' });
+        dialog.close();
+      }
     });
 
     // --- Form submission ---
@@ -466,6 +480,7 @@ const privacyHref = lang === 'es' ? '/privacidad' : `/${lang}/privacy`;
 
       // Client-side validation
       let hasError = false;
+      const failedFieldNames: string[] = [];
       const nameError = nameInput.nextElementSibling as HTMLSpanElement;
       const emailError = emailInput.nextElementSibling as HTMLSpanElement;
       const userMessageError = userMessageInput.nextElementSibling as HTMLSpanElement;
@@ -473,23 +488,40 @@ const privacyHref = lang === 'es' ? '/privacidad' : `/${lang}/privacy`;
       if (!nameVal || nameVal.length < 2) {
         nameError.textContent = errName;
         hasError = true;
+        failedFieldNames.push('name');
       }
       if (!emailVal) {
         emailError.textContent = errEmail;
         hasError = true;
+        failedFieldNames.push('email');
       } else if (!EMAIL_RE.test(emailVal)) {
         emailError.textContent = errEmailFormat;
         hasError = true;
+        failedFieldNames.push('email');
       }
       if (userMessageVal.length > 2000) {
         userMessageError.textContent = errMessageTooLong;
         hasError = true;
+        failedFieldNames.push('userMessage');
       }
-      if (hasError) return;
+      if (hasError) {
+        fire('analytics:pricing_form_validation_error', {
+          dialog_id: dialog.id,
+          package_id: (form.querySelector<HTMLInputElement>('input[name="packageId"]')?.value) ?? '',
+          fields: failedFieldNames.join(','),
+        });
+        return;
+      }
 
       // Show sending state
       submitBtn.disabled = true;
       statusEl.textContent = msgSending;
+      fire('analytics:pricing_form_submit_attempt', {
+        dialog_id: dialog.id,
+        package_id: (form.querySelector<HTMLInputElement>('input[name="packageId"]')?.value) ?? '',
+        package_slug: (form.querySelector<HTMLInputElement>('input[name="packageSlug"]')?.value) ?? '',
+        has_message: userMessageVal.length > 0,
+      });
 
       try {
         // Collect hidden fields
@@ -541,10 +573,22 @@ const privacyHref = lang === 'es' ? '/privacidad' : `/${lang}/privacy`;
         await addDoc(collection(db, 'contact_form'), payload);
 
         statusEl.textContent = msgSuccess;
+        fire('analytics:pricing_form_submit_success', {
+          dialog_id: dialog.id,
+          package_id: packageId,
+          package_slug: packageSlug,
+          has_message: userMessageVal.length > 0,
+        });
         form.reset();
       } catch (err) {
         console.error('[PricingContactForm] Firestore write failed:', err);
         statusEl.textContent = msgError;
+        fire('analytics:pricing_form_submit_error', {
+          dialog_id: dialog.id,
+          package_id: (form.querySelector<HTMLInputElement>('input[name="packageId"]')?.value) ?? '',
+          package_slug: (form.querySelector<HTMLInputElement>('input[name="packageSlug"]')?.value) ?? '',
+          error: (err as Error)?.message?.slice(0, 200) ?? 'unknown',
+        });
       } finally {
         submitBtn.disabled = false;
       }

@@ -43,6 +43,11 @@ function setupTracking() {
   });
 
   // ---------------------------------------------------------------------------
+  // 14. Consent granted ping (fires once per session that becomes trackable)
+  // ---------------------------------------------------------------------------
+  trackEvent('consent_granted', { language: pageLang });
+
+  // ---------------------------------------------------------------------------
   // 4. CTA click tracking
   // ---------------------------------------------------------------------------
 
@@ -89,7 +94,8 @@ function setupTracking() {
   document.querySelectorAll<HTMLAnchorElement>('a[href*="wa.me"]').forEach((link) => {
     link.addEventListener('click', () => {
       let location = 'unknown';
-      if (link.closest('.cta-section')) location = 'cta_section';
+      if (link.id === 'contact-float') location = 'floating_widget';
+      else if (link.closest('.cta-section')) location = 'cta_section';
       else if (link.closest('.footer')) location = 'footer';
 
       trackEvent('whatsapp_click', {
@@ -245,5 +251,120 @@ function setupTracking() {
         language: pageLang,
       });
     }
+  });
+
+  // ---------------------------------------------------------------------------
+  // 15. Manage-Cookies buttons (footer column + footer bottom row)
+  // ---------------------------------------------------------------------------
+  document.querySelectorAll<HTMLButtonElement>('#manage-cookies, #manage-cookies-bottom').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      trackEvent('cookie_manage_open', {
+        location: btn.id === 'manage-cookies-bottom' ? 'footer_bottom' : 'footer',
+        language: pageLang,
+      });
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  // 16. Mobile hamburger menu open/close
+  // ---------------------------------------------------------------------------
+  const hamburger = document.getElementById('hamburger-btn');
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      requestAnimationFrame(() => {
+        const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+        trackEvent('mobile_menu_toggle', { state: isOpen ? 'open' : 'close', language: pageLang });
+      });
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // 17. Theme change (forwards `theme-changed` CustomEvent from ThemeToggle.astro)
+  // ---------------------------------------------------------------------------
+  document.addEventListener('theme-changed', (e: Event) => {
+    const detail = (e as CustomEvent<{ from?: string; to?: string }>).detail ?? {};
+    trackEvent('theme_change', {
+      from_theme: detail.from ?? 'unknown',
+      to_theme: detail.to ?? 'unknown',
+      language: pageLang,
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  // 18. Floating contact widget (FAB)
+  // ---------------------------------------------------------------------------
+  const fab = document.getElementById('contact-float');
+  if (fab) {
+    fab.addEventListener('click', () => {
+      const href = fab.getAttribute('href') ?? '';
+      let destination = 'unknown';
+      if (href.includes('wa.me')) destination = 'whatsapp';
+      else if (href.includes('xhslink.com') || href.includes('xiaohongshu')) destination = 'xiaohongshu';
+      trackEvent('contact_float_click', { destination, language: pageLang });
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // 19. Outbound external links (blog and any future target="_blank" anchor)
+  // ---------------------------------------------------------------------------
+  document.querySelectorAll<HTMLAnchorElement>('a[target="_blank"]').forEach((link) => {
+    if (
+      link.matches('a[href*="wa.me"]') ||
+      link.closest('.partner-card, .social-card, .social-icon, .social-icon-small') ||
+      link.id === 'contact-float'
+    ) return;
+    const href = link.getAttribute('href') ?? '';
+    if (!href || href.startsWith('mailto:')) return;
+    let destination = 'other';
+    try { destination = new URL(href, window.location.origin).hostname; } catch { /* keep 'other' */ }
+    let location = 'unknown';
+    if (link.closest('.nav, .nav-overlay')) location = 'nav';
+    else if (link.closest('.footer')) location = 'footer';
+    else if (link.closest('.cta-section')) location = 'cta_section';
+    link.addEventListener('click', () => {
+      trackEvent('outbound_click', { destination, href: href.slice(0, 200), location, language: pageLang });
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  // 20. Hero scroll-indicator click
+  // ---------------------------------------------------------------------------
+  document.querySelectorAll<HTMLAnchorElement>('.scroll-indicator').forEach((link) => {
+    link.addEventListener('click', () => {
+      trackEvent('hero_scroll_indicator_click', { target: link.getAttribute('href') ?? '', language: pageLang });
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  // 21. Pricing-form lifecycle (CustomEvent forwarder from PricingContactForm.astro)
+  // ---------------------------------------------------------------------------
+  const PRICING_FORM_EVENTS = [
+    'analytics:pricing_form_open',
+    'analytics:pricing_form_close',
+    'analytics:pricing_form_validation_error',
+    'analytics:pricing_form_submit_attempt',
+    'analytics:pricing_form_submit_success',
+    'analytics:pricing_form_submit_error',
+  ] as const;
+  PRICING_FORM_EVENTS.forEach((evtName) => {
+    document.addEventListener(evtName, (e: Event) => {
+      const detail = (e as CustomEvent<Record<string, string | number | boolean>>).detail ?? {};
+      trackEvent(evtName.replace('analytics:', ''), { ...detail, language: pageLang });
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  // 22. Gallery lifecycle (CustomEvent forwarder from Gallery.astro)
+  // ---------------------------------------------------------------------------
+  const GALLERY_EVENTS = [
+    'analytics:gallery_image_open',
+    'analytics:gallery_navigate',
+    'analytics:gallery_lightbox_close',
+  ] as const;
+  GALLERY_EVENTS.forEach((evtName) => {
+    document.addEventListener(evtName, (e: Event) => {
+      const detail = (e as CustomEvent<Record<string, string | number | boolean>>).detail ?? {};
+      trackEvent(evtName.replace('analytics:', ''), { ...detail, language: pageLang });
+    });
   });
 }

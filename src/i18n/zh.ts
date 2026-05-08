@@ -86,7 +86,7 @@ export const zh = {
   'pricing.card4.cta': '查询可用性',
 
   // Pricing — Contact Form
-  'pricing.contact.cta': '或给我们发送消息',
+  'pricing.contact.cta': '安排通话',
   'pricing.contact.modal_title': '关于',
   'pricing.contact.intro': '请填写表单，我们将尽快回复您。',
   'pricing.contact.field_name': '姓名',

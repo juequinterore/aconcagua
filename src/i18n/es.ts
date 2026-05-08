@@ -86,7 +86,7 @@ export const es = {
   'pricing.card4.cta': 'Consultar Disponibilidad',
 
   // Pricing — Contact Form
-  'pricing.contact.cta': 'O envianos un mensaje',
+  'pricing.contact.cta': 'Agendar una llamada',
   'pricing.contact.modal_title': 'Consulta sobre',
   'pricing.contact.intro': 'Completá el formulario y te respondemos a la brevedad.',
   'pricing.contact.field_name': 'Nombre',

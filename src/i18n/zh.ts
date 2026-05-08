@@ -85,6 +85,28 @@ export const zh = {
   'pricing.card4.feature3': '专属1对1私人向导',
   'pricing.card4.cta': '查询可用性',
 
+  // Pricing — Contact Form
+  'pricing.contact.cta': '安排通话',
+  'pricing.contact.modal_title': '关于',
+  'pricing.contact.intro': '请填写表单，我们将尽快回复您。',
+  'pricing.contact.field_name': '姓名',
+  'pricing.contact.field_name_placeholder': '您的全名',
+  'pricing.contact.field_email': '电子邮件',
+  'pricing.contact.field_email_placeholder': 'you@email.com',
+  'pricing.contact.field_message': '问题或评论',
+  'pricing.contact.field_message_optional': '（选填）',
+  'pricing.contact.field_message_placeholder': '告诉我们您想了解关于这次探险的哪些信息。',
+  'pricing.contact.error_message_too_long': '您的留言不能超过2000个字符。',
+  'pricing.contact.submit': '发送咨询',
+  'pricing.contact.sending': '发送中…',
+  'pricing.contact.success': '感谢您！我们已收到您的咨询，将尽快与您联系。',
+  'pricing.contact.error': '出现了问题，请重试。',
+  'pricing.contact.error_required_name': '姓名为必填项（至少2个字符）。',
+  'pricing.contact.error_required_email': '电子邮件为必填项。',
+  'pricing.contact.error_invalid_email': '请输入有效的电子邮件地址。',
+  'pricing.contact.close': '关闭',
+  'pricing.contact.privacy_note': '我们只会用此信息回复您的咨询。',
+
   // Testimonials
   'testimonials.tag': '客户评价',
   'testimonials.title': '我的客户怎么说',

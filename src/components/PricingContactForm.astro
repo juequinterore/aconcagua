@@ -1,0 +1,553 @@
+---
+interface Props {
+  lang: 'es' | 'en' | 'zh';
+  t: (k: string) => string;
+  packageId: 'card1' | 'card2' | 'card3' | 'card4';
+  packageSlug: string;
+  packageName: string;
+  packagePrice: string;
+  dialogId: string;
+}
+
+const { lang, t, packageId, packageSlug, packageName, packagePrice, dialogId } = Astro.props;
+
+const formId = `${dialogId}-form`;
+const statusId = `${dialogId}-status`;
+const nameId = `${dialogId}-name`;
+const emailId = `${dialogId}-email`;
+const messageId = `${dialogId}-message`;
+
+const privacyHref = lang === 'es' ? '/privacidad' : `/${lang}/privacy`;
+---
+
+<div
+  class="pricing-contact-wrapper"
+  data-pricing-contact-form
+  data-dialog-id={dialogId}
+  data-form-id={formId}
+  data-msg-sending={t('pricing.contact.sending')}
+  data-msg-success={t('pricing.contact.success')}
+  data-msg-error={t('pricing.contact.error')}
+  data-err-name={t('pricing.contact.error_required_name')}
+  data-err-email={t('pricing.contact.error_required_email')}
+  data-err-email-format={t('pricing.contact.error_invalid_email')}
+  data-err-message-too-long={t('pricing.contact.error_message_too_long')}
+>
+  <!-- Per-card contact dialog -->
+  <dialog
+    class="contact-modal"
+    id={dialogId}
+    aria-modal="true"
+    aria-label={`${t('pricing.contact.modal_title')} ${packageName}`}
+  >
+    <button class="modal-close" type="button" aria-label={t('pricing.contact.close')}>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <h2 class="modal-heading">{t('pricing.contact.modal_title')} — {packageName}</h2>
+    <p class="modal-intro">{t('pricing.contact.intro')}</p>
+
+    <form id={formId} class="contact-form" novalidate>
+      <!-- Hidden package context fields -->
+      <input type="hidden" name="packageId" value={packageId} />
+      <input type="hidden" name="packageSlug" value={packageSlug} />
+      <input type="hidden" name="packageName" value={packageName} />
+      <input type="hidden" name="packagePrice" value={packagePrice} />
+      <input type="hidden" name="lang" value={lang} />
+
+      <div class="form-field">
+        <label for={nameId}>{t('pricing.contact.field_name')}</label>
+        <input
+          type="text"
+          id={nameId}
+          name="name"
+          autocomplete="name"
+          required
+          minlength="2"
+          maxlength="120"
+          placeholder={t('pricing.contact.field_name_placeholder')}
+          aria-required="true"
+        />
+        <span class="field-error" aria-live="polite"></span>
+      </div>
+
+      <div class="form-field">
+        <label for={emailId}>{t('pricing.contact.field_email')}</label>
+        <input
+          type="email"
+          id={emailId}
+          name="email"
+          autocomplete="email"
+          required
+          maxlength="254"
+          placeholder={t('pricing.contact.field_email_placeholder')}
+          aria-required="true"
+        />
+        <span class="field-error" aria-live="polite"></span>
+      </div>
+
+      <div class="form-field">
+        <label for={messageId}>
+          {t('pricing.contact.field_message')}
+          <span class="optional-tag">{t('pricing.contact.field_message_optional')}</span>
+        </label>
+        <textarea
+          id={messageId}
+          name="userMessage"
+          rows={4}
+          maxlength="2000"
+          placeholder={t('pricing.contact.field_message_placeholder')}
+        ></textarea>
+        <span class="field-error" aria-live="polite"></span>
+      </div>
+
+      <button type="submit" class="btn btn-primary submit-btn">
+        {t('pricing.contact.submit')}
+      </button>
+    </form>
+
+    <p id={statusId} class="form-status" role="status" aria-live="polite"></p>
+
+    <p class="privacy-note">
+      {t('pricing.contact.privacy_note')}
+      {' '}
+      <a href={privacyHref} class="privacy-link">{t('footer.privacy')}</a>
+    </p>
+  </dialog>
+</div>
+
+<style>
+  .pricing-contact-wrapper {
+    margin-top: 8px;
+  }
+
+  /* Modal dialog */
+  .contact-modal {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: min(520px, calc(100vw - 32px));
+    max-height: calc(100vh - 64px);
+    padding: 36px 32px 32px;
+    border: none;
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contact-modal:not([open]) {
+    display: none;
+  }
+
+  .contact-modal::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+  }
+
+  /* Close button */
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border-card);
+    background: transparent;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .modal-close:hover {
+    background: var(--accent);
+    color: var(--white);
+    border-color: var(--accent);
+  }
+
+  .modal-close:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  /* Headings and intro */
+  .modal-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: var(--fs-h3, 1.25rem);
+    color: var(--text-primary);
+    padding-right: 40px;
+  }
+
+  .modal-intro {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Form */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-field label {
+    font-size: var(--fs-small);
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .form-field input[type="text"],
+  .form-field input[type="email"],
+  .form-field textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border-card);
+    border-radius: var(--radius-lg);
+    background: var(--bg-base, var(--bg-card));
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+  }
+
+  .form-field input[type="text"]:focus,
+  .form-field input[type="email"]:focus,
+  .form-field textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(200, 138, 62, 0.15);
+  }
+
+  .form-field input[type="text"]::placeholder,
+  .form-field input[type="email"]::placeholder,
+  .form-field textarea::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.6;
+  }
+
+  .form-field textarea {
+    min-height: 96px;
+    resize: vertical;
+    font-family: inherit;
+    line-height: 1.5;
+  }
+
+  .optional-tag {
+    color: var(--text-secondary);
+    font-weight: 400;
+    font-size: var(--fs-xs);
+    margin-left: 4px;
+  }
+
+  .field-error {
+    font-size: var(--fs-xs);
+    color: var(--accent);
+    min-height: 1.2em;
+  }
+
+  /* Submit button */
+  .submit-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px;
+    margin-top: 4px;
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+
+  /* Status region */
+  .form-status {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    min-height: 1.5em;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+
+  /* Privacy note */
+  .privacy-note {
+    font-size: var(--fs-xs);
+    color: var(--text-secondary);
+    text-align: center;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .privacy-link {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .privacy-link:hover {
+    opacity: 0.8;
+  }
+
+  @media (max-width: 480px) {
+    .contact-modal {
+      padding: 28px 20px 24px;
+      gap: 16px;
+    }
+  }
+</style>
+
+<script>
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function escapeHtml(input: string): string {
+    return input
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  // Note: inline styles are used in buildEmailHtml because most email clients strip <style> blocks.
+  // This is the sole intentional use of hardcoded colors in this codebase — the project's
+  // "no hardcoded hex" rule applies to Astro component <style> blocks, not outbound email markup.
+  function buildEmailHtml(fields: {
+    name: string;
+    email: string;
+    userMessage: string;
+    packageId: string;
+    packageSlug: string;
+    packageName: string;
+    packagePrice: string;
+    lang: string;
+    pageUrl: string;
+    userAgent: string;
+    referrer: string;
+    submittedAt: string;
+  }): string {
+    const {
+      name, email, userMessage, packageId, packageSlug,
+      packageName, packagePrice, lang, pageUrl, userAgent,
+      referrer, submittedAt,
+    } = fields;
+
+    const row = (label: string, value: string) =>
+      `<tr><td style="padding:6px 12px 6px 0;font-weight:600;color:#555;white-space:nowrap;vertical-align:top">${label}</td><td style="padding:6px 0;color:#111">${value}</td></tr>`;
+
+    const section = (heading: string, content: string) =>
+      `<div style="margin:20px 0 0"><h3 style="font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#888;margin:0 0 8px;padding-bottom:4px;border-bottom:1px solid #eee">${heading}</h3>${content}</div>`;
+
+    const escapedEmail = escapeHtml(email);
+    const escapedPageUrl = escapeHtml(pageUrl);
+
+    const messageSection = userMessage
+      ? section(
+          'Message',
+          `<blockquote style="margin:0;padding:10px 16px;background:#f9f9f9;border-left:3px solid #c88a3e;white-space:pre-wrap;color:#111;font-size:14px">${escapeHtml(userMessage)}</blockquote>`,
+        )
+      : '';
+
+    return (
+      `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Aconcagua.co Inquiry</title></head>` +
+      `<body style="font-family:sans-serif;font-size:14px;color:#111;background:#fff;margin:0;padding:24px">` +
+      `<div style="max-width:580px;margin:0 auto">` +
+      `<h2 style="font-size:20px;color:#111;margin:0 0 4px">New inquiry &#8212; ${escapeHtml(packageName)}</h2>` +
+      `<p style="font-size:12px;color:#888;margin:0 0 20px">Submitted via aconcagua.co pricing</p>` +
+      section(
+        'Contact',
+        `<table style="border-collapse:collapse;width:100%"><tbody>` +
+          row('Name', escapeHtml(name)) +
+          row('Email', `<a href="mailto:${escapedEmail}" style="color:#c88a3e">${escapedEmail}</a>`) +
+          `</tbody></table>`,
+      ) +
+      messageSection +
+      section(
+        'Package',
+        `<table style="border-collapse:collapse;width:100%"><tbody>` +
+          row('Name', escapeHtml(packageName)) +
+          row('Price', escapeHtml(packagePrice)) +
+          row('ID', escapeHtml(packageId)) +
+          row('Slug', escapeHtml(packageSlug)) +
+          `</tbody></table>`,
+      ) +
+      section(
+        'Context',
+        `<table style="border-collapse:collapse;width:100%"><tbody>` +
+          row('Language', escapeHtml(lang)) +
+          row('Page', `<a href="${escapedPageUrl}" style="color:#c88a3e;word-break:break-all">${escapedPageUrl}</a>`) +
+          row('Referrer', escapeHtml(referrer) || '<em style="color:#aaa">none</em>') +
+          row('User Agent', `<span style="font-size:12px;color:#555">${escapeHtml(userAgent)}</span>`) +
+          row('Submitted', escapeHtml(submittedAt)) +
+          `</tbody></table>`,
+      ) +
+      `</div></body></html>`
+    );
+  }
+
+  // Delegated listener: opens the matching dialog when any [data-pricing-cta-trigger] button is
+  // clicked anywhere on the page. Installed once at module scope — Astro bundles <script> blocks
+  // as ES modules (single evaluation per page load), so this listener is never registered twice.
+  document.addEventListener('click', (e) => {
+    const trigger = (e.target as HTMLElement | null)?.closest('[data-pricing-cta-trigger]');
+    if (!trigger) return;
+    const id = trigger.getAttribute('data-pricing-cta-trigger');
+    if (!id) return;
+    const dlg = document.getElementById(id) as HTMLDialogElement | null;
+    if (!dlg) return;
+    dlg.showModal();
+    const firstInput = dlg.querySelector<HTMLInputElement>('input[type="text"]');
+    firstInput?.focus();
+  });
+
+  document.querySelectorAll<HTMLElement>('[data-pricing-contact-form]').forEach((wrapper) => {
+    const msgSending = wrapper.dataset.msgSending ?? '';
+    const msgSuccess = wrapper.dataset.msgSuccess ?? '';
+    const msgError = wrapper.dataset.msgError ?? '';
+    const errName = wrapper.dataset.errName ?? '';
+    const errEmail = wrapper.dataset.errEmail ?? '';
+    const errEmailFormat = wrapper.dataset.errEmailFormat ?? '';
+    const errMessageTooLong = wrapper.dataset.errMessageTooLong ?? '';
+
+    const dialog = wrapper.querySelector<HTMLDialogElement>('.contact-modal');
+    const closeBtn = wrapper.querySelector<HTMLButtonElement>('.modal-close');
+    const form = wrapper.querySelector<HTMLFormElement>('.contact-form');
+    const submitBtn = wrapper.querySelector<HTMLButtonElement>('.submit-btn');
+    const statusEl = wrapper.querySelector<HTMLParagraphElement>('.form-status');
+
+    if (!dialog || !closeBtn || !form || !submitBtn || !statusEl) return;
+
+    // --- Dialog open/close ---
+    closeBtn.addEventListener('click', () => {
+      dialog.close();
+    });
+
+    dialog.addEventListener('click', (e: MouseEvent) => {
+      const rect = dialog.getBoundingClientRect();
+      const inside =
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom;
+      if (!inside) dialog.close();
+    });
+
+    // --- Form submission ---
+    form.addEventListener('submit', async (e: Event) => {
+      e.preventDefault();
+
+      // Clear previous errors/status
+      const fieldErrors = form.querySelectorAll<HTMLSpanElement>('.field-error');
+      fieldErrors.forEach((el) => { el.textContent = ''; });
+      statusEl.textContent = '';
+
+      const nameInput = form.querySelector<HTMLInputElement>('input[name="name"]')!;
+      const emailInput = form.querySelector<HTMLInputElement>('input[name="email"]')!;
+      const userMessageInput = form.querySelector<HTMLTextAreaElement>('textarea[name="userMessage"]')!;
+      const nameVal = nameInput.value.trim();
+      const emailVal = emailInput.value.trim();
+      const userMessageVal = userMessageInput.value.trim();
+
+      // Client-side validation
+      let hasError = false;
+      const nameError = nameInput.nextElementSibling as HTMLSpanElement;
+      const emailError = emailInput.nextElementSibling as HTMLSpanElement;
+      const userMessageError = userMessageInput.nextElementSibling as HTMLSpanElement;
+
+      if (!nameVal || nameVal.length < 2) {
+        nameError.textContent = errName;
+        hasError = true;
+      }
+      if (!emailVal) {
+        emailError.textContent = errEmail;
+        hasError = true;
+      } else if (!EMAIL_RE.test(emailVal)) {
+        emailError.textContent = errEmailFormat;
+        hasError = true;
+      }
+      if (userMessageVal.length > 2000) {
+        userMessageError.textContent = errMessageTooLong;
+        hasError = true;
+      }
+      if (hasError) return;
+
+      // Show sending state
+      submitBtn.disabled = true;
+      statusEl.textContent = msgSending;
+
+      try {
+        // Collect hidden fields
+        const packageId = (form.querySelector<HTMLInputElement>('input[name="packageId"]')!).value;
+        const packageSlug = (form.querySelector<HTMLInputElement>('input[name="packageSlug"]')!).value;
+        const packageName = (form.querySelector<HTMLInputElement>('input[name="packageName"]')!).value;
+        const packagePrice = (form.querySelector<HTMLInputElement>('input[name="packagePrice"]')!).value;
+        const lang = (form.querySelector<HTMLInputElement>('input[name="lang"]')!).value;
+
+        // Dynamic import to code-split Firebase out of the initial bundle
+        const { db } = await import('../lib/firebase');
+        const { addDoc, collection, serverTimestamp } = await import('firebase/firestore');
+
+        const payload: Record<string, unknown> = {
+          name: nameVal,
+          email: emailVal,
+          packageId,
+          packageSlug,
+          packageName,
+          packagePrice,
+          lang,
+          pageUrl: window.location.href.slice(0, 2048),
+          userAgent: navigator.userAgent.slice(0, 512),
+          referrer: document.referrer.slice(0, 2048),
+          createdAt: serverTimestamp(),
+        };
+        if (userMessageVal) payload.userMessage = userMessageVal;
+
+        const submittedAt = new Date().toISOString();
+        payload.to = 'julian@aconcagua.co';
+        payload.message = {
+          subject: `Contact from Aconcagua.co Pricing for package ${packageName}`,
+          html: buildEmailHtml({
+            name: nameVal,
+            email: emailVal,
+            userMessage: userMessageVal,
+            packageId,
+            packageSlug,
+            packageName,
+            packagePrice,
+            lang,
+            pageUrl: window.location.href.slice(0, 2048),
+            userAgent: navigator.userAgent.slice(0, 512),
+            referrer: document.referrer.slice(0, 2048),
+            submittedAt,
+          }),
+        };
+
+        await addDoc(collection(db, 'contact_form'), payload);
+
+        statusEl.textContent = msgSuccess;
+        form.reset();
+      } catch (err) {
+        console.error('[PricingContactForm] Firestore write failed:', err);
+        statusEl.textContent = msgError;
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  });
+</script>

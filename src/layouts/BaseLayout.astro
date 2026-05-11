@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import '../styles/animations.css';
 import ContactFloat from '../components/ContactFloat.astro';
+import { useTranslations } from '../i18n/utils';
 
 interface Props {
   title: string;
@@ -20,6 +21,16 @@ const {
   ogUrl = 'https://aconcagua.co/',
 ogImage = 'https://aconcagua.co/openegraph.jpeg',
 } = Astro.props;
+
+const t = useTranslations(lang);
+
+const testimonialReviewIds = ['1', '2', '3', '5', '6'] as const;
+const reviews = testimonialReviewIds.map(id => ({
+  '@type': 'Review',
+  author: { '@type': 'Person', name: t(`testimonials.${id}.name`) },
+  reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+  reviewBody: t(`testimonials.${id}.text`),
+}));
 
 const alternates = [
   { lang: 'es', href: 'https://aconcagua.co/' },
@@ -59,30 +70,11 @@ const jsonLd = [
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '5',
-      reviewCount: '3',
+      reviewCount: String(reviews.length),
       bestRating: '5',
       worstRating: '1',
     },
-    review: [
-      {
-        '@type': 'Review',
-        author: { '@type': 'Person', name: 'Marco Rossi' },
-        reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-        reviewBody: 'Julián is an exceptional guide. His knowledge of the mountain, his calm in difficult situations, and his genuine concern for the group\'s safety made this expedition an unforgettable experience. We reached the summit because of him.',
-      },
-      {
-        '@type': 'Review',
-        author: { '@type': 'Person', name: 'Sarah Kim' },
-        reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-        reviewBody: 'I couldn\'t have chosen a better guide for my first Aconcagua expedition. Julián anticipated every challenge, kept us motivated during the hardest moments, and celebrated with us at the top. A transformative experience.',
-      },
-      {
-        '@type': 'Review',
-        author: { '@type': 'Person', name: 'James Walsh' },
-        reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-        reviewBody: 'World-class professionalism. Julián coordinated every logistical detail with precision, his English is excellent, and his leadership in extreme conditions is impressive. I\'m already planning to come back with him next year.',
-      },
-    ],
+    review: reviews,
     sameAs: [
       'https://www.instagram.com/julian_kusi',
       'https://www.youtube.com/@juliankusi',
@@ -99,6 +91,14 @@ const jsonLd = [
           price: '2500',
           priceCurrency: 'USD',
           priceSpecification: { '@type': 'PriceSpecification', minPrice: '2500', priceCurrency: 'USD' },
+          itemOffered: {
+            '@type': 'TouristTrip',
+            name: 'Basic Expedition Package',
+            description: 'Park access permits and mandatory insurance. Client manages own logistics.',
+            touristType: 'Adventure climbers / high-altitude mountaineers',
+            itinerary: { '@type': 'Place', name: 'Aconcagua Provincial Park, Mendoza, Argentina' },
+            subjectOf: { '@id': 'https://aconcagua.co/#business' },
+          },
         },
         {
           '@type': 'Offer',
@@ -107,6 +107,14 @@ const jsonLd = [
           price: '4000',
           priceCurrency: 'USD',
           priceSpecification: { '@type': 'PriceSpecification', minPrice: '4000', priceCurrency: 'USD' },
+          itemOffered: {
+            '@type': 'TouristTrip',
+            name: 'Base Camp Expedition Package',
+            description: 'Mule transport, base camp accommodations, full meals, internet, and facilities at base camp.',
+            touristType: 'Adventure climbers / high-altitude mountaineers',
+            itinerary: { '@type': 'Place', name: 'Aconcagua Provincial Park, Mendoza, Argentina' },
+            subjectOf: { '@id': 'https://aconcagua.co/#business' },
+          },
         },
         {
           '@type': 'Offer',
@@ -115,6 +123,14 @@ const jsonLd = [
           price: '7000',
           priceCurrency: 'USD',
           priceSpecification: { '@type': 'PriceSpecification', minPrice: '7000', priceCurrency: 'USD' },
+          itemOffered: {
+            '@type': 'TouristTrip',
+            name: 'Full Expedition Package',
+            description: 'Complete guided expedition. Hotel in Mendoza, transfers, mules, full meals, accommodations, 1 guide per 4 climbers. Option to join Julián Kusi directly.',
+            touristType: 'Adventure climbers / high-altitude mountaineers',
+            itinerary: { '@type': 'Place', name: 'Aconcagua Provincial Park, Mendoza, Argentina' },
+            subjectOf: { '@id': 'https://aconcagua.co/#business' },
+          },
         },
         {
           '@type': 'Offer',
@@ -123,6 +139,14 @@ const jsonLd = [
           price: '15000',
           priceCurrency: 'USD',
           priceSpecification: { '@type': 'PriceSpecification', minPrice: '15000', priceCurrency: 'USD' },
+          itemOffered: {
+            '@type': 'TouristTrip',
+            name: '1:1 Private Expedition Package',
+            description: 'Fully customizable private expedition with a dedicated 1-on-1 certified mountain guide.',
+            touristType: 'Adventure climbers / high-altitude mountaineers',
+            itinerary: { '@type': 'Place', name: 'Aconcagua Provincial Park, Mendoza, Argentina' },
+            subjectOf: { '@id': 'https://aconcagua.co/#business' },
+          },
         },
       ],
     },

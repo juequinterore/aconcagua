@@ -197,4 +197,71 @@ export const zh = {
 
   // Accessibility
   'a11y.opens_new_tab': '在新标签页中打开',
+
+  // FAQ
+  'nav.faq': '常见问题',
+
+  'faq.tag': '常见问题',
+  'faq.title': '常见问题解答',
+  'faq.subtitle': '关于阿空加瓜和我们探险活动的常见问题解答。',
+
+  'faq.category.general.title': '常规与后勤',
+  'faq.category.permits.title': '许可证与法律要求',
+  'faq.category.preparation.title': '技术准备与装备',
+  'faq.category.health.title': '健康与安全',
+  'faq.category.investment.title': '费用投入',
+
+  'faq.qa.best-season.q': '攀登阿空加瓜的最佳季节是什么时候？',
+  'faq.qa.best-season.a': '官方登山季自11月延伸至3月。不过，气候最为稳定的最佳月份是12月底至1月。',
+
+  'faq.qa.duration.q': '阿空加瓜探险需要多少天？',
+  'faq.qa.duration.a': '普通路线或360°路线的标准行程通常从门多萨市出发，历时18至20天。这段时间对于安全的高海拔适应、物资搬运以及应对恶劣天气的预备天数至关重要。',
+
+  'faq.qa.min-time.q': '探险所需的最短时间是多少？',
+  'faq.qa.min-time.a': '标准行程为18至20天。另有"快速"行程可供选择，历时10至14天，专为已在其他山峰（海拔6,000米级别）完成高海拔适应的登山者，或在冲顶当天使用补充氧气以弥补快速上升的登山者而设计。这类行程需要私人后勤、专属服务及额外必要资源，因此费用较高（约USD 10,000）。',
+
+  'faq.qa.success-rate.q': '阿空加瓜的登顶成功率是多少？',
+  'faq.qa.success-rate.a': '据估计，只有30%至40%的登山者能够登顶。许多人因低估高海拔的难度或缺乏大型高海拔山峰的攀登经验而失败。',
+
+  'faq.qa.mules-porters.q': '可以雇用骡子或搬运工吗？',
+  'faq.qa.mules-porters.a': '可以。骡子可以将重装备运送至大本营（普通路线的Plaza de Mulas，或360°路线的Plaza Argentina）。在高营地，有搬运工可以帮助您负重，让您为冲顶日保存体力。',
+
+  'faq.qa.abandon-expedition.q': '如果需要中途放弃探险怎么办？',
+  'faq.qa.abandon-expedition.a': '"自主撤离"系统（自行徒步下山）是严格禁止的。您绝不会单独下撤：始终会有向导或助理全程陪同，这可能产生额外费用。我们的队伍最多12人，向导与登山者比例为每3至4名登山者配备1名向导，以确保在任何紧急情况下都能获得妥善照顾。',
+
+  'faq.qa.permit-cost.q': '阿空加瓜的许可证费用是多少？',
+  'faq.qa.permit-cost.a': '许可证对所有登山者均为强制要求。2026-2027赛季外国人许可证费用预计在USD 900至USD 2,000之间，具体取决于路线和类别。许可证在门多萨省旅游局办理，需通过Pago Fácil以阿根廷比索现金支付。注意：如果您聘请代理公司，他们可以远程办理手续，并提供信用卡或银行转账等其他支付方式。',
+
+  'faq.qa.guide-required.q': '是否必须聘请认证向导？',
+  'faq.qa.guide-required.a': '对于普通路线，法律上并无强制要求，但强烈建议聘请向导以应对健康和天气风险。请务必确认该专业人员持有阿空加瓜省立公园的官方资质证书。',
+
+  'faq.qa.minors.q': '未成年人可以攀登阿空加瓜吗？',
+  'faq.qa.minors.a': '可以，但需要提供经公证人认证的双亲法律授权书，对于外国人，还须附有海牙认证（Apostilla de la Haya）。',
+
+  'faq.qa.insurance.q': '我需要哪种保险？',
+  'faq.qa.insurance.a': '对于外国人而言，保险是强制要求。保险须覆盖直升机救援及至最低海拔5,600米的航空医疗撤离。',
+
+  'faq.qa.boots.q': '攀登阿空加瓜需要什么类型的登山靴？',
+  'faq.qa.boots.a': '您需要双层极地登山靴，须适应极端低温并兼容固定式冰爪。最推荐的型号为：La Sportiva G2 Evo、Scarpa Phantom 6000 HD、La Sportiva Spantik、Bestard top extreme lite和Mammut Nordwand 6000 High。即使是高端徒步靴也不适合攀登阿空加瓜。',
+
+  'faq.qa.climbing-experience.q': '需要哪些技术经验？',
+  'faq.qa.climbing-experience.a': '普通路线或360°路线不需要岩石或冰雪技术攀登经验。但您必须熟悉在积雪坡面上使用冰爪和登山杖。',
+
+  'faq.qa.training.q': '应如何进行体能训练？',
+  'faq.qa.training.a': '建议进行4至6个月的备战准备。重点应放在有氧耐力训练（第2心率区）以及在有坡度地形上背负15至20公斤背包徒步。',
+
+  'faq.qa.medical-service.q': '山上有医疗服务吗？',
+  'faq.qa.medical-service.a': '有，Plaza de Mulas设有医疗站，医生会测量您的血氧饱和度、血压并进行肺部听诊，以授权您继续上升。遇到严重紧急情况时，可提供航空撤离服务。',
+
+  'faq.qa.altitude-sickness.q': '什么是高山病（急性高山反应），如何预防？',
+  'faq.qa.altitude-sickness.a': '黄金法则是：如果症状在休息后没有改善，就必须下撤。医疗服务将评估您是否能够自行下撤，或是否需要空中撤离。',
+
+  'faq.qa.communication.q': '山上有通讯设备吗？',
+  'faq.qa.communication.a': '有。Plaza de Mulas提供Starlink卫星互联网，可在大本营服务区使用。高营地则通过VHF对讲机或卫星电话进行通讯。认证向导随时携带VHF对讲机和紧急通讯设备。',
+
+  'faq.qa.total-cost.q': '阿空加瓜探险的总费用是多少？',
+  'faq.qa.total-cost.a': '总费用范围为USD 2,000至USD 10,000，具体取决于您的后勤安排。\n\n经济型约USD 2,000：基本许可证 + 保险 + 自行安排后勤。适合经验丰富、能够自主管理一切的登山者。\n\n中档约USD 3,000 + 许可证和保险：包含骡子运输、大本营住宿和餐饮，不含向导。\n\n全程服务（Full Service）约USD 6,000+ + 许可证和保险：含认证向导的完整探险套餐，包括门多萨酒店、接送、全程三餐和住宿。\n\n主要费用参考：许可证费用：其金额严格取决于您的国籍（门多萨居民、阿根廷人、拉丁美洲人或外国人）、所选路线以及是否聘请当地公司协助。撤离保险：覆盖海拔5,600米以上高山直升机救援。',
+
+  'faq.qa.recognize-local-company.q': '如何识别值得信赖的当地公司？',
+  'faq.qa.recognize-local-company.a': '真正在山上有实体存在的当地公司会在营地拥有自己的圆顶帐篷或帐篷，并标有官方标志。中间代理机构则只会安装临时横幅。预订前，请核实该公司是否直接运营，而非转包山地服务。',
 };

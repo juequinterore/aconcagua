@@ -49,6 +49,7 @@
   --section-stats-bg: var(--bg-base);
   --section-pricing-bg: var(--bg-section-alt);
   --section-testimonials-bg: var(--bg-base);
+  --section-faq-bg: var(--bg-section-alt);
   --section-partners-bg: var(--bg-base);
   --section-social-bg: var(--bg-base);
 
@@ -80,6 +81,7 @@
   --section-stats-bg: var(--bg-section-alt);
   --section-pricing-bg: var(--bg-base);
   --section-testimonials-bg: var(--bg-section-alt);
+  --section-faq-bg: var(--bg-section-alt);
   --section-partners-bg: var(--bg-section-alt);
   --section-social-bg: var(--bg-section-alt);
 }
@@ -106,6 +108,7 @@
     --section-stats-bg: var(--bg-section-alt);
     --section-pricing-bg: var(--bg-base);
     --section-testimonials-bg: var(--bg-section-alt);
+    --section-faq-bg: var(--bg-section-alt);
     --section-partners-bg: var(--bg-section-alt);
     --section-social-bg: var(--bg-section-alt);
   }

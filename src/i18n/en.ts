@@ -195,4 +195,71 @@ export const en = {
 
   // Accessibility
   'a11y.opens_new_tab': 'opens in a new tab',
+
+  // FAQ
+  'nav.faq': 'FAQ',
+
+  'faq.tag': 'FREQUENTLY ASKED QUESTIONS',
+  'faq.title': 'Frequently asked questions',
+  'faq.subtitle': 'Answers to the most common questions about Aconcagua and our expeditions.',
+
+  'faq.category.general.title': 'General & Logistics',
+  'faq.category.permits.title': 'Permits & Legal Requirements',
+  'faq.category.preparation.title': 'Technical Preparation & Gear',
+  'faq.category.health.title': 'Health & Safety',
+  'faq.category.investment.title': 'Investment',
+
+  'faq.qa.best-season.q': 'What is the best season to climb Aconcagua?',
+  'faq.qa.best-season.a': 'The official season extends from November to March. However, the best months for weather stability are late December and January.',
+
+  'faq.qa.duration.q': 'How long does an Aconcagua expedition take?',
+  'faq.qa.duration.a': 'A standard itinerary on the Normal Route or the 360° Route usually takes 18 to 20 days from the city of Mendoza. This period is vital for safe acclimatization, load carries, and having reserve days in case of bad weather.',
+
+  'faq.qa.min-time.q': 'What is the recommended minimum time for the expedition?',
+  'faq.qa.min-time.a': 'The standard itinerary is 18 to 20 days. There are also "express" programs of 10 to 14 days, specifically for mountaineers who are already pre-acclimatized from other summits (peaks of 6,000 m) or who use supplemental oxygen on summit day to compensate for the faster ascent. These programs require private logistics, exclusivity, and additional necessary resources, resulting in a higher cost (approximately USD 10,000).',
+
+  'faq.qa.success-rate.q': 'What is the success rate on Aconcagua?',
+  'faq.qa.success-rate.a': 'It is estimated that only 30% to 40% of mountaineers reach the summit. Many fail due to underestimating the altitude or lacking prior experience on large-scale high-altitude mountains.',
+
+  'faq.qa.mules-porters.q': 'Can I hire mules or porters?',
+  'faq.qa.mules-porters.a': 'Yes. Mules can carry heavy gear to the base camps (Plaza de Mulas on the Normal Route or Plaza Argentina on the 360° route). At high camps, there are porters who can help you with loads so you save energy for summit day.',
+
+  'faq.qa.abandon-expedition.q': 'What happens if I have to abandon the expedition?',
+  'faq.qa.abandon-expedition.a': 'The "self-evacuation" system (walking out on your own) is strictly prohibited. You will never descend alone: you will always be accompanied by a guide or assistant, which may involve an additional cost. We work with groups of up to 12 people and a ratio of 1 guide for every 3 to 4 mountaineers to ensure proper attention in any situation.',
+
+  'faq.qa.permit-cost.q': 'How much does the Aconcagua permit cost?',
+  'faq.qa.permit-cost.a': 'The permit is mandatory for all climbers. For the 2026–2027 season, prices for foreigners are estimated between USD 900 and USD 2,000 depending on route and category. It is processed at the Mendoza Province Tourism Office and payment is made in cash in Argentine pesos via Pago Fácil. Note: If you hire an agency, they can handle the process remotely and offer other payment methods such as credit cards or bank transfers.',
+
+  'faq.qa.guide-required.q': 'Is a certified guide required?',
+  'faq.qa.guide-required.a': 'It is not legally required for normal routes, but it is highly recommended to manage health and weather risks. Always make sure your professional holds the official credential from Parque Provincial Aconcagua.',
+
+  'faq.qa.minors.q': 'Can minors climb Aconcagua?',
+  'faq.qa.minors.a': 'Yes, but they require a legal authorization from both parents certified by a notary and, for foreigners, it must include the Hague Apostille.',
+
+  'faq.qa.insurance.q': 'What type of insurance do I need?',
+  'faq.qa.insurance.a': 'For foreigners it is mandatory. The insurance must cover rescue and aeromedical evacuation by helicopter to a minimum altitude of 5,600 meters.',
+
+  'faq.qa.boots.q': 'What boots do I need for Aconcagua?',
+  'faq.qa.boots.a': 'You need double-shell mountaineering boots rated for extreme temperatures and compatible with step-in crampons. The most recommended models are: La Sportiva G2 Evo, Scarpa Phantom 6000 HD, La Sportiva Spantik, Bestard top extreme lite, and Mammut Nordwand 6000 High. Do not attempt Aconcagua in trekking boots, even high-end ones.',
+
+  'faq.qa.climbing-experience.q': 'What technical experience do I need?',
+  'faq.qa.climbing-experience.a': 'Not for the Normal Route or the 360°, as they do not require technical rock or ice climbing. However, you must know how to use crampons and trekking poles on snowy slopes.',
+
+  'faq.qa.training.q': 'How should I train physically?',
+  'faq.qa.training.a': 'A preparation period of 4 to 6 months is recommended. The focus should be aerobic endurance (Zone 2) and hiking with a 15 to 20 kg backpack on hilly terrain.',
+
+  'faq.qa.medical-service.q': 'Is there medical service on the mountain?',
+  'faq.qa.medical-service.a': 'Yes, at Plaza de Mulas there is a medical post where your oxygen saturation and blood pressure are measured and pulmonary auscultation is performed to authorize your ascent. In cases of serious emergency, aerial evacuation is available.',
+
+  'faq.qa.altitude-sickness.q': 'What is Acute Mountain Sickness and how is it prevented?',
+  'faq.qa.altitude-sickness.a': 'The golden rule is to descend if symptoms do not improve with rest. The medical service will assess whether you can descend on your own or if aerial evacuation is necessary.',
+
+  'faq.qa.communication.q': 'Is there communication on the mountain?',
+  'faq.qa.communication.a': 'Yes. Plaza de Mulas has satellite internet via Starlink, available at the base camp service. At high camps, communication is via VHF radios or satellite phone. Certified guides carry VHF radios and emergency communication equipment at all times.',
+
+  'faq.qa.total-cost.q': 'What is the total cost of an Aconcagua expedition?',
+  'faq.qa.total-cost.a': 'The total range can be anywhere from USD 2,000 to USD 10,000 depending on your logistics.\n\nBudget Level ~USD 2,000: basic permit + insurance + self-managed logistics. Ideal for experienced mountaineers who handle everything independently.\n\nMid-Level ~USD 3,000 + Permit & Insurance: includes mules, base camp accommodation, and meals. No guide included.\n\nFull Service (~USD 6,000+ + Permit & Insurance): complete "Full Service" guided expedition with certified guide, Mendoza hotel, transfers, meals, and accommodation throughout.\n\nKey cost factors: Permit cost: its value depends strictly on your nationality (Mendoza resident, Argentine, Latin American, or foreign), the route chosen, and whether you hire assistance from a local company. Evacuation Insurance: covers helicopter rescue in high altitude up to 5,600 meters above sea level.',
+
+  'faq.qa.recognize-local-company.q': 'How do I recognize a trustworthy local company?',
+  'faq.qa.recognize-local-company.a': 'Local companies with a real presence on the mountain have their own domes or tents with official logos at the camps. Intermediary agencies, on the other hand, only set up temporary banners. Before booking, verify that the company operates directly and does not subcontract mountain services.',
 };

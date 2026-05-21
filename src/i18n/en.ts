@@ -307,4 +307,9 @@ export const en = {
 
   'faq.qa.guide-contact.q': 'How do I contact Julián Kusi?',
   'faq.qa.guide-contact.a': 'You can contact Julián Kusi by email at julian@aconcagua.co, via WhatsApp at +57 314 629 4318, or by scheduling a free 30-minute consultation directly from this website.',
+  'faq.qa.guide-contact.links_intro': 'Reach out directly:',
+  'faq.qa.guide-contact.link_email': 'Email',
+  'faq.qa.guide-contact.link_whatsapp': 'WhatsApp',
+  'faq.qa.guide-contact.link_instagram': 'Instagram',
+  'faq.qa.guide-contact.link_tiktok': 'TikTok',
 };

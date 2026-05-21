@@ -309,4 +309,10 @@ export const zh = {
 
   'faq.qa.guide-contact.q': '如何联系Julián Kusi？',
   'faq.qa.guide-contact.a': '您可以通过以下方式联系Julián Kusi：发送电子邮件至julian@aconcagua.co，通过WhatsApp拨打+57 314 629 4318，或直接在本网站预约30分钟免费咨询。',
+  'faq.qa.guide-contact.links_intro': '直接联系：',
+  'faq.qa.guide-contact.link_email': '邮箱',
+  'faq.qa.guide-contact.link_whatsapp': 'WhatsApp',
+  'faq.qa.guide-contact.link_instagram': 'Instagram',
+  'faq.qa.guide-contact.link_tiktok': 'TikTok',
+  'faq.qa.guide-contact.link_xiaohongshu': '小红书',
 };

@@ -5,7 +5,17 @@ interface Props {
   pageId?: string;
 }
 
-const { t, pageId = 'https://aconcagua.co/#webpage' } = Astro.props;
+const { lang, t, pageId = 'https://aconcagua.co/#webpage' } = Astro.props;
+
+const guideContactLinks: { label: string; href: string; external?: boolean }[] = [
+  { label: t('faq.qa.guide-contact.link_email'),     href: 'mailto:julian@aconcagua.co' },
+  { label: t('faq.qa.guide-contact.link_whatsapp'),  href: 'https://wa.me/573146294318',           external: true },
+  { label: t('faq.qa.guide-contact.link_instagram'), href: 'https://www.instagram.com/julian_kusi', external: true },
+  { label: t('faq.qa.guide-contact.link_tiktok'),    href: 'https://www.tiktok.com/@julian_kusi',   external: true },
+  ...(lang === 'zh'
+    ? [{ label: t('faq.qa.guide-contact.link_xiaohongshu'), href: 'https://xhslink.com/m/9PhDmNJh0DB', external: true }]
+    : []),
+];
 
 const categories = [
   {
@@ -125,6 +135,20 @@ const faqPageSchema = {
                     {item.a.split('\n\n').map(p => (
                       <p>{p}</p>
                     ))}
+                    {item.id === 'guide-contact' && (
+                      <p class="faq-contact-links">
+                        <span class="faq-contact-links-intro">{t('faq.qa.guide-contact.links_intro')}</span>
+                        {guideContactLinks.map((link, i) => (
+                          <>
+                            {i > 0 && <span class="faq-contact-sep" aria-hidden="true">·</span>}
+                            <a
+                              href={link.href}
+                              {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                            >{link.label}</a>
+                          </>
+                        ))}
+                      </p>
+                    )}
                   </div>
                 </details>
               </li>
@@ -276,6 +300,36 @@ const faqPageSchema = {
     font-size: var(--fs-body);
     color: var(--text-secondary);
     line-height: 1.7;
+  }
+
+  .faq-contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: baseline;
+    margin-top: 4px;
+  }
+
+  .faq-contact-links-intro {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-right: 4px;
+  }
+
+  .faq-contact-links a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-weight: 500;
+  }
+
+  .faq-contact-links a:hover {
+    color: var(--accent-hover);
+  }
+
+  .faq-contact-sep {
+    color: var(--text-secondary);
+    opacity: 0.6;
   }
 
   /* ─── Responsive ────────────────────────────────────── */

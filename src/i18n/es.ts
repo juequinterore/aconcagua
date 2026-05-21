@@ -307,4 +307,9 @@ export const es = {
 
   'faq.qa.guide-contact.q': '¿Cómo contactar a Julián Kusi?',
   'faq.qa.guide-contact.a': 'Podés contactar a Julián Kusi por correo electrónico a julian@aconcagua.co, por WhatsApp al +57 314 629 4318, o agendando una asesoría gratuita de 30 minutos directamente desde este sitio web.',
+  'faq.qa.guide-contact.links_intro': 'Contactalo directamente:',
+  'faq.qa.guide-contact.link_email': 'Email',
+  'faq.qa.guide-contact.link_whatsapp': 'WhatsApp',
+  'faq.qa.guide-contact.link_instagram': 'Instagram',
+  'faq.qa.guide-contact.link_tiktok': 'TikTok',
 };

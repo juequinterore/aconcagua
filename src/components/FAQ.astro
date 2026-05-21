@@ -2,11 +2,24 @@
 interface Props {
   lang: 'es' | 'en' | 'zh';
   t: (key: string) => string;
+  pageId?: string;
 }
 
-const { t } = Astro.props;
+const { t, pageId = 'https://aconcagua.co/#webpage' } = Astro.props;
 
 const categories = [
+  {
+    key: 'guide',
+    title: t('faq.category.guide.title'),
+    items: [
+      { id: 'guide-who',         q: t('faq.qa.guide-who.q'),         a: t('faq.qa.guide-who.a') },
+      { id: 'guide-why',         q: t('faq.qa.guide-why.q'),         a: t('faq.qa.guide-why.a') },
+      { id: 'guide-credentials', q: t('faq.qa.guide-credentials.q'), a: t('faq.qa.guide-credentials.a') },
+      { id: 'guide-languages',   q: t('faq.qa.guide-languages.q'),   a: t('faq.qa.guide-languages.a') },
+      { id: 'guide-area',        q: t('faq.qa.guide-area.q'),        a: t('faq.qa.guide-area.a') },
+      { id: 'guide-contact',     q: t('faq.qa.guide-contact.q'),     a: t('faq.qa.guide-contact.a') },
+    ],
+  },
   {
     key: 'general',
     title: t('faq.category.general.title'),
@@ -60,6 +73,7 @@ const categories = [
 const faqPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  isPartOf: { '@id': pageId },
   mainEntity: categories.flatMap(c =>
     c.items.map(item => ({
       '@type': 'Question',

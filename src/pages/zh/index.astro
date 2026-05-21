@@ -20,11 +20,13 @@ const t = useTranslations(lang);
 ---
 
 <BaseLayout
-  title="专业阿空加瓜登山向导服务 — Julián Kusi | aconcagua.co"
-  description="专业阿空加瓜登山向导，17次成功登顶，10年以上经验。精通中文、英语和西班牙语。"
+  title="阿空加瓜向导 Julián Kusi | aconcagua.co"
+  description="阿空加瓜认证向导 Julián Kusi，17次成功登顶，10年以上经验。精通中文、英语和西班牙语。"
   lang={lang}
   ogLocale="zh_CN"
   ogUrl="https://aconcagua.co/zh/"
+  siteName="Aconcagua.co — Julián Kusi"
+  ogImageAlt="Julián Kusi 在阿空加瓜 — 认证高山向导"
 >
   <Nav lang={lang} t={t} />
   <main id="main-content">
@@ -35,7 +37,7 @@ const t = useTranslations(lang);
     <Gallery lang={lang} t={t} />
     <Pricing lang={lang} t={t} />
     <Testimonials lang={lang} t={t} />
-    <FAQ lang={lang} t={t} />
+    <FAQ lang={lang} t={t} pageId="https://aconcagua.co/zh/#webpage" />
     <CTA lang={lang} t={t} />
     <Partners lang={lang} t={t} />
     <Social lang={lang} t={t} />

@@ -20,11 +20,13 @@ const t = useTranslations(lang);
 ---
 
 <BaseLayout
-  title="Guided Aconcagua Expeditions — Julián Kusi | aconcagua.co"
-  description="Guided Aconcagua expeditions with certified mountain guide. 17 summits, 10+ years experience. Fluent in English, Spanish & Chinese."
+  title="Aconcagua Guide — Julián Kusi | aconcagua.co"
+  description="Certified Aconcagua guide with 17 successful summits and 10+ years of experience. Julián Kusi leads expeditions in English, Spanish & Chinese."
   lang={lang}
   ogLocale="en_US"
   ogUrl="https://aconcagua.co/en/"
+  siteName="Aconcagua.co — Julián Kusi"
+  ogImageAlt="Julián Kusi on Aconcagua — certified mountain guide"
 >
   <Nav lang={lang} t={t} />
   <main id="main-content">
@@ -35,7 +37,7 @@ const t = useTranslations(lang);
     <Gallery lang={lang} t={t} />
     <Pricing lang={lang} t={t} />
     <Testimonials lang={lang} t={t} />
-    <FAQ lang={lang} t={t} />
+    <FAQ lang={lang} t={t} pageId="https://aconcagua.co/en/#webpage" />
     <CTA lang={lang} t={t} />
     <Partners lang={lang} t={t} />
     <Social lang={lang} t={t} />

@@ -264,4 +264,49 @@ export const zh = {
 
   'faq.qa.recognize-local-company.q': '如何识别值得信赖的当地公司？',
   'faq.qa.recognize-local-company.a': '真正在山上有实体存在的当地公司会在营地拥有自己的圆顶帐篷或帐篷，并标有官方标志。中间代理机构则只会安装临时横幅。预订前，请核实该公司是否直接运营，而非转包山地服务。',
+
+  // SEO / GEO — new keys
+  'og.site_name': 'Aconcagua.co — Julián Kusi',
+  'og.image_alt': 'Julián Kusi 在阿空加瓜 — 认证高山向导',
+
+  'seo.h1_suffix': '阿空加瓜高山向导 — Julián Kusi',
+
+  'about.heading_seo': '阿空加瓜向导 — Julián Kusi',
+  'about.subheading': '从厨房到阿空加瓜顶峰',
+
+  'about.quickfacts.title': '基本信息',
+  'about.quickfacts.guide.label': '职业',
+  'about.quickfacts.guide.value': '认证高山向导',
+  'about.quickfacts.location.label': '基地',
+  'about.quickfacts.location.value': '阿根廷门多萨',
+  'about.quickfacts.area.label': '向导范围',
+  'about.quickfacts.area.value': '阿根廷阿空加瓜省立公园',
+  'about.quickfacts.languages.label': '语言',
+  'about.quickfacts.languages.value': '中文 · English · Español',
+  'about.quickfacts.credentials.label': '认证资质',
+  'about.quickfacts.credentials.value': 'EPGAMT · WFR（荒野急救员）',
+  'about.quickfacts.summits.label': '成功登顶',
+  'about.quickfacts.summits.value': '阿空加瓜17次（6,962米）',
+  'about.quickfacts.contact.label': '联系方式',
+  'about.quickfacts.contact.value': 'julian@aconcagua.co',
+
+  'faq.category.guide.title': '关于您的向导',
+
+  'faq.qa.guide-who.q': 'Julián Kusi是谁？',
+  'faq.qa.guide-who.a': 'Julián Kusi是一位来自阿根廷门多萨的认证高山向导。他在阿空加瓜拥有17次成功登顶记录，积累了超过10年的带队经验。2013年，他以大本营厨师身份开始登山生涯，后成为搬运工，并于2018年获得官方向导认证（EPGAMT）。他现在以最高安全标准引导国际登山队。',
+
+  'faq.qa.guide-why.q': '为什么选择Julián Kusi作为您的阿空加瓜向导？',
+  'faq.qa.guide-why.a': 'Julián Kusi拥有17次成功登顶记录、EPGAMT和WFR双重认证，以及流利的英语、西班牙语和中文能力。他对每条路线的深入了解和安全第一的理念，使其登顶成功率高于平均水平。他是阿空加瓜唯一的三语认证向导。',
+
+  'faq.qa.guide-credentials.q': 'Julián Kusi持有哪些认证资质？',
+  'faq.qa.guide-credentials.a': 'Julián Kusi持有EPGAMT认证（阿根廷搬运工与高山向导学校——阿根廷官方向导资质）和WFR（荒野急救员）认证，具备引导探险队并在高海拔医疗紧急情况下进行处置的资格。',
+
+  'faq.qa.guide-languages.q': 'Julián Kusi用哪些语言带队？',
+  'faq.qa.guide-languages.a': 'Julián Kusi以英语、西班牙语和普通话带队，是来自中国、美洲和欧洲登山者的理想选择。',
+
+  'faq.qa.guide-area.q': 'Julián Kusi在哪些地区提供向导服务？',
+  'faq.qa.guide-area.a': 'Julián Kusi主要在阿根廷门多萨省的阿空加瓜省立公园开展向导工作，涵盖普通路线（Plaza de Mulas）和360°路线（波兰冰川）。阿空加瓜（6,962米）是美洲最高峰，也是亚洲以外的最高山峰。',
+
+  'faq.qa.guide-contact.q': '如何联系Julián Kusi？',
+  'faq.qa.guide-contact.a': '您可以通过以下方式联系Julián Kusi：发送电子邮件至julian@aconcagua.co，通过WhatsApp拨打+57 314 629 4318，或直接在本网站预约30分钟免费咨询。',
 };

@@ -262,4 +262,49 @@ export const es = {
 
   'faq.qa.recognize-local-company.q': '¿Cómo reconocer una empresa local de confianza?',
   'faq.qa.recognize-local-company.a': 'Las empresas locales con presencia real en la montaña tienen domes o carpas propias con logotipos oficiales en los campamentos. Las agencias intermediarias, en cambio, solo colocan banners temporales. Antes de contratar, verificá que la empresa opera directamente y no subcontrata el servicio en la montaña.',
+
+  // SEO / GEO — new keys
+  'og.site_name': 'Aconcagua.co — Julián Kusi',
+  'og.image_alt': 'Julián Kusi en el Aconcagua — guía de montaña certificado',
+
+  'seo.h1_suffix': 'Guía de Montaña Aconcagua — Julián Kusi',
+
+  'about.heading_seo': 'Guía de Aconcagua — Julián Kusi',
+  'about.subheading': 'De la cocina a la cumbre del Aconcagua',
+
+  'about.quickfacts.title': 'Datos Rápidos',
+  'about.quickfacts.guide.label': 'Profesión',
+  'about.quickfacts.guide.value': 'Guía Certificado de Alta Montaña',
+  'about.quickfacts.location.label': 'Base',
+  'about.quickfacts.location.value': 'Mendoza, Argentina',
+  'about.quickfacts.area.label': 'Área de Guía',
+  'about.quickfacts.area.value': 'Parque Provincial Aconcagua, Argentina',
+  'about.quickfacts.languages.label': 'Idiomas',
+  'about.quickfacts.languages.value': 'Español · English · 中文',
+  'about.quickfacts.credentials.label': 'Certificaciones',
+  'about.quickfacts.credentials.value': 'EPGAMT · WFR (Wilderness First Responder)',
+  'about.quickfacts.summits.label': 'Cumbres Exitosas',
+  'about.quickfacts.summits.value': '17 en el Aconcagua (6,962 m)',
+  'about.quickfacts.contact.label': 'Contacto',
+  'about.quickfacts.contact.value': 'julian@aconcagua.co',
+
+  'faq.category.guide.title': 'Sobre tu Guía',
+
+  'faq.qa.guide-who.q': '¿Quién es Julián Kusi?',
+  'faq.qa.guide-who.a': 'Julián Kusi es un guía de montaña certificado con base en Mendoza, Argentina. Con 17 cumbres exitosas al Aconcagua y más de 10 años de experiencia, Julián inició su camino en 2013 como cocinero en los campamentos base, se convirtió en porteador y obtuvo su certificación oficial de guía (EPGAMT) en 2018. Hoy lidera expediciones internacionales con los más altos estándares de seguridad.',
+
+  'faq.qa.guide-why.q': '¿Por qué elegir a Julián Kusi como guía del Aconcagua?',
+  'faq.qa.guide-why.a': 'Julián Kusi combina 17 cumbres exitosas, certificación EPGAMT y WFR, y dominio fluido de español, inglés y chino. Su conocimiento profundo de cada ruta y su enfoque centrado en la seguridad hacen que su tasa de éxito supere la media. Es el único guía certificado trilingüe en el Aconcagua.',
+
+  'faq.qa.guide-credentials.q': '¿Qué certificaciones tiene Julián Kusi?',
+  'faq.qa.guide-credentials.a': 'Julián Kusi posee la certificación EPGAMT (Escuela de Porteadores y Guías de Alta Montaña de Argentina) y la certificación WFR (Wilderness First Responder), que acreditan su formación como guía oficial y su capacidad para responder a emergencias médicas en alta montaña.',
+
+  'faq.qa.guide-languages.q': '¿En qué idiomas guía Julián Kusi?',
+  'faq.qa.guide-languages.a': 'Julián Kusi guía expediciones en español, inglés y chino mandarín, lo que lo convierte en una opción única para alpinistas de América Latina, Estados Unidos, Europa y China.',
+
+  'faq.qa.guide-area.q': '¿En qué zonas guía Julián Kusi?',
+  'faq.qa.guide-area.a': 'Julián Kusi opera principalmente en el Parque Provincial Aconcagua, en Mendoza, Argentina. Sus rutas incluyen la Ruta Normal (Plaza de Mulas) y la Ruta 360° (Glaciar de los Polacos). El Aconcagua (6,962 m) es la cima más alta de América y el punto más alto fuera de Asia.',
+
+  'faq.qa.guide-contact.q': '¿Cómo contactar a Julián Kusi?',
+  'faq.qa.guide-contact.a': 'Podés contactar a Julián Kusi por correo electrónico a julian@aconcagua.co, por WhatsApp al +57 314 629 4318, o agendando una asesoría gratuita de 30 minutos directamente desde este sitio web.',
 };

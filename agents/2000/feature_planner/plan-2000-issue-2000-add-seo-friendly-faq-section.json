@@ -1,0 +1,169 @@
+{
+  "status": "ok",
+  "adw_id": "2000",
+  "issue_number": "2000",
+  "feature_title": "Add SEO-friendly FAQ section",
+  "spec_path": "specs/feat-2000-issue-2000-add-seo-friendly-faq-section.md",
+  "result_path": "agents/2000/feature_planner/plan-2000-issue-2000-add-seo-friendly-faq-section.json",
+  "workspace_root": "/Users/me/var/agent-workspaces/gOIETHdEoMqvvYgMDUkB",
+  "git": {
+    "remote": "git@github.com:juequinterore/aconcagua.git",
+    "remote_match_issue_repository": true,
+    "branch": "chore/add_seo_geo_faq_section",
+    "untracked_unrelated": ["bitbucket-api.sh"]
+  },
+  "project": {
+    "type": "single Astro package, static site (SSG)",
+    "framework": "Astro v5.17.3",
+    "language": "TypeScript (strict)",
+    "locales": ["es", "en", "zh"],
+    "default_locale": "es",
+    "locale_url_strategy": "prefixDefaultLocale=false (es at /, en at /en/, zh at /zh/)",
+    "validation_gate": "npm run build",
+    "test_suite_exists": false,
+    "lint_configured": false,
+    "docs_used": ["docs/PROJECT.md"],
+    "docs_project_created": false
+  },
+  "change_tier": "M",
+  "summary": "Add a new FAQ landing-page section (src/components/FAQ.astro) populated from the provided Spanish Q&As organised in 5 categories and 18 questions, wired into the existing top nav, mobile overlay, and footer via the navLinks arrays, rendered on all three locale landing pages between Testimonials and CTA, with a FAQPage JSON-LD block emitted per page for SEO/GEO. No new dependencies, no schema or routing changes, follows existing component / i18n / token / accessibility conventions.",
+  "affected_files": [
+    {
+      "path": "src/components/FAQ.astro",
+      "operation": "Create",
+      "purpose": "New landing-page section component implementing the FAQ accordion (native <details>/<summary>) + component-local FAQPage JSON-LD <script>."
+    },
+    {
+      "path": "src/components/Nav.astro",
+      "operation": "Modify",
+      "symbol": "navLinks (line 13 array)",
+      "purpose": "Insert { key: 'nav.faq', href: '#faq' } before the nav.blog external entry so #faq is exposed in both the desktop nav and the mobile overlay (both render from the same array)."
+    },
+    {
+      "path": "src/components/Footer.astro",
+      "operation": "Modify",
+      "symbol": "navLinks (line 9 array)",
+      "purpose": "Mirror the new nav entry in the footer navigation column."
+    },
+    {
+      "path": "src/i18n/es.ts",
+      "operation": "Modify",
+      "symbol": "es object literal — append // FAQ block before closing };",
+      "purpose": "Add 1 (nav.faq) + 3 (faq.tag/title/subtitle) + 5 (faq.category.*.title) + 36 (18 Q+A pairs) = 45 Spanish strings, verbatim from issue_json (with \\n\\n paragraph separators for the multi-paragraph total-cost answer)."
+    },
+    {
+      "path": "src/i18n/en.ts",
+      "operation": "Modify",
+      "symbol": "en object literal — append // FAQ block before closing };",
+      "purpose": "English translations of every Spanish FAQ key. Preserves all proper nouns and numbers. nav.faq = 'FAQ'."
+    },
+    {
+      "path": "src/i18n/zh.ts",
+      "operation": "Modify",
+      "symbol": "zh object literal — append // FAQ block before closing };",
+      "purpose": "Simplified Chinese translations of every Spanish FAQ key. Preserves all proper nouns and numbers. nav.faq = '常见问题'."
+    },
+    {
+      "path": "src/pages/index.astro",
+      "operation": "Modify",
+      "symbol": "import block + <main> composition",
+      "purpose": "Import FAQ and render <FAQ lang={lang} t={t} /> between <Testimonials /> and <CTA />."
+    },
+    {
+      "path": "src/pages/en/index.astro",
+      "operation": "Modify",
+      "symbol": "import block + <main> composition",
+      "purpose": "Same as es landing page (relative path ../../components/FAQ.astro)."
+    },
+    {
+      "path": "src/pages/zh/index.astro",
+      "operation": "Modify",
+      "symbol": "import block + <main> composition",
+      "purpose": "Same as es landing page (relative path ../../components/FAQ.astro)."
+    },
+    {
+      "path": "src/styles/global.css",
+      "operation": "Modify",
+      "symbol": "--section-*-bg group (in :root, [data-theme=\"light\"], and the @media (prefers-color-scheme: light) no-JS fallback)",
+      "purpose": "Add --section-faq-bg: var(--bg-section-alt); in all three theme blocks so the FAQ section participates in the existing section-background zig-zag and respects the theme system without hardcoded colours."
+    }
+  ],
+  "files_explicitly_not_changed": [
+    "src/layouts/BaseLayout.astro (keep layout FAQ-agnostic — JSON-LD lives in FAQ.astro)",
+    "astro.config.mjs (no new route, no redirect)",
+    "package.json / tsconfig.json (no new dependency)",
+    "firebase.json / .firebaserc / firestore.rules (unrelated)",
+    "public/* (no new asset)"
+  ],
+  "exposure_surfaces_wired": [
+    "src/components/Nav.astro navLinks → desktop nav .nav-links ul + mobile overlay .nav-overlay ul",
+    "src/components/Footer.astro navLinks → footer navigation column",
+    "src/pages/index.astro <main> composition (es)",
+    "src/pages/en/index.astro <main> composition (en)",
+    "src/pages/zh/index.astro <main> composition (zh)"
+  ],
+  "i18n": {
+    "new_keys_per_locale": 46,
+    "key_breakdown": {
+      "nav": ["nav.faq"],
+      "section_header": ["faq.tag", "faq.title", "faq.subtitle"],
+      "category_titles": [
+        "faq.category.general.title",
+        "faq.category.permits.title",
+        "faq.category.preparation.title",
+        "faq.category.health.title",
+        "faq.category.investment.title"
+      ],
+      "qa_slugs": [
+        "best-season",
+        "duration",
+        "min-time",
+        "success-rate",
+        "mules-porters",
+        "abandon-expedition",
+        "permit-cost",
+        "guide-required",
+        "minors",
+        "insurance",
+        "boots",
+        "climbing-experience",
+        "training",
+        "medical-service",
+        "altitude-sickness",
+        "communication",
+        "total-cost",
+        "recognize-local-company"
+      ],
+      "qa_keys_pattern": "faq.qa.<slug>.q  AND  faq.qa.<slug>.a"
+    },
+    "parity_required": ["src/i18n/es.ts", "src/i18n/en.ts", "src/i18n/zh.ts"]
+  },
+  "seo_geo": {
+    "json_ld_type": "FAQPage",
+    "json_ld_emitter": "src/components/FAQ.astro (component-local <script type=\"application/ld+json\" set:html={JSON.stringify(faqPageSchema)} />)",
+    "json_ld_count_per_page_after_change": 3,
+    "json_ld_blocks_per_page": [
+      "LocalBusiness (existing, in BaseLayout.astro)",
+      "Person (existing, in BaseLayout.astro)",
+      "FAQPage (new, in FAQ.astro)"
+    ],
+    "schema_shape": "{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [ { '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } }, … 18 entries ] }",
+    "semantic_markup": "<section id=\"faq\"> with .tag eyebrow, <h2> title, <h3> category titles, <details>/<summary> for each Q&A. No JS dependency; content remains in DOM regardless of accordion state — fully indexable."
+  },
+  "validation": {
+    "gate_command": "npm run build",
+    "expected_exit_code": 0,
+    "additional_checks": [
+      "grep -c \"'faq\\.\" src/i18n/es.ts src/i18n/en.ts src/i18n/zh.ts → equal counts across all three (parity check)",
+      "grep -E '#[0-9a-fA-F]{3,8}' src/components/FAQ.astro → no colour matches (token-only styling)",
+      "Manual locale walkthrough: /, /en/, /zh/ in both light and dark themes"
+    ]
+  },
+  "assumptions": [
+    "A1 — Implementer produces faithful EN/ZH translations of the Spanish source (project requires locale parity; user dismissed the clarifying question).",
+    "A2 — Section placement is between <Testimonials /> and <CTA /> on all three landing pages.",
+    "A3 — Nav-entry label is 'FAQ' (es/en) and '常见问题' (zh).",
+    "A4 — Native <details>/<summary> accordion, non-exclusive, all closed on first paint."
+  ],
+  "report": "Workspace: /Users/me/var/agent-workspaces/gOIETHdEoMqvvYgMDUkB — remote git@github.com:juequinterore/aconcagua.git matches issue_json repository.\\nProject: single Astro v5.17.3 package, static site, locales es/en/zh, validation gate `npm run build` (no test suite, no linter).\\nDocs: used existing docs/PROJECT.md — no new docs/PROJECT.md created.\\nSpec: specs/feat-2000-issue-2000-add-seo-friendly-faq-section.md (Tier M).\\nKey exposure wiring: navLinks array in Nav.astro (desktop + mobile overlay), navLinks array in Footer.astro, <FAQ /> rendered between <Testimonials /> and <CTA /> in all three landing pages.\\nSEO/GEO: new FAQPage JSON-LD emitted per page from FAQ.astro itself (3 JSON-LD scripts per landing page after change: existing LocalBusiness + Person, plus new FAQPage).\\nAssumptions remaining (recorded, non-load-bearing): A1 EN/ZH translations produced by implementer; A2 placement between Testimonials and CTA; A3 nav label 'FAQ'/'常见问题'; A4 native <details>/<summary> accordion, non-exclusive."
+}

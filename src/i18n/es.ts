@@ -195,4 +195,125 @@ export const es = {
 
   // Accessibility
   'a11y.opens_new_tab': 'se abre en una pestaña nueva',
+
+  // FAQ
+  'nav.faq': 'FAQ',
+
+  'faq.tag': 'PREGUNTAS FRECUENTES',
+  'faq.title': 'Preguntas frecuentes',
+  'faq.subtitle': 'Respuestas a las dudas más comunes sobre el Aconcagua y nuestras expediciones.',
+
+  'faq.category.general.title': 'General y Logística',
+  'faq.category.permits.title': 'Permisos y Requisitos Legales',
+  'faq.category.preparation.title': 'Preparación Técnica y Equipo',
+  'faq.category.health.title': 'Salud y Seguridad',
+  'faq.category.investment.title': 'Inversión',
+
+  'faq.qa.best-season.q': '¿Cuál es la mejor temporada para subir el Aconcagua?',
+  'faq.qa.best-season.a': 'La temporada oficial se extiende de noviembre a marzo. No obstante, los mejores meses por estabilidad climática son finales de diciembre y enero.',
+
+  'faq.qa.duration.q': '¿Cuánto dura una expedición al Aconcagua?',
+  'faq.qa.duration.a': 'Un itinerario estándar por la Ruta Normal o la 360° suele durar entre 18 y 20 días desde la ciudad de Mendoza. Este periodo es vital para una aclimatación segura, realizar porteos y contar con días de reserva ante el mal tiempo.',
+
+  'faq.qa.min-time.q': '¿Cuál es el tiempo mínimo recomendado para la expedición?',
+  'faq.qa.min-time.a': 'El itinerario estándar es de 18 a 20 días. Existen también programas "express" de entre 10 y 14 días, específicamente para montañistas que ya vienen pre-aclimatados de otras cumbres (picos de 6.000 m) o que utilizan oxígeno suplementario el día de la cumbre para compensar la rapidez del ascenso. Estos programas requieren logística privada, exclusividad y recursos adicionales necesarios, con un costo mayor (aproximadamente USD 10.000).',
+
+  'faq.qa.success-rate.q': '¿Cuál es la tasa de éxito en el Aconcagua?',
+  'faq.qa.success-rate.a': 'Se estima que solo entre el 30% y el 40% de los montañistas alcanzan la cima. Muchos fracasan por subestimar la altitud o por falta de experiencia previa en montañas de gran escala.',
+
+  'faq.qa.mules-porters.q': '¿Se pueden contratar mulas o porteadores?',
+  'faq.qa.mules-porters.a': 'Sí. Las mulas pueden llevar el equipo pesado hasta los campos base (Plaza de Mulas en la Ruta Normal o Plaza Argentina en la ruta 360°). En los campamentos de altura, existen porteadores que pueden ayudarte con las cargas para que guardes energía para el día de la cumbre.',
+
+  'faq.qa.abandon-expedition.q': '¿Qué pasa si tengo que abandonar la expedición?',
+  'faq.qa.abandon-expedition.a': 'El sistema de "auto-evacuación" (volver caminando por cuenta propia) está estrictamente prohibido. Nunca bajarás solo: siempre serás acompañado por un guía o asistente, lo que puede implicar un costo adicional. Trabajamos con grupos de máximo 12 personas y un ratio de 1 guía cada 3 o 4 montañistas para garantizar la atención necesaria en cualquier contingencia.',
+
+  'faq.qa.permit-cost.q': '¿Cuánto cuesta el permiso para subir el Aconcagua?',
+  'faq.qa.permit-cost.a': 'El permiso es obligatorio para todos los ascensionistas. Para la temporada 2026-2027, los precios para extranjeros se estiman entre USD 900 y USD 2.000 según la ruta y categoría. Se tramita en la Subsecretaría de Turismo de la provincia de Mendoza y el pago se realiza en efectivo en pesos a través de Pago Fácil. Nota: Si contratas una agencia, ellos pueden gestionar el trámite a distancia y ofrecer otros medios de pago como tarjetas o transferencias.',
+
+  'faq.qa.guide-required.q': '¿Es obligatorio ir con un guía certificado?',
+  'faq.qa.guide-required.a': 'No es obligatorio por ley para las rutas normales, pero es altamente recomendado para gestionar riesgos de salud y clima. Siempre asegúrate de que el profesional tenga la credencial oficial del Parque Provincial Aconcagua.',
+
+  'faq.qa.minors.q': '¿Pueden subir menores de edad?',
+  'faq.qa.minors.a': 'Sí, pero requieren una autorización legal de ambos padres certificada ante escribano y, para extranjeros, debe contar con la Apostilla de la Haya.',
+
+  'faq.qa.insurance.q': '¿Qué tipo de seguro necesito?',
+  'faq.qa.insurance.a': 'Para extranjeros es obligatorio. El seguro debe cubrir rescate y evacuación médica en helicóptero hasta una altura mínima de 5.600 metros.',
+
+  'faq.qa.boots.q': '¿Qué botas necesito para el Aconcagua?',
+  'faq.qa.boots.a': 'Necesitás botas de doble capa certificadas para temperaturas extremas, compatibles con crampones de fijación rígida. Los modelos más recomendados son: La Sportiva G2 Evo, Scarpa Phantom 6000 HD, La Sportiva Spantik, Bestard top extreme lite y Mammut Nordwand 6000 High. No intentes el Aconcagua con botas de trekking, incluso de alta gama.',
+
+  'faq.qa.climbing-experience.q': '¿Qué experiencia técnica necesito?',
+  'faq.qa.climbing-experience.a': 'No para la Ruta Normal o la 360°, ya que no requieren escalada técnica en roca o hielo. Sin embargo, debes saber usar grampones y bastones en pendientes de nieve.',
+
+  'faq.qa.training.q': '¿Cómo debo prepararme físicamente?',
+  'faq.qa.training.a': 'Se recomienda una preparación de 4 a 6 meses. El enfoque debe ser la resistencia aeróbica (Zona 2) y caminar con una mochila de entre 15 kg y 20 kg en terrenos con desnivel.',
+
+  'faq.qa.medical-service.q': '¿Hay servicio médico en la montaña?',
+  'faq.qa.medical-service.a': 'Sí, en Plaza de Mulas hay un puesto médico donde te miden la saturación de oxígeno, presión arterial y realizan auscultación pulmonar para autorizar tu ascenso. En casos de emergencia grave, hay evacuación aérea disponible.',
+
+  'faq.qa.altitude-sickness.q': '¿Qué es el Mal Agudo de Montaña y cómo se previene?',
+  'faq.qa.altitude-sickness.a': 'La regla de oro es bajar si los síntomas no mejoran con el descanso. El servicio médico evaluará si puedes bajar por tus medios o si es necesaria una evacuación aérea.',
+
+  'faq.qa.communication.q': '¿Hay comunicación en la montaña?',
+  'faq.qa.communication.a': 'Sí. En Plaza de Mulas hay cobertura satelital mediante Starlink, disponible en el servicio de base camp. En los campamentos altos la comunicación se realiza por radios VHF o teléfono satelital. Los guías certificados llevan radios VHF y equipos de comunicación de emergencia en todo momento.',
+
+  'faq.qa.total-cost.q': '¿Cuál es el costo total de una expedición al Aconcagua?',
+  'faq.qa.total-cost.a': 'El rango total puede ir de USD 2.000 a USD 10.000 dependiendo de la logística.\n\nNivel Económico ~USD 2.000: permiso básico + seguro + logística propia. Ideal para alpinistas experimentados que autogestionan todo.\n\nNivel Medio ~USD 3.000 + Permiso y Seguro: incluye mulas, alojamiento y comidas en base camp. Sin guía incluido.\n\nNivel Alto (~USD 6.000+ + Permiso y Seguro): expedición "Full Service" con guía certificado, hotel en Mendoza, traslados, comidas y alojamiento durante toda la expedición.\n\nFactores clave a tener en cuenta: Costo del Permiso: su valor depende estrictamente de tu nacionalidad (mendocino, argentino, latinoamericano o extranjero), la ruta elegida y si contratas asistencia de una empresa local. Seguro de Evacuación: cubre rescate en helicóptero en alta montaña hasta los 5600 metros de altura.',
+
+  'faq.qa.recognize-local-company.q': '¿Cómo reconocer una empresa local de confianza?',
+  'faq.qa.recognize-local-company.a': 'Las empresas locales con presencia real en la montaña tienen domes o carpas propias con logotipos oficiales en los campamentos. Las agencias intermediarias, en cambio, solo colocan banners temporales. Antes de contratar, verificá que la empresa opera directamente y no subcontrata el servicio en la montaña.',
+
+  // SEO / GEO — new keys
+  'og.site_name': 'Aconcagua.co — Julián Kusi',
+  'og.image_alt': 'Julián Kusi en el Aconcagua — guía de montaña certificado',
+
+  'seo.h1_suffix': 'Guía de Montaña Aconcagua — Julián Kusi',
+
+  'about.heading_seo': 'Guía de Aconcagua — Julián Kusi',
+  'about.subheading': 'De la cocina a la cumbre del Aconcagua',
+
+  'about.quickfacts.title': 'Datos Rápidos',
+  'about.quickfacts.guide.label': 'Profesión',
+  'about.quickfacts.guide.value': 'Guía Certificado de Alta Montaña',
+  'about.quickfacts.location.label': 'Base',
+  'about.quickfacts.location.value': 'Mendoza, Argentina',
+  'about.quickfacts.area.label': 'Área de Guía',
+  'about.quickfacts.area.value': 'Parque Provincial Aconcagua, Argentina',
+  'about.quickfacts.languages.label': 'Idiomas',
+  'about.quickfacts.languages.value': 'Español · English · 中文',
+  'about.quickfacts.credentials.label': 'Certificaciones',
+  'about.quickfacts.credentials.value': 'EPGAMT · WFR (Wilderness First Responder)',
+  'about.quickfacts.summits.label': 'Cumbres Exitosas',
+  'about.quickfacts.summits.value': '17 en el Aconcagua (6,962 m)',
+  'about.quickfacts.contact.label': 'Contacto',
+  'about.quickfacts.contact.value': 'julian@aconcagua.co',
+
+  'faq.category.guide.title': 'Sobre tu Guía',
+
+  'faq.qa.guide-who.q': '¿Quién es Julián Kusi?',
+  'faq.qa.guide-who.a': 'Julián Kusi nació en Medellín, en el Valle de Aburrá —a unos 1.500 msnm—, rodeado de montañas desde pequeño. A los 20 años se mudó a Mendoza para trabajar en una cocina, labor que lo acercó a los campamentos base del Aconcagua y encendió en él la pasión por el montañismo. Se radicó en la ciudad para estudiar la carrera de guía de montaña profesional y recorrió cada peldaño: logística en base, porteador en campamentos de altura y, finalmente, guía experimentado. Hoy, con más de 10 años de experiencia, 17 cumbres exitosas al Aconcagua y la certificación oficial EPGAMT obtenida en 2018, lidera expediciones internacionales con los más altos estándares de seguridad.',
+
+  'faq.qa.guide-why.q': '¿Por qué elegir a Julián Kusi como guía del Aconcagua?',
+  'faq.qa.guide-why.a': 'Julián Kusi combina 17 cumbres exitosas, la doble certificación EPGAMT y WFR, y dominio fluido del español, el inglés y el chino mandarín. Su conocimiento profundo de cada ruta y su enfoque centrado en la seguridad hacen que su tasa de éxito supere la media. Es el único guía certificado trilingüe en el Aconcagua.\n\nConocimiento desde la raíz: Julián comenzó en 2013 trabajando en los campamentos base del Aconcagua, vivió tres temporadas aprendiendo la montaña desde adentro, ascendió a porteador en los campamentos de altura y comenzó a guiar expediciones en 2017, obteniendo su certificación oficial EPGAMT en 2018. Entiende el Aconcagua desde cada ángulo posible.\n\nEmpatía y adaptación al nuevo escalador: el perfil del alpinista de hoy —muchas veces en su primera experiencia a 6.000 m y con botas dobles— requiere paciencia, pedagogía y escucha activa. Julián no solo guía: entrena y acompaña a cada cliente según su ritmo y necesidades particulares.\n\nConfianza que genera fidelidad: su enfoque humano y didáctico hace que los clientes se sientan seguros. Muchos regresan después de un descenso por mal tiempo o por razones físicas, convencidos de que con Julián están en las mejores manos. Podés conocer su metodología en sus redes sociales.',
+
+  'faq.qa.guide-credentials.q': '¿Qué certificaciones tiene Julián Kusi?',
+  'faq.qa.guide-credentials.a': 'Julián Kusi posee la certificación EPGAMT (Escuela de Porteadores y Guías de Alta Montaña de Argentina) y la certificación WFR (Wilderness First Responder), que acreditan su formación como guía oficial y su capacidad para responder a emergencias médicas en alta montaña.',
+
+  'faq.qa.guide-languages.q': '¿En qué idiomas guía Julián Kusi?',
+  'faq.qa.guide-languages.a': 'Julián Kusi guía expediciones en español, inglés y chino mandarín, lo que lo convierte en una opción única para alpinistas de América Latina, Estados Unidos, Europa y China.',
+
+  'faq.qa.guide-area.q': '¿En qué zonas guía Julián Kusi?',
+  'faq.qa.guide-area.a': 'Julián Kusi opera principalmente en el Parque Provincial Aconcagua, en Mendoza, Argentina. Sus rutas incluyen la Ruta Normal (Plaza de Mulas) y la Ruta 360° (Glaciar de los Polacos). El Aconcagua (6,962 m) es la cima más alta de América y el punto más alto fuera de Asia.',
+
+  'faq.qa.guide-contact.q': '¿Cómo contactar a Julián Kusi?',
+  'faq.qa.guide-contact.a_intro': 'Podés contactar a Julián Kusi por correo electrónico a julian@aconcagua.co, por WhatsApp al ',
+  'faq.qa.guide-contact.a_whatsapp_label': '+57 314 629 4318',
+  'faq.qa.guide-contact.a_mid': ', o agendando una ',
+  'faq.qa.guide-contact.a_consult_label': 'asesoría gratuita de 30 minutos directamente desde este sitio web',
+  'faq.qa.guide-contact.a_outro': '.',
+  'faq.qa.guide-contact.links_intro': 'Contactalo directamente:',
+  'faq.qa.guide-contact.link_email': 'Email',
+  'faq.qa.guide-contact.link_whatsapp': 'WhatsApp',
+  'faq.qa.guide-contact.link_instagram': 'Instagram',
+  'faq.qa.guide-contact.link_tiktok': 'TikTok',
 };

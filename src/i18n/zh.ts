@@ -197,4 +197,126 @@ export const zh = {
 
   // Accessibility
   'a11y.opens_new_tab': '在新标签页中打开',
+
+  // FAQ
+  'nav.faq': '常见问题',
+
+  'faq.tag': '常见问题',
+  'faq.title': '常见问题解答',
+  'faq.subtitle': '关于阿空加瓜和我们探险活动的常见问题解答。',
+
+  'faq.category.general.title': '常规与后勤',
+  'faq.category.permits.title': '许可证与法律要求',
+  'faq.category.preparation.title': '技术准备与装备',
+  'faq.category.health.title': '健康与安全',
+  'faq.category.investment.title': '费用投入',
+
+  'faq.qa.best-season.q': '攀登阿空加瓜的最佳季节是什么时候？',
+  'faq.qa.best-season.a': '官方登山季自11月延伸至3月。不过，气候最为稳定的最佳月份是12月底至1月。',
+
+  'faq.qa.duration.q': '阿空加瓜探险需要多少天？',
+  'faq.qa.duration.a': '普通路线或360°路线的标准行程通常从门多萨市出发，历时18至20天。这段时间对于安全的高海拔适应、物资搬运以及应对恶劣天气的预备天数至关重要。',
+
+  'faq.qa.min-time.q': '探险所需的最短时间是多少？',
+  'faq.qa.min-time.a': '标准行程为18至20天。另有"快速"行程可供选择，历时10至14天，专为已在其他山峰（海拔6,000米级别）完成高海拔适应的登山者，或在冲顶当天使用补充氧气以弥补快速上升的登山者而设计。这类行程需要私人后勤、专属服务及额外必要资源，因此费用较高（约USD 10,000）。',
+
+  'faq.qa.success-rate.q': '阿空加瓜的登顶成功率是多少？',
+  'faq.qa.success-rate.a': '据估计，只有30%至40%的登山者能够登顶。许多人因低估高海拔的难度或缺乏大型高海拔山峰的攀登经验而失败。',
+
+  'faq.qa.mules-porters.q': '可以雇用骡子或搬运工吗？',
+  'faq.qa.mules-porters.a': '可以。骡子可以将重装备运送至大本营（普通路线的Plaza de Mulas，或360°路线的Plaza Argentina）。在高营地，有搬运工可以帮助您负重，让您为冲顶日保存体力。',
+
+  'faq.qa.abandon-expedition.q': '如果需要中途放弃探险怎么办？',
+  'faq.qa.abandon-expedition.a': '"自主撤离"系统（自行徒步下山）是严格禁止的。您绝不会单独下撤：始终会有向导或助理全程陪同，这可能产生额外费用。我们的队伍最多12人，向导与登山者比例为每3至4名登山者配备1名向导，以确保在任何紧急情况下都能获得妥善照顾。',
+
+  'faq.qa.permit-cost.q': '阿空加瓜的许可证费用是多少？',
+  'faq.qa.permit-cost.a': '许可证对所有登山者均为强制要求。2026-2027赛季外国人许可证费用预计在USD 900至USD 2,000之间，具体取决于路线和类别。许可证在门多萨省旅游局办理，需通过Pago Fácil以阿根廷比索现金支付。注意：如果您聘请代理公司，他们可以远程办理手续，并提供信用卡或银行转账等其他支付方式。',
+
+  'faq.qa.guide-required.q': '是否必须聘请认证向导？',
+  'faq.qa.guide-required.a': '对于普通路线，法律上并无强制要求，但强烈建议聘请向导以应对健康和天气风险。请务必确认该专业人员持有阿空加瓜省立公园的官方资质证书。',
+
+  'faq.qa.minors.q': '未成年人可以攀登阿空加瓜吗？',
+  'faq.qa.minors.a': '可以，但需要提供经公证人认证的双亲法律授权书，对于外国人，还须附有海牙认证（Apostilla de la Haya）。',
+
+  'faq.qa.insurance.q': '我需要哪种保险？',
+  'faq.qa.insurance.a': '对于外国人而言，保险是强制要求。保险须覆盖直升机救援及至最低海拔5,600米的航空医疗撤离。',
+
+  'faq.qa.boots.q': '攀登阿空加瓜需要什么类型的登山靴？',
+  'faq.qa.boots.a': '您需要双层极地登山靴，须适应极端低温并兼容固定式冰爪。最推荐的型号为：La Sportiva G2 Evo、Scarpa Phantom 6000 HD、La Sportiva Spantik、Bestard top extreme lite和Mammut Nordwand 6000 High。即使是高端徒步靴也不适合攀登阿空加瓜。',
+
+  'faq.qa.climbing-experience.q': '需要哪些技术经验？',
+  'faq.qa.climbing-experience.a': '普通路线或360°路线不需要岩石或冰雪技术攀登经验。但您必须熟悉在积雪坡面上使用冰爪和登山杖。',
+
+  'faq.qa.training.q': '应如何进行体能训练？',
+  'faq.qa.training.a': '建议进行4至6个月的备战准备。重点应放在有氧耐力训练（第2心率区）以及在有坡度地形上背负15至20公斤背包徒步。',
+
+  'faq.qa.medical-service.q': '山上有医疗服务吗？',
+  'faq.qa.medical-service.a': '有，Plaza de Mulas设有医疗站，医生会测量您的血氧饱和度、血压并进行肺部听诊，以授权您继续上升。遇到严重紧急情况时，可提供航空撤离服务。',
+
+  'faq.qa.altitude-sickness.q': '什么是高山病（急性高山反应），如何预防？',
+  'faq.qa.altitude-sickness.a': '黄金法则是：如果症状在休息后没有改善，就必须下撤。医疗服务将评估您是否能够自行下撤，或是否需要空中撤离。',
+
+  'faq.qa.communication.q': '山上有通讯设备吗？',
+  'faq.qa.communication.a': '有。Plaza de Mulas提供Starlink卫星互联网，可在大本营服务区使用。高营地则通过VHF对讲机或卫星电话进行通讯。认证向导随时携带VHF对讲机和紧急通讯设备。',
+
+  'faq.qa.total-cost.q': '阿空加瓜探险的总费用是多少？',
+  'faq.qa.total-cost.a': '总费用范围为USD 2,000至USD 10,000，具体取决于您的后勤安排。\n\n经济型约USD 2,000：基本许可证 + 保险 + 自行安排后勤。适合经验丰富、能够自主管理一切的登山者。\n\n中档约USD 3,000 + 许可证和保险：包含骡子运输、大本营住宿和餐饮，不含向导。\n\n全程服务（Full Service）约USD 6,000+ + 许可证和保险：含认证向导的完整探险套餐，包括门多萨酒店、接送、全程三餐和住宿。\n\n主要费用参考：许可证费用：其金额严格取决于您的国籍（门多萨居民、阿根廷人、拉丁美洲人或外国人）、所选路线以及是否聘请当地公司协助。撤离保险：覆盖海拔5,600米以上高山直升机救援。',
+
+  'faq.qa.recognize-local-company.q': '如何识别值得信赖的当地公司？',
+  'faq.qa.recognize-local-company.a': '真正在山上有实体存在的当地公司会在营地拥有自己的圆顶帐篷或帐篷，并标有官方标志。中间代理机构则只会安装临时横幅。预订前，请核实该公司是否直接运营，而非转包山地服务。',
+
+  // SEO / GEO — new keys
+  'og.site_name': 'Aconcagua.co — Julián Kusi',
+  'og.image_alt': 'Julián Kusi 在阿空加瓜 — 认证高山向导',
+
+  'seo.h1_suffix': '阿空加瓜高山向导 — Julián Kusi',
+
+  'about.heading_seo': '阿空加瓜向导 — Julián Kusi',
+  'about.subheading': '从厨房到阿空加瓜顶峰',
+
+  'about.quickfacts.title': '基本信息',
+  'about.quickfacts.guide.label': '职业',
+  'about.quickfacts.guide.value': '认证高山向导',
+  'about.quickfacts.location.label': '基地',
+  'about.quickfacts.location.value': '阿根廷门多萨',
+  'about.quickfacts.area.label': '向导范围',
+  'about.quickfacts.area.value': '阿根廷阿空加瓜省立公园',
+  'about.quickfacts.languages.label': '语言',
+  'about.quickfacts.languages.value': '中文 · English · Español',
+  'about.quickfacts.credentials.label': '认证资质',
+  'about.quickfacts.credentials.value': 'EPGAMT · WFR（荒野急救员）',
+  'about.quickfacts.summits.label': '成功登顶',
+  'about.quickfacts.summits.value': '阿空加瓜17次（6,962米）',
+  'about.quickfacts.contact.label': '联系方式',
+  'about.quickfacts.contact.value': 'julian@aconcagua.co',
+
+  'faq.category.guide.title': '关于您的向导',
+
+  'faq.qa.guide-who.q': 'Julián Kusi是谁？',
+  'faq.qa.guide-who.a': 'Julián Kusi出生于哥伦比亚麦德林（Valle de Aburrá）地区，海拔约1,500米，自幼便与群山为伴。20岁时，他只身前往阿根廷门多萨打厨工，正是这段经历将他带到了阿空加瓜大本营，点燃了他对登山运动的热情。此后，他扎根门多萨，系统学习专业高山向导课程，一步一个脚印——从大本营后勤、高营地搬运工，成长为经验丰富的高山向导。如今，凭借逾10年的带队经验、17次阿空加瓜成功登顶记录及2018年获得的EPGAMT官方认证，他以最高安全标准引导国际登山者。',
+
+  'faq.qa.guide-why.q': '为什么选择Julián Kusi作为您的阿空加瓜向导？',
+  'faq.qa.guide-why.a': 'Julián Kusi拥有17次成功登顶记录、EPGAMT与WFR双重认证，以及流利的英语、西班牙语和中文能力。他对每条路线的深入了解和安全第一的理念，使其登顶成功率高于平均水平。他是阿空加瓜唯一的三语认证向导。\n\n根植于山的专业知识：Julián于2013年从大本营工作起步，历经三个登山季深入了解这座山的一切，随后担任高营地搬运工，并于2017年开始带领探险队，2018年正式获得EPGAMT官方认证。他从每一个角度深刻理解阿空加瓜。\n\n对新生代登山者的共情与适应：当今登山者——很多人正在首次挑战6,000米并穿着双层靴——需要向导具备耐心、因材施教和积极倾听的能力。Julián不仅是向导，更是每位客户的训练伙伴，他根据每人的节奏和需求全程陪伴。\n\n赢得信任，成就忠诚：他人性化、寓教于乐的引导方式让客户倍感安心。许多人因天气或体能原因下撤后，依然选择再次与Julián出发——因为他们深信自己正处于最专业的守护之中。欢迎在他的社交媒体上了解他的带队理念。',
+
+  'faq.qa.guide-credentials.q': 'Julián Kusi持有哪些认证资质？',
+  'faq.qa.guide-credentials.a': 'Julián Kusi持有EPGAMT认证（阿根廷搬运工与高山向导学校——阿根廷官方向导资质）和WFR（荒野急救员）认证，具备引导探险队并在高海拔医疗紧急情况下进行处置的资格。',
+
+  'faq.qa.guide-languages.q': 'Julián Kusi用哪些语言带队？',
+  'faq.qa.guide-languages.a': 'Julián Kusi以英语、西班牙语和普通话带队，是来自中国、美洲和欧洲登山者的理想选择。',
+
+  'faq.qa.guide-area.q': 'Julián Kusi在哪些地区提供向导服务？',
+  'faq.qa.guide-area.a': 'Julián Kusi主要在阿根廷门多萨省的阿空加瓜省立公园开展向导工作，涵盖普通路线（Plaza de Mulas）和360°路线（波兰冰川）。阿空加瓜（6,962米）是美洲最高峰，也是亚洲以外的最高山峰。',
+
+  'faq.qa.guide-contact.q': '如何联系Julián Kusi？',
+  'faq.qa.guide-contact.a_intro': '您可以通过以下方式联系Julián Kusi：发送电子邮件至julian@aconcagua.co，通过WhatsApp拨打',
+  'faq.qa.guide-contact.a_whatsapp_label': '+57 314 629 4318',
+  'faq.qa.guide-contact.a_mid': '，或直接在本网站',
+  'faq.qa.guide-contact.a_consult_label': '预约30分钟免费咨询',
+  'faq.qa.guide-contact.a_outro': '。',
+  'faq.qa.guide-contact.links_intro': '直接联系：',
+  'faq.qa.guide-contact.link_email': '邮箱',
+  'faq.qa.guide-contact.link_whatsapp': 'WhatsApp',
+  'faq.qa.guide-contact.link_instagram': 'Instagram',
+  'faq.qa.guide-contact.link_tiktok': 'TikTok',
+  'faq.qa.guide-contact.link_xiaohongshu': '小红书',
 };

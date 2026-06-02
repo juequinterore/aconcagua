@@ -44,7 +44,8 @@ const timeline = [
     <!-- Bio column -->
     <div class="about-bio-col">
       <p class="tag">{t('about.tag')}</p>
-      <h2 class="reveal">{t('about.heading')}</h2>
+      <h2 class="reveal">{t('about.heading_seo')}</h2>
+      <h3 class="about-subheading">{t('about.subheading')}</h3>
       <div class="divider reveal reveal-delay-1"></div>
       <p class="body-text reveal reveal-delay-2">{t('about.body')}</p>
 
@@ -64,6 +65,41 @@ const timeline = [
           </div>
         ))}
       </div>
+
+      <!-- Quick Facts GEO block -->
+      <section class="quick-facts reveal" aria-label={t('about.quickfacts.title')}>
+        <h3 class="quick-facts-heading">{t('about.quickfacts.title')}</h3>
+        <dl class="quick-facts-dl">
+          <div class="quick-facts-row">
+            <dt>{t('about.quickfacts.guide.label')}</dt>
+            <dd>{t('about.quickfacts.guide.value')}</dd>
+          </div>
+          <div class="quick-facts-row">
+            <dt>{t('about.quickfacts.location.label')}</dt>
+            <dd>{t('about.quickfacts.location.value')}</dd>
+          </div>
+          <div class="quick-facts-row">
+            <dt>{t('about.quickfacts.area.label')}</dt>
+            <dd>{t('about.quickfacts.area.value')}</dd>
+          </div>
+          <div class="quick-facts-row">
+            <dt>{t('about.quickfacts.languages.label')}</dt>
+            <dd>{t('about.quickfacts.languages.value')}</dd>
+          </div>
+          <div class="quick-facts-row">
+            <dt>{t('about.quickfacts.credentials.label')}</dt>
+            <dd>{t('about.quickfacts.credentials.value')}</dd>
+          </div>
+          <div class="quick-facts-row">
+            <dt>{t('about.quickfacts.summits.label')}</dt>
+            <dd>{t('about.quickfacts.summits.value')}</dd>
+          </div>
+          <div class="quick-facts-row">
+            <dt>{t('about.quickfacts.contact.label')}</dt>
+            <dd><a href="mailto:julian@aconcagua.co">{t('about.quickfacts.contact.value')}</a></dd>
+          </div>
+        </dl>
+      </section>
     </div>
   </div>
 </section>
@@ -154,6 +190,13 @@ const timeline = [
   .about-bio-col h2 {
     font-size: var(--fs-h1);
     color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .about-subheading {
+    font-size: var(--fs-h3);
+    font-weight: 500;
+    color: var(--text-secondary);
     margin-bottom: 8px;
   }
 
@@ -227,6 +270,60 @@ const timeline = [
     color: var(--text-secondary);
   }
 
+  /* Quick Facts */
+  .quick-facts {
+    margin-top: 32px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 20px 24px;
+  }
+
+  .quick-facts-heading {
+    font-size: var(--fs-h3);
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .quick-facts-dl {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .quick-facts-row {
+    display: grid;
+    grid-template-columns: 10rem 1fr;
+    gap: 8px;
+    align-items: baseline;
+  }
+
+  .quick-facts-dl dt {
+    font-size: var(--fs-small);
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .quick-facts-dl dd {
+    font-size: var(--fs-body);
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .quick-facts-dl dd a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .quick-facts-dl dd a:hover {
+    color: var(--accent-hover);
+  }
+
   @media (max-width: 900px) {
     .about-grid {
       grid-template-columns: 1fr;
@@ -253,6 +350,11 @@ const timeline = [
 
     .badge-number {
       font-size: 1.5rem;
+    }
+
+    .quick-facts-row {
+      grid-template-columns: 1fr;
+      gap: 2px;
     }
   }
 </style>

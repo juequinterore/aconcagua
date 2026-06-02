@@ -10,6 +10,8 @@ interface Props {
   ogLocale?: string;
   ogUrl?: string;
   ogImage?: string;
+  siteName?: string;
+  ogImageAlt?: string;
 }
 
 const {
@@ -18,8 +20,16 @@ const {
   lang,
   ogLocale = 'es_AR',
   ogUrl = 'https://aconcagua.co/',
-ogImage = 'https://aconcagua.co/openegraph.jpeg',
+  ogImage = 'https://aconcagua.co/openegraph.jpeg',
+  siteName = 'Aconcagua.co — Julián Kusi',
+  ogImageAlt = 'Julián Kusi on Aconcagua — certified mountain guide',
 } = Astro.props;
+
+const inLanguageByLang: Record<'es' | 'en' | 'zh', string> = {
+  es: 'es-AR',
+  en: 'en-US',
+  zh: 'zh-CN',
+};
 
 const alternates = [
   { lang: 'es', href: 'https://aconcagua.co/' },
@@ -150,6 +160,31 @@ const jsonLd = [
       'https://www.tiktok.com/@julian_kusi',
     ],
   },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': 'https://aconcagua.co/#website',
+    name: siteName,
+    url: 'https://aconcagua.co',
+    inLanguage: ['es-AR', 'en-US', 'zh-CN'],
+    publisher: { '@id': 'https://aconcagua.co/#business' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${ogUrl}#webpage`,
+    url: ogUrl,
+    name: title,
+    description: description,
+    inLanguage: inLanguageByLang[lang],
+    isPartOf: { '@id': 'https://aconcagua.co/#website' },
+    about: { '@id': 'https://aconcagua.co/#julian-kusi' },
+    mainEntity: { '@id': 'https://aconcagua.co/#julian-kusi' },
+    primaryImageOfPage: {
+      '@type': 'ImageObject',
+      url: ogImage,
+    },
+  },
 ];
 ---
 
@@ -181,7 +216,13 @@ const jsonLd = [
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={ogImageAlt} />
     <meta property="og:locale" content={ogLocale} />
+    <meta property="og:site_name" content={siteName} />
+
+    <!-- Author + Robots -->
+    <meta name="author" content="Julián Kusi" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />

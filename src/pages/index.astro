@@ -9,6 +9,7 @@ import Certifications from '../components/Certifications.astro';
 import Gallery from '../components/Gallery.astro';
 import Pricing from '../components/Pricing.astro';
 import Testimonials from '../components/Testimonials.astro';
+import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
 import Partners from '../components/Partners.astro';
 import Social from '../components/Social.astro';
@@ -20,11 +21,13 @@ const t = useTranslations(lang);
 ---
 
 <BaseLayout
-  title="Expediciones Guiadas al Aconcagua — Julián Kusi | aconcagua.co"
-  description="Expediciones al Aconcagua con guía certificado. 17 cumbres exitosas, 10+ años de experiencia. Fluido en español, inglés y chino."
+  title="Guía de Aconcagua — Julián Kusi | aconcagua.co"
+  description="Guía certificado del Aconcagua con 17 cumbres exitosas y más de 10 años de experiencia. Julián Kusi guía expediciones en español, inglés y chino."
   lang={lang}
   ogLocale="es_AR"
   ogUrl="https://aconcagua.co/"
+  siteName="Aconcagua.co — Julián Kusi"
+  ogImageAlt="Julián Kusi en el Aconcagua — guía de montaña certificado"
 >
   <script is:inline>
     (function () {
@@ -43,6 +46,7 @@ const t = useTranslations(lang);
     <Gallery lang={lang} t={t} />
     <Pricing lang={lang} t={t} />
     <Testimonials lang={lang} t={t} />
+    <FAQ lang={lang} t={t} pageId="https://aconcagua.co/#webpage" />
     <CTA lang={lang} t={t} />
     <Partners lang={lang} t={t} />
     <Social lang={lang} t={t} />

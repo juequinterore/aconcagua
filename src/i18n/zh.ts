@@ -293,10 +293,10 @@ export const zh = {
   'faq.category.guide.title': '关于您的向导',
 
   'faq.qa.guide-who.q': 'Julián Kusi是谁？',
-  'faq.qa.guide-who.a': 'Julián Kusi是一位来自阿根廷门多萨的认证高山向导。他在阿空加瓜拥有17次成功登顶记录，积累了超过10年的带队经验。2013年，他以大本营厨师身份开始登山生涯，后成为搬运工，并于2018年获得官方向导认证（EPGAMT）。他现在以最高安全标准引导国际登山队。',
+  'faq.qa.guide-who.a': 'Julián Kusi出生于哥伦比亚麦德林（Valle de Aburrá）地区，海拔约1,500米，自幼便与群山为伴。20岁时，他只身前往阿根廷门多萨打厨工，正是这段经历将他带到了阿空加瓜大本营，点燃了他对登山运动的热情。此后，他扎根门多萨，系统学习专业高山向导课程，一步一个脚印——从大本营后勤、高营地搬运工，成长为经验丰富的高山向导。如今，凭借逾10年的带队经验、17次阿空加瓜成功登顶记录及2018年获得的EPGAMT官方认证，他以最高安全标准引导国际登山者。',
 
   'faq.qa.guide-why.q': '为什么选择Julián Kusi作为您的阿空加瓜向导？',
-  'faq.qa.guide-why.a': 'Julián Kusi拥有17次成功登顶记录、EPGAMT和WFR双重认证，以及流利的英语、西班牙语和中文能力。他对每条路线的深入了解和安全第一的理念，使其登顶成功率高于平均水平。他是阿空加瓜唯一的三语认证向导。',
+  'faq.qa.guide-why.a': 'Julián Kusi拥有17次成功登顶记录、EPGAMT与WFR双重认证，以及流利的英语、西班牙语和中文能力。他对每条路线的深入了解和安全第一的理念，使其登顶成功率高于平均水平。他是阿空加瓜唯一的三语认证向导。\n\n根植于山的专业知识：Julián于2013年从大本营工作起步，历经三个登山季深入了解这座山的一切，随后担任高营地搬运工，并于2017年开始带领探险队，2018年正式获得EPGAMT官方认证。他从每一个角度深刻理解阿空加瓜。\n\n对新生代登山者的共情与适应：当今登山者——很多人正在首次挑战6,000米并穿着双层靴——需要向导具备耐心、因材施教和积极倾听的能力。Julián不仅是向导，更是每位客户的训练伙伴，他根据每人的节奏和需求全程陪伴。\n\n赢得信任，成就忠诚：他人性化、寓教于乐的引导方式让客户倍感安心。许多人因天气或体能原因下撤后，依然选择再次与Julián出发——因为他们深信自己正处于最专业的守护之中。欢迎在他的社交媒体上了解他的带队理念。',
 
   'faq.qa.guide-credentials.q': 'Julián Kusi持有哪些认证资质？',
   'faq.qa.guide-credentials.a': 'Julián Kusi持有EPGAMT认证（阿根廷搬运工与高山向导学校——阿根廷官方向导资质）和WFR（荒野急救员）认证，具备引导探险队并在高海拔医疗紧急情况下进行处置的资格。',
@@ -308,7 +308,11 @@ export const zh = {
   'faq.qa.guide-area.a': 'Julián Kusi主要在阿根廷门多萨省的阿空加瓜省立公园开展向导工作，涵盖普通路线（Plaza de Mulas）和360°路线（波兰冰川）。阿空加瓜（6,962米）是美洲最高峰，也是亚洲以外的最高山峰。',
 
   'faq.qa.guide-contact.q': '如何联系Julián Kusi？',
-  'faq.qa.guide-contact.a': '您可以通过以下方式联系Julián Kusi：发送电子邮件至julian@aconcagua.co，通过WhatsApp拨打+57 314 629 4318，或直接在本网站预约30分钟免费咨询。',
+  'faq.qa.guide-contact.a_intro': '您可以通过以下方式联系Julián Kusi：发送电子邮件至julian@aconcagua.co，通过WhatsApp拨打',
+  'faq.qa.guide-contact.a_whatsapp_label': '+57 314 629 4318',
+  'faq.qa.guide-contact.a_mid': '，或直接在本网站',
+  'faq.qa.guide-contact.a_consult_label': '预约30分钟免费咨询',
+  'faq.qa.guide-contact.a_outro': '。',
   'faq.qa.guide-contact.links_intro': '直接联系：',
   'faq.qa.guide-contact.link_email': '邮箱',
   'faq.qa.guide-contact.link_whatsapp': 'WhatsApp',

@@ -291,10 +291,10 @@ export const es = {
   'faq.category.guide.title': 'Sobre tu Guía',
 
   'faq.qa.guide-who.q': '¿Quién es Julián Kusi?',
-  'faq.qa.guide-who.a': 'Julián Kusi es un guía de montaña certificado con base en Mendoza, Argentina. Con 17 cumbres exitosas al Aconcagua y más de 10 años de experiencia, Julián inició su camino en 2013 como cocinero en los campamentos base, se convirtió en porteador y obtuvo su certificación oficial de guía (EPGAMT) en 2018. Hoy lidera expediciones internacionales con los más altos estándares de seguridad.',
+  'faq.qa.guide-who.a': 'Julián Kusi nació en Medellín, en el Valle de Aburrá —a unos 1.500 msnm—, rodeado de montañas desde pequeño. A los 20 años se mudó a Mendoza para trabajar en una cocina, labor que lo acercó a los campamentos base del Aconcagua y encendió en él la pasión por el montañismo. Se radicó en la ciudad para estudiar la carrera de guía de montaña profesional y recorrió cada peldaño: logística en base, porteador en campamentos de altura y, finalmente, guía experimentado. Hoy, con más de 10 años de experiencia, 17 cumbres exitosas al Aconcagua y la certificación oficial EPGAMT obtenida en 2018, lidera expediciones internacionales con los más altos estándares de seguridad.',
 
   'faq.qa.guide-why.q': '¿Por qué elegir a Julián Kusi como guía del Aconcagua?',
-  'faq.qa.guide-why.a': 'Julián Kusi combina 17 cumbres exitosas, certificación EPGAMT y WFR, y dominio fluido de español, inglés y chino. Su conocimiento profundo de cada ruta y su enfoque centrado en la seguridad hacen que su tasa de éxito supere la media. Es el único guía certificado trilingüe en el Aconcagua.',
+  'faq.qa.guide-why.a': 'Julián Kusi combina 17 cumbres exitosas, la doble certificación EPGAMT y WFR, y dominio fluido del español, el inglés y el chino mandarín. Su conocimiento profundo de cada ruta y su enfoque centrado en la seguridad hacen que su tasa de éxito supere la media. Es el único guía certificado trilingüe en el Aconcagua.\n\nConocimiento desde la raíz: Julián comenzó en 2013 trabajando en los campamentos base del Aconcagua, vivió tres temporadas aprendiendo la montaña desde adentro, ascendió a porteador en los campamentos de altura y comenzó a guiar expediciones en 2017, obteniendo su certificación oficial EPGAMT en 2018. Entiende el Aconcagua desde cada ángulo posible.\n\nEmpatía y adaptación al nuevo escalador: el perfil del alpinista de hoy —muchas veces en su primera experiencia a 6.000 m y con botas dobles— requiere paciencia, pedagogía y escucha activa. Julián no solo guía: entrena y acompaña a cada cliente según su ritmo y necesidades particulares.\n\nConfianza que genera fidelidad: su enfoque humano y didáctico hace que los clientes se sientan seguros. Muchos regresan después de un descenso por mal tiempo o por razones físicas, convencidos de que con Julián están en las mejores manos. Podés conocer su metodología en sus redes sociales.',
 
   'faq.qa.guide-credentials.q': '¿Qué certificaciones tiene Julián Kusi?',
   'faq.qa.guide-credentials.a': 'Julián Kusi posee la certificación EPGAMT (Escuela de Porteadores y Guías de Alta Montaña de Argentina) y la certificación WFR (Wilderness First Responder), que acreditan su formación como guía oficial y su capacidad para responder a emergencias médicas en alta montaña.',
@@ -306,7 +306,11 @@ export const es = {
   'faq.qa.guide-area.a': 'Julián Kusi opera principalmente en el Parque Provincial Aconcagua, en Mendoza, Argentina. Sus rutas incluyen la Ruta Normal (Plaza de Mulas) y la Ruta 360° (Glaciar de los Polacos). El Aconcagua (6,962 m) es la cima más alta de América y el punto más alto fuera de Asia.',
 
   'faq.qa.guide-contact.q': '¿Cómo contactar a Julián Kusi?',
-  'faq.qa.guide-contact.a': 'Podés contactar a Julián Kusi por correo electrónico a julian@aconcagua.co, por WhatsApp al +57 314 629 4318, o agendando una asesoría gratuita de 30 minutos directamente desde este sitio web.',
+  'faq.qa.guide-contact.a_intro': 'Podés contactar a Julián Kusi por correo electrónico a julian@aconcagua.co, por WhatsApp al ',
+  'faq.qa.guide-contact.a_whatsapp_label': '+57 314 629 4318',
+  'faq.qa.guide-contact.a_mid': ', o agendando una ',
+  'faq.qa.guide-contact.a_consult_label': 'asesoría gratuita de 30 minutos directamente desde este sitio web',
+  'faq.qa.guide-contact.a_outro': '.',
   'faq.qa.guide-contact.links_intro': 'Contactalo directamente:',
   'faq.qa.guide-contact.link_email': 'Email',
   'faq.qa.guide-contact.link_whatsapp': 'WhatsApp',

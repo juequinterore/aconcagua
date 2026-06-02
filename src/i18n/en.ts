@@ -291,10 +291,10 @@ export const en = {
   'faq.category.guide.title': 'About Your Guide',
 
   'faq.qa.guide-who.q': 'Who is Julián Kusi?',
-  'faq.qa.guide-who.a': 'Julián Kusi is a certified mountain guide based in Mendoza, Argentina. With 17 successful summits on Aconcagua and over 10 years of experience, Julián began his journey in 2013 as a camp cook, became a porter, and earned his official guide certification (EPGAMT) in 2018. He now leads international expeditions to the highest standards of safety.',
+  'faq.qa.guide-who.a': 'Julián Kusi was born in Medellín, in the Valle de Aburrá — at around 1,500 m above sea level — surrounded by mountains from an early age. At 20 he moved to Mendoza to work in a kitchen, a job that brought him to Aconcagua\'s base camps and ignited his passion for mountaineering. He settled in the city to pursue a professional mountain guide career, climbing every rung along the way: base logistics, high-altitude porter, and finally experienced guide. Today, with over 10 years of experience, 17 successful summits on Aconcagua, and his official EPGAMT certification earned in 2018, he leads international expeditions to the highest standards of safety.',
 
   'faq.qa.guide-why.q': 'Why choose Julián Kusi as your Aconcagua guide?',
-  'faq.qa.guide-why.a': 'Julián Kusi combines 17 successful summits, EPGAMT and WFR certifications, and fluency in English, Spanish, and Chinese. His deep knowledge of every route and safety-first approach deliver above-average summit success rates. He is the only trilingual certified guide on Aconcagua.',
+  'faq.qa.guide-why.a': 'Julián Kusi combines 17 successful summits, dual EPGAMT and WFR certifications, and fluency in English, Spanish, and Mandarin Chinese. His deep knowledge of every route and safety-first approach deliver above-average summit success rates. He is the only trilingual certified guide on Aconcagua.\n\nKnowledge from the ground up: Julián started in 2013 working at the base camps, spent three seasons learning the mountain from the inside, rose to porter in the high camps, and began guiding expeditions in 2017, earning his official EPGAMT certification in 2018. He understands Aconcagua from every possible perspective.\n\nEmpathy and adaptation to the new climber: today\'s climber profile — often on their first 6,000 m experience in double boots — calls for patience, teaching, and active listening. Julián doesn\'t just guide: he trains and accompanies each client at their own pace and according to their individual needs.\n\nTrust that builds loyalty: his human, educational approach makes clients feel safe. Many return after a weather or fitness turnaround, confident they are in the best hands with Julián. You can verify his methodology on his social media channels.',
 
   'faq.qa.guide-credentials.q': 'What credentials does Julián Kusi hold?',
   'faq.qa.guide-credentials.a': 'Julián Kusi holds the EPGAMT certification (Escuela de Porteadores y Guías de Alta Montaña — Argentina\'s official mountain guide credential) and the WFR (Wilderness First Responder) certification, qualifying him to lead expeditions and respond to high-altitude medical emergencies.',
@@ -306,7 +306,11 @@ export const en = {
   'faq.qa.guide-area.a': 'Julián Kusi operates primarily in Aconcagua Provincial Park, Mendoza, Argentina. His routes include the Normal Route (Plaza de Mulas) and the 360° Route (Glacier of the Poles). Aconcagua (6,962 m) is the highest peak in the Americas and the tallest summit outside Asia.',
 
   'faq.qa.guide-contact.q': 'How do I contact Julián Kusi?',
-  'faq.qa.guide-contact.a': 'You can contact Julián Kusi by email at julian@aconcagua.co, via WhatsApp at +57 314 629 4318, or by scheduling a free 30-minute consultation directly from this website.',
+  'faq.qa.guide-contact.a_intro': 'You can contact Julián Kusi by email at julian@aconcagua.co, via WhatsApp at ',
+  'faq.qa.guide-contact.a_whatsapp_label': '+57 314 629 4318',
+  'faq.qa.guide-contact.a_mid': ', or by scheduling a ',
+  'faq.qa.guide-contact.a_consult_label': 'free 30-minute consultation directly from this website',
+  'faq.qa.guide-contact.a_outro': '.',
   'faq.qa.guide-contact.links_intro': 'Reach out directly:',
   'faq.qa.guide-contact.link_email': 'Email',
   'faq.qa.guide-contact.link_whatsapp': 'WhatsApp',

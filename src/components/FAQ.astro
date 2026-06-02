@@ -17,6 +17,13 @@ const guideContactLinks: { label: string; href: string; external?: boolean }[] =
     : []),
 ];
 
+const contactIntro        = t('faq.qa.guide-contact.a_intro');
+const contactWhatsappLabel = t('faq.qa.guide-contact.a_whatsapp_label');
+const contactMid          = t('faq.qa.guide-contact.a_mid');
+const contactConsultLabel = t('faq.qa.guide-contact.a_consult_label');
+const contactOutro        = t('faq.qa.guide-contact.a_outro');
+const contactPlainText    = (contactIntro + contactWhatsappLabel + contactMid + contactConsultLabel + contactOutro).replace(/\s+/g, ' ').trim();
+
 const categories = [
   {
     key: 'guide',
@@ -27,7 +34,7 @@ const categories = [
       { id: 'guide-credentials', q: t('faq.qa.guide-credentials.q'), a: t('faq.qa.guide-credentials.a') },
       { id: 'guide-languages',   q: t('faq.qa.guide-languages.q'),   a: t('faq.qa.guide-languages.a') },
       { id: 'guide-area',        q: t('faq.qa.guide-area.q'),        a: t('faq.qa.guide-area.a') },
-      { id: 'guide-contact',     q: t('faq.qa.guide-contact.q'),     a: t('faq.qa.guide-contact.a') },
+      { id: 'guide-contact',     q: t('faq.qa.guide-contact.q'),     a: contactPlainText },
     ],
   },
   {
@@ -132,9 +139,15 @@ const faqPageSchema = {
                     </svg>
                   </summary>
                   <div class="faq-answer">
-                    {item.a.split('\n\n').map(p => (
-                      <p>{p}</p>
-                    ))}
+                    {item.id === 'guide-contact' ? (
+                      <p class="faq-answer-contact">
+                        {contactIntro}<a class="faq-inline-link" href="https://wa.me/573146294318" target="_blank" rel="noopener noreferrer">{contactWhatsappLabel}</a>{contactMid}<button type="button" class="faq-inline-link faq-inline-button" onclick={`Calendly.initPopupWidget({url: '${t('calendly.url')}'}); return false;`}>{contactConsultLabel}</button>{contactOutro}
+                      </p>
+                    ) : (
+                      item.a.split('\n\n').map(p => (
+                        <p>{p}</p>
+                      ))
+                    )}
                     {item.id === 'guide-contact' && (
                       <p class="faq-contact-links">
                         <span class="faq-contact-links-intro">{t('faq.qa.guide-contact.links_intro')}</span>
@@ -330,6 +343,27 @@ const faqPageSchema = {
   .faq-contact-sep {
     color: var(--text-secondary);
     opacity: 0.6;
+  }
+
+  /* ─── Inline contact links / button ────────────────── */
+
+  .faq-inline-link {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-weight: 500;
+  }
+
+  .faq-inline-link:hover {
+    color: var(--accent-hover);
+  }
+
+  .faq-inline-button {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
   }
 
   /* ─── Responsive ────────────────────────────────────── */
